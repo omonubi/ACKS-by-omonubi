@@ -1,7 +1,4 @@
 <div class='pc'>
-<!-- To Dos
-* Create !AddAbilities AS/EN/TH and remove Thieving Skills
--->
 <!-- RegEx for debugging
     /\*(.*\)\1;)\*/
     /**/$1
@@ -917,15 +914,14 @@
     <hr/>
     <div>
         <label class='spanheader'>Experience Log</label>
-        <fieldset class='repeating_experience'>
+        <fieldset class='repeating_experience'>            
+            <label>Date: </label><input class='xpamount' type='text' name='attr_xp_date'/>
             <label>Amount: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
             <label>Description: </label><input class='xpdescription' type='text' name='attr_xp_description'/>
         </fieldset>
     </div>
 </div>
 </div>
-<!--
-<input type='hidden' name='attr_banner_' value=''/>
 
 <input type='hidden' name='attr_banner_abilitythrow' value=''/>
 <input type='hidden' name='attr_banner_abilitydesc' value=''/>
@@ -968,48 +964,6 @@
 <input type='hidden' name='attr_banner_traps' value=''/>
 <input type='hidden' name='attr_banner_turn' value=''/>
 <input type='hidden' name='attr_banner_wis' value=''/>
--->
-<input type='hidden' name='attr_banner_abilitythrow' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
-<input type='hidden' name='attr_banner_abilitydesc' value='[x](https://s3.amazonaws.com/files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?16001823395#.png)'/>
-<input type='hidden' name='attr_banner_agility' value='[x](https://s3.amazonaws.com/files.d20.io/images/163997102/AXOfRJppTnocIWR5Y_lPcA/original.png?15999344525#.png)'/>
-<input type='hidden' name='attr_banner_bhr' value='[x](https://s3.amazonaws.com/files.d20.io/images/165068704/1I4pUgtI2ANx6Z1XTbB-6w/original.png?16003758415#.png)'/>
-<input type='hidden' name='attr_banner_blast' value='[x](https://s3.amazonaws.com/files.d20.io/images/164351057/V_5Pg1KGLIFLY3hfmQnIAQ/original.png?16000385285#.png)'/>
-<input type='hidden' name='attr_banner_cha' value='[x](https://s3.amazonaws.com/files.d20.io/images/208718715/Vm5d8eDh_W7U8gYLJVSOxQ/original.png?16159185615#.png)'/>
-<input type='hidden' name='attr_banner_climb' value='[x](https://s3.amazonaws.com/files.d20.io/images/164576947/VCDwMFLEzGxz2TIRmO8B2Q/original.png?16001420665#.png)'/>
-<input type='hidden' name='attr_banner_con' value='[x](https://s3.amazonaws.com/files.d20.io/images/208789845/qBZORlDrO_zhnHZSf1TJew/original.png?16159368735#.png)'/>
-<input type='hidden' name='attr_banner_critchar' value='[x](https://s3.amazonaws.com/files.d20.io/images/164243200/hKjALkHGX4_gj5GYWZEfmw/original.png?16000138925#.png)'/>
-<input type='hidden' name='attr_banner_critmon' value='[x](https://s3.amazonaws.com/files.d20.io/images/164319112/w9iRcBuEc3vZcFvB41B2cA/original.png?16000311685#.png)'/>
-<input type='hidden' name='attr_banner_dabbling' value='[x](https://s3.amazonaws.com/files.d20.io/images/236093721/4s45PlQQ20RYJjwZaqIQTA/original.png?16271747125#.png)'/>
-<input type='hidden' name='attr_banner_dex' value='[x](https://s3.amazonaws.com/files.d20.io/images/286649861/4oOHMoAZ28zT0uz8bqlWnw/original.png?16534232805#.png)'/>
-<input type='hidden' name='attr_banner_evade' value='[x](https://s3.amazonaws.com/files.d20.io/images/288829236/If86Xug8OnvoRD00EPVU1A/original.png?16546461245#.png)'/>
-<input type='hidden' name='attr_banner_hide' value='[x](https://s3.amazonaws.com/files.d20.io/images/164550402/eoU-wD5yau9lv73M0ok08g/original.png?16153950135#.png)'/>
-<input type='hidden' name='attr_banner_hd' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
-<input type='hidden' name='attr_banner_init' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
-<input type='hidden' name='attr_banner_int' value='[x](https://s3.amazonaws.com/files.d20.io/images/208749440/KcpBOc7sUqnYCKRtI_GNdQ/original.png?16159266415#.png)'/>
-<input type='hidden' name='attr_banner_listen' value='[x](https://s3.amazonaws.com/files.d20.io/images/207158604/34Vzrkx7J2nxNs9STGOuzg/original.png?16153942615#.png)'/>
-<input type='hidden' name='attr_banner_locks' value='[x](https://s3.amazonaws.com/files.d20.io/images/164528179/32MQFEUbgEnYE4QBpv2JkA/original.png?16001240355#.png)'/>
-<input type='hidden' name='attr_banner_loremastery' value='[x](https://s3.amazonaws.com/files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?16001823395#.png)'/>
-<input type='hidden' name='attr_banner_melee' value='[x](https://s3.amazonaws.com/files.d20.io/images/208788284/v3Vh7I66OLF3eKErbCtE8g/original.png?16159365185#.png)'/>
-<input type='hidden' name='attr_banner_missile' value='[x](https://s3.amazonaws.com/files.d20.io/images/208379586/aJ7XMROQPw9EdHe_cTeuwA/original.png?16157644605#.png)'/>
-<input type='hidden' name='attr_banner_morale' value='[x](https://s3.amazonaws.com/files.d20.io/images/164502952/QDUm2hoU_8YnEidHpdt3gA/original.png?16001161945#.png)'/>
-<input type='hidden' name='attr_banner_moralecheck' value='[x](https://s3.amazonaws.com/files.d20.io/images/164482040/OH6hqtvCHGeesUaO0b37vQ/original.png?16001087875#.png)'/>
-<input type='hidden' name='attr_banner_mortalwound' value='[x](https://s3.amazonaws.com/files.d20.io/images/286766649/SQOMglW-zJ64W6pF2WwoHA/original.png?16535055965#.png)'/>
-<input type='hidden' name='attr_banner_paralysis' value='[x](https://s3.amazonaws.com/files.d20.io/images/164446142/pUtaLtutH011f9ZjtaQgrg/original.png?16000939805#.png)'/>
-<input type='hidden' name='attr_banner_pockets' value='[x](https://s3.amazonaws.com/files.d20.io/images/164543632/9HoVA3mH5HvlPZPdBqIg2g/original.png?16001284195#.png)'/>
-<input type='hidden' name='attr_banner_poison' value='[x](https://s3.amazonaws.com/files.d20.io/images/164431733/S44njdUWMNsVpYVQ8O3TiA/original.png?16000843735#.png)'/>
-<input type='hidden' name='attr_banner_profthrow' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
-<input type='hidden' name='attr_banner_profdesc' value='[x](https://s3.amazonaws.com/files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?16001823395#.png)'/>
-<input type='hidden' name='attr_banner_reaction' value='[x](https://s3.amazonaws.com/files.d20.io/images/164051897/DDBz__NPDHQATVmlK4-fkw/original.png?15999466705#.png)'/>
-<input type='hidden' name='attr_banner_recsymbol' value='[x](https://s3.amazonaws.com/files.d20.io/images/207937806/RoMnGQYBuHdH9LwPZx_iTg/original.png?16156578535#.png)'/>
-<input type='hidden' name='attr_banner_sneak' value='[x](https://s3.amazonaws.com/files.d20.io/images/207160747/rVwt43rsKPT5fVyfg6wkhg/original.png#.png)'/>
-<input type='hidden' name='attr_banner_spellcast' value='[x](https://s3.amazonaws.com/files.d20.io/images/164818577/jtP4uMJplv3U1PGD7TstAQ/original.png?16002676365#.png)'/>
-<input type='hidden' name='attr_banner_spells' value='[x](https://s3.amazonaws.com/files.d20.io/images/236093721/4s45PlQQ20RYJjwZaqIQTA/original.png?16271747125#.png)'/>
-<input type='hidden' name='attr_banner_staffs' value='[x](https://s3.amazonaws.com/files.d20.io/images/164818577/jtP4uMJplv3U1PGD7TstAQ/original.png?16002676365#.png)'/>
-<input type='hidden' name='attr_banner_str' value='[x](https://s3.amazonaws.com/files.d20.io/images/164243200/hKjALkHGX4_gj5GYWZEfmw/original.png?16000138925#.png)'/>
-<input type='hidden' name='attr_banner_surprise' value='[x](https://s3.amazonaws.com/files.d20.io/images/207175947/Nx7GqGT7T3jyTOUgWEtb4A/original.png?16153997375#.png)'/>
-<input type='hidden' name='attr_banner_traps' value='[x](https://s3.amazonaws.com/files.d20.io/images/164540585/V0d7_hhPqcsN_Paj4vVdhQ/original.png?16001276485#.png)'/>
-<input type='hidden' name='attr_banner_turn' value='[x](https://s3.amazonaws.com/files.d20.io/images/164636800/W86KMzDzLTPCx-VCT0q1bA/original.png?16001842125#.png)'/>
-<input type='hidden' name='attr_banner_wis' value='[x](https://s3.amazonaws.com/files.d20.io/images/208806843/lJCIVdZz2ug-m8ni9L9Unw/original.png?16159410755#.png)'/>
 
 <script type='text/worker'>
 const ATTR_SCORE_DEFAULT = 10;
