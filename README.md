@@ -14,13 +14,16 @@ To use this sheet in your own games:
     3. Ensure that *Legacy Sanitation* is **NOT** checked.
 4. Save your changes and launch the game.
 
-## Roll Template
+## Roll Templates
+### Custom Template
 
 The ACKS sheet leverages a custom roll template. 
 
-The roll template supports the use of graphics in its header. The list of template headers that can be customized can be found at the end of the sheet HTML just before the sheet worker section. Use the following syntax to embed banner header graphics:
+The roll template supports the use of graphics in its header. The list of template headers that can be customized can be found at the end of the sheet HTML just before the sheet worker section. Hopefully, the *name* properties are intuitive. 
 
-> <input type='hidden' name='attr_banner_abilitythrow' value='[x](BANNER_URL#.png)'/>
+Use the following syntax to embed banner header graphics:
+
+> \<input type='hidden' name='attr_banner_abilitythrow' value='\[x](BANNER_URL#.png)'/>
 
 If the banners are located in your Roll20 library, you can obtain its *Banner_URL* by dragging it to any Roll20 page, selecting it, and pressing SHFT+Z to display it in the Roll20 image modal view. Then, right click the image and choose *Copy image address*. Replace the *BANNER_URL* with the copied URL.
 
