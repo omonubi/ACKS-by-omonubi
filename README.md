@@ -3,8 +3,6 @@ This is a Roll20 specific character sheet designed for use with the Adventurer C
 
 Hopefully, this documentation below comes in useful. I know I've struggled over the years when attempting to implement custom character sheets. Even the official sheets are sometimes difficult to divine.
 
-In so far as this sheet is accepted by the community and published as a non-official Roll20 asset, feel free to fork/alter and use the code any way you wish, in compliance with the OGL 1.0 license.
-
 ---
 
 ## Installing
