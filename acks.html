@@ -244,10 +244,12 @@
         <fieldset class='repeating_melee'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{str_mod}[str]+@{melee_bonus}[wpn]+?{Style|Normal,0|Dual-Wield,1}[style]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
-            <label>Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_melee_damage'/>
-            <label>Effect Text: </label><input type='checkbox' class='toggle-show'/><br/>
-            <div class='details'><textarea placeholder='Effects description...' name='attr_melee_effects'></textarea></div>
+            <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+            <div class='details'>
+                <label>Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
+                <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
+            </div>
         </fieldset>.
     </div>
     <hr/>
@@ -257,10 +259,13 @@
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
-            <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
-            <label>Effect Text: </label><input type='checkbox' class='toggle-show'/><br/>
-            <div class='details'><textarea placeholder='Effects description...' name='attr_missile_effects'></textarea></div>
+            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+            <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+            <div class='details'>
+                <label>Attack Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
+                <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
+            </div>
         </fieldset>.
     </div>
     <hr/>
@@ -489,6 +494,32 @@
         <hr/>
     </div>
     
+    <input class='showanti-paladin' type='hidden' name='attr_show_anti-paladin'/>
+    <div class='anti-paladin'>
+        <div class='classcontent'>
+            <label class='spanheader'>Anti-Paladin Class Description</label>
+            <p>Prime Requisite: <strong>STR and CHA</strong></p>
+            <p>Requirements: <strong>None</strong></p>
+            <p>Hit Dice: <strong>1d6</strong></p>
+            <p>Maximum Level: <strong>14</strong></p>
+            <h5>Class Proficiencies</h5>
+            <p>Alertness, Ambushing, Berserkergang, Blind Fighting, Combat Reflexes, Combat Trickery (force back, incapacitate, overrun, sunder), Command, Divine Blessing, Dungeon Bashing, Endurance, Fighting Style, Intimidation, Illusion Resistance, Kin-Slaying, Knowledge (history), Leadership, Manual of Arms, Martial Training, Military Strategy, Mystic Aura, Profession (torturer), Riding, Running, Theology, Weapon Focus</p>
+            <h5>Description</h5>
+            <p>Every bit as vile as paladins are heroic, the anti-paladin is the dark twin of those champions of light. Fanatical followers of the chthonic gods, anti-paladins are capable of any atrocity, any villainy, in service of their divine patrons, furthering the spread of chaos, evil and corruption. Anti-paladins are unconstrained by codes of conduct, their only true inviolate tenets being unwavering faith in their unholy patron, and the drive to spread the patron’s particular brand of evil by whatever means necessary. Cunning, treachery, and deception are all considered worthy tools in the anti-paladin’s arsenal, weapons every bit as valuable as the most savage blade.</p>
+            <p>Given their diabolical personality, outlook, and fervor, antipaladins are rightly regarded with hatred and fear, even among many of those serving the same evils; not for nothing do they have a reputation for brutality, betrayal, and a love of torture.</p>
+            <p>As unholy warriors, anti-paladins are vicious combatants. At first level, anti-paladins hit an unarmored foe (AC 0) with an attack throw of 10+. Like fighters, they advance in attack throws and saving throws by two points every three levels of experience. Anti-paladins increase their base damage roll from missile and melee attacks by +1 at 1st level and by an additional +1 at 3rd, 6th, 9th, and 12th level.</p>
+            <p>They may wear any armor, and may fight with a broad array of weapons, including the battle axe, dagger, flail, mace, morning star, pole arm, short sword, spear, sword, two-handed sword, and whip. All anti-paladins may fight wielding a weapon and shield, wielding a weapon two-handed, or wielding a weapon in each hand, as desired. They may use any magic item usable by fighters.</p>
+            <p>All anti-paladins must be of Chaotic alignment. An anti-paladin who changes to Neutral or Lawful alignment loses his class powers and will suffer greatly for such betrayal. If he later reverts to Chaotic alignment and atones for any misdeeds (possibly through a dire quest or atonement spell) he can regain his lost powers. (An anti-paladin who became Lawful could be permitted to become a paladin at the Judge’s discretion. Woe to such a turncoat though, for he will be hunted).</p>
+            <p>In exchange for their devotion to Chaos, antipaladins receive many powers to aid them in their crusades against Law and peace. Foremost among these is their <strong>aura of protection</strong>, which gives them a +1 bonus to AC and a +1 bonus on saving throws against attacks made or effects created by good creatures. The anti-paladin’s aura of protection appears as a writhing tenebrous shroud when viewed with detect evil, detect magic, or true seeing.</p>
+            <p>Anti-Paladins are intimately familiar with the dire energies of necromancy and possess the ability to <strong>command undead</strong> as per a Chaotic cleric of half their level (round up). This provides them with the potential to surround themselves with terrifying, fearless, and utterly loyal minions.</p>
+            <p>In order to defeat the enemies of Chaos, the anti-paladin must find them. To this end, an anti-paladin can <strong>detect good</strong> (as the reversed form of the detect evil spell) up to 60' away simply by concentrating. Each use takes a turn. (For purposes of the antipaladin’s aura and detection abilities, “good” creatures include any creatures of Lawful alignment, and Neutral creatures with good intentions. Pinnacles of good and magic items harmful to those of Chaotic alignment will also be detected by the antipaladin’s power.)</p>
+            <p>Finally, anti-paladins are awash with the same powers of unlife they can command. Should they become intelligent undead, whether as a reward from their chthonic patron or through efforts of their own, they can continue to advance in the antipaladin class, as per the Zaharan’s after the flesh power. Such undead antipaladins are called Death Knights.</p>
+            <p>When an anti-paladin reaches 5th level (Blackguard), his unholy fanaticism inspires others to follow him. Any hirelings of the same religion as the anti-paladin gain a +1 bonus to their morale score whenever he is present. This bonus stacks with any modifiers from the anti-paladin’s Charisma or proficiencies.</p>
+            <p>At 9th level (Malefactor Lord), an anti-paladin can found or capture a dark fortress and become a scourge on the surrounding lands. When he does so, up to 1d4+1x10 0th level mercenaries and 1d6 anti-paladins of 1st-3rd level will come to apply for jobs and training. If hired, they must be paid standard rates for mercenaries. Anti-paladins’ dark fortresses are otherwise identical to fighters’ castles, as detailed in the Campaign chapter of the ACKS Rulebook.</p>
+        </div>
+        <hr/>
+    </div>
+    
     <input class='showassassin' type='hidden' name='attr_show_assassin'/>
     <div class='assassin'>
         <div class='classcontent'>
@@ -581,7 +612,7 @@
         <div class='grid11'>  
             <label class='spanheader'>Additional Cleric Abilities</label>       
             <div class='grid8'>
-                <button type='roll' value='@{selected|whispertoggle} &{template:custom} {{title=@{selected|banner_turn} **@{selected|character_title} @{selected|token_name}**}} {{subtitle=Turn Undead}} {{color=gold}} {{Roll=[[1d20]]}} {{Hit Dice Affected=[[2d6]]}}' name='roll_turnundead'>Turn Undead</button>
+                <button type='roll' value='@{selected|whispertoggle} &{template:custom} {{title=@{selected|banner_turn} **@{selected|character_title} @{selected|token_name}**}} {{subtitle=Turn Undead}} {{color=gold}} {{Roll=[[1d20]]}} {{Hit Dice Affected=[[2d6]]}}' name='roll_turnundead'>Turn/Control Undead</button>
             </div>
         </div>
         <hr/>
@@ -597,7 +628,7 @@
             <p>Clerics are holy crusaders, trained to fight to further the ends of their faith. Humans who become clerics have pledged their lives to serve a particular deity or religion. To this end, they conduct their lives in a way that furthers the desires and will of their gods or goddesses. A cleric may be a priest-militant, bearing the light against evil, a cultist sworn to the chthonic powers, or anything in between.</p>
             <p>Clerics are skilled combatants, albeit not as good as fighters. At first level, clerics hit an unarmored foe (AC 0) with an attack throw of 10+. They advance in attack throws and saving throws by two points every four levels of experience (a progression midway between fighters and mages). As holy warriors, clerics are trained to wear any armor and fight with a variety of weapons.</p>
             <p>The particular weapons that clerics are trained to fight with are determined by the strictures of their religious order. If your Judge has not specified particular religious orders in his campaign, the default cleric is assumed to be a worshipper of Ammonar, God of Law and Light. Strict holy doctrine prevents these clerics from using any weapons that shed blood. The cleric of Ammonar may use only blunt weapons such as warhammers, maces, clubs, quarterstaffs, and slings. This cleric may use any shields or fight with two-handed weapons, but is not trained to fight with weapons in each hand (i.e. he may not ‘dual wield’).</p>
-            <p>All clerics have the ability to turn undead, calling upon the name and power of their deity to turn away, and even destroy, undead. The potency of this ability is determined by level. There is no limit to how often a cleric may attempt to turn undead each day, but if an attempt to turn undead fails during an encounter, the cleric may not attempt to turn undead again for the remainder of that encounter. Turned undead flee the area for 10 rounds by the best and fastest means available to them. If they cannot flee, they cower in terror, taking no actions and suffering a -2 penalty to AC. If the cleric attacks turned undead in melee combat, the turning effect is broken, but he can use spells or missile weapons against them, and other characters may attack them in any fashion, without breaking the turning effect. Destroyed undead are immediately turned to ash.</p>
+            <p>All clerics have the ability to <strong>turn undead</strong>, calling upon the name and power of their deity to turn away, and even destroy, undead. The potency of this ability is determined by level. There is no limit to how often a cleric may attempt to turn undead each day, but if an attempt to turn undead fails during an encounter, the cleric may not attempt to turn undead again for the remainder of that encounter. Turned undead flee the area for 10 rounds by the best and fastest means available to them. If they cannot flee, they cower in terror, taking no actions and suffering a -2 penalty to AC. If the cleric attacks turned undead in melee combat, the turning effect is broken, but he can use spells or missile weapons against them, and other characters may attack them in any fashion, without breaking the turning effect. Destroyed undead are immediately turned to ash.</p>
             <p>Certain chaotic sects teach their clerics to control undead rather than turn them. The undead are controlled for 1 turn per level of the cleric. If the undead would have been destroyed, the undead are controlled for 1 day per level of the cleric instead. Controlled undead behave as if charmed, obeying the cleric as if they were friends. However, if the controlled undead are turned or destroyed by a cleric during the duration of the control, the control is dispelled immediately. If the duration of the control ends without incident, the undead will flee (as if turned).</p>
             <p>Starting at 2nd level (Acolyte), clerics may manifest their deity’s power in the form of divine spells, which are granted through prayer and worship. The power and number of divine spells available to the character are determined by level according to the Cleric Spell Progression table.</p>
             <p>In order to use spells and turn undead, clerics must uphold the doctrines of their faith and god. If a cleric ever falls from favor, due to violating the beliefs of his god or breaking the rules of his clergy, the god may impose penalties upon the cleric. These penalties are entirely up to the Judge, but might include penalties to attack or a reduction in spells available.</p>
@@ -1074,6 +1105,7 @@ function updateAttackThrow() {
             theBonus = atProfileMonster[monsterHD];
         } else {
             switch (theClass) {
+                case 'anti-paladin':
                 case 'assassin':
                 case 'bladedancer':
                 case 'dwarvenvaultguard':
@@ -1185,7 +1217,8 @@ function updateClassTabContents() {
         const theClass = getSanitizedString(values['class']);
 
         const output = {};
-        output['show_assassin'] = 
+        output['show_anti-paladin'] = 
+            output['show_assassin'] = 
             output['show_bard'] = 
             output['show_bladedancer'] = 
             output['show_cleric'] =
@@ -1202,6 +1235,7 @@ function updateClassTabContents() {
         output['show_' + theClass] = 1;
 
         switch (theClass) {
+            case 'anti-paladin':
             case 'assassin':
             case 'bard':
             case 'dwarvenvaultguard':
@@ -1215,6 +1249,7 @@ function updateClassTabContents() {
         }
         
         switch (theClass) {
+            case 'anti-paladin':
             case 'bard':
             case 'bladedancer':
             case 'cleric':
@@ -1301,7 +1336,14 @@ function updateClassDamageBonus(theClass, theLevel, theXPValue) {
     const damageBonuses = [0,1,1,2,2,2,3,3,3,4,4,4,5,5,5]; // ACKS Core pg. 19
 
     const output = {};
-    output['class_damage_bonus'] = (theXPValue != 0 ? 0 : ((theClass == 'assassin' || theClass == 'explorer' || theClass == 'fighter' || theClass == 'dwarvenvaultguard' || theClass == 'elvenspellsword') ? damageBonuses[theLevel] : 0));
+    output['class_damage_bonus'] = (theXPValue != 0 ? 0 : ((
+        theClass == 'anti-paladin' || 
+        theClass == 'assassin' || 
+        theClass == 'explorer' || 
+        theClass == 'fighter' || 
+        theClass == 'dwarvenvaultguard' || 
+        theClass == 'elvenspellsword'
+        ) ? damageBonuses[theLevel] : 0));
     setAttrs(output);
 };
 
@@ -1868,6 +1910,7 @@ function updateSavingThrows() {
                 case 'dwarvencraftpriest':
                     output['save_' + (i + 1)] = craftpriestSaves[(theLevel) * 5 + i];
                     break;
+                case 'anti-paladin':
                 case 'assassin':
                 case 'explorer':
                 case 'fighter':
@@ -2030,6 +2073,7 @@ function updateTitle() {
         const theLevel = validateLevel(values['level']);
         const theXPValue = Number(values['xp_value']) || 0;
         
+        const antipaladinTitles = ['Miscreant','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction'];
         const assassinTitles = ['Thug','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins'];
         const bardTitles = ['Reciter','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
         const bladedancerTitles = ['Blade-Initiate','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
@@ -2048,6 +2092,7 @@ function updateTitle() {
             output['character_title'] = EMPTY_STRING; // Monsters don't have titles
         } else {
             switch (theClass) {
+                case 'anti-paladin': output['character_title'] = antipaladinTitles[theLevel]; break;
                 case 'assassin': output['character_title'] = assassinTitles[theLevel]; break;
                 case 'bard': output['character_title'] = bardTitles[theLevel]; break;
                 case 'bladedancer': output['character_title'] = bladedancerTitles[theLevel]; break;
@@ -2104,6 +2149,7 @@ function calculateXPNeeded() {
         const theClass = getSanitizedString(values['class']);
         const theLevel = validateLevel(values['level']);
         
+        const antipaladinXPNeeded = [100,1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0];
         const assassinXPNeeded = [100,1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0];
         const bardXPNeeded = [100,1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0];
         const clericXPNeeded = [100,1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0];
@@ -2118,6 +2164,9 @@ function calculateXPNeeded() {
         const output = {};
         output['xp_next_level'] = 0;
         switch (theClass) {
+            case 'anti-paladin':
+                output['xp_next_level'] = antipaladinXPNeeded[theLevel];
+                break;
             case 'assassin':
                 output['xp_next_level'] = assassinXPNeeded[theLevel];
                 break;

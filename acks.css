@@ -424,6 +424,7 @@ input.toggle-show:not(:checked) ~ div.details {
     display: none;
 }
 
+div.anti-paladin,
 div.assassin,
 div.bard,
 div.bladedancer,
@@ -444,6 +445,7 @@ div.dwarvenVaultguard {
     display: none;
     width: 100%;
 }
+input.showanti-paladin[value='1'] ~ div.anti-paladin,
 input.showassassin[value='1'] ~ div.assassin,
 input.showbard[value='1'] ~ div.bard,
 input.showbladedancer[value='1'] ~ div.bladedancer,
