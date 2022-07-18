@@ -35,6 +35,14 @@
     row-gap: 5px;
     width: 100%
 }
+.grid1111-table {
+    align-items: left;
+    justify-items: left;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(4, 1fr) [last];
+    width: 100%
+}
 .grid11111 {
     align-items: center;
     justify-items: center;
@@ -102,30 +110,11 @@
     justify-self: right;
 }
 
-span {
-    grid-column: first / last;
-    justify-self: start;
-}
 .spanrepeater {
     grid-column: first / last;
     justify-self: start;
     padding: 2px 0px 2px 5px;
     width: 100%;
-}
-.span2 {
-    grid-column: span 2;
-}
-.span3 {
-    grid-column: span 3;
-}
-.span4 {
-    grid-column: span 4;
-}
-.span5 {
-    grid-column: span 5;
-}
-.span6 {
-    grid-column: span 6;
 }
 
 /**************** Element Styles ****************/
@@ -426,6 +415,7 @@ input.toggle-show:not(:checked) ~ div.details {
 
 div.anti-paladin,
 div.assassin,
+div.barbarian,
 div.bard,
 div.bladedancer,
 div.cleric,
@@ -447,6 +437,7 @@ div.dwarvenVaultguard {
 }
 input.showanti-paladin[value='1'] ~ div.anti-paladin,
 input.showassassin[value='1'] ~ div.assassin,
+input.showbarbarian[value='1'] ~ div.barbarian,
 input.showbard[value='1'] ~ div.bard,
 input.showbladedancer[value='1'] ~ div.bladedancer,
 input.showcleric[value='1'] ~ div.cleric,

@@ -50,7 +50,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 
 | Property | Description |
 | --- | --- |
-| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected, the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. |
+| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected (see below), the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. |
 | spell slots | These can be used for any ACKS magic class, and they include a place to track cantrips and corruption (AXIOMS Shades of Magic). |
 | spell list | These should be self-explanatory. Use the Prepared checkbox to indicate if a spell is in the characater's repertoire or not (in a spellbook). Obviously, divine magical classes should always have all spells Prepared. Shades of Magic are also included but are optional. |
 | thieving abilities | These buttons' throw targets are determined by level, and will only be displayed if *class* is set to an appropriate ACKS class. |
@@ -112,6 +112,8 @@ I recommend tracking rations by day, instead of by week, with each day's rations
 | Mercenaries | Specify Type, Quantity, Monthly Fee, and Morale Bonus. Enter additional Notes. *merc_fee* is multiplied by *mer_number* automatically. Use the Morale Check button to check each henchman's morale, as needed. |
 | Specialists | Specify Occuptation and Monthly Fee. Enter additional Notes.
 
+---
+
 ## Journal Tab
 This tab contains text area fields for tracking additional character information, including:
 
@@ -123,6 +125,30 @@ This tab contains text area fields for tracking additional character information
 * Experience Gained
 
 My recommendation is to add a new Experience Gained record to the repeating list each time the character returns to civilization and XP is calculated. This should include both monster and treasure XP, as well as any additional XP for decision-making, role-play, etc. Use the Date field to indicate the real date the character received the XP.
+
+---
+
+## Embedded Class Information
+If the following class names are entered into the *class* field, embedded descriptions, stats, saving throws, titles, XP goals, etc., with automagically be populated, based on the character's current level:
+
+- ACKS Core:
+    - Assassin
+    - Bard
+    - Bladedancer
+    - Cleric
+    - Dwarven Craftpriest
+    - Dwarven Vaultguard
+    - Elven Nightblade
+    - Elven Spellsword
+    - Explorer
+    - Fighter
+    - Mage
+    - Thief
+- ACKS Player's Companion:
+    - Anti-Paladin
+    - Barbarian
+
+**Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
 
 ---
 
@@ -218,6 +244,7 @@ Of course, your preferences may differ.
 | Ver | Date | Notes |
 | --- | --- | --- |
 | 0.1 | 220707 | Initial Upload |
+| 0.1.1 | 220717 | Added Anti-Paladin class; Added Barbarian class; Splt class-based damage bonus into melee and missile to support Barbarian class; Added support for Heavy Helm modifiers |
 
 ---
 

@@ -192,7 +192,7 @@
 <div class='combat'>
     <div class='grid1111'>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{isBlinded}/2[blind]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]-@{isBlinded}/2[blind]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
         <input type='number' value='0' name='attr_mod_initiative'/>
@@ -202,10 +202,11 @@
     </div>
     <hr/>
     <div class='grid11'>
-        <div class='grid111'>
+        <div class='grid1111'>
             <label>Armor</label>
             <label>Bonus</label>
             <label>Shield</label>
+            <label>Helm</label>
             <select name='attr_armor'>
                 <option value='0' selected>Clothing Only (AC 0)</option>
                 <option value='1'>Hide and Fur (AC 1)</option>
@@ -217,12 +218,13 @@
             </select>
             <input type='number' value='0' name='attr_armor_bonus'/>
             <input type='checkbox' value='1' name='attr_has_shield'/>
+            <input type='checkbox' value='1' name='attr_has_helm'/>
         </div>
         <div class='grid111'>
             <label class='spanheader'>Effects Generators</label>
             <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
             <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
-            <button type='roll' value='@{whispertoggle} &{template:mortalwounds} {{title=@{banner_mortalwound} **@{character_title} @{selected|token_name}**}} {{subtitle=Mortal Wound}} {{color=black}} {{Roll=[[1d20cs0cf0[base]+?{Modifier|0}[mod]]]}} {{Severity=[[1d6]]}}' name='roll_mortal_wound'> Mortal Wound</button>
+            <button type='roll' value='@{whispertoggle} &{template:mortalwounds} {{title=@{banner_mortalwound} **@{character_title} @{selected|token_name}**}} {{subtitle=Mortal Wound}} {{color=black}} {{Roll=[[1d20cs0cf0[base]+(@{has_helm}*2)[helm]+?{Modifier|0}[mod]]]}} {{Severity=[[1d6]]}}' name='roll_mortal_wound'> Mortal Wound</button>
         </div>
     </div>
     <hr/>
@@ -256,7 +258,7 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
@@ -413,10 +415,11 @@
         <div class='grid11'>
             <div class='grid8'>
                 <label>Accuracy:</label> <input type='number' value='0' name='attr_class_accuracy_bonus'/>
-                <label>Damage:</label> <input type='number' value='0' name='attr_class_damage_bonus'/>
+                <label>Armor Class:</label> <input type='number' value='0' name='attr_class_ac_bonus'/>
+                <label>Dmg, Melee:</label> <input type='number' value='0' name='attr_class_damage_bonus'/>
+                <label>Dmg, Missile:</label> <input type='number' value='0' name='attr_class_damage_bonus_missile'/>
                 <label>Initiative:</label> <input type='number' value='0' name='attr_class_initiative_bonus'/>
                 <label>Surprise:</label> <input type='number' value='0' name='attr_class_surprise_bonus'/>
-                <label>Armor Class:</label> <input type='number' value='0' name='attr_class_ac_bonus'/>
                 <label>Morale:</label> <input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
             </div>
         </div>
@@ -542,6 +545,46 @@
                 </ul>
             </p>
             <p>Upon reaching 9th level (Assassin), an assassin may construct a hideout. When an assassin builds a hideout, he will gain 2d6 1st level assassin apprentices, come to learn under a master. If hired, they must be paid standard rates for ruffians. These thugs will serve the character with some loyalty, though at least one will be an infiltrator working for the assassin’s local rivals, sent to keep an eye on the character.</p>
+        </div>
+        <hr/>
+    </div>
+
+    <input class='showbarbarian' type='hidden' name='attr_show_barbarian'/>
+    <div class='barbarian'>
+        <div class='grid11'>  
+            <label class='spanheader'>Additional Barbarian Abilities</label>       
+            <div>
+                <label>Damage Specialization:</label>
+                <select name='attr_bar_spec'>
+                    <option selected>Melee</option>
+                    <option>Missile</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <div class='classcontent'>
+            <label class='spanheader'>Barbarian Class Description</label>
+            <p>Prime Requisite: <strong>STR and CON</strong></p>
+            <p>Requirements: <strong>None</strong></p>
+            <p>Hit Dice: <strong>1d8</strong></p>
+            <p>Maximum Level: <strong>14</strong></p>
+            <h5>Class Proficiencies</h5>
+            <p>Alertness, Ambushing, Armor Training, Beast Friendship, Berserkergang, Blind Fighting, Climbing, Combat Reflexes, Combat Trickery (force back, knock down, overrun, wrestling), Command, Endurance, Fighting Style, Martial Training, Mountaineering, Passing Without Trace, Precise Shooting, Riding, Running, Seafaring, Skirmishing, Sniping, Survival, Swashbuckling, Weapon Finesse, Weapon Focus</p>
+            <h5>Description</h5>
+            <p>Barbarians are tough, hardy warriors from cultures outside of the civilized world. Some barbarians live on the edge of true savagery, while others hail from rich cultures with epic poetry and weapons of steel, but all share an outlander’s mix of contempt and awe for the grand tapestry of civilization. They might be reavers from the bleak mountain wastes of the north, fierce horse archers from the steppes, or tribesmen from the savannahs of the south.</p>
+            <p>Whatever their background, barbarians are fierce and deadly combatants. At first level, barbarians hit an unarmored foe (AC 0) with an attack throw of 10+. They advance in attack throws and saving throws by two points every three levels of experience (i.e. the same progression as fighters).</p>
+            <p>Barbarians increase their base damage roll from their choice of either missile or melee attacks by +1 at 1st level and by an additional +1 at 3rd, 6th, 9th, and 12th level. The barbarian must choose which type of attack will receive the damage bonus at 1st level, and may not change the choice as he advances (i.e. they may choose to be either melee or missile specialists).</p>
+            <p>Because barbarians lack the broad professional training of the fighter, they may only wear chain mail or lighter armor, and are limited to fighting with the traditional weapons and styles of their tribe. When a barbarian is created, select a region of origin for the character, and note down the permitted weapons and fighting styles. The Judge may create other regions of origin for barbarians within his own campaign setting where necessary.</p>
+            <div class='grid1111-table'>
+                <label>Region</label><label>Natural Proficiency</label><label>Weapons Permitted</label><label>Fighting Styles Permitted</label>
+                <p>Mountain</p><p>Climbing</p><p>Battle axe, club, dagger, great axe, hand axe, shortbow, spear, sword, two-handed sword, war hammer</p><p>Weapon & shield, two-handed weapon</p>
+                <p>Steppe</p><p>Precise Shooting</p><p>Composite bow, dagger, hand axe, javelin, lance, net, sling, short sword (scimitar), spear, whip</p><p>Weapon & shield, two weapons</p>
+                <p>Savannah</p><p>Running</p><p>Bola, club, dart, dagger, hand axe, javelin, net, shortbow, short sword, spear</p><p>Weapon & shield, two weapons</p>
+            </div>
+            <p>Depending on his region of origin, every barbarian also possesses a natural proficiency in a particular area. These are bonus proficiencies that do not count against the barbarian’s normal selections. Barbarians from the north (or similar Scandinavian cultures) are skilled at climbing the sheer rock faces of their grim homeland. Barbarians from the steppes (or related steppe nomads) are preternaturally precise shots. Barbarians from the savannahs are swift and tireless runners. The Barbarian Regional Origin table lists these proficiencies. The Judge may devise other natural proficiencies for other barbarian regions in his own setting.</p>
+            <p>Barbarians from every region possess animal reflexes that give them a +1 bonus to initiative and a +1 bonus to surprise rolls. As hunters and raiders by trade, barbarians are naturally stealthy, and  opponents suffer a -1 penalty to surprise rolls when encountering them. The healers and clerics of civilized lands are foreign to barbarians, who rely on their savage resilience to survive. When a barbarian is required to consult the Mortal Wounds table, the player may roll twice and choose the preferred result to apply. Barbarians also subtract their class level from the number of days of bed rest required to recover.</p>
+            <p>When a barbarian reaches 5th level (Reaver), his animal magnetism begins to inspire those who follow him. Any henchmen and mercenaries hired by the barbarian gain a +1 bonus to their morale score whenever he personally leads them. This bonus stacks with any modifiers from the barbarian’s Charisma or proficiencies.</p>
+            <p>At 9th level (Warchief), a barbarian can build or claim a chieftain’s hall and seek to rule on the strength of his axe. When the barbarian establishes his hall, 1d4+1x10 0th level mercenaries and 1d6 barbarians of 1st-3rd level seeking plunder and rapine will join his service. If hired, they must be paid standard rates for mercenaries. Barbarians’ halls are otherwise identical to fighters’ castles, as detailed in the Campaign chapter of the ACKS Rulebook.</p>
         </div>
         <hr/>
     </div>
@@ -999,6 +1042,7 @@
 
 <script type='text/worker'>
 const ATTR_SCORE_DEFAULT = 10;
+const BARBARIAN_SPEC_DEFAULT = 'Melee';
 const BASE_AC = 11;
 const CAPACITY_MAX = 20;
 const COIN_WEIGHT = 0.001;
@@ -1107,6 +1151,7 @@ function updateAttackThrow() {
             switch (theClass) {
                 case 'anti-paladin':
                 case 'assassin':
+                case 'barbarian':
                 case 'bladedancer':
                 case 'dwarvenvaultguard':
                 case 'elvenspellsword':
@@ -1219,6 +1264,7 @@ function updateClassTabContents() {
         const output = {};
         output['show_anti-paladin'] = 
             output['show_assassin'] = 
+            output['show_barbarian'] = 
             output['show_bard'] = 
             output['show_bladedancer'] = 
             output['show_cleric'] =
@@ -1237,6 +1283,7 @@ function updateClassTabContents() {
         switch (theClass) {
             case 'anti-paladin':
             case 'assassin':
+            case 'barbarian':
             case 'bard':
             case 'dwarvenvaultguard':
             case 'explorer':
@@ -1250,6 +1297,7 @@ function updateClassTabContents() {
         
         switch (theClass) {
             case 'anti-paladin':
+            case 'barbarian':
             case 'bard':
             case 'bladedancer':
             case 'cleric':
@@ -1321,30 +1369,45 @@ function updateClassAccuracyBonus(theClass) {
 };
 
 /********** Class Damage Bonus ****************/
-on('change:class change:level change:xp_value', function(eventInfo) {
-    getAttrs(['class', 'level', 'xp_value'], function(values) {
+on('change:class change:level change:xp_value change:bar_spec', function(eventInfo) {
+    updateClassDamageBonus();
+});
+
+function updateClassDamageBonus() {
+    /*console.log('updateClassDamageBonus()');*/
+    getAttrs(['class', 'level', 'xp_value', 'bar_spec'], function(values) {
         const theClass = getSanitizedString(values['class']);
         const theLevel = Number(values['level']) || 0;
         const theXPValue = Number(values['xp_value']) || 0;
+        const theSpec = values['bar_spec'] || BARBARIAN_SPEC_DEFAULT;
 
-        updateClassDamageBonus(theClass, theLevel, theXPValue);
+        const damageBonuses = [0,1,1,2,2,2,3,3,3,4,4,4,5,5,5]; // ACKS Core pg. 19
+    
+        const output = {};
+
+        output['class_damage_bonus'] = 
+        (theXPValue != 0 ? 0 : ((
+            theClass == 'anti-paladin' || 
+            theClass == 'assassin' || 
+            (theClass == 'barbarian' && theSpec == 'Melee') || 
+            theClass == 'explorer' || 
+            theClass == 'fighter' || 
+            theClass == 'dwarvenvaultguard' || 
+            theClass == 'elvenspellsword'
+            ) ? damageBonuses[theLevel] : 0));
+
+        output['class_damage_bonus_missile'] = 
+        (theXPValue != 0 ? 0 : ((
+            theClass == 'anti-paladin' || 
+            theClass == 'assassin' || 
+            (theClass == 'barbarian' && theSpec == 'Missile') || 
+            theClass == 'explorer' || 
+            theClass == 'fighter' || 
+            theClass == 'dwarvenvaultguard' || 
+            theClass == 'elvenspellsword'
+            ) ? damageBonuses[theLevel] : 0));
+        setAttrs(output);
     });
-});
-
-function updateClassDamageBonus(theClass, theLevel, theXPValue) {
-    /*console.log('updateClassDamageBonus(' + theClass + ', ' + theLevel + ', ' + theXPValue + ')');*/
-    const damageBonuses = [0,1,1,2,2,2,3,3,3,4,4,4,5,5,5]; // ACKS Core pg. 19
-
-    const output = {};
-    output['class_damage_bonus'] = (theXPValue != 0 ? 0 : ((
-        theClass == 'anti-paladin' || 
-        theClass == 'assassin' || 
-        theClass == 'explorer' || 
-        theClass == 'fighter' || 
-        theClass == 'dwarvenvaultguard' || 
-        theClass == 'elvenspellsword'
-        ) ? damageBonuses[theLevel] : 0));
-    setAttrs(output);
 };
 
 /********** Class Initiative Bonus ****************/
@@ -1360,7 +1423,10 @@ function updateClassInitiativeBonus(theClass) {
     /*console.log('updateClassInitiativeBonus(' + theClass + ')');*/
 
     const output = {};
-    output['class_initiative_bonus'] = ((theClass == 'bladedancer' || theClass == 'explorer') ? 1 : 0);
+    output['class_initiative_bonus'] = ((
+        theClass == 'barbarian' || 
+        theClass == 'bladedancer' || 
+        theClass == 'explorer') ? 1 : 0);
     setAttrs(output);
 };
 
@@ -1378,7 +1444,10 @@ function updateClassHenchmenMoraleBonus(theClass, theLevel) {
     /*console.log('updateClassHenchmenMoraleBonus(' + theClass + ', ' + theLevel + ')');*/
 
     const output = {};
-    output['class_henchmen_morale_bonus'] = (((theClass == 'explorer' || theClass == 'fighter') && theLevel > 4) ? 1 : 0);
+    output['class_henchmen_morale_bonus'] = (((
+        theClass == 'barbarian' || 
+        theClass == 'explorer' || 
+        theClass == 'fighter') && theLevel > 4) ? 1 : 0);
     setAttrs(output);
 };
 
@@ -1395,7 +1464,9 @@ function updateClassSurpriseBonus(theClass) {
     /*console.log('updateClassSurpriseBonus(' + theClass + ')');*/
 
     const output = {};
-    output['class_surprise_bonus'] = ((theClass == 'explorer') ? 1 : 0);
+    output['class_surprise_bonus'] = ((
+        theClass == 'barbarian' || 
+        theClass == 'explorer') ? 1 : 0);
     setAttrs(output);
 };
 
@@ -1912,6 +1983,7 @@ function updateSavingThrows() {
                     break;
                 case 'anti-paladin':
                 case 'assassin':
+                case 'barbarian':
                 case 'explorer':
                 case 'fighter':
                     output['save_' + (i + 1)] = fighterSaves[(theLevel) * 5 + i];
@@ -2075,6 +2147,7 @@ function updateTitle() {
         
         const antipaladinTitles = ['Miscreant','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction'];
         const assassinTitles = ['Thug','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins'];
+        const barbarianTitles = ['Hunter','Hunter','Raider','Marauder','Plunderer','Reaver','Bloodletter','Menace','Scourge','Warchief','Warchief','Warchief','Warchief','Warchief','Great Chieftan'];
         const bardTitles = ['Reciter','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
         const bladedancerTitles = ['Blade-Initiate','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
         const clericTitles = ['Catechist','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat'];
@@ -2094,6 +2167,7 @@ function updateTitle() {
             switch (theClass) {
                 case 'anti-paladin': output['character_title'] = antipaladinTitles[theLevel]; break;
                 case 'assassin': output['character_title'] = assassinTitles[theLevel]; break;
+                case 'barbarian': output['character_title'] = barbarianTitles[theLevel]; break;
                 case 'bard': output['character_title'] = bardTitles[theLevel]; break;
                 case 'bladedancer': output['character_title'] = bladedancerTitles[theLevel]; break;
                 case 'cleric': output['character_title'] = clericTitles[theLevel]; break;
@@ -2151,6 +2225,7 @@ function calculateXPNeeded() {
         
         const antipaladinXPNeeded = [100,1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0];
         const assassinXPNeeded = [100,1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0];
+        const barbarianXPNeeded = [100,2600,5200,10400,20800,41600,85000,170000,290000,410000,530000,650000,770000,890000,0];
         const bardXPNeeded = [100,1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0];
         const clericXPNeeded = [100,1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0];
         const craftpriestXPNeeded = [100,2400,4800,9600,19200,38400,75000,150000,280000,410000,0,0,0,0,0];
@@ -2169,6 +2244,9 @@ function calculateXPNeeded() {
                 break;
             case 'assassin':
                 output['xp_next_level'] = assassinXPNeeded[theLevel];
+                break;
+            case 'barbarian':
+                output['xp_next_level'] = barbarianXPNeeded[theLevel];
                 break;
             case 'bard':
                 output['xp_next_level'] = bardXPNeeded[theLevel];
