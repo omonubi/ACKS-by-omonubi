@@ -148,6 +148,7 @@ If the following class names are entered into the *class* field, embedded descri
 - ACKS Player's Companion:
     - Anti-Paladin
     - Barbarian
+    - Dwarven Delver
 
 **Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
 
