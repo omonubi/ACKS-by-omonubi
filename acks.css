@@ -1,5 +1,5 @@
 * {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     padding-top: 2px;
 }
 
@@ -413,47 +413,65 @@ input.toggle-show:not(:checked) ~ div.details {
     display: none;
 }
 
-div.anti-paladin,
-div.assassin,
-div.barbarian,
-div.bard,
-div.bladedancer,
-div.cleric,
-div.dwarvenCraftpriest,
-div.explorer,
-div.fighter,
-div.mage,
-div.elvenNightblade,
-div.spellcasting,
-div.elvenSpellsword,
-div.thief,
-div.thievesskills,
-div.thievesskillsall,
-div.thievesskillsclimb,
-div.thievesskillsthief,
-div.dwarvenVaultguard {
+/*** Class Tabs ***/
+div.AntiPaladin,
+div.Assassin,
+div.Barbarian,
+div.Bard,
+div.Bladedancer,
+div.Cleric,
+div.DwarvenCraftpriest,
+div.DwarvenDelver,
+div.DwarvenVaultguard,
+div.ElvenNightblade,
+div.ElvenSpellsword,
+div.Explorer,
+div.Fighter,
+div.Mage,
+div.Thief {
     display: none;
     width: 100%;
 }
-input.showanti-paladin[value='1'] ~ div.anti-paladin,
-input.showassassin[value='1'] ~ div.assassin,
-input.showbarbarian[value='1'] ~ div.barbarian,
-input.showbard[value='1'] ~ div.bard,
-input.showbladedancer[value='1'] ~ div.bladedancer,
-input.showcleric[value='1'] ~ div.cleric,
-input.showDwarvenCraftpriest[value='1'] ~ div.dwarvenCraftpriest,
-input.showexplorer[value='1'] ~ div.explorer,
-input.showfighter[value='1'] ~ div.fighter,
-input.showmage[value='1'] ~ div.mage,
-input.showElvenNightblade[value='1'] ~ div.elvenNightblade,
+input.showAntiPaladin[value='1'] ~ div.AntiPaladin,
+input.showAssassin[value='1'] ~ div.Assassin,
+input.showBarbarian[value='1'] ~ div.Barbarian,
+input.showBard[value='1'] ~ div.Bard,
+input.showBladedancer[value='1'] ~ div.Bladedancer,
+input.showCleric[value='1'] ~ div.Cleric,
+input.showDwarvenCraftpriest[value='1'] ~ div.DwarvenCraftpriest,
+input.showDwarvenDelver[value='1'] ~ div.DwarvenDelver,
+input.showDwarvenVaultguard[value='1'] ~ div.DwarvenVaultguard,
+input.showElvenNightblade[value='1'] ~ div.ElvenNightblade,
+input.showElvenSpellsword[value='1'] ~ div.ElvenSpellsword,
+input.showExplorer[value='1'] ~ div.Explorer,
+input.showFighter[value='1'] ~ div.Fighter,
+input.showMage[value='1'] ~ div.Mage,
+input.showThief[value='1'] ~ div.Thief {
+    display: block;
+}
+
+/*** Supporting Class Tabs ***/
+div.spellcasting,
+div.thievesskills,
+div.thievesskillslocks,
+div.thievesskillstraps,
+div.thievesskillspick,
+div.thievesskillsmove,
+div.thievesskillsclimb,
+div.thievesskillshear,
+div.thievesskillshear {
+    display: none;
+    width: 100%;
+}
 input.showspellcasting[value='1'] ~ div.spellcasting,
-input.showElvenSpellsword[value='1'] ~ div.elvenSpellsword,
-input.showthief[value='1'] ~ div.thief,
 input.showthievesskills[value='1'] ~ div.thievesskills,
-input.showthievesskillsall[value='1'] ~ div.thievesskillsall,
+input.showthievesskillslocks[value='1'] ~ div.thievesskillslocks,
+input.showthievesskillstraps[value='1'] ~ div.thievesskillstraps,
+input.showthievesskillspick[value='1'] ~ div.thievesskillspick,
+input.showthievesskillsmove[value='1'] ~ div.thievesskillsmove,
 input.showthievesskillsclimb[value='1'] ~ div.thievesskillsclimb,
-input.showthievesskillsthief[value='1'] ~ div.thievesskillsthief,
-input.showDwarvenVaultguard[value='1'] ~ div.dwarvenVaultguard {
+input.showthievesskillshide[value='1'] ~ div.thievesskillshide,
+input.showthievesskillshear[value='1'] ~ div.thievesskillshear {
     display: block;
 }
 

@@ -38,7 +38,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Property | Description |
 | --- | --- |
 | *character_fullname* | Provided to allow for more 'expressive' and complete names than either the standard *character_name* or *token_name* properties. |
-| *class* | As a text field, allows for any class. However, if an ACKS class name (currently, ACKS Core only) is entered, will enable SRD class descriptions in the sheet's Class tab, as well as auto-calculation of several key stats. **Important:** Setting this property to an ACKS class will over-write several other field values on the sheet. Change with caution! |
+| *class* | As a text field, allows for any class. However, if an ACKS class name (currently, ACKS Core only) is entered, will enable SRD class descriptions and summary in the sheet's Class tab, as well as auto-calculation of several key stats. **Important:** Setting/changing this property to an ACKS class - at any time - will over-write several other field values on the sheet. Change with caution! |
 | *character_title* | If *class* is set to ACKS class, will display the appropriate title for the class and level in question. |
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class, though auto-populated values are zeroed out if/when a particular class exceeds its level maximum. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prerequ' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
@@ -53,7 +53,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected (see below), the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. |
 | spell slots | These can be used for any ACKS magic class, and they include a place to track cantrips and corruption (AXIOMS Shades of Magic). |
 | spell list | These should be self-explanatory. Use the Prepared checkbox to indicate if a spell is in the characater's repertoire or not (in a spellbook). Obviously, divine magical classes should always have all spells Prepared. Shades of Magic are also included but are optional. |
-| thieving abilities | These buttons' throw targets are determined by level, and will only be displayed if *class* is set to an appropriate ACKS class. |
+| thieving abilities | These buttons' throw targets are determined by class and level, and will only be displayed if *class* is set to an appropriate ACKS class. |
 | SRD content | This content will only be displayed if *class* is set to an ACKS class. For example, to see the SRD description of the Elven Spellsword class enter 'Elven Spellsword' as the characters class. Currently, only classes from the ACS Core rulebook are supported. |
 
 ## Skills Tab
@@ -245,7 +245,8 @@ Of course, your preferences may differ.
 | Ver | Date | Notes |
 | --- | --- | --- |
 | 0.1 | 220707 | Initial Upload |
-| 0.1.1 | 220717 | Added Anti-Paladin class; Added Barbarian class; Splt class-based damage bonus into melee and missile to support Barbarian class; Added support for Heavy Helm modifiers |
+| 0.1.1 | 220717 | Added Anti-Paladin class; Added Barbarian class; split class-based damage bonus into melee and missile to support Barbarian class; added support for Heavy Helm modifiers |
+| 0.1.2 | 220718 | Added Dwarven Delver class; code optimizations |
 
 ---
 
