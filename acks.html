@@ -415,9 +415,10 @@
         <div class='grid11'>
             <div class='grid8'>
                 <label>Accuracy:</label> <input type='number' value='0' name='attr_class_accuracy_bonus'/>
-                <label>Armor Class:</label> <input type='number' value='0' name='attr_class_ac_bonus'/>
                 <label>Dmg, Melee:</label> <input type='number' value='0' name='attr_class_damage_bonus'/>
                 <label>Dmg, Missile:</label> <input type='number' value='0' name='attr_class_damage_bonus_missile'/>
+                <label>Dmg Reduction:</label> <input type='number' value='0' name='attr_class_damage_reduction'/>
+                <label>Armor Class:</label> <input type='number' value='0' name='attr_class_ac_bonus'/>
                 <label>Initiative:</label> <input type='number' value='0' name='attr_class_initiative_bonus'/>
                 <label>Surprise:</label> <input type='number' value='0' name='attr_class_surprise_bonus'/>
                 <label>Morale:</label> <input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
@@ -848,6 +849,48 @@
             <p>Dwarven delvers gain a +1 bonus on all surprise rolls when underground due to sensitivity to the rock and stone around them.</p>
             <p>When underground a delver can detect false walls, hidden construction, or sloped passages with a proficiency throw of 14+ on 1d20, if actively searching. Like all dwarves, delvers are hardy people. The target values for all their saving throws versus Blast/Breath are reduced by 3, while the target values for all their other saving throws are reduced by 4. Dwarven delvers will speak the Common and Dwarvish tongue and, because of their frequent interaction underground with these monsters, will also speak Goblin, Gnome, and Kobold.</p>
             <p>When a dwarven delver reaches 9th level (Dwarven Pioneer), his reputation is such that he can attract dwarves from far and wide by constructing a new underground vault in an unsettled region. Dwarves usually live in clans, so dwarves of the character’s clan will be the first to live under his roof, but dwarves from other clans will also come and live nearby to be ruled by the character. A total of 3d6x10 1st level NPCs of the same race will move in to help maintain and defend the vault at no cost to the character. A dwarven delver is expected to employ only soldiers of dwarven descent, but may hire members of other races for other tasks. A delver’s vault follows all the rules for dwarven vaults detailed in the Dwarven Vaults section of Chapter 7 of ACKS.</p>
+        </div>
+        <hr/>
+    </div>
+
+    <input class='showDwarvenFury' type='hidden' name='attr_show_dwarvenfury'/>
+    <div class='DwarvenFury'>
+        <div class='classcontent'>
+            <label class='spanheader'>Dwarven Fury Class Description</label>
+            <p><em>Dwarves are stout, short, bearded demi-humans who average a height of approximately 4' and weigh about 150lb. Perhaps not surprisingly, they have skin, hair and eye colors in earth tones. Dwarves have a reputation for having surly attitudes, and are particularly gruff with elves. They value precious metals and stones, and live in deep underground vaults, where they endure constant raids from the orcs, trolls, and even worse denizens of the darkness below. Dwarves are rarely seen, for their strongholds lie deep in the mountains of the world.</em></p>
+            <p><em>As the numbers of their race have dwindled in the face of constant warfare, more and more the dwarves have been forced to rely on the machinists’ arts, using war machines of steam and brass to defend their vaults. Some dwarves, however, have rejected this mechanization of warfare and returned to an older tradition of runic magic and savage combat. Instantly recognizable by the magical tattoos that scar their skin, these dwarves are known as furies. It is said that once the fury grips a dwarf, his destiny is to die with axe in hand, and the only question is how many beastman corpses will surround his own on the final day.</em></p>
+            <p><em>Dwarven furies are held in a mixture of awe and contempt by their clans, and with more than a little fear. They, in turn, vehemently disagree with the defensive mindset of the vaults. Many furies become adventures in order to better carry the fight to their enemy.</em></p>
+            <p>Prime Requisite: <strong>STR</strong></p>
+            <p>Requirements: <strong>CON 9</strong></p>
+            <p>Hit Dice: <strong>1d8</strong></p>
+            <p>Maximum Level: <strong>13</strong></p>
+            <h5>Summary</h5>
+            <ul>
+                <li>Follows the Fighter progression for attack throws and damage bonus</li>
+                <li>May only wield axes, flails, hammers, maces, and warhammers</li>
+                <li>May fight in any stance</li>
+                <li>May not wear armor but may use a shield</li>
+                <li>Gains +2 AC, increasing by level</li>
+                <li>Gains -1 incoming damage reduction (per die), increasing by level</li>
+                <li>When in a fury, gains +2 damage bonus and immune to fear</li>
+                <li>Resilient in the face of mortal wounds and recovery</li>
+                <li>Gains +1 on surprise rolls when underground</li>
+                <li>Improved ability to detect traps and secret doors</li>
+                <li>Gains +3 vs. blast/breath and +4 on all other saving throws</li>
+                <li>Can speak Dwarvish, Goblin, Gnome, and Kobold</li>
+                <li>At 9th level, may construct an underground vault</li>
+            </ul>
+            <h5>Class Proficiencies</h5>
+            <p>Alertness, Berserkergang, Blind Fighting, Caving, Combat Reflexes, Combat Trickery (force back, knock down, overrun, sunder, wrestle), Command, Craft, Dungeon Bashing, Dwarven Brewing, Endurance, Engineering, Fighting Style, Gambling, Goblin-Slaying, Illusion Resistance, Intimidation, Land Surveying, Leadership, Mapping, Manual of Arms, Military Strategy, Mountaineering, Siege Engineering, Weapon Focus</p>
+            <h5>Full Description</h5>
+            <p>Dwarven furies excel at combat. At first level, furies hit an unarmored foe (AC 0) with an attack throw of 10+. They advance in attack throws and saving throws by two points every three levels of experience (i.e. the same progression as fighters). They increase their base damage roll from all attacks by +1 at 1st level and by an additional +1 at 3rd, 6th, 9th, and 12th level.</p>
+            <p>Dwarven furies fight with a narrow selection of traditional dwarven weapons, including any axes, flails, hammers, maces, and war hammers. They are trained to fight wielding a weapon and shield, wielding a weapon two-handed, and wielding a weapon in each hand.</p>
+            <p>Dwarven furies eschew the use of armor entirely, however, relying on their aggression and flesh-runes to protect them. Intricate glyphs tattooed into the naked flesh of the dwarf, the flesh-runes give the dwarf’s skin the suppleness of leather and the toughness of iron. At 1st level, a dwarven fury’s flesh-runes give him a +2 bonus to AC and decrease the damage from any non-magical attacks by 1 point per die. At 7th level (Dwarven Scourge), this protection increases to +4 AC and 2 points per die. At 13th level (Dwarven Avenger), the flesh-runes provide a bonus of +6 AC (equivalent to plate armor!) and decrease damage from non-magical attacks by 3 points per die.</p>
+            <p>The damage reduction is applied per die. Damage can be reduced to 0, but not less than 0, on each die. The AC bonus from flesh-runes stacks with potions of invulnerability, rings of protection, and similar effects, but does not stack with armor. Attacks from monsters of 5 HD or more are considered magical attacks due to the monster’s ferocity.</p>
+            <p>At will, dwarven furies can enter into the fighting fury from which they derive their name. While furious, the dwarven fury gains a +2 bonus to damage rolls and becomes immune to fear. However, the character cannot retreat from combat. Once it has begun, a fighting fury cannot be ended until combat ends.</p>
+            <p>Similarly to barbarians, dwarven furies enjoy savage resilience. When a dwarven fury is required to consult the Mortal Wounds table, the player may roll twice and choose the preferred result to apply. Dwarven furies also subtract their class level from the number of days of bed rest required to recover.</p>
+            <p>Like all dwarves, furies are hardy people. The target values for all their saving throws versus Blast/Breath are reduced by 3, while the target values for all their other saving throws are reduced by 4. Dwarven furies will speak the Common and Dwarvish tongue and, because of their frequent interaction underground with these monsters, will also speak Goblin, Gnome, and Kobold. Dwarven furies gain a +1 bonus on all surprise rolls when underground due to sensitivity to the rock and stone around them. When underground a fury can detect false walls, hidden construction, or sloped passages with a proficiency throw of 14+ on 1d20, if actively searching.</p>
+            <p>When a dwarven fury reaches 9th level (Dwarven Avenger), his grim determination and relentless nature can attract dwarves from far and wide. To do so, he must construct his own underground vault. Dwarves usually live in clans, so dwarves of the character’s clan will be the first to live under his roof, but dwarves from other clans will also come and live nearby to be ruled by the character. A total of 3d6x10 1st level NPCs of the same race will move in to help maintain and defend the vault at no cost to the character. A dwarven ruler is expected to employ only soldiers of dwarven descent, but may hire members of other races for other tasks.</p>
         </div>
         <hr/>
     </div>
@@ -1504,6 +1547,7 @@ function updateClassTabContents() {
             output['show_cleric'] =
             output['show_dwarvencraftpriest'] = 
             output['show_dwarvendelver'] = 
+            output['show_dwarvenfury'] = 
             output['show_dwarvenvaultguard'] = 
             output['show_elvennightblade'] = 
             output['show_elvenspellsword'] = 
@@ -1521,6 +1565,7 @@ function updateClassTabContents() {
             case 'barbarian':
             case 'bard':
             case 'dwarvendelver':
+            case 'dwarvenfury':
             case 'dwarvenvaultguard':
             case 'explorer':
             case 'fighter':
@@ -1581,21 +1626,33 @@ function updateClassTabContents() {
 
 /********** Class AC Bonus ****************/
 on('change:class change:level', function(eventInfo) {
+    updateClassACBonus();
+});
+
+function updateClassACBonus() {
+    /*console.log('updateClassACBonus()');*/
     getAttrs(['class', 'level'], function(values) {
         const theClass = getSanitizedString(values['class']);
         const theLevel = Number(values['level']) || 0;
+        
+        const bonusesBladedancer = [0,1,1,1,1,1,1,2,2,2,2,2,2,3,3]; // ACKS Core pg. 28
+        const bonusesDwarvenFury = [0,2,2,2,2,2,2,4,4,4,4,4,4,6,0]; // ACKS PC pg. 16
+        let appliedBonuses = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; // no bonuses by default
 
-        updateClassACBonus(theClass, theLevel);
+        switch (theClass) {
+            case 'bladedancer':
+                appliedBonuses = bonusesBladedancer;
+                break;
+            case 'dwarvenfury':
+                appliedBonuses = bonusesDwarvenFury;
+                break;
+            default:
+        }
+
+        const output = {};
+        output['class_ac_bonus'] = appliedBonuses[theLevel];
+        setAttrs(output);
     });
-});
-
-function updateClassACBonus(theClass, theLevel) {
-    /*console.log('updateClassACBonus(' + theClass + ', ' + theLevel + ')');*/
-    const acBonuses = [0,1,1,1,1,1,1,2,2,2,2,2,2,3,3]; // ACKS Core pg. 28
-
-    const output = {};
-    output['class_ac_bonus'] = ((theClass == 'bladedancer') ? acBonuses[theLevel] : 0);
-    setAttrs(output);
 };
 
 /********** Class Accuracy Bonus ****************/
@@ -1653,6 +1710,33 @@ function updateClassDamageBonus() {
             theClass == 'dwarvenvaultguard' || 
             theClass == 'elvenspellsword'
             ) ? damageBonuses[theLevel] : 0));
+        setAttrs(output);
+    });
+};
+
+/********** Class Damage Reduction ****************/
+on('change:class change:level', function(eventInfo) {
+    updateClassDamageReduction();
+});
+
+function updateClassDamageReduction() {
+    /*console.log('updateClassDamageReduction()');*/
+    getAttrs(['class', 'level'], function(values) {
+        const theClass = getSanitizedString(values['class']);
+        const theLevel = Number(values['level']) || 0;
+        
+        const bonusesDwarvenFury = [0,1,1,1,1,1,1,2,2,2,2,2,2,3,0]; // ACKS PC pg. 16
+        let appliedBonuses = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; // no bonuses by default
+
+        switch (theClass) {
+            case 'dwarvenfury':
+                appliedBonuses = bonusesDwarvenFury;
+                break;
+            default:
+        }
+
+        const output = {};
+        output['class_damage_reduction'] = appliedBonuses[theLevel];
         setAttrs(output);
     });
 };
@@ -2198,7 +2282,7 @@ function updateMovementSpeed() {
     });
 };
 
-/********** Saving Throws, Level 1 **********/
+/********** Saving Throws **********/
 on('change:class change:level', function(eventInfo) {
     updateSavingThrows();
 });
@@ -2249,6 +2333,7 @@ function updateSavingThrows() {
                 case 'thief':
                     output['save_' + (i + 1)] = thiefSaves[(theLevel) * 5 + i];
                     break;
+                case 'dwarvenfury':
                 case 'dwarvenvaultguard':
                     output['save_' + (i + 1)] = vaultguardSaves[(theLevel) * 5 + i];
                     break;
@@ -2408,21 +2493,21 @@ function updateTitle() {
         const theLevel = validateLevel(values['level']);
         const theXPValue = Number(values['xp_value']) || 0;
         
-        const antipaladinTitles = ['Miscreant','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction'];
-        const assassinTitles = ['Thug','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins'];
-        const barbarianTitles = ['Hunter','Hunter','Raider','Marauder','Plunderer','Reaver','Bloodletter','Menace','Scourge','Warchief','Warchief','Warchief','Warchief','Warchief','Great Chieftan'];
-        const bardTitles = ['Reciter','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
-        const bladedancerTitles = ['Blade-Initiate','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
-        const clericTitles = ['Catechist','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat'];
-        const craftpriestTitles = ['Dwarven Craft-Catechist','Dwarven Craft-Catechist','Dwarven Craft-Acolyte','Dwarven Craftpriest','Dwarven Craft-Curate','Dwarven Craft-Vicar','Dwarven Craft-Rector','Dwarven Craft-Prelate','Dwarven Craft-Bishop','Dwarven Craft-Lord','Dwarven Craft-Lord','','','',''];
-        const delverTitles = ['Dwarven Caver','Dwarven Caver','Dwarven Tunneler','Dwarven Excavator','Dwarven Undertaker','Dwarven Spelunker','Dwarven Expeditionary','Dwarven Pathfinder','Dwarven Delver','Dwarven Pioneer','Dwarven Pioneer','Dwarven Pioneer','','',''];
-        const explorerTitles = ['Scout','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
-        const fighterTitles = ['Man-at-Arms','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord'];
-        const mageTitles = ['Arcanist','Arcanist','Seer','Theurgist','Magician','Thaumaturge','Enchanter','Sorcerer','Mage','Wizard','Wizard','Wizard','Wizard','Wizard','Archmage'];
-        const nightbladeTitles = ['Arcanist-Avenger','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','','',''];
-        const spellswordTitles = ['Arcanist-Guardian','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','','','',''];
-        const thiefTitles = ['Footpad','Footpad','Hood','Robber','Burglar','Rogue','Scoundrel','Pilferer','Thief','Master Thief','Master Thief','Master Thief','Master Thief','Master Thief','Prince of Thieves'];
-        const vaultguardTitles = ['Sentry','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord',''];
+        const antipaladinTitles = ['','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction'];
+        const assassinTitles = ['','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins'];
+        const barbarianTitles = ['','Hunter','Raider','Marauder','Plunderer','Reaver','Bloodletter','Menace','Scourge','Warchief','Warchief','Warchief','Warchief','Warchief','Great Chieftan'];
+        const bardTitles = ['','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
+        const bladedancerTitles = ['','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
+        const clericTitles = ['','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat'];
+        const craftpriestTitles = ['','Dwarven Craft-Catechist','Dwarven Craft-Acolyte','Dwarven Craftpriest','Dwarven Craft-Curate','Dwarven Craft-Vicar','Dwarven Craft-Rector','Dwarven Craft-Prelate','Dwarven Craft-Bishop','Dwarven Craft-Lord','Dwarven Craft-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const furyTitles = ['','Dwarven Grudgebearer','Dwarven Punisher','Dwarven Repriser','Dwarven Vindicator','Dwarven Retaliator','Dwarven Castigator','Dwarven Scourge','Dwarven Fury','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','OVER MAX LEVEL'];
+        const explorerTitles = ['','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
+        const fighterTitles = ['','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord'];
+        const mageTitles = ['','Arcanist','Seer','Theurgist','Magician','Thaumaturge','Enchanter','Sorcerer','Mage','Wizard','Wizard','Wizard','Wizard','Wizard','Archmage'];
+        const nightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const spellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const thiefTitles = ['','Footpad','Hood','Robber','Burglar','Rogue','Scoundrel','Pilferer','Thief','Master Thief','Master Thief','Master Thief','Master Thief','Master Thief','Prince of Thieves'];
+        const vaultguardTitles = ['','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL'];
         
         const output = {};
         if (theXPValue != 0) {
@@ -2437,6 +2522,7 @@ function updateTitle() {
                 case 'cleric': output['character_title'] = clericTitles[theLevel]; break;
                 case 'dwarvencraftpriest': output['character_title'] = craftpriestTitles[theLevel]; break;
                 case 'dwarvendelver': output['character_title'] = delverTitles[theLevel]; break;
+                case 'dwarvenfury': output['character_title'] = furyTitles[theLevel]; break;
                 case 'explorer': output['character_title'] = explorerTitles[theLevel]; break;
                 case 'fighter': output['character_title'] = fighterTitles[theLevel]; break;
                 case 'mage': output['character_title'] = mageTitles[theLevel]; break;

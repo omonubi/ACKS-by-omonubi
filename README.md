@@ -50,7 +50,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 
 | Property | Description |
 | --- | --- |
-| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected (see below), the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. |
+| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected (see below), the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. Note that *class_damage_reduction* must be applied manually at the time of the damage roll. |
 | spell slots | These can be used for any ACKS magic class, and they include a place to track cantrips and corruption (AXIOMS Shades of Magic). |
 | spell list | These should be self-explanatory. Use the Prepared checkbox to indicate if a spell is in the characater's repertoire or not (in a spellbook). Obviously, divine magical classes should always have all spells Prepared. Shades of Magic are also included but are optional. |
 | thieving abilities | These buttons' throw targets are determined by class and level, and will only be displayed if *class* is set to an appropriate ACKS class. |
@@ -149,6 +149,7 @@ If the following class names are entered into the *class* field, embedded descri
     - Anti-Paladin
     - Barbarian
     - Dwarven Delver
+    - Dwarven Fury
 
 **Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
 
