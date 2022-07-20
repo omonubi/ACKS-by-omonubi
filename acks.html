@@ -295,7 +295,7 @@
         <label class='spanheader'>Proficiencies</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_skills'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}[base] - ((@{skill_rank}-1))*4[rank]]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1))*4[rank]]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
                 <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
                 <label>Rank:</label><input type='number' value='1' name='attr_skill_rank'/>
                 <label>Type:</label>
@@ -490,6 +490,7 @@
             <input class='showthievesskillsclimb' type='hidden' name='attr_show_thievesskillsclimb'/>
             <input class='showthievesskillshide' type='hidden' name='attr_show_thievesskillshide'/>
             <input class='showthievesskillshear' type='hidden' name='attr_show_thievesskillshear'/>
+            <input class='showbackstab' type='hidden' name='attr_show_backstab'/>
             <div class='thievesskillslocks'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_locks} **@{character_title} @{selected|token_name}**}} {{subtitle=Open Locks}} {{color=black}} {{Target=[[@{thief_1}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_1'> Open Locks</button></div>
             <div class='thievesskillstraps'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_traps} **@{character_title} @{selected|token_name}**}} {{subtitle=Remove Traps}} {{color=black}} {{Target=[[@{thief_2}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_2'> Find Traps</button></div>
             <div class='thievesskillspick'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_pockets} **@{character_title} @{selected|token_name}**}} {{subtitle=Pick Pockets}} {{color=black}} {{Target=[[@{thief_3}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_3'> Pick Pockets</button></div>
@@ -497,7 +498,7 @@
             <div class='thievesskillsclimb'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_climb} **@{character_title} @{selected|token_name}**}} {{subtitle=Climb Walls}} {{color=black}} {{Target=[[@{thief_5}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_5'> Climb</button></div>
             <div class='thievesskillshide'><button type='roll' value='/w gm &{template:custom} {{title=@{banner_hide} **@{character_title} @{selected|token_name}**}} {{subtitle=Hide}} {{color=black}} {{Target=[[@{thief_6}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_6'> Hide in Shadows</button></div>
             <div class='thievesskillshear'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_listen} **@{character_title} @{selected|token_name}**}} {{subtitle=Listen}} {{color=black}} {{Target=[[@{thief_7}]]}} {{Roll=[[d20[die]+?{Modifier|0}[mod]]]}}' name='roll_thief_7'> Hear Noises</button></div>
-            <input class='thiefFieldTotal' type='text' value='0' name='attr_thief_backstab'/>
+            <div class='backstab'><input class='thiefFieldTotal' type='text' value='0' name='attr_thief_backstab'/></div>
         </div>
         <hr/>
     </div>
@@ -507,7 +508,6 @@
         <div class='classcontent'>
             <label class='spanheader'>Anti-Paladin Class Description</label>
             <p><em>Every bit as vile as paladins are heroic, the anti-paladin is the dark twin of those champions of light. Fanatical followers of the chthonic gods, anti-paladins are capable of any atrocity, any villainy, in service of their divine patrons, furthering the spread of chaos, evil and corruption. Anti-paladins are unconstrained by codes of conduct, their only true inviolate tenets being unwavering faith in their unholy patron, and the drive to spread the patron’s particular brand of evil by whatever means necessary. Cunning, treachery, and deception are all considered worthy tools in the anti-paladin’s arsenal, weapons every bit as valuable as the most savage blade.</em></p>
-            <p><em>Given their diabolical personality, outlook, and fervor, antipaladins are rightly regarded with hatred and fear, even among many of those serving the same evils; not for nothing do they have a reputation for brutality, betrayal, and a love of torture.</em></p>
             <p>Prime Requisite: <strong>STR and CHA</strong></p>
             <p>Requirements: <strong>None</strong></p>
             <p>Hit Dice: <strong>1d6</strong></p>
@@ -785,7 +785,8 @@
                 <li>May wear any type of armor and use a shield</li>
                 <li>Can turn undead, as a cleric</li>
                 <li>Can recognize holy symbols, rites, etc., of other faiths</li>
-                <li>Gains a Craft proficieny of choice</li>
+                <li>Gains a Craft proficieny of choice at rank 2</li>
+                <li>Gains +3 bonus to all other proficiencies</li>
                 <li>Gains +1 on surprise rolls when underground</li>
                 <li>Improved ability to detect traps and secret doors</li>
                 <li>Gains +3 vs. blast/breath and +4 on all other saving throws</li>
@@ -800,7 +801,7 @@
             <h5>Full Description</h5>
             <p>At first level, dwarven craftpriests hit an unarmored foe (AC 0) with an attack throw of 10+. Dwarven craftpriests advance in attack throws and saving throws as clerics, by two points every four levels of experience. Dwarven craftpriests may wear any armor and may use any of the traditional weapons of their people, including the battle axe, great axe, hand axe, flail, mace, morning star, and  warhammer. They are trained to fight wielding a weapon and shield or wielding a weapon twohanded, but may not dual wield weapons.</p>
             <p>A dwarven craftpriest may turn undead like a cleric. Starting at 2nd level (Craft-Acolyte), a craftpriest may cast divine spells. Craftpriests follow the same spell progression as clerics, use the same rules for learning and casting spells, and select their spells from the same spell list. See the Spells chapter for details. Because of their religious training, a craftpriest can automatically identify religious symbols, trappings, and holy days of the dwarven faith, and recognizes those of other faiths with a proficiency throw of 8+ on 1d20.</p>
-            <p>In addition, each dwarven craftpriest is a journeyman in a particular type of craft, such as armor-making, leatherworking, weapon-smithing, etc. With access to craftsman’s tools, the character can produce 20gp worth of items per month, and supervise 3 apprentices in his craft. When examining works of his craft, the craftpriest can identify masterwork items, rare materials, and famous artisans with a proficiency throw of 8+ on 1d20. Their attention to detail gives craftpriests a +3 bonus on proficiency rolls for other proficiencies they learn as well. </p>
+            <p>In addition, each dwarven craftpriest is a journeyman in a particular type of craft (Craft proficiency, rank 2), such as armor-making, leatherworking, weapon-smithing, etc. With access to craftsman’s tools, the character can produce 20gp worth of items per month, and supervise 3 apprentices in his craft. When examining works of his craft, the craftpriest can identify masterwork items, rare materials, and famous artisans with a proficiency throw of 8+ on 1d20. Their attention to detail gives craftpriests a +3 bonus on proficiency rolls for other proficiencies they learn as well. </p>
             <p>Dwarves gain a +1 bonus to surprise rolls when underground due to sensitivity to the rock and stone around them. Because of their experience underground, dwarves may detect traps, false walls, hidden construction, or sloped passages with a proficiency throw of 14+ on 1d20. Dwarves must be actively searching for these abilities to function. In addition to these abilities, dwarves are particularly hardy people. The target values for all their saving throws versus Blast/Breath are reduced by 3, while the target values for all their other saving throws are reduced by 4. Dwarven characters speak the Common and Dwarvish tongue and, because of their frequent interaction underground with these monsters, also speak Goblin, Gnome, and Kobold.</p>
             <p>Starting at 5th level (Craft-Vicar), a craftpriest may begin to research spells, scribe scrolls, and brew potions. At 9th level (Craft-Lord), he is able to create more powerful magic items such as weapons, rings, and staffs, and craft magical constructs such as golems. At 9th level, he also can construct a vault that will attract dwarves from far and wide. Dwarves of the character’s clan will be the first to live under his roof, but dwarves from other clans will also come and live nearby to be ruled by the character. A total of 3d6x10 1st level NPCs of the same race will move in to help maintain and defend the vault at no cost to the character. A Craft-Lord is expected to employ only soldiers of dwarven descent, but may hire members of other races for other tasks.</p>
         </div>
@@ -859,7 +860,6 @@
             <label class='spanheader'>Dwarven Fury Class Description</label>
             <p><em>Dwarves are stout, short, bearded demi-humans who average a height of approximately 4' and weigh about 150lb. Perhaps not surprisingly, they have skin, hair and eye colors in earth tones. Dwarves have a reputation for having surly attitudes, and are particularly gruff with elves. They value precious metals and stones, and live in deep underground vaults, where they endure constant raids from the orcs, trolls, and even worse denizens of the darkness below. Dwarves are rarely seen, for their strongholds lie deep in the mountains of the world.</em></p>
             <p><em>As the numbers of their race have dwindled in the face of constant warfare, more and more the dwarves have been forced to rely on the machinists’ arts, using war machines of steam and brass to defend their vaults. Some dwarves, however, have rejected this mechanization of warfare and returned to an older tradition of runic magic and savage combat. Instantly recognizable by the magical tattoos that scar their skin, these dwarves are known as furies. It is said that once the fury grips a dwarf, his destiny is to die with axe in hand, and the only question is how many beastman corpses will surround his own on the final day.</em></p>
-            <p><em>Dwarven furies are held in a mixture of awe and contempt by their clans, and with more than a little fear. They, in turn, vehemently disagree with the defensive mindset of the vaults. Many furies become adventures in order to better carry the fight to their enemy.</em></p>
             <p>Prime Requisite: <strong>STR</strong></p>
             <p>Requirements: <strong>CON 9</strong></p>
             <p>Hit Dice: <strong>1d8</strong></p>
@@ -891,6 +891,45 @@
             <p>Similarly to barbarians, dwarven furies enjoy savage resilience. When a dwarven fury is required to consult the Mortal Wounds table, the player may roll twice and choose the preferred result to apply. Dwarven furies also subtract their class level from the number of days of bed rest required to recover.</p>
             <p>Like all dwarves, furies are hardy people. The target values for all their saving throws versus Blast/Breath are reduced by 3, while the target values for all their other saving throws are reduced by 4. Dwarven furies will speak the Common and Dwarvish tongue and, because of their frequent interaction underground with these monsters, will also speak Goblin, Gnome, and Kobold. Dwarven furies gain a +1 bonus on all surprise rolls when underground due to sensitivity to the rock and stone around them. When underground a fury can detect false walls, hidden construction, or sloped passages with a proficiency throw of 14+ on 1d20, if actively searching.</p>
             <p>When a dwarven fury reaches 9th level (Dwarven Avenger), his grim determination and relentless nature can attract dwarves from far and wide. To do so, he must construct his own underground vault. Dwarves usually live in clans, so dwarves of the character’s clan will be the first to live under his roof, but dwarves from other clans will also come and live nearby to be ruled by the character. A total of 3d6x10 1st level NPCs of the same race will move in to help maintain and defend the vault at no cost to the character. A dwarven ruler is expected to employ only soldiers of dwarven descent, but may hire members of other races for other tasks.</p>
+        </div>
+        <hr/>
+    </div>
+
+    <input class='showDwarvenMachinist' type='hidden' name='attr_show_dwarvenmachinist'/>
+    <div class='DwarvenMachinist'>
+        <div class='classcontent'>
+            <label class='spanheader'>Dwarven Machinist Class Description</label>
+            <p><em>Dwarves are stout, short, bearded demi-humans who average a height of approximately 4' and weigh about 150lb. Perhaps not surprisingly, they have skin, hair and eye colors in earth tones. Dwarves have a reputation for having surly attitudes, and are particularly gruff with elves. They value precious metals and stones, and live in deep underground vaults, where they endure constant raids from the orcs, trolls, and even worse denizens of the darkness below. Dwarves are rarely seen, for their strongholds lie deep in the mountains of the world.</em></p>
+            <p><em>While all dwarves share a predilection for mechanical devices, in some dwarves this predilection is honed to an obsession. Dwarven machinists work wonders with wood, metal, steam, and fire, crafting marvelous machines that move on their own, lift great weights, and even fight their race’s foes.</em></p>
+            <p>Prime Requisite: <strong>INT and DEX</strong></p>
+            <p>Requirements: <strong>CON 9</strong></p>
+            <p>Hit Dice: <strong>1d6</strong></p>
+            <p>Maximum Level: <strong>10</strong></p>
+            <h5>Summary</h5>
+            <ul>
+                <li>Follows the Thief progression for attack throws</li>
+                <li>May only wield arbelast, crossbow, dagger, hand axe, mace, and war hammer</li>
+                <li>May not dual wield</li>
+                <li>May wear chain mail or ligher armor and use a shield</li>
+                <li>May open locks and find/remove traps.</li>
+                <li>Gains a Craft proficieny of choice at rank 3</li>
+                <li>Gains +3 bonus to all other proficiencies</li>
+                <li>Gains the ability to design, build, and repair automatons</li>
+                <li>Gains +1 on surprise rolls when underground</li>
+                <li>Improved ability to detect traps and secret doors</li>
+                <li>Gains +3 vs. blast/breath and +4 on all other saving throws</li>
+                <li>Can speak Dwarvish, Goblin, Gnome, and Kobold</li>
+                <li>At 9th level, may construct a manufactory w. a dungeon</li>
+            </ul>
+            <h5>Class Proficiencies</h5>
+            <p>Alchemy, Armor Training, Art, Bargaining, Caving, Craft, Dungeon Bashing, Dwarven Brewing, Engineering, Illusion Resistance, Inventing, Jury-Rigging, Knowledge, Lockpicking, Loremastery, Magical Engineering, Mapping, Martial Training, Mechanical Engineering, Military Strategy, Navigation, Personal Automaton, Precise Shooting, Riding, Scavenging, Seafaring, Siege Engineering, Signaling, Tinkering, Trap Finding, Trapping, Weapon Finesse</p>
+            <h5>Full Description</h5>
+            <p>Relative to the renowned vaultguards of their race, dwarven machinists are only mediocre combatants. At first level, machinists hit an unarmored foe (AC 0) with an attack throw of 10+. They advance in attack throws and saving throws by two points every four levels of experience (i.e. the same as thieves). They may fight wielding a weapon and shield or a wielding a weapon two-handed, but cannot dual wield. Machinists may wear chain mail or lighter armor, but wield only a small range of weapons, including the arbalest, crossbow, dagger, hand axe, mace, and war hammer. They may use any magic item usable by thieves.</p>
+            <p>It is not in combat, but in the construction and engineering of mechanical devices, that the true mastery of the dwarven machinist becomes evident. At 1st level, every dwarven machinist is already a master craftsman (Craft proficiency, rank 3) in a particular type of mechanical craft, such as armor-making, clock-making, jewelling, weaponsmithing, etc. Their attention to detail gives dwarven machinists a +3 bonus on proficiency rolls for other proficiencies they learn as well.</p>
+            <p>Regardless of their particular craft, all machinists are able to open locks and find/remove traps in the same manner as thieves, but doing so with a superior rate of success due to their attention to detail. Note that a 1st level machinist will have a minimum chance of detecting traps of 14+ due to his default racial ability (described below), but will remove traps with a throw of 15+. </p>
+            <p>The most precious and valued secret of the dwarven machinist is his ability to design, build, and repair automatons. Automatons are machines similar to magical constructs, but using clockwork, steam engines, gears, and valves in place of dweomercraft. For more information, see ACKS Player's Companion, pgs. 18-20.</p>
+            <p>When a dwarven machinist reaches 9th level (Master Machinist), he can establish a manufactory and begin training apprentices. He will then attract 1d6 apprentice machinists of 1st-3rd level plus 2d6 dwarves seeking to become machinists. Their Intelligence and Dexterity scores will be above average, but many will find they lack the talent and quit after 1d6 months. Apprentices function like assistants in magical research (see ACKS p. 119). While in the dwarven machinist’s service, apprentices must be provided food and lodging, but need not be paid wages. If the dwarven machinist builds a dungeon beneath or near his manufactory, monsters will start to arrive to dwell within. These are often used to test new automatons. Machinists’ manufactories are otherwise identical to mages’ sanctums, as detailed in the Campaign chapter of the ACKS Rulebook. </p>
+            <p>Like other dwarves, machinists gain a +1 bonus to surprise rolls when underground due to sensitivity to the rock and stone around them. Because of their experience underground, dwarves may detect traps, false walls, hidden construction, or sloped passages with a proficiency throw of 14+ on 1d20. Dwarves must be actively searching for these abilities to function. As dwarves, machinists are particularly hardy. The target values for all their saving throws versus Blast/Breath are reduced by 3, while the target values for all their other saving throws are reduced by 4. Dwarven machinists will speak the Common and Dwarvish tongue and, because of their frequent interaction underground with these monsters, dwarves can also speak Goblin, Gnome, and Kobold.</p>
         </div>
         <hr/>
     </div>
@@ -1429,6 +1468,7 @@ function updateAttackThrow() {
                 case 'assassin':
                 case 'barbarian':
                 case 'bladedancer':
+                case 'dwarvenfury':
                 case 'dwarvenvaultguard':
                 case 'elvenspellsword':
                 case 'explorer':
@@ -1548,6 +1588,7 @@ function updateClassTabContents() {
             output['show_dwarvencraftpriest'] = 
             output['show_dwarvendelver'] = 
             output['show_dwarvenfury'] = 
+            output['show_dwarvenmachinist'] = 
             output['show_dwarvenvaultguard'] = 
             output['show_elvennightblade'] = 
             output['show_elvenspellsword'] = 
@@ -1566,6 +1607,7 @@ function updateClassTabContents() {
             case 'bard':
             case 'dwarvendelver':
             case 'dwarvenfury':
+            case 'dwarvenmachinist':
             case 'dwarvenvaultguard':
             case 'explorer':
             case 'fighter':
@@ -1586,6 +1628,7 @@ function updateClassTabContents() {
                 output['show_thievesskillsclimb'] = 0;
                 output['show_thievesskillshide'] = 1;
                 output['show_thievesskillshear'] = 0;
+                output['show_backstab'] = 1;
                 break;
             case 'dwarvendelver':
                 output['show_thievesskills'] = 1;
@@ -1596,6 +1639,18 @@ function updateClassTabContents() {
                 output['show_thievesskillsclimb'] = 1;
                 output['show_thievesskillshide'] = 1;
                 output['show_thievesskillshear'] = 1;
+                output['show_backstab'] = 1;
+                break;
+            case 'dwarvenmachinist':
+                output['show_thievesskills'] = 1;
+                output['show_thievesskillslocks'] = 1;
+                output['show_thievesskillstraps'] = 1;
+                output['show_thievesskillspick'] = 0;
+                output['show_thievesskillsmove'] = 0;
+                output['show_thievesskillsclimb'] = 0;
+                output['show_thievesskillshide'] = 0;
+                output['show_thievesskillshear'] = 0;
+                output['show_backstab'] = 0;
                 break;
             case 'elvennightblade':
                 output['show_thievesskills'] = 1;
@@ -1606,8 +1661,10 @@ function updateClassTabContents() {
                 output['show_thievesskillsclimb'] = 1;
                 output['show_thievesskillshide'] = 1;
                 output['show_thievesskillshear'] = 0;
+                output['show_backstab'] = 1;
                 break;
             case 'thief':
+            default:
                 output['show_thievesskills'] = 1;
                 output['show_thievesskillslocks'] = 1;
                 output['show_thievesskillstraps'] = 1;
@@ -1616,9 +1673,7 @@ function updateClassTabContents() {
                 output['show_thievesskillsclimb'] = 1;
                 output['show_thievesskillshide'] = 1;
                 output['show_thievesskillshear'] = 1;
-                break;
-            default:
-                output['show_thievesskills'] = 0;
+                output['show_backstab'] = 1;
         }
         setAttrs(output);
     });
@@ -2293,56 +2348,31 @@ function updateSavingThrows() {
         const theClass = getSanitizedString(values['class']);
         const theLevel = validateLevel(values['level']);
 
-        const clericSaves = [16,15,17,17,18,13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9];
-        const craftpriestSaves = [16,15,17,17,18,9,6,13,9,11,9,6,13,9,11,8,5,12,8,10,8,5,12,8,10,7,4,11,7,9,7,4,11,7,9,6,3,10,6,8,6,3,10,6,8,5,2,9,5,7,5,2,9,5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        const delverSaves = [16,15,17,17,18,9,9,13,10,11,9,9,13,10,11,8,8,12,9,10,8,8,12,9,10,7,7,11,8,9,7,7,11,8,9,6,6,10,7,8,6,6,10,7,8,5,5,9,6,7,5,5,9,6,7,4,4,8,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        const fighterSaves = [16,15,17,17,18,15,14,16,16,17,14,13,15,15,16,14,13,15,15,16,13,12,14,14,15,12,11,13,13,14,12,11,13,13,14,11,10,12,12,13,10,9,11,11,12,10,9,11,11,12,9,8,10,10,11,8,7,9,9,10,8,7,9,9,10,7,6,8,8,9,6,5,7,7,8];
-        const mageSaves = [16,15,17,17,18,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8];
-        const nightbladeSaves = [16,15,17,17,18,12,13,16,14,14,12,13,16,14,14,11,12,15,13,13,11,12,15,13,13,10,11,14,12,12,10,11,14,12,12,9,10,13,11,11,9,10,13,11,11,8,9,12,10,10,8,9,12,10,10,7,8,11,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        const thiefSaves = [16,15,17,17,18,13,13,16,14,15,13,13,16,14,15,12,12,15,14,13,12,12,15,14,13,11,11,14,12,13,11,11,14,12,13,10,10,13,11,12,10,10,13,11,12,9,9,12,10,11,9,9,12,10,11,8,8,11,9,10,8,8,11,9,10,7,7,10,8,9,7,7,10,8,9];
-        const spellswordSaves = [16,15,17,17,18,14,14,16,16,16,13,13,15,15,15,13,13,15,15,15,12,12,14,14,14,11,11,13,13,13,11,11,13,13,13,10,10,12,12,12,9,9,11,11,11,9,9,11,11,11,8,8,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        const vaultguardSaves = [16,15,17,17,18,11,10,13,12,13,10,9,12,11,12,10,9,12,11,12,9,8,11,10,11,8,7,10,9,10,8,7,10,9,10,7,6,9,8,9,6,5,8,7,8,6,5,8,7,8,5,4,7,6,7,4,3,6,5,6,4,3,6,5,6,3,2,5,4,5,0,0,0,0,0];
+        const clericSaves = [16,15,17,17,18,                13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9];
+        const dwarvencraftpriestSaves = [16,15,17,17,18,    9,6,13,9,11,9,6,13,9,11,8,5,12,8,10,8,5,12,8,10,7,4,11,7,9,7,4,11,7,9,6,3,10,6,8,6,3,10,6,8,5,2,9,5,7,5,2,9,5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const dwarvendelverSaves = [16,15,17,17,18,         9,9,13,10,11,9,9,13,10,11,8,8,12,9,10,8,8,12,9,10,7,7,11,8,9,7,7,11,8,9,6,6,10,7,8,6,6,10,7,8,5,5,9,6,7,5,5,9,6,7,4,4,8,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const dwarvenvaultguardSaves = [16,15,17,17,18,     11,10,13,12,13,10,9,12,11,12,10,9,12,11,12,9,8,11,10,11,8,7,10,9,10,8,7,10,9,10,7,6,9,8,9,6,5,8,7,8,6,5,8,7,8,5,4,7,6,7,4,3,6,5,6,4,3,6,5,6,3,2,5,4,5,0,0,0,0,0];
+        const elvennightbladeSaves = [16,15,17,17,18,       12,13,16,14,14,12,13,16,14,14,11,12,15,13,13,11,12,15,13,13,10,11,14,12,12,10,11,14,12,12,9,10,13,11,11,9,10,13,11,11,8,9,12,10,10,8,9,12,10,10,7,8,11,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const elvenspellswordSaves = [16,15,17,17,18,       14,14,16,16,16,13,13,15,15,15,13,13,15,15,15,12,12,14,14,14,11,11,13,13,13,11,11,13,13,13,10,10,12,12,12,9,9,11,11,11,9,9,11,11,11,8,8,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const fighterSaves = [16,15,17,17,18,               15,14,16,16,17,14,13,15,15,16,14,13,15,15,16,13,12,14,14,15,12,11,13,13,14,12,11,13,13,14,11,10,12,12,13,10,9,11,11,12,10,9,11,11,12,9,8,10,10,11,8,7,9,9,10,8,7,9,9,10,7,6,8,8,9,6,5,7,7,8];
+        const mageSaves = [16,15,17,17,18,                  13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8];
+        const thiefSaves = [16,15,17,17,18,                 13,13,16,14,15,13,13,16,14,15,12,12,15,14,13,12,12,15,14,13,11,11,14,12,13,11,11,14,12,13,10,10,13,11,12,10,10,13,11,12,9,9,12,10,11,9,9,12,10,11,8,8,11,9,10,8,8,11,9,10,7,7,10,8,9,7,7,10,8,9];
 
-        const output = {};
-        for (var i = 0; i < 5; i++ ) {
-            switch (theClass) {
-                case 'bladedancer':
-                case 'cleric':
-                    output['save_' + (i + 1)] = clericSaves[(theLevel) * 5 + i];
-                    break;
-                case 'dwarvencraftpriest':
-                    output['save_' + (i + 1)] = craftpriestSaves[(theLevel) * 5 + i];
-                    break;
-                case 'dwarvendelver':
-                    output['save_' + (i + 1)] = delverSaves[(theLevel) * 5 + i];
-                    break;
-                case 'anti-paladin':
-                case 'assassin':
-                case 'barbarian':
-                case 'explorer':
-                case 'fighter':
-                    output['save_' + (i + 1)] = fighterSaves[(theLevel) * 5 + i];
-                    break;
-                case 'mage':
-                    output['save_' + (i + 1)] = mageSaves[(theLevel) * 5 + i];
-                    break;
-                case 'elvenspellsword':
-                    output['save_' + (i + 1)] = spellswordSaves[(theLevel) * 5 + i];
-                    break;
-                case 'bard':
-                case 'thief':
-                    output['save_' + (i + 1)] = thiefSaves[(theLevel) * 5 + i];
-                    break;
-                case 'dwarvenfury':
-                case 'dwarvenvaultguard':
-                    output['save_' + (i + 1)] = vaultguardSaves[(theLevel) * 5 + i];
-                    break;
-                case 'elvennightblade':
-                    output['save_' + (i + 1)] = nightbladeSaves[(theLevel) * 5 + i];
-                    break;
-                default:
-            }
+        let appliedSaves = [];
+        switch (theClass) { 
+            case 'cleric': case 'bladedancer': appliedSaves = clericSaves; break;
+            case 'dwarvencraftpriest': appliedSaves = dwarvencraftpriestSaves; break;            
+            case 'dwarvendelver': case 'dwarvenmachinist': appliedSaves = dwarvendelverSaves; break;
+            case 'dwarvenvaultguard': case 'dwarvenfury': appliedSaves = dwarvenvaultguardSaves; break;
+            case 'fighter': case 'anti-paladin': case 'assassin': case 'barbarian': case 'explorer': appliedSaves = fighterSaves; break;
+            case 'elvennightblade': case 'elvennightblade': appliedSaves = elvennightbladeSaves; break;
+            case 'elvenspellsword': appliedSaves = elvenspellswordSaves; break;
+            case 'mage': appliedSaves = mageSaves; break;
+            case 'thief': case 'bard': appliedSaves = thiefSaves; break;
+            default: return;
         }
+        const output = {};
+        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1)] = appliedSaves[(theLevel) * 5 + i]};
         setAttrs(output);
     });
 };
@@ -2409,10 +2439,15 @@ function updateThiefSkills(theClass, theLevel) {
     /*console.log('updateThiefSkills(' + theClass + ', ' + theLevel + ')');*/
 
     const assassinSkills = [
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
         0,17,16,15,14,13,12,10,8,6,4,2,2,1,1,
-        0,19,18,17,16,15,14,12,10,8,6,4,3,2,1   
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,19,18,17,16,15,14,12,10,8,6,4,3,2,1,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99
     ]; //ACKS Core pg. 26
-    const delverSkills = [
+    const dwarvendelverSkills = [
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
         0,14,14,14,13,12,11,9,7,5,3,1,99,99,99,
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
@@ -2421,10 +2456,23 @@ function updateThiefSkills(theClass, theLevel) {
         0,17,16,15,14,13,12,10,8,6,4,2,99,99,99,
         0,12,11,10,9,8,7,5,4,3,2,1,99,99,99       
     ]; //ACKS Player's Companion pg. 15
-    const nightbladeSkills = [
+    const dwarvenmachinistSkills = [
+        0,15,14,13,12,11,9,7,5,3,1,99,99,99,99,
+        0,15,14,13,12,11,10,8,6,4,2,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99    
+    ]; //ACKS Player's Companion pg. 20
+    const elvennightbladeSkills = [
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
         0,17,16,15,14,13,12,10,8,6,4,2,99,99,99,
         0,6,5,5,4,4,4,3,3,3,3,2,99,99,99,
-        0,19,18,17,16,15,14,12,10,8,6,4,99,99,99
+        0,19,18,17,16,15,14,12,10,8,6,4,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99
     ]; //ACKS Core pg. 36
     const thiefSkills = [
         0,18,17,16,15,14,12,10,8,6,4,3,2,1,1,
@@ -2439,26 +2487,17 @@ function updateThiefSkills(theClass, theLevel) {
         0,2,2,2,2,3,3,3,3,4,4,4,4,5,5
     ]; //ACKS Core pg. 24
 
-    const output = {};
-    for (var i = 0; i < 7; i++ ) output['thief_' + (i + 1)] = 99;
+    let appliedScores = [];
     switch (theClass) {
-        case 'assassin':
-            output['thief_4'] = assassinSkills[theLevel];
-            output['thief_6'] = assassinSkills[15 + theLevel];
-            break;
-        case 'dwarvendelver':
-            for (var i = 0; i < 7; i++ ) output['thief_' + (i + 1)] = delverSkills[i * 15 + theLevel];
-            break;
-        case 'elvennightblade':
-            output['thief_4'] = nightbladeSkills[theLevel];
-            output['thief_5'] = nightbladeSkills[15 + theLevel];
-            output['thief_6'] = nightbladeSkills[30 + theLevel];
-            break;
-        case 'thief':
-            for (var i = 0; i < 7; i++ ) output['thief_' + (i + 1)] = thiefSkills[i * 15 + theLevel];
-            break;
-        default:
-    }    
+        case 'assassin': appliedScores = assassinSkills; break;
+        case 'dwarvendelver': appliedScores = dwarvendelverSkills; break;
+        case 'dwarvenmachinst': appliedScores = dwarvenmachinistSkills; break;
+        case 'elvennightblade': appliedScores = elvennightbladeSkills; break;
+        case 'thief': default: appliedScores = thiefSkills; break;        
+    }
+
+    const output = {};
+    for (var i = 0; i < 7; i++ ) output['thief_' + (i + 1)] = appliedScores[i * 15 + theLevel];    
     output['thief_backstab'] = 'BS x' + backstab[theLevel]; // Set backstab multiplier
     setAttrs(output);
 };
@@ -2499,15 +2538,17 @@ function updateTitle() {
         const bardTitles = ['','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
         const bladedancerTitles = ['','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
         const clericTitles = ['','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat'];
-        const craftpriestTitles = ['','Dwarven Craft-Catechist','Dwarven Craft-Acolyte','Dwarven Craftpriest','Dwarven Craft-Curate','Dwarven Craft-Vicar','Dwarven Craft-Rector','Dwarven Craft-Prelate','Dwarven Craft-Bishop','Dwarven Craft-Lord','Dwarven Craft-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const furyTitles = ['','Dwarven Grudgebearer','Dwarven Punisher','Dwarven Repriser','Dwarven Vindicator','Dwarven Retaliator','Dwarven Castigator','Dwarven Scourge','Dwarven Fury','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','Dwarven Avenger','OVER MAX LEVEL'];
+        const dwarvencraftpriestTitles = ['','Craft-Catechist','Craft-Acolyte','Craftpriest','Craft-Curate','Craft-Vicar','Craft-Rector','Craft-Prelate','Craft-Bishop','Craft-Lord','Craft-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const dwarvendelverTitles = ['','Caver','Tunneler','Excavator','Undertaker','Spelunker','Expeditionary','Pathfinder','Delver','Pioneer','Pioneer','Pioneer','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const dwarvenfuryTitles = ['','Grudgebearer','Punisher','Repriser','Vindicator','Retaliator','Castigator','Scourge','Fury','Avenger','Avenger','Avenger','Avenger','Avenger','OVER MAX LEVEL'];
+        const dwarvenmachinistTitles = ['','Apprentice','Mechanic','Shaper','Forger','Maker','Engineer','Artificer','Machinist','Master Machinist','Master Machinist','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const dwarvenvaultguardTitles = ['','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL'];
+        const elvennightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const elvenspellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const explorerTitles = ['','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
         const fighterTitles = ['','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord'];
         const mageTitles = ['','Arcanist','Seer','Theurgist','Magician','Thaumaturge','Enchanter','Sorcerer','Mage','Wizard','Wizard','Wizard','Wizard','Wizard','Archmage'];
-        const nightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const spellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const thiefTitles = ['','Footpad','Hood','Robber','Burglar','Rogue','Scoundrel','Pilferer','Thief','Master Thief','Master Thief','Master Thief','Master Thief','Master Thief','Prince of Thieves'];
-        const vaultguardTitles = ['','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL'];
         
         const output = {};
         if (theXPValue != 0) {
@@ -2520,16 +2561,17 @@ function updateTitle() {
                 case 'bard': output['character_title'] = bardTitles[theLevel]; break;
                 case 'bladedancer': output['character_title'] = bladedancerTitles[theLevel]; break;
                 case 'cleric': output['character_title'] = clericTitles[theLevel]; break;
-                case 'dwarvencraftpriest': output['character_title'] = craftpriestTitles[theLevel]; break;
-                case 'dwarvendelver': output['character_title'] = delverTitles[theLevel]; break;
-                case 'dwarvenfury': output['character_title'] = furyTitles[theLevel]; break;
+                case 'dwarvencraftpriest': output['character_title'] = dwarvencraftpriestTitles[theLevel]; break;
+                case 'dwarvendelver': output['character_title'] = dwarvendelverTitles[theLevel]; break;
+                case 'dwarvenfury': output['character_title'] = dwarvenfuryTitles[theLevel]; break;
+                case 'dwarvenmachinist': output['character_title'] = dwarvenmachinistTitles[theLevel]; break;
+                case 'dwarvenvaultguard': output['character_title'] = dwarvenvaultguardTitles[theLevel]; break;
+                case 'elvennightblade': output['character_title'] = elvennightbladeTitles[theLevel]; break;
+                case 'elvenspellsword': output['character_title'] = elvenspellswordTitles[theLevel]; break;
                 case 'explorer': output['character_title'] = explorerTitles[theLevel]; break;
                 case 'fighter': output['character_title'] = fighterTitles[theLevel]; break;
                 case 'mage': output['character_title'] = mageTitles[theLevel]; break;
-                case 'elvennightblade': output['character_title'] = nightbladeTitles[theLevel]; break;
-                case 'elvenspellsword': output['character_title'] = spellswordTitles[theLevel]; break;
                 case 'thief': output['character_title'] = thiefTitles[theLevel]; break;
-                case 'dwarvenvaultguard': output['character_title'] = vaultguardTitles[theLevel]; break;
                 default: output['character_title'] = EMPTY_STRING;
             }
         }
@@ -2574,19 +2616,20 @@ function calculateXPNeeded() {
         const theClass = getSanitizedString(values['class']);
         const theLevel = validateLevel(values['level']);
         
-        const antipaladinXPNeeded = [100,1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0];
-        const assassinXPNeeded = [100,1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0];
-        const barbarianXPNeeded = [100,2600,5200,10400,20800,41600,85000,170000,290000,410000,530000,650000,770000,890000,0];
-        const bardXPNeeded = [100,1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0];
-        const clericXPNeeded = [100,1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0];
-        const craftpriestXPNeeded = [100,2400,4800,9600,19200,38400,75000,150000,280000,410000,0,0,0,0,0];
-        const delverXPNeeded = [100,2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
-        const fighterXPNeeded = [100,2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0];
-        const mageXPNeeded = [100,2500,5000,10000,20000,40000,80000,160000,310000,460000,610000,760000,910000,1060000,0];
-        const nightbladeXPNeeded = [100,2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0];
-        const spellswordXPNeeded = [100,4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0];
-        const thiefXPNeeded = [100,1250,2500,5000,10000,20000,40000,80000,180000,280000,380000,480000,580000,680000,0];
-        const vaultguardXPNeeded = [100,2200,4400,8800,17500,35000,70000,140000,270000,400000,530000,660000,790000,0,0];
+        const antipaladinXPNeeded = [100,           1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0];
+        const assassinXPNeeded = [100,              1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0];
+        const barbarianXPNeeded = [100,             2600,5200,10400,20800,41600,85000,170000,290000,410000,530000,650000,770000,890000,0];
+        const bardXPNeeded = [100,                  1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0];
+        const clericXPNeeded = [100,                1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0];
+        const dwarvencraftpriestXPNeeded = [100,    2400,4800,9600,19200,38400,75000,150000,280000,410000,0,0,0,0,0];
+        const dwarvendelverXPNeeded = [100,         2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
+        const dwarvenmachinistXPNeeded = [100,      2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
+        const dwarvenvaultguardXPNeeded = [100,     2300,4600,9200.18400,36800,75000,150000,280000,410000,0,0,0,0,0];
+        const elvennightbladeXPNeeded = [100,       2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0];
+        const elvenspellswordXPNeeded = [100,       4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0];
+        const fighterXPNeeded = [100,               2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0];
+        const mageXPNeeded = [100,                  2500,5000,10000,20000,40000,80000,160000,310000,460000,610000,760000,910000,1060000,0];
+        const thiefXPNeeded = [100,                 1250,2500,5000,10000,20000,40000,80000,180000,280000,380000,480000,580000,680000,0];
         
         const output = {};
         output['xp_next_level'] = 0;
@@ -2608,10 +2651,22 @@ function calculateXPNeeded() {
                 output['xp_next_level'] = clericXPNeeded[theLevel];
                 break;
             case 'dwarvencraftpriest':
-                output['xp_next_level'] = craftpriestXPNeeded[theLevel];
+                output['xp_next_level'] = dwarvencraftpriestXPNeeded[theLevel];
                 break;
             case 'dwarvendelver':
-                output['xp_next_level'] = delverXPNeeded[theLevel];
+                output['xp_next_level'] = dwarvendelverXPNeeded[theLevel];
+                break;
+            case 'dwarvenmachinist':
+                output['xp_next_level'] = dwarvenmachinistXPNeeded[theLevel];
+                break;
+            case 'dwarvenvaultguard':
+                output['xp_next_level'] = dwarvenvaultguardXPNeeded[theLevel];
+                break;         
+            case 'elvennightblade':
+                output['xp_next_level'] = elvennightbladeXPNeeded[theLevel];
+                break;
+            case 'elvenspellsword':
+                output['xp_next_level'] = elvenspellswordXPNeeded[theLevel];
                 break;
             case 'explorer':
             case 'fighter':
@@ -2619,18 +2674,9 @@ function calculateXPNeeded() {
                 break;
             case 'mage':
                 output['xp_next_level'] = mageXPNeeded[theLevel];
-                break;            
-            case 'elvennightblade':
-                output['xp_next_level'] = nightbladeXPNeeded[theLevel];
-                break;
-            case 'elvenspellsword':
-                output['xp_next_level'] = spellswordXPNeeded[theLevel];
-                break;
+                break;   
             case 'thief':
                 output['xp_next_level'] = thiefXPNeeded[theLevel];
-                break;
-            case 'dwarvenvaultguard':
-                output['xp_next_level'] = vaultguardXPNeeded[theLevel];
                 break;
             default: output['xp_next_level'] = EMPTY_STRING;
         }

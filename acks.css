@@ -423,6 +423,7 @@ div.Cleric,
 div.DwarvenCraftpriest,
 div.DwarvenDelver,
 div.DwarvenFury,
+div.DwarvenMachinist,
 div.DwarvenVaultguard,
 div.ElvenNightblade,
 div.ElvenSpellsword,
@@ -442,6 +443,7 @@ input.showCleric[value='1'] ~ div.Cleric,
 input.showDwarvenCraftpriest[value='1'] ~ div.DwarvenCraftpriest,
 input.showDwarvenDelver[value='1'] ~ div.DwarvenDelver,
 input.showDwarvenFury[value='1'] ~ div.DwarvenFury,
+input.showDwarvenMachinist[value='1'] ~ div.DwarvenMachinist,
 input.showDwarvenVaultguard[value='1'] ~ div.DwarvenVaultguard,
 input.showElvenNightblade[value='1'] ~ div.ElvenNightblade,
 input.showElvenSpellsword[value='1'] ~ div.ElvenSpellsword,
@@ -453,6 +455,7 @@ input.showThief[value='1'] ~ div.Thief {
 }
 
 /*** Supporting Class Tabs ***/
+div.backstab,
 div.spellcasting,
 div.thievesskills,
 div.thievesskillslocks,
@@ -460,11 +463,12 @@ div.thievesskillstraps,
 div.thievesskillspick,
 div.thievesskillsmove,
 div.thievesskillsclimb,
-div.thievesskillshear,
+div.thievesskillshide,
 div.thievesskillshear {
     display: none;
     width: 100%;
 }
+input.showbackstab[value='1'] ~ div.backstab,
 input.showspellcasting[value='1'] ~ div.spellcasting,
 input.showthievesskills[value='1'] ~ div.thievesskills,
 input.showthievesskillslocks[value='1'] ~ div.thievesskillslocks,
