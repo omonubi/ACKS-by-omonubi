@@ -61,6 +61,15 @@
     row-gap: 5px;
     width: 100%
 }
+.gridthievesskills {
+    align-items: center;
+    justify-items: center;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(8, 1fr) [last];
+    row-gap: 5px;
+    width: 100%
+}
 .gridcurrency {
     display: grid;
     column-gap: 10px;
@@ -148,6 +157,15 @@ button.combatbutton {
 div {
     align-self: start;
     justify-self: start;
+}
+div.thievesskillslocks,
+div.thievesskillstraps,
+div.thievesskillspick,
+div.thievesskillsmove,
+div.thievesskillsclimb,
+div.thievesskillshide,
+div.thievesskillshear {
+    text-align: center;
 }
 div.encumbrance {
     justify-self: center;
@@ -425,6 +443,8 @@ div.DwarvenDelver,
 div.DwarvenFury,
 div.DwarvenMachinist,
 div.DwarvenVaultguard,
+div.ElvenCourtier,
+div.ElvenEnchanter,
 div.ElvenNightblade,
 div.ElvenSpellsword,
 div.Explorer,
@@ -445,6 +465,8 @@ input.showDwarvenDelver[value='1'] ~ div.DwarvenDelver,
 input.showDwarvenFury[value='1'] ~ div.DwarvenFury,
 input.showDwarvenMachinist[value='1'] ~ div.DwarvenMachinist,
 input.showDwarvenVaultguard[value='1'] ~ div.DwarvenVaultguard,
+input.showElvenCourtier[value='1'] ~ div.ElvenCourtier,
+input.showElvenEnchanter[value='1'] ~ div.ElvenEnchanter,
 input.showElvenNightblade[value='1'] ~ div.ElvenNightblade,
 input.showElvenSpellsword[value='1'] ~ div.ElvenSpellsword,
 input.showExplorer[value='1'] ~ div.Explorer,

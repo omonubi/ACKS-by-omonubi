@@ -480,7 +480,7 @@
 
     <input class='showthievesskills' type='hidden' value='1' name='attr_show_thievesskills'/>
     <div class='thievesskills'>
-        <div class='grid8'>
+        <div class='gridthievesskills'>
             <label class='spanheader'>Thieving Abilities</label>
             <input type='hidden' value='0' name='attr_thiefEncBonus'/>
             <input class='showthievesskillslocks' type='hidden' name='attr_show_thievesskillslocks'/>
@@ -491,13 +491,13 @@
             <input class='showthievesskillshide' type='hidden' name='attr_show_thievesskillshide'/>
             <input class='showthievesskillshear' type='hidden' name='attr_show_thievesskillshear'/>
             <input class='showbackstab' type='hidden' name='attr_show_backstab'/>
-            <div class='thievesskillslocks'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_locks} **@{character_title} @{selected|token_name}**}} {{subtitle=Open Locks}} {{color=black}} {{Target=[[@{thief_1}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_1'> Open Locks</button></div>
-            <div class='thievesskillstraps'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_traps} **@{character_title} @{selected|token_name}**}} {{subtitle=Remove Traps}} {{color=black}} {{Target=[[@{thief_2}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_2'> Find Traps</button></div>
-            <div class='thievesskillspick'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_pockets} **@{character_title} @{selected|token_name}**}} {{subtitle=Pick Pockets}} {{color=black}} {{Target=[[@{thief_3}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_3'> Pick Pockets</button></div>
-            <div class='thievesskillsmove'><button type='roll' value='/w gm &{template:custom} {{title=@{banner_sneak} **@{character_title} @{selected|token_name}**}} {{subtitle=Move Silently}} {{color=black}} {{Target=[[@{thief_4}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_4'> Move Silently</button></div>
-            <div class='thievesskillsclimb'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_climb} **@{character_title} @{selected|token_name}**}} {{subtitle=Climb Walls}} {{color=black}} {{Target=[[@{thief_5}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_5'> Climb</button></div>
-            <div class='thievesskillshide'><button type='roll' value='/w gm &{template:custom} {{title=@{banner_hide} **@{character_title} @{selected|token_name}**}} {{subtitle=Hide}} {{color=black}} {{Target=[[@{thief_6}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_6'> Hide in Shadows</button></div>
-            <div class='thievesskillshear'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_listen} **@{character_title} @{selected|token_name}**}} {{subtitle=Listen}} {{color=black}} {{Target=[[@{thief_7}]]}} {{Roll=[[d20[die]+?{Modifier|0}[mod]]]}}' name='roll_thief_7'> Hear Noises</button></div>
+            <div class='thievesskillslocks'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_locks} **@{character_title} @{selected|token_name}**}} {{subtitle=Open Locks}} {{color=black}} {{Target=[[@{thief_1}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_1'> Open Locks</button><br/><input type='number' name='attr_thief_1'/></div>
+            <div class='thievesskillstraps'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_traps} **@{character_title} @{selected|token_name}**}} {{subtitle=Remove Traps}} {{color=black}} {{Target=[[@{thief_2}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_2'> Find Traps</button><input type='number' name='attr_thief_2'/></div>
+            <div class='thievesskillspick'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_pockets} **@{character_title} @{selected|token_name}**}} {{subtitle=Pick Pockets}} {{color=black}} {{Target=[[@{thief_3}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_3'> Pick Pockets</button><input type='number' name='attr_thief_3'/></div>
+            <div class='thievesskillsmove'><button type='roll' value='/w gm &{template:custom} {{title=@{banner_sneak} **@{character_title} @{selected|token_name}**}} {{subtitle=Move Silently}} {{color=black}} {{Target=[[@{thief_4}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_4'> Move Silently</button><input type='number' name='attr_thief_4'/></div>
+            <div class='thievesskillsclimb'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_climb} **@{character_title} @{selected|token_name}**}} {{subtitle=Climb Walls}} {{color=black}} {{Target=[[@{thief_5}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_5'> Climb Walls</button><input type='number' name='attr_thief_5'/></div>
+            <div class='thievesskillshide'><button type='roll' value='/w gm &{template:custom} {{title=@{banner_hide} **@{character_title} @{selected|token_name}**}} {{subtitle=Hide}} {{color=black}} {{Target=[[@{thief_6}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_6'> Hide in Shadows</button><input type='number' name='attr_thief_6'/></div>
+            <div class='thievesskillshear'><button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_listen} **@{character_title} @{selected|token_name}**}} {{subtitle=Listen}} {{color=black}} {{Target=[[@{thief_7}]]}} {{Roll=[[d20[die]+?{Modifier|0}[mod]]]}}' name='roll_thief_7'> Hear Noises</button><input type='number' name='attr_thief_7'/></div>
             <div class='backstab'><input class='thiefFieldTotal' type='text' value='0' name='attr_thief_backstab'/></div>
         </div>
         <hr/>
@@ -967,6 +967,108 @@
         <hr/>
     </div>
     
+    <input class='showElvenCourtier' type='hidden' name='attr_show_elvencourtier'/>
+    <div class='ElvenCourtier'>
+        <div class='grid11'>  
+            <label class='spanheader'>Additional Elven Courtier Abilities</label>       
+            <div>
+                <label>Damage Specialization:</label>
+                <select name='attr_bar_spec'>
+                    <option selected>Melee</option>
+                    <option>Missile</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <div class='classcontent'>
+            <label class='spanheader'>Elven Courtier Class Description</label>
+            <p><em>Elves are lithe, fey beings with pointed ears, delicate features, and graceful movement. They typically weigh about 130lb and stand between 5 ½' and 6' tall. Humans envy their long lifespans and seeming agelessness.</em></p>
+            <p><em>Among the elves, there yet remain some noble families that can trace their lineage to a bygone imperial era. These highborn elves spend their days at the courts, engaging in intricate duels of etiquette, swordplay and magic against rival families. Few care to look beyond their borders, likening man’s dominance to the darkening sunset at the end of a glorious day. From time to time, one of these elven courtiers is possessed with more than the usual allocation of ambition and vigor, and sets out to seek glory and gold in the world of men. Few return to their woodland demesne, yet enough succeed to fill the history books with new annals of elven glory. The elven courtier class represents one of these bold scions.</em></p>
+            <p>Prime Requisite: <strong>INT and CHA</strong></p>
+            <p>Requirements: <strong>INT 9</strong></p>
+            <p>Hit Dice: <strong>1d6</strong></p>
+            <p>Maximum Level: <strong>12</strong></p>
+            <h5>Summary</h5>
+            <ul>
+                <li>Follows the Thief progression for attack throws</li>
+                <li>May only use swords, shortswords, daggers, composite bows, spears, and lances</li>
+                <li>May not fight two-handed</li>
+                <li>May wear chainmail or lighter armor and may use a shield</li>
+                <li>May cast arcane magic as a mage half their level while wearing armor</li>
+                <li>Gains +1 to either melee or missile attack throws</li>
+                <li>Gains the Diplomacy proficiency</li>
+                <li>Gains a Performance proficiency of choice</li>
+                <li>Can inspire others before combat</li>
+                <li>Can seranade purient creatures (as a charm spell)</li>
+                <li>Can quiet savage beasts (as a sleep spell)</li>
+                <li>Gains +1 on surprise rolls when in wilderness</li>
+                <li>Improved ability to detect secret doors</li>
+                <li>Immune to paralysis inflicted by ghouls</li>
+                <li>Gains +1 vs. spells, paralysis, and petrification</li>
+                <li>Can speak Elvish, Gnoll, Hobgoblin, and Orc</li>
+                <li>At 9th level, may construct a fastness</li>
+            </ul>
+            <h5>Class Proficiencies</h5>
+            <p>Beast Friendship, Bribery, Combat Trickery (Disarm, Sunder), Command, Eavesdropping, Familiar, Fighting Style, Healing, Knowledge (political history), Laying on Hands, Leadership, Loremastery, Magical Engineering, Military Strategy, Mystic Aura, Naturalism, Passing Without Trace, Performance, Precise Shooting, Prestidigitation, Profession (seneschal), Quiet Magic, Riding, Sensing Power, Skirmishing, Swashbuckling, Unflappable Casting, Wakefulness, Weapon Finesse, Weapon Focus</p>
+            <h5>Full Description</h5>
+            <p>Though not specialized in fighting, elven courtiers are comfortable with weapons. At first level, elven courtiers hit an unarmored foe (AC 0) with an attack throw of 10+. Elven courtiers thereafter advance in attack throws and saving throws by two points every four levels of experience (i.e. as thieves). Elven courtiers are trained to fight with swords, shortswords, daggers, composite bows, spears, and lances, and to wear chain mail or lighter armor. They may wield a weapon and shield or a weapon in each hand, but may not wield a weapon two-handed. All courtiers receive classical weapons training giving them a bonus of +1 to attack throws with their choice of melee or missile attacks. The courtier must choose which type of attack will receive the bonus at 1st level, and may not change the choice as he advances.</p>
+            <p>As patricians of their race, elven courtiers are of course taught the arcane arts, but it is not their focus. Elven courtiers cast arcane spells as mages of one-half their level, using the same spell list and the same rules for learning and casting spells. Unlike (human) mages, elven courtiers can also cast spells while wearing armor. They can use any magical items available to mages or thieves.</p>
+            <p>As befits their noble upbringing, elven courtiers are wellschooled in diplomacy and protocol. They receive a +2 bonus on all reaction rolls when they attempt to parley with intelligent creatures (as per the Diplomacy proficiency). This same upbringing gives them the leadership skills and self-confidence to inspire courage in their allies, in the same manner as bards. Inspiring courage requires a few moments of oration before a battle (one round), and grants the courtier’s allies within a 50' radius a +1 bonus to attack throws, damage rolls, morale rolls (for monsters or NPCs allied with the caster), and saving throws against magical fear. The bonus lasts for 10 minutes (1 turn). A courtier can inspire courage in any given character once per day per class level. (Even the most inspiring epic gets old if you hear it twice in the same day.) A courtier cannot inspire courage on characters who are already engaged in combat.</p>
+            <p>From childhood, courtiers are taught to either sing, recite poetry, or play a group of instruments in a skilled manner. The courtier chooses the type of performance that his character knows. He may take the Perform proficiency to learn other types of performances.</p>
+            <p>Such training lays the ground work for courtiers to work magic with their song and poetry. At will, the character can conduct a performance that can serenade creatures with a potential prurient interest (as a charm person spell) or quiet savage beasts (as a sleep spell, but it only functions on ordinary and giant animals of 4 HD or less). These abilities require one minute (6 rounds) of performance and may not be used if combat has already begun.</p>
+            <p>Like other elves, courtiers gain a +1 bonus to surprise rolls when in the wilderness due to their attunement to nature. Elves have keen eyes that allow them to detect hidden and secret doors with a proficiency throw of 8+ on 1d20 when actively searching, or 14+ on casual inspection. Because of their connection to nature, elves are completely unaffected by the paralysis ghouls can inflict, and the target values for all their saving throws versus Petrification/Paralysis and Spells are reduced by 1. Elves can speak the Common, Elven, Gnoll, Hobgoblin, and Orc languages.</p>
+            <p>When an elven courtier reaches 9th level (Lord), he is expected to establish a fastness in a natural setting, such as a forest or glen, to further his family’s lineage. A total of 3d6x10 1st level elven NPCs will move in to help with it and defend the fastness at no cost to the character.</p>
+        </div>
+        <hr/>
+    </div>
+    
+    <input class='showElvenEnchanter' type='hidden' name='attr_show_elvenenchanter'/>
+    <div class='ElvenEnchanter'>
+        <div class='classcontent'>
+            <label class='spanheader'>Elven Enchanter Class Description</label>
+            <p><em>Elves are lithe, fey beings with pointed ears, delicate features, and graceful movement. They typically weigh about 130lb and stand between 5 ½' and 6' tall. Humans envy their long lifespans and seeming agelessness.</em></p>
+            <p><em>Human legend paints the elves as bewitching and glamorous, yet tricky and untrustworthy. This reputation is not entirely undeserved, for the favorite dweomers of the elves are charms and illusions. The elven enchanter is a specialist in such glamours, one who can weave subtle marvels of light and sound, torment the senses with phantasms and figments, and confound the minds of the easily influenced. Elven enchanters might be called to adventure by a desire to experience awe and terror, a quest for rare and forgotten magic, or merely the lure of opulence.</em></p>
+            <p>Prime Requisite: <strong>INT and CHA</strong></p>
+            <p>Requirements: <strong>INT 9</strong></p>
+            <p>Hit Dice: <strong>1d4</strong></p>
+            <p>Maximum Level: <strong>12</strong></p>
+            <h5>Summary</h5>
+            <ul>
+                <li>Follows the Mage progression for attack throws</li>
+                <li>May only use quarterstaffs, daggers, darts, or slings</li>
+                <li>May not dual wield</li>
+                <li>May not wear armor or use a shield</li>
+                <li>May cast arcane spells</li>
+                <li>Charm and illusion spells are stronger than normal</li>
+                <li>May perform unlimited illusory 'cantrips'</li>
+                <li>May pick pockets as a thief half their level</li>
+                <li>+2 on Reaction roles to charm/impress others</li>
+                <li>Gains +1 on surprise rolls when in wilderness</li>
+                <li>Improved ability to detect secret doors</li>
+                <li>Immune to paralysis inflicted by ghouls</li>
+                <li>Gains +1 vs. spells, paralysis, and petrification</li>
+                <li>Can speak Elvish, Gnoll, Hobgoblin, and Orc</li>
+                <li>At 5th level, may research spells, scribe scrolls, and brew potions</li>
+                <li>At 9th level, may create magic items</li>
+                <li>At 9th level, may construct a sanctum/tower w. a dungeon</li>
+                <li>At 11th level, may cast arcane rituals, craft magical constructs, and create cross-breeds</li>
+            </ul>
+            <h5>Class Proficiencies</h5>
+            <p>Beast Friendship, Bribery, Combat Trickery (Disarm, Sunder), Command, Eavesdropping, Familiar, Fighting Style, Healing, Knowledge (political history), Laying on Hands, Leadership, Loremastery, Magical Engineering, Military Strategy, Mystic Aura, Naturalism, Passing Without Trace, Performance, Precise Shooting, Prestidigitation, Profession (seneschal), Quiet Magic, Riding, Sensing Power, Skirmishing, Swashbuckling, Unflappable Casting, Wakefulness, Weapon Finesse, Weapon Focus</p>
+            <h5>Full Description</h5>
+            <p>Like mages, elven enchanters receive limited combat training. At first level, enchanters hit an unarmored foe (AC 0) with an attack throw of 10+. They advance in attack throws and saving throws only two points every six levels of experience (i.e. the same as mages). They may only fight with quarterstaffs, daggers, darts, or slings. They are unable to use shields, fight with two weapons, or wear any kind of armor.</p>
+            <p>Elven enchanters learn and cast arcane spells as mages. The number and levels of spells the enchanter can use in a single day is summarized on the Elven Enchanter Spell Progression table. Like a mage, the enchanter’s spell selection is limited to the spells in his repertoire. An enchanter’s repertoire can include a number of spells up to the number and level of spells listed for his level, increased by his Intelligence bonus. An enchanter can use any magic items usable by mages.</p>
+            <p>The elven enchanter’s mastery of charms and illusions gives him several advantages. When the character casts charm spells (such as charm person) or illusion spells (such as phantasmal force), the spell effects are calculated as if he were two class levels higher than his actual level of experience. Targets of his charm spells suffer a -2 penalty to their saving throw, as do those who attempt to disbelieve his illusions.</p>
+            <p>All enchanters can magically accomplish simple illusions and sleight of hand tricks suitable for impressing peasants, such as lighting a candle or shuffling cards, at will. To cast these prestidigitations, the enchanter must be able to perform the task physically, and be free to speak and gesture. He may use magical sleight-of-hand to pick pockets as a thief of one half his class level.</p>
+            <p>Every elven enchanter is able to project a glamorous aura that awes, bedazzles and seduces those in his presence. He gains a +2 bonus to reaction rolls to impress and intimidate people he encounters. If this bonus results in a total of 12 or more, the subjects act as if charmed while in his presence.</p>
+            <p>Like other elves, the enchanter gains a +1 bonus to surprise rolls when in the wilderness due to their attunement to nature. Elves have keen eyes that allow them to detect hidden and secret doors with a proficiency throw of 8+ on 1d20 when actively searching, or 14+ on casual inspection. Because of their connection to nature, elves are completely unaffected by the paralysis ghouls can inflict, and the target values for all their saving throws versus Petrification/Paralysis and Spells are reduced by 1. Elves can speak the Common, Elven, Gnoll, Hobgoblin, and Orc languages.</p>
+            <p>When an elven enchanter reaches 5th level (Spellbinder), he may begin to research spells, scribe magical scrolls, and brew potions. When an elven enchanter reaches 9th level (Enchanter), he is able to create more powerful magic items such as weapons, rings, and staffs.</p>
+            <p>An elven enchanter may also build a sanctum, often a great tower, when he reaches 9th level. He will then attract 1d6 apprentices of 1st-3rd level plus 2d6 elves seeking to become enchanters. Their Intelligence scores will be above average, but many will become discouraged from the rigorous mental training and quit after 1d6 months. While in the elven enchanter’s service, apprentices must be provided food and lodging, but need not be paid wages. If the elven enchanter builds a dungeon beneath or near his tower, monsters will start to arrive to dwell within, followed shortly by adventurers seeking to fight them.</p>
+            <p>At 11th level, an elven enchanter may learn and cast ritual arcane spells of great power (7th, 8th, and 9th level), craft magical constructs, and create magical cross-breeds. If chaotic, the enchanter may create necromantic servants and become undead, though such a choice is understandably rarer among the ageless elves.</p>
+        </div>
+        <hr/>
+    </div>
+    
     <input class='showElvenNightblade' type='hidden' name='attr_show_elvennightblade'/>
     <div class='ElvenNightblade'>
         <div class='classcontent'>
@@ -983,7 +1085,7 @@
                 <li>May not wield two-handed weapons</li>
                 <li>May fight in any stance</li>
                 <li>May wear leather or lighter armor but may not use a shield</li>
-                <li>May cast arcane magic as a mage half their level</li>
+                <li>May cast arcane magic as a mage half their level while wearing armor</li>
                 <li>May move silently, climb walls, hide in shadows, and backstab</li>
                 <li>Gains the Acrobatics proficiency</li>
                 <li>Gains +1 on surprise rolls when in wilderness</li>
@@ -1031,8 +1133,7 @@
                 <li>May wield any weapon</li>
                 <li>May fight in any stance</li>
                 <li>May wear any type of armor and use a shield</li>
-                <li>May cast arcane spells like a mage</li>
-                <li>May cast spells while wearing armor</li>
+                <li>May cast arcane spells like a mage while wearing armor</li>
                 <li>Gains +1 on surprise rolls when in wilderness</li>
                 <li>Improved ability to detect secret doors</li>
                 <li>Immune to paralysis inflicted by ghouls</li>
@@ -1590,6 +1691,8 @@ function updateClassTabContents() {
             output['show_dwarvenfury'] = 
             output['show_dwarvenmachinist'] = 
             output['show_dwarvenvaultguard'] = 
+            output['show_elvencourtier'] = 
+            output['show_elvenenchanter'] = 
             output['show_elvennightblade'] = 
             output['show_elvenspellsword'] = 
             output['show_explorer'] = 
@@ -1652,6 +1755,17 @@ function updateClassTabContents() {
                 output['show_thievesskillshear'] = 0;
                 output['show_backstab'] = 0;
                 break;
+            case 'elvenenchanter':
+                output['show_thievesskills'] = 1;
+                output['show_thievesskillslocks'] = 0;
+                output['show_thievesskillstraps'] = 0;
+                output['show_thievesskillspick'] = 1;
+                output['show_thievesskillsmove'] = 0;
+                output['show_thievesskillsclimb'] = 0;
+                output['show_thievesskillshide'] = 0;
+                output['show_thievesskillshear'] = 0;
+                output['show_backstab'] = 1;
+                break;
             case 'elvennightblade':
                 output['show_thievesskills'] = 1;
                 output['show_thievesskillslocks'] = 0;
@@ -1664,7 +1778,7 @@ function updateClassTabContents() {
                 output['show_backstab'] = 1;
                 break;
             case 'thief':
-            default:
+            case '':
                 output['show_thievesskills'] = 1;
                 output['show_thievesskillslocks'] = 1;
                 output['show_thievesskillstraps'] = 1;
@@ -1674,6 +1788,9 @@ function updateClassTabContents() {
                 output['show_thievesskillshide'] = 1;
                 output['show_thievesskillshear'] = 1;
                 output['show_backstab'] = 1;
+                break;
+            default:
+                output['show_thievesskills'] = 0;
         }
         setAttrs(output);
     });
@@ -1745,6 +1862,7 @@ function updateClassDamageBonus() {
         const output = {};
 
         output['class_damage_bonus'] = 
+        (theClass == 'elvencourtier' && theSpec == 'Melee') ? 1 : 
         (theXPValue != 0 ? 0 : ((
             theClass == 'anti-paladin' || 
             theClass == 'assassin' || 
@@ -1756,6 +1874,7 @@ function updateClassDamageBonus() {
             ) ? damageBonuses[theLevel] : 0));
 
         output['class_damage_bonus_missile'] = 
+        (theClass == 'elvencourtier' && theSpec == 'Missile') ? 1 : 
         (theXPValue != 0 ? 0 : ((
             theClass == 'anti-paladin' || 
             theClass == 'assassin' || 
@@ -2352,7 +2471,7 @@ function updateSavingThrows() {
         const dwarvencraftpriestSaves = [16,15,17,17,18,    9,6,13,9,11,9,6,13,9,11,8,5,12,8,10,8,5,12,8,10,7,4,11,7,9,7,4,11,7,9,6,3,10,6,8,6,3,10,6,8,5,2,9,5,7,5,2,9,5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const dwarvendelverSaves = [16,15,17,17,18,         9,9,13,10,11,9,9,13,10,11,8,8,12,9,10,8,8,12,9,10,7,7,11,8,9,7,7,11,8,9,6,6,10,7,8,6,6,10,7,8,5,5,9,6,7,5,5,9,6,7,4,4,8,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const dwarvenvaultguardSaves = [16,15,17,17,18,     11,10,13,12,13,10,9,12,11,12,10,9,12,11,12,9,8,11,10,11,8,7,10,9,10,8,7,10,9,10,7,6,9,8,9,6,5,8,7,8,6,5,8,7,8,5,4,7,6,7,4,3,6,5,6,4,3,6,5,6,3,2,5,4,5,0,0,0,0,0];
-        const elvennightbladeSaves = [16,15,17,17,18,       12,13,16,14,14,12,13,16,14,14,11,12,15,13,13,11,12,15,13,13,10,11,14,12,12,10,11,14,12,12,9,10,13,11,11,9,10,13,11,11,8,9,12,10,10,8,9,12,10,10,7,8,11,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const elvennightbladeSaves = [16,15,17,17,18,       12,13,16,14,14,12,13,16,14,14,11,12,15,13,13,11,12,15,13,13,10,11,14,12,12,10,11,14,12,12,9,10,13,11,11,9,10,13,11,11,8,9,12,10,10,8,9,12,10,10,7,8,11,9,9,7,8,11,9,9,0,0,0,0,0,0,0,0,0,0];
         const elvenspellswordSaves = [16,15,17,17,18,       14,14,16,16,16,13,13,15,15,15,13,13,15,15,15,12,12,14,14,14,11,11,13,13,13,11,11,13,13,13,10,10,12,12,12,9,9,11,11,11,9,9,11,11,11,8,8,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const fighterSaves = [16,15,17,17,18,               15,14,16,16,17,14,13,15,15,16,14,13,15,15,16,13,12,14,14,15,12,11,13,13,14,12,11,13,13,14,11,10,12,12,13,10,9,11,11,12,10,9,11,11,12,9,8,10,10,11,8,7,9,9,10,8,7,9,9,10,7,6,8,8,9,6,5,7,7,8];
         const mageSaves = [16,15,17,17,18,                  13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8];
@@ -2365,7 +2484,7 @@ function updateSavingThrows() {
             case 'dwarvendelver': case 'dwarvenmachinist': appliedSaves = dwarvendelverSaves; break;
             case 'dwarvenvaultguard': case 'dwarvenfury': appliedSaves = dwarvenvaultguardSaves; break;
             case 'fighter': case 'anti-paladin': case 'assassin': case 'barbarian': case 'explorer': appliedSaves = fighterSaves; break;
-            case 'elvennightblade': case 'elvennightblade': appliedSaves = elvennightbladeSaves; break;
+            case 'elvencourtier': case 'elvenenchanter': case 'elvennightblade': appliedSaves = elvennightbladeSaves; break;
             case 'elvenspellsword': appliedSaves = elvenspellswordSaves; break;
             case 'mage': appliedSaves = mageSaves; break;
             case 'thief': case 'bard': appliedSaves = thiefSaves; break;
@@ -2379,11 +2498,7 @@ function updateSavingThrows() {
 
 /********** Spellcasting **********/
 on('change:class change:level change:int_mod', function(eventInfo) {
-    getAttrs(['class'], function(values) {
-        const theClass = getSanitizedString(values['class']);
-
-        if (theClass == 'bladedancer' || theClass == 'cleric' || theClass == 'dwarvencraftpriest' || theClass == 'mage' || theClass == 'elvennightblade' || theClass == 'elvenspellsword') updateSpellcasting();
-    });
+    updateSpellcasting();
 });
 
 function updateSpellcasting() {
@@ -2394,27 +2509,30 @@ function updateSpellcasting() {
         const theIntMod = Number(values['int_mod']) || 0;
         const maxCantrips = Number(values['cantrips_max']) || 0;
 
-        const clericSpellSlots = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,2,1,0,0,0,2,2,0,0,0,2,2,1,1,0,2,2,2,1,1,3,3,2,2,1,3,3,3,2,2,4,4,3,3,2,4,4,4,3,3,5,5,4,4,3,5,5,5,4,3,6,5,5,5,4];
-        const mageSpellSlots = [0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,2,1,0,0,0,0,2,2,0,0,0,0,2,2,1,0,0,0,2,2,2,0,0,0,3,2,2,1,0,0,3,3,2,2,0,0,3,3,3,2,1,0,3,3,3,3,2,0,4,3,3,3,2,1,4,4,3,3,3,2,4,4,4,3,3,2,4,4,4,4,3,3];
-        const nightbladeSpellSlots = [0,0,0,0,0,0,1,0,0,2,0,0,2,0,0,2,1,0,2,1,0,2,2,0,2,2,0,2,2,1,2,2,1,2,2,2,0,0,0,0,0,0,0,0,0];
+        const arcaneSpellSlots = [0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,2,1,0,0,0,0,2,2,0,0,0,0,2,2,1,0,0,0,2,2,2,0,0,0,3,2,2,1,0,0,3,3,2,2,0,0,3,3,3,2,1,0,3,3,3,3,2,0,4,3,3,3,2,1,4,4,3,3,3,2,4,4,4,3,3,2,4,4,4,4,3,3];
+        const arcanehalfSpellSlots = [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,2,1,0,0,0,0,2,1,0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,1,0,0,0,2,2,1,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const divineSpellSlots = [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,2,1,0,0,0,0,2,2,0,0,0,0,2,2,1,1,0,0,2,2,2,1,1,0,3,3,2,2,1,0,3,3,3,2,2,0,4,4,3,3,2,0,4,4,4,3,3,0,5,5,4,4,3,0,5,5,5,4,3,0,6,5,5,5,4,0];
 
-        const output = {};        
-        for (var i = 0; i < 6; i++ ) output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = 0; // blank all values
-        switch (theClass) {
-            case 'bladedancer':
-            case 'cleric':
-            case 'dwarvencraftpriest':
-                for (var i = 0; i < 5; i++ ) output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = clericSpellSlots[(theLevel) * 5 + i];
-                break;
-            case 'mage':
-            case 'elvenspellsword':
-                for (var i = 0; i < 6; i++ ) output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = mageSpellSlots[(theLevel) * 6 + i] + (mageSpellSlots[(theLevel) * 6 + i] > 0 ? theIntMod : 0);
-                break;
-            case 'elvennightblade':
-                for (var i = 0; i < 3; i++ ) output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = nightbladeSpellSlots[(theLevel) * 3 + i] + (nightbladeSpellSlots[(theLevel) * 3 + i] > 0 ? theIntMod : 0);
-                break;
-            default:        
-        }        
+        const output = {};
+        for (var i = 0; i < 6; i++ ) {   
+            switch (theClass) {
+                case 'bladedancer':
+                case 'cleric':
+                case 'dwarvencraftpriest':
+                    output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = divineSpellSlots[(theLevel) * 6 + i];
+                    break;
+                case 'mage':
+                case 'elvenenchanter':
+                case 'elvenspellsword':
+                    output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = arcaneSpellSlots[(theLevel) * 6 + i] + (arcaneSpellSlots[(theLevel) * 6 + i] > 0 ? theIntMod : 0);
+                    break;
+                case 'elvencourtier':
+                case 'elvennightblade':
+                    output['spells_' + (i + 1) + '_max'] = output['spells_' + (i + 1)] = arcanehalfSpellSlots[(theLevel) * 6 + i] + (arcanehalfSpellSlots[(theLevel) * 3 + i] > 0 ? theIntMod : 0);
+                    break;
+                default:        
+            }    
+        }    
         output['cantrips'] = maxCantrips;
         setAttrs(output);
     });
@@ -2465,6 +2583,15 @@ function updateThiefSkills(theClass, theLevel) {
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99    
     ]; //ACKS Player's Companion pg. 20
+    const elvenenchanterSkills = [
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,0,17,17,16,16,15,15,14,14,13,13,12,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
+        0,99,99,99,99,99,99,99,99,99,99,99,99,99,99       
+    ]; //ACKS Player's Companion pg. 23
     const elvennightbladeSkills = [
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
         0,99,99,99,99,99,99,99,99,99,99,99,99,99,99,
@@ -2492,8 +2619,9 @@ function updateThiefSkills(theClass, theLevel) {
         case 'assassin': appliedScores = assassinSkills; break;
         case 'dwarvendelver': appliedScores = dwarvendelverSkills; break;
         case 'dwarvenmachinst': appliedScores = dwarvenmachinistSkills; break;
+        case 'elvenenchanter': appliedScores = elvenenchanterSkills; break;
         case 'elvennightblade': appliedScores = elvennightbladeSkills; break;
-        case 'thief': default: appliedScores = thiefSkills; break;        
+        case 'thief': appliedScores = thiefSkills; break;        
     }
 
     const output = {};
@@ -2508,7 +2636,12 @@ on('change:class change:encumbrance', function(eventInfo) {
         const theClass = getSanitizedString(values['class']);
         const theEncumbrance = Number(values['encumbrance']) || 0;
 
-        if(theClass == 'elvennightblade' || theClass == 'thief') updateThiefEncBonus(theEncumbrance);
+        if(
+            theClass == 'assassin' || 
+            theClass == 'dwarvendelver' || 
+            theClass == 'elvennightblade' || 
+            theClass == 'thief'
+            ) updateThiefEncBonus(theEncumbrance);
     });
 });
 
@@ -2543,6 +2676,8 @@ function updateTitle() {
         const dwarvenfuryTitles = ['','Grudgebearer','Punisher','Repriser','Vindicator','Retaliator','Castigator','Scourge','Fury','Avenger','Avenger','Avenger','Avenger','Avenger','OVER MAX LEVEL'];
         const dwarvenmachinistTitles = ['','Apprentice','Mechanic','Shaper','Forger','Maker','Engineer','Artificer','Machinist','Master Machinist','Master Machinist','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const dwarvenvaultguardTitles = ['','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL'];
+        const elvencourtierTitles = ['','Attendant','Courtier','Aristocrat','Noble','Exemplar','Patrician','Dignitary','Consul','Lord','Lord','Lord','Lord','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const elvenenchanterTitles = ['','Prestidigitator','Glamourer','Charmer','Beguiler','Spellbinder','Bewitcher','Ensorceller','Illusionist','Enchanter','Enchanter','Enchanter','Enchanter','OVER MAX LEVEL','OVER MAX LEVEL'];
         const elvennightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const elvenspellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const explorerTitles = ['','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
@@ -2566,6 +2701,8 @@ function updateTitle() {
                 case 'dwarvenfury': output['character_title'] = dwarvenfuryTitles[theLevel]; break;
                 case 'dwarvenmachinist': output['character_title'] = dwarvenmachinistTitles[theLevel]; break;
                 case 'dwarvenvaultguard': output['character_title'] = dwarvenvaultguardTitles[theLevel]; break;
+                case 'elvencourtier': output['character_title'] = elvencourtierTitles[theLevel]; break;
+                case 'elvenenchanter': output['character_title'] = elvenenchanterTitles[theLevel]; break;
                 case 'elvennightblade': output['character_title'] = elvennightbladeTitles[theLevel]; break;
                 case 'elvenspellsword': output['character_title'] = elvenspellswordTitles[theLevel]; break;
                 case 'explorer': output['character_title'] = explorerTitles[theLevel]; break;
@@ -2625,6 +2762,8 @@ function calculateXPNeeded() {
         const dwarvendelverXPNeeded = [100,         2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
         const dwarvenmachinistXPNeeded = [100,      2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
         const dwarvenvaultguardXPNeeded = [100,     2300,4600,9200.18400,36800,75000,150000,280000,410000,0,0,0,0,0];
+        const elvencourtierXPNeeded = [100,         2600,5200,10400,20800,41600,85000,170000,370000,520000,670000,820000,0,0,0];
+        const elvenenchanterXPNeeded = [100,        2700,5400,10800,21600,43200,85000,170000,370000,570000,770000,970000,0,0,0];
         const elvennightbladeXPNeeded = [100,       2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0];
         const elvenspellswordXPNeeded = [100,       4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0];
         const fighterXPNeeded = [100,               2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0];
@@ -2662,6 +2801,12 @@ function calculateXPNeeded() {
             case 'dwarvenvaultguard':
                 output['xp_next_level'] = dwarvenvaultguardXPNeeded[theLevel];
                 break;         
+            case 'elvencourtier':
+                output['xp_next_level'] = elvencourtierXPNeeded[theLevel];
+                break;      
+            case 'elvenenchanter':
+                output['xp_next_level'] = elvenenchanterXPNeeded[theLevel];
+                break;        
             case 'elvennightblade':
                 output['xp_next_level'] = elvennightbladeXPNeeded[theLevel];
                 break;
