@@ -1116,6 +1116,51 @@
         </div>
         <hr/>
     </div>
+    
+    <input class='showElvenRanger' type='hidden' name='attr_show_elvenranger'/>
+    <div class='ElvenRanger'>
+        <label class='spanheader'>Additional Elven Ranger Abilities</label>
+        <div class='grid8'>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_evade} **@{character_title} @{selected|token_name}**}} {{subtitle=Hide / Evade}} {{color=brown}} {{Target=[[?{Location|Wilds,3|Indoors,14}]]}} {{Roll=[[1d20+?{Modifier|0}[mod]]]}}' name='roll_explorer_hide'> Hide / Evade Detection</button>
+        </div>
+        <hr/>
+        <div class='classcontent'>
+            <label class='spanheader'>Elven Ranger Class Description</label>
+            <p><em>Elves are lithe, fey beings with pointed ears, delicate features, and graceful movement. They typically weigh about 130lb and stand between 5 ½' and 6' tall. Humans envy their long lifespans and seeming agelessness.</em></p>
+            <p><em>Elven rangers are sharp-eyed archers with a light tread and a deep connection to nature. Expert at archery and woodcraft, rangers are often compared to the human class of explorers that ranges past settled borders and opens up new settlements. Unlike human explorers, however, elven rangers focus on patrolling and protecting the existing expanses of elven land. Such is their reputation that few dare trespass the elven forests, so elven rangers sometimes become adventurers out of wanderlust or boredom. Others might seek to carry their war to the heart of the enemy, might be exiled from their homeland, or perhaps are hunting a trespasser against the fastness.</em></p>
+            <p>Prime Requisite: <strong>STR and DEX</strong></p>
+            <p>Requirements: <strong>INT 9</strong></p>
+            <p>Hit Dice: <strong>1d6</strong></p>
+            <p>Maximum Level: <strong>13</strong></p>
+            <h5>Summary</h5>
+            <ul>
+                <li>Follows the Fighter progression for attack throws and missile damage bonus</li>
+                <li>May not wield two-handed weapons</li>
+                <li>May fight in any stance</li>
+                <li>May wear chainmail or lighter armor and may use a shield</li>
+                <li>Gains +1 on all attack throws with missile weapons</li>
+                <li>Gains the Precise Shooting proficiency</li>
+                <li>May naturally track creatures on a throw of 11+</li>
+                <li>May attempt to hide in wilderness or dungeon settings</li>
+                <li>Gains +1 to initiative rolls</li>
+                <li>Gains +1 on surprise rolls, and +2 when in wilderness</li>
+                <li>Gains +2 on reaction rolls with normal animals</li>
+                <li>Can identify flora and fauna on a throw of 11+</li>
+                <li>At 9th level, may construct a fastness</li>
+            </ul>
+            <h5>Class Proficiencies</h5>
+            <p>Alertness, Ambushing, Animal Husbandry, Blind Fighting, Climbing, Combat Trickery (disarm, incapacitate, knock down), Eavesdropping, Endurance, Fighting Style, Land Surveying, Mapping, Mountaineering, Naturalism, Navigation, Passing Without Trace, Precise Shooting, Riding, Running, Skirmishing, Sniping, Survival, Swashbuckling, Tracking, Trapping, Wakefulness, Weapon Finesse, Weapon Focus</p>
+            <h5>Full Description</h5>
+            <p>Highly trained combatants, elven rangers advance in attack throws and saving throws by two points every three levels of experience (i.e. the same as fighters). At first level, elven rangers hit an unarmored foe (AC 0) with an attack throw of 10+. Elven rangers are trained to fight with any missile weapons and any one-handed melee weapons. They may fight wielding a weapon two-handed, wielding a weapon in each hand, or wielding a weapon and shield. They may wear only chain mail or lighter armor. They may use any magic item usable by fighters.</p>
+            <p>While they lack the staying power of human fighters or dwarven vaultguards (evidenced by their 1d6 Hit Dice), elven rangers are renowned as the best archers in the world. Due to their careful aim, they increase their base damage roll from successful missile attacks by +1 at 1st level, and by an additional +1 at 3rd, 6th, 9th, and 12th level. Their accuracy gives them a +1 bonus on all attack throws with missile weapons. Rangers are universally precise shots, able to conduct missile attacks against opponents engaged in melee at a -4 penalty to their attack throws. (An elven archer may take ranks in the Precise Shooting proficiency to reduce this penalty to -2 or less).</p>
+            <p>Like explorers, elven rangers are difficult to spot in the wilderness, having the ability to seemingly disappear into woods and underbrush with a proficiency throw of 3+ on 1d20. In dungeons, an elven ranger who is motionless and quiet in cover can escape detection with a proficiency throw of 14+ on 1d20.</p>
+            <p>From years of hunting down trespassers to their demesnes, elven rangers become highly skilled trackers. A ranger can follow tracks with a proficiency throw of 11+ (applying modifiers as per the Tracking proficiency). If desired, an elven ranger may select the Tracking proficiency to improve his skills. Each rank of Tracking proficiency reduces the proficiency throw required to track by 4.</p>
+            <p>As friends of birds and beasts, elven rangers can understand the subtle body language and moods of normal animals (though the animals may not understand the character). This gives rangers a +2 to all reaction rolls when encountering normal animals, and allows them to take animals as henchmen. They also can identify flora and fauna with a proficiency throw of 11+.</p>
+            <p>Elven rangers possess animal reflexes that give them a +1 bonus to initiative and a +1 bonus to surprise rolls. They gain an additional +1 bonus to surprise rolls (for a total bonus of +2) when in the wilderness due to their attunement to nature. Like other elves, they have keen eyes that allow them to detect hidden and secret doors with a proficiency throw of 8+ on 1d20 when actively searching, or 14+ on casual inspection. Because of their connection to nature, elven rangers are completely unaffected by the paralysis ghouls can inflict, and the target values for all their saving throws versus Spells, Paralysis, and Petrification are reduced by 1. Elven rangers can speak Common and Elven, as well as the languages of the forestdwelling beastmen, Gnoll, Hobgoblin, and Orc.</p>
+            <p>When an elven ranger reaches 9th level (Ranger), he can establish a fastness in a natural setting, such as a forest or glen. Rather than impose upon nature, this fastness must blend seamlessly with it. A total of 3d6x10 1st level elven NPCs will move in to help with it and defend the fastness at no cost to the character.</p>
+        </div>
+        <hr/>
+    </div>
 
     <input class='showElvenSpellsword' type='hidden' name='attr_show_elvenspellsword'/>
     <div class='ElvenSpellsword'>
@@ -1694,6 +1739,7 @@ function updateClassTabContents() {
             output['show_elvencourtier'] = 
             output['show_elvenenchanter'] = 
             output['show_elvennightblade'] = 
+            output['show_elvenranger'] = 
             output['show_elvenspellsword'] = 
             output['show_explorer'] = 
             output['show_fighter'] = 
@@ -1712,6 +1758,7 @@ function updateClassTabContents() {
             case 'dwarvenfury':
             case 'dwarvenmachinist':
             case 'dwarvenvaultguard':
+            case 'elvenranger':
             case 'explorer':
             case 'fighter':
             case 'thief':
@@ -1840,7 +1887,7 @@ function updateClassAccuracyBonus(theClass) {
     /*console.log('updateClassAccuracyBonus(' + theClass + ')');*/
 
     const output = {};
-    output['class_accuracy_bonus'] = ((theClass == 'explorer') ? 1 : 0);
+    output['class_accuracy_bonus'] = ((theClass == 'elvenranger' || theClass == 'explorer') ? 1 : 0);
     setAttrs(output);
 };
 
@@ -1874,7 +1921,7 @@ function updateClassDamageBonus() {
             ) ? damageBonuses[theLevel] : 0));
 
         output['class_damage_bonus_missile'] = 
-        (theClass == 'elvencourtier' && theSpec == 'Missile') ? 1 : 
+        ((theClass == 'elvencourtier' && theSpec == 'Missile') || theClass == 'elvenranger') ? 1 : 
         (theXPValue != 0 ? 0 : ((
             theClass == 'anti-paladin' || 
             theClass == 'assassin' || 
@@ -1918,7 +1965,7 @@ function updateClassDamageReduction() {
 /********** Class Initiative Bonus ****************/
 on('change:class', function(eventInfo) {
     getAttrs(['class'], function(values) {
-        const theClass = values['class'].toLowerCase();
+        const theClass = getSanitizedString(values['class']);
 
         updateClassInitiativeBonus(theClass);
     });
@@ -1931,6 +1978,7 @@ function updateClassInitiativeBonus(theClass) {
     output['class_initiative_bonus'] = ((
         theClass == 'barbarian' || 
         theClass == 'bladedancer' || 
+        theClass == 'elvenranger' || 
         theClass == 'explorer') ? 1 : 0);
     setAttrs(output);
 };
@@ -1971,6 +2019,7 @@ function updateClassSurpriseBonus(theClass) {
     const output = {};
     output['class_surprise_bonus'] = ((
         theClass == 'barbarian' || 
+        theClass == 'elvenranger' ||
         theClass == 'explorer') ? 1 : 0);
     setAttrs(output);
 };
@@ -2472,7 +2521,7 @@ function updateSavingThrows() {
         const dwarvendelverSaves = [16,15,17,17,18,         9,9,13,10,11,9,9,13,10,11,8,8,12,9,10,8,8,12,9,10,7,7,11,8,9,7,7,11,8,9,6,6,10,7,8,6,6,10,7,8,5,5,9,6,7,5,5,9,6,7,4,4,8,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const dwarvenvaultguardSaves = [16,15,17,17,18,     11,10,13,12,13,10,9,12,11,12,10,9,12,11,12,9,8,11,10,11,8,7,10,9,10,8,7,10,9,10,7,6,9,8,9,6,5,8,7,8,6,5,8,7,8,5,4,7,6,7,4,3,6,5,6,4,3,6,5,6,3,2,5,4,5,0,0,0,0,0];
         const elvennightbladeSaves = [16,15,17,17,18,       12,13,16,14,14,12,13,16,14,14,11,12,15,13,13,11,12,15,13,13,10,11,14,12,12,10,11,14,12,12,9,10,13,11,11,9,10,13,11,11,8,9,12,10,10,8,9,12,10,10,7,8,11,9,9,7,8,11,9,9,0,0,0,0,0,0,0,0,0,0];
-        const elvenspellswordSaves = [16,15,17,17,18,       14,14,16,16,16,13,13,15,15,15,13,13,15,15,15,12,12,14,14,14,11,11,13,13,13,11,11,13,13,13,10,10,12,12,12,9,9,11,11,11,9,9,11,11,11,8,8,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const elvenspellswordSaves = [16,15,17,17,18,       14,14,16,16,16,13,13,15,15,15,13,13,15,15,15,12,12,14,14,14,11,11,13,13,13,11,11,13,13,13,10,10,12,12,12,9,9,11,11,11,9,9,11,11,11,8,8,10,10,10,7,7,9,9,9,7,7,9,9,9,6,6,8,8,8,0,0,0,0,0];
         const fighterSaves = [16,15,17,17,18,               15,14,16,16,17,14,13,15,15,16,14,13,15,15,16,13,12,14,14,15,12,11,13,13,14,12,11,13,13,14,11,10,12,12,13,10,9,11,11,12,10,9,11,11,12,9,8,10,10,11,8,7,9,9,10,8,7,9,9,10,7,6,8,8,9,6,5,7,7,8];
         const mageSaves = [16,15,17,17,18,                  13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8];
         const thiefSaves = [16,15,17,17,18,                 13,13,16,14,15,13,13,16,14,15,12,12,15,14,13,12,12,15,14,13,11,11,14,12,13,11,11,14,12,13,10,10,13,11,12,10,10,13,11,12,9,9,12,10,11,9,9,12,10,11,8,8,11,9,10,8,8,11,9,10,7,7,10,8,9,7,7,10,8,9];
@@ -2485,7 +2534,7 @@ function updateSavingThrows() {
             case 'dwarvenvaultguard': case 'dwarvenfury': appliedSaves = dwarvenvaultguardSaves; break;
             case 'fighter': case 'anti-paladin': case 'assassin': case 'barbarian': case 'explorer': appliedSaves = fighterSaves; break;
             case 'elvencourtier': case 'elvenenchanter': case 'elvennightblade': appliedSaves = elvennightbladeSaves; break;
-            case 'elvenspellsword': appliedSaves = elvenspellswordSaves; break;
+            case 'elvenranger': case 'elvenspellsword': appliedSaves = elvenspellswordSaves; break;
             case 'mage': appliedSaves = mageSaves; break;
             case 'thief': case 'bard': appliedSaves = thiefSaves; break;
             default: return;
@@ -2679,6 +2728,7 @@ function updateTitle() {
         const elvencourtierTitles = ['','Attendant','Courtier','Aristocrat','Noble','Exemplar','Patrician','Dignitary','Consul','Lord','Lord','Lord','Lord','OVER MAX LEVEL','OVER MAX LEVEL'];
         const elvenenchanterTitles = ['','Prestidigitator','Glamourer','Charmer','Beguiler','Spellbinder','Bewitcher','Ensorceller','Illusionist','Enchanter','Enchanter','Enchanter','Enchanter','OVER MAX LEVEL','OVER MAX LEVEL'];
         const elvennightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
+        const elvenrangerTitles = ['','Archer','Rover','Forester','Courser','Patroller','Keeper','Protector','Steward','Ranger','Ranger','Ranger','Ranger','Ranger','OVER MAX LEVEL'];
         const elvenspellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
         const explorerTitles = ['','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
         const fighterTitles = ['','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord'];
@@ -2704,6 +2754,7 @@ function updateTitle() {
                 case 'elvencourtier': output['character_title'] = elvencourtierTitles[theLevel]; break;
                 case 'elvenenchanter': output['character_title'] = elvenenchanterTitles[theLevel]; break;
                 case 'elvennightblade': output['character_title'] = elvennightbladeTitles[theLevel]; break;
+                case 'elvenranger': output['character_title'] = elvenrangerTitles[theLevel]; break;
                 case 'elvenspellsword': output['character_title'] = elvenspellswordTitles[theLevel]; break;
                 case 'explorer': output['character_title'] = explorerTitles[theLevel]; break;
                 case 'fighter': output['character_title'] = fighterTitles[theLevel]; break;
@@ -2765,6 +2816,7 @@ function calculateXPNeeded() {
         const elvencourtierXPNeeded = [100,         2600,5200,10400,20800,41600,85000,170000,370000,520000,670000,820000,0,0,0];
         const elvenenchanterXPNeeded = [100,        2700,5400,10800,21600,43200,85000,170000,370000,570000,770000,970000,0,0,0];
         const elvennightbladeXPNeeded = [100,       2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0];
+        const elvenrangerXPNeeded = [100,           2275,4550,9100,18200,36400,75000,150000,300000,450000,600000,750000,900000,0,0];
         const elvenspellswordXPNeeded = [100,       4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0];
         const fighterXPNeeded = [100,               2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0];
         const mageXPNeeded = [100,                  2500,5000,10000,20000,40000,80000,160000,310000,460000,610000,760000,910000,1060000,0];
@@ -2809,6 +2861,9 @@ function calculateXPNeeded() {
                 break;        
             case 'elvennightblade':
                 output['xp_next_level'] = elvennightbladeXPNeeded[theLevel];
+                break;
+            case 'elvenranger':
+                output['xp_next_level'] = elvenrangerXPNeeded[theLevel];
                 break;
             case 'elvenspellsword':
                 output['xp_next_level'] = elvenspellswordXPNeeded[theLevel];

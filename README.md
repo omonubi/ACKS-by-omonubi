@@ -153,6 +153,7 @@ If the following class names are entered into the *class* field, embedded descri
     - Dwarven Machinist
     - Elven Courtier
     - Elven Enchanter
+    - Elven Ranger
 
 **Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
 
@@ -252,7 +253,7 @@ Of course, your preferences may differ.
 | 0.1 | 220707 | Initial Upload |
 | 0.1.1 | 220717 | Added Anti-Paladin class; Added Barbarian class; split class-based damage bonus into melee and missile to support Barbarian class; added support for Heavy Helm modifiers |
 | 0.1.2 | 220718 | Added Dwarven Delver class; code optimizations |
-| 0.1.3 | 220720 | Added Dwarven Machinist, Elven Courtier, and Elven Enchanter classes; exposed thieving skills target value fields to allow for customized values for custom classes |
+| 0.1.3 | 220721 | Added Dwarven Machinist, Elven Courtier, Elven Enchanter, and Elven Ranger classes; exposed thieving skills target value fields to allow for customized values for custom classes |
 
 ---
 
