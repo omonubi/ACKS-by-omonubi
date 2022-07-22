@@ -30,9 +30,19 @@
             <label>Character Name</label>
                 <input type='text' name='attr_character_fullname' />
             <label>Class</label> 
-                <input type='text' name='attr_class'/>
+                <div>
+                    <input class='toggleLockClass' type='hidden' value='1' name='attr_toggleLock_class'/>
+                    <button class='toggleLock' type='action' name='act_toggleLockClass'><span class='locked'>(</span><span class='unlocked'>)</span></button>
+                    <input class='characterClass' type='text' name='attr_class'/>
+                    <input class='characterClassReadonly' type='text' name='attr_class' readonly/>
+                </div>
             <label>Title</label>
-                <input type='text' name='attr_character_title'/>
+                <div>
+                    <input class='toggleLockTitle' type='hidden' value='1' name='attr_toggleLock_title'/>
+                    <button class='toggleLock' type='action' name='act_toggleLockTitle'><span class='locked'>(</span><span class='unlocked'>)</span></button>
+                    <input class='characterTitle' type='text' name='attr_character_title'/>
+                    <input class='characterTitleReadonly' type='text' name='attr_character_title' readonly/>
+                </div>
             <label>Alignment</label>
                 <input type='text' name='attr_alignment'/>
             <div><label class='xp'>Experience (+</label><span class='xpbonus' name='attr_xp_bonus'>0</span><label>%)</label></div>
@@ -1580,6 +1590,28 @@ on('change:toggle_whisper', function(eventInfo) {
     setAttrs(output);
 });
 
+// Class field toggle
+on('clicked:toggleLockClass', function(eventInfo) {
+    getAttrs(['toggleLock_class'], function(values) {
+        const theToggleState = Number(values['toggleLock_class']) || 0;
+
+        const output = {};
+        output['toggleLock_class'] = (theToggleState == 0 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
+// Title field toggle
+on('clicked:toggleLockTitle', function(eventInfo) {
+    getAttrs(['toggleLock_title'], function(values) {
+        const theToggleState = Number(values['toggleLock_title']) || 0;
+
+        const output = {};
+        output['toggleLock_title'] = (theToggleState == 0 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
 // Helpers/validation
 // global helper to retrieve repeating section item ids
 function getID(repeatingItemName) {
@@ -2746,57 +2778,38 @@ function updateTitle() {
         const theClass = getSanitizedString(values['class']);
         const theLevel = validateLevel(values['level']);
         const theXPValue = Number(values['xp_value']) || 0;
-        
-        const antipaladinTitles = ['','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction'];
-        const assassinTitles = ['','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins'];
-        const barbarianTitles = ['','Hunter','Raider','Marauder','Plunderer','Reaver','Bloodletter','Menace','Scourge','Warchief','Warchief','Warchief','Warchief','Warchief','Great Chieftan'];
-        const bardTitles = ['','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard'];
-        const bladedancerTitles = ['','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades'];
-        const clericTitles = ['','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat'];
-        const dwarvencraftpriestTitles = ['','Craft-Catechist','Craft-Acolyte','Craftpriest','Craft-Curate','Craft-Vicar','Craft-Rector','Craft-Prelate','Craft-Bishop','Craft-Lord','Craft-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const dwarvendelverTitles = ['','Caver','Tunneler','Excavator','Undertaker','Spelunker','Expeditionary','Pathfinder','Delver','Pioneer','Pioneer','Pioneer','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const dwarvenfuryTitles = ['','Grudgebearer','Punisher','Repriser','Vindicator','Retaliator','Castigator','Scourge','Fury','Avenger','Avenger','Avenger','Avenger','Avenger','OVER MAX LEVEL'];
-        const dwarvenmachinistTitles = ['','Apprentice','Mechanic','Shaper','Forger','Maker','Engineer','Artificer','Machinist','Master Machinist','Master Machinist','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const dwarvenvaultguardTitles = ['','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL'];
-        const elvencourtierTitles = ['','Attendant','Courtier','Aristocrat','Noble','Exemplar','Patrician','Dignitary','Consul','Lord','Lord','Lord','Lord','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const elvenenchanterTitles = ['','Prestidigitator','Glamourer','Charmer','Beguiler','Spellbinder','Bewitcher','Ensorceller','Illusionist','Enchanter','Enchanter','Enchanter','Enchanter','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const elvennightbladeTitles = ['','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const elvenrangerTitles = ['','Archer','Rover','Forester','Courser','Patroller','Keeper','Protector','Steward','Ranger','Ranger','Ranger','Ranger','Ranger','OVER MAX LEVEL'];
-        const elvenspellswordTitles = ['','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const explorerTitles = ['','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden'];
-        const fighterTitles = ['','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord'];
-        const gnomishtricksterTitles = ['','Scamp','Knave','Prankster','Rapscallion','Scapegrace','Rogue','Scoundrel','Trickster','Mastermind','Mastermind','Mastermind','Mastermind','OVER MAX LEVEL','OVER MAX LEVEL'];
-        const mageTitles = ['','Arcanist','Seer','Theurgist','Magician','Thaumaturge','Enchanter','Sorcerer','Mage','Wizard','Wizard','Wizard','Wizard','Wizard','Archmage'];
-        const thiefTitles = ['','Footpad','Hood','Robber','Burglar','Rogue','Scoundrel','Pilferer','Thief','Master Thief','Master Thief','Master Thief','Master Thief','Master Thief','Prince of Thieves'];
+
+        const allTitles = [
+            'anti-paladin','','Miscreant','Despoiler','Avenger','Defiler','Blackguard','Destroyer','Warduke','Malefactor','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Malefactor Lord','Dark Lord of Malefaction',
+            'assassin','','Thug','Enforcer','Torturer','Slayer','Destroyer','Executioner','Blackguard','Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Master Assassin','Grandfather of Assassins',
+            'barbarian','','Hunter','Raider','Marauder','Plunderer','Reaver','Bloodletter','Menace','Scourge','Warchief','Warchief','Warchief','Warchief','Warchief','Great Chieftan',
+            'bard','','Reciter','Versifier','Archivist','Annalist','Chronicler','Panegyrist','Skald','Rhapsodist','Bard','Bard','Bard','Bard','Bard','Master Bard',
+            'bladedancer','','Blade-Initiate','Blade-Daughter','Blade-Singer','Blade-Weaver','Blade-Sister','Blade-Adept','Blade-Dancer','Blade-Priestess','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Blade-Mistress','Mistress of All Blades',
+            'cleric','','Catechist','Acolyte','Priest','Curate','Vicar','Rector','Prelate','Bishop','Patriarch','Patriarch','Patriarch','Patriarch','Patriarch','Theocrat',
+            'dwarvencraftpriest','','Craft-Catechist','Craft-Acolyte','Craftpriest','Craft-Curate','Craft-Vicar','Craft-Rector','Craft-Prelate','Craft-Bishop','Craft-Lord','Craft-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL',
+            'dwarvendelver','','Caver','Tunneler','Excavator','Undertaker','Spelunker','Expeditionary','Pathfinder','Delver','Pioneer','Pioneer','Pioneer','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL',
+            'dwarvenfury','','Grudgebearer','Punisher','Repriser','Vindicator','Retaliator','Castigator','Scourge','Fury','Avenger','Avenger','Avenger','Avenger','Avenger','OVER MAX LEVEL',
+            'dwarvenmachinist','','Apprentice','Mechanic','Shaper','Forger','Maker','Engineer','Artificer','Machinist','Master Machinist','Master Machinist','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL',
+            'dwarvenvaultguard','','Sentry','Warden','Shieldbearer','Defender','Sentinel','Guardian','Champion','Vaultguard','Vaultlord','Vaultlord','Vaultlord','Vaultlord','Vaultlord','OVER MAX LEVEL',
+            'elvencourtier','','Attendant','Courtier','Aristocrat','Noble','Exemplar','Patrician','Dignitary','Consul','Lord','Lord','Lord','Lord','OVER MAX LEVEL','OVER MAX LEVEL',
+            'elvenenchanter','','Prestidigitator','Glamourer','Charmer','Beguiler','Spellbinder','Bewitcher','Ensorceller','Illusionist','Enchanter','Enchanter','Enchanter','Enchanter','OVER MAX LEVEL','OVER MAX LEVEL',
+            'elvennightblade','','Arcanist-Avenger','Seer-Enforcer','Theurgist-Torturer','Magician-Slayer','Thaumaturge-Destroyer','Enchanter-Executioner','Sorcerer-Blackguard','Mage-Assassin','Nightblade','Nightblade','Nightblade','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL',
+            'elvenranger','','Archer','Rover','Forester','Courser','Patroller','Keeper','Protector','Steward','Ranger','Ranger','Ranger','Ranger','Ranger','OVER MAX LEVEL',
+            'elvenspellsword','','Arcanist-Guardian','Warrior-Seer','Theurgist-Swordmaster','Magician-Hero','Thaumaturge-Exemplar','Myrmidon-Enchanter','Sorcerer-Champion','Epic Hero-Mage','Wizard-Lord','Wizard-Lord','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL','OVER MAX LEVEL',
+            'explorer','','Scout','Outrider','Forester','Explorer','Guide','Tracker','Pathfinder','Ranger','Warden','Warden','Warden','Warden','Warden','Lord Warden',
+            'fighter','','Man-at-Arms','Warrior','Swordmaster','Hero','Exemplar','Myrmidon','Champion','Epic Hero','Warlord','Warlord','Warlord','Warlord','Warlord','Overlord',
+            'gnomishtrickster','','Scamp','Knave','Prankster','Rapscallion','Scapegrace','Rogue','Scoundrel','Trickster','Mastermind','Mastermind','Mastermind','Mastermind','OVER MAX LEVEL','OVER MAX LEVEL',
+            'mage','','Arcanist','Seer','Theurgist','Magician','Thaumaturge','Enchanter','Sorcerer','Mage','Wizard','Wizard','Wizard','Wizard','Wizard','Archmage',
+            'thief','','Footpad','Hood','Robber','Burglar','Rogue','Scoundrel','Pilferer','Thief','Master Thief','Master Thief','Master Thief','Master Thief','Master Thief','Prince of Thieves'
+            ];
         
         const output = {};
+
         if (theXPValue != 0) {
             output['character_title'] = EMPTY_STRING; // Monsters don't have titles
         } else {
-            switch (theClass) {
-                case 'anti-paladin': output['character_title'] = antipaladinTitles[theLevel]; break;
-                case 'assassin': output['character_title'] = assassinTitles[theLevel]; break;
-                case 'barbarian': output['character_title'] = barbarianTitles[theLevel]; break;
-                case 'bard': output['character_title'] = bardTitles[theLevel]; break;
-                case 'bladedancer': output['character_title'] = bladedancerTitles[theLevel]; break;
-                case 'cleric': output['character_title'] = clericTitles[theLevel]; break;
-                case 'dwarvencraftpriest': output['character_title'] = dwarvencraftpriestTitles[theLevel]; break;
-                case 'dwarvendelver': output['character_title'] = dwarvendelverTitles[theLevel]; break;
-                case 'dwarvenfury': output['character_title'] = dwarvenfuryTitles[theLevel]; break;
-                case 'dwarvenmachinist': output['character_title'] = dwarvenmachinistTitles[theLevel]; break;
-                case 'dwarvenvaultguard': output['character_title'] = dwarvenvaultguardTitles[theLevel]; break;
-                case 'elvencourtier': output['character_title'] = elvencourtierTitles[theLevel]; break;
-                case 'elvenenchanter': output['character_title'] = elvenenchanterTitles[theLevel]; break;
-                case 'elvennightblade': output['character_title'] = elvennightbladeTitles[theLevel]; break;
-                case 'elvenranger': output['character_title'] = elvenrangerTitles[theLevel]; break;
-                case 'elvenspellsword': output['character_title'] = elvenspellswordTitles[theLevel]; break;
-                case 'explorer': output['character_title'] = explorerTitles[theLevel]; break;
-                case 'fighter': output['character_title'] = fighterTitles[theLevel]; break;
-                case 'gnomishtrickster': output['character_title'] = gnomishtricksterTitles[theLevel]; break;
-                case 'mage': output['character_title'] = mageTitles[theLevel]; break;
-                case 'thief': output['character_title'] = thiefTitles[theLevel]; break;
-                default: output['character_title'] = EMPTY_STRING;
-            }
+            const theIndex = allTitles.indexOf(theClass);
+            if (theIndex != -1) output['character_title'] = allTitles[theIndex + theLevel + 1];
         }
 
         setAttrs(output); 
@@ -2838,88 +2851,36 @@ function calculateXPNeeded() {
     getAttrs(['class', 'level'], function(values) {
         const theClass = getSanitizedString(values['class']);
         const theLevel = validateLevel(values['level']);
-        
-        const antipaladinXPNeeded = [100,           1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0];
-        const assassinXPNeeded = [100,              1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0];
-        const barbarianXPNeeded = [100,             2600,5200,10400,20800,41600,85000,170000,290000,410000,530000,650000,770000,890000,0];
-        const bardXPNeeded = [100,                  1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0];
-        const clericXPNeeded = [100,                1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0];
-        const dwarvencraftpriestXPNeeded = [100,    2400,4800,9600,19200,38400,75000,150000,280000,410000,0,0,0,0,0];
-        const dwarvendelverXPNeeded = [100,         2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
-        const dwarvenmachinistXPNeeded = [100,      2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0];
-        const dwarvenvaultguardXPNeeded = [100,     2300,4600,9200.18400,36800,75000,150000,280000,410000,0,0,0,0,0];
-        const elvencourtierXPNeeded = [100,         2600,5200,10400,20800,41600,85000,170000,370000,520000,670000,820000,0,0,0];
-        const elvenenchanterXPNeeded = [100,        2700,5400,10800,21600,43200,85000,170000,370000,570000,770000,970000,0,0,0];
-        const elvennightbladeXPNeeded = [100,       2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0];
-        const elvenrangerXPNeeded = [100,           2275,4550,9100,18200,36400,75000,150000,300000,450000,600000,750000,900000,0,0];
-        const elvenspellswordXPNeeded = [100,       4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0];
-        const fighterXPNeeded = [100,               2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0];
-        const gnomishtricksterXPNeeded = [100,      2475,4950,9900,19800,39600,80000,160000,310000,460000,610000,760000,0,0,0];
-        const mageXPNeeded = [100,                  2500,5000,10000,20000,40000,80000,160000,310000,460000,610000,760000,910000,1060000,0];
-        const thiefXPNeeded = [100,                 1250,2500,5000,10000,20000,40000,80000,180000,280000,380000,480000,580000,680000,0];
+
+        const XPThresholds = [
+            'anti-paladin',100,1850,3700,7400,14800,29600,60000,120000,240000,360000,480000,600000,720000,840000,0,
+            'assassin',100,1700,3400,6800,14000,28000,55000,110000,230000,350000,470000,590000,710000,830000,0,
+            'barbarian',100,2600,5200,10400,20800,41600,85000,170000,290000,410000,530000,650000,770000,890000,0,
+            'bard',100,1400,2800,5600,11200,22400,45000,90000,190000,290000,390000,490000,590000,690000,0,
+            'bladedancer',100,1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0,
+            'cleric',100,1500,3000,6000,12000,24000,50000,100000,200000,300000,400000,500000,600000,700000,0,
+            'dwarvencraftpriest',100,2400,4800,9600,19200,38400,75000,150000,280000,410000,0,0,0,0,0,
+            'dwarvendelver',100,2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0,
+            'dwarvenmachinist',100,2000,4000,8000,16000,32000,65000,130000,260000,390000,520000,0,0,0,0,
+            'dwarvenvaultguard',100,2300,4600,9200.18400,36800,75000,150000,280000,410000,0,0,0,0,0,
+            'elvencourtier',100,2600,5200,10400,20800,41600,85000,170000,370000,520000,670000,820000,0,0,0,
+            'elvenenchanter',100,2700,5400,10800,21600,43200,85000,170000,370000,570000,770000,970000,0,0,0,
+            'elvennightblade',100,2775,5550,11100,22200,45000,90000,180000,330000,480000,630000,0,0,0,0,
+            'elvenranger',100,2275,4550,9100,18200,36400,75000,150000,300000,450000,600000,750000,900000,0,0,
+            'elvenspellsword',100,4000,8000,16000,32000,64000,130000,260000,430000,600000,0,0,0,0,0,
+            'explorer',100,2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0,
+            'fighter',100,2000,4000,8000,16000,32000,65000,130000,250000,370000,490000,610000,730000,850000,0,
+            'gnomishtrickster',100,2475,4950,9900,19800,39600,80000,160000,310000,460000,610000,760000,0,0,0,
+            'mage',100,2500,5000,10000,20000,40000,80000,160000,310000,460000,610000,760000,910000,1060000,0,
+            'thief',100,1250,2500,5000,10000,20000,40000,80000,180000,280000,380000,480000,580000,680000,0
+            ];
         
         const output = {};
-        output['xp_next_level'] = 0;
-        switch (theClass) {
-            case 'anti-paladin':
-                output['xp_next_level'] = antipaladinXPNeeded[theLevel];
-                break;
-            case 'assassin':
-                output['xp_next_level'] = assassinXPNeeded[theLevel];
-                break;
-            case 'barbarian':
-                output['xp_next_level'] = barbarianXPNeeded[theLevel];
-                break;
-            case 'bard':
-                output['xp_next_level'] = bardXPNeeded[theLevel];
-                break;
-            case 'bladedancer':
-            case 'cleric':
-                output['xp_next_level'] = clericXPNeeded[theLevel];
-                break;
-            case 'dwarvencraftpriest':
-                output['xp_next_level'] = dwarvencraftpriestXPNeeded[theLevel];
-                break;
-            case 'dwarvendelver':
-                output['xp_next_level'] = dwarvendelverXPNeeded[theLevel];
-                break;
-            case 'dwarvenmachinist':
-                output['xp_next_level'] = dwarvenmachinistXPNeeded[theLevel];
-                break;
-            case 'dwarvenvaultguard':
-                output['xp_next_level'] = dwarvenvaultguardXPNeeded[theLevel];
-                break;         
-            case 'elvencourtier':
-                output['xp_next_level'] = elvencourtierXPNeeded[theLevel];
-                break;      
-            case 'elvenenchanter':
-                output['xp_next_level'] = elvenenchanterXPNeeded[theLevel];
-                break;        
-            case 'elvennightblade':
-                output['xp_next_level'] = elvennightbladeXPNeeded[theLevel];
-                break;
-            case 'elvenranger':
-                output['xp_next_level'] = elvenrangerXPNeeded[theLevel];
-                break;
-            case 'elvenspellsword':
-                output['xp_next_level'] = elvenspellswordXPNeeded[theLevel];
-                break;
-            case 'explorer':
-            case 'fighter':
-                output['xp_next_level'] = fighterXPNeeded[theLevel];
-                break;
-            case 'gnomishtrickster':
-                output['xp_next_level'] = gnomishtricksterXPNeeded[theLevel];
-                break;
-            case 'mage':
-                output['xp_next_level'] = mageXPNeeded[theLevel];
-                break;   
-            case 'thief':
-                output['xp_next_level'] = thiefXPNeeded[theLevel];
-                break;
-            default: output['xp_next_level'] = EMPTY_STRING;
-        }
-        setAttrs(output); 
+
+        const theIndex = XPThresholds.indexOf(theClass);
+        if (theIndex != -1) output['xp_next_level'] = XPThresholds[theIndex + theLevel + 1];
+
+        setAttrs(output)
     });
 };
 

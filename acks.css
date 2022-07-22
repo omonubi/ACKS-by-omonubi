@@ -127,11 +127,6 @@
 }
 
 /**************** Element Styles ****************/
-.more-info {
-    font-family: pictos;
-    margin-left: 5px;
-}
-
 button[type='roll'] {
     border-color: goldenrod;
     font-size: 1em !important;
@@ -143,10 +138,7 @@ button[type=roll].blank-roll-button::before {
 button.attribute {
     width: 80px;
 }
-button.pictos-gear {
-    font-family: pictos;
-    margin-left: 5px;
-}
+
 button[type='roll'].width25 {
     width: 25px;
 }
@@ -228,6 +220,14 @@ input[type=number].currency {
 }
 input.attackname {
     width: 150px;
+}
+input.characterClass,
+input.characterClassReadonly {
+    width: 182px;
+}
+input.characterTitle,
+input.characterTitleReadonly {
+    width: 182px;
 }
 input.mercarmaments {
     width: 400px;
@@ -396,15 +396,6 @@ textarea.property {
 	background-color: white;
 }
 
-/*
-button.btn-priest {
-    display: none;
-}
-input.priestcheck[value='1'] ~ button.btn-priest {
-    display: inline;
-}
-*/
-
 /**************** Alert Styles ****************/
 span.redhp,
 span.redmove,
@@ -422,7 +413,7 @@ input.henchmenCheck[value='1'] ~ .limitExceeded {
     font-weight: bold;
 }
 
-/**************** Show/Hide Styles ****************/
+/**************** Details section toggle ****************/
 div.body {
     display: block;
 }
@@ -431,7 +422,35 @@ input.toggle-show:not(:checked) ~ div.details {
     display: none;
 }
 
-/*** Class Tabs ***/
+/**************** Sheet field readonly toggles *****************/
+button.toggleLock {
+    background-color: white;
+    border: none;
+    width: 12px;
+}
+button.toggleLock .locked,
+button.toggleLock .unlocked {
+    font-family: "Pictos" !important;
+}
+
+input.toggleLockClass[value='0'] ~ input.characterClass,
+input.toggleLockTitle[value='0'] ~ input.characterTitle {
+    display: none;
+}
+input.toggleLockClass[value='0'] ~ .toggleLock .unlocked,
+input.toggleLockTitle[value='0'] ~ .toggleLock .unlocked {
+    display: none;
+}
+input.toggleLockClass[value='1'] ~ input.characterClassReadonly,
+input.toggleLockTitle[value='1'] ~ input.characterTitleReadonly {
+    display: none;
+}
+input.toggleLockClass[value='1'] ~ .toggleLock .locked,
+input.toggleLockTitle[value='1'] ~ .toggleLock .locked {
+    display: none;
+}
+
+/***************** Class tabs ********************/
 div.AntiPaladin,
 div.Assassin,
 div.Barbarian,
@@ -521,17 +540,6 @@ input.showthievesskillshear[value='1'] ~ div.thievesskillshear {
 .repitem > .charsheet label {
     font-size: 0.9em;
 }
-
-/*
-.repcontainer[data-groupname=repeating_items] .repitem {
-    display: inline-block;
-    width: calc(50% - 20px);
-  }
-  
-.repcontainer[data-groupname=repeating_items] .repitem:nth-child(even) {
-    margin-left: 40px;
-  }
-*/
 
 /**************** Roll Template Styles ****************/
 /* Better default template */

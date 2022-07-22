@@ -38,8 +38,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Property | Description |
 | --- | --- |
 | *character_fullname* | Provided to allow for more 'expressive' and complete names than either the standard *character_name* or *token_name* properties. |
-| *class* | As a text field, allows for any class. However, if an ACKS class name (currently, ACKS Core only) is entered, will enable SRD class descriptions and summary in the sheet's Class tab, as well as auto-calculation of several key stats. **Important:** Setting/changing this property to an ACKS class - at any time - will over-write several other field values on the sheet. Change with caution! |
-| *character_title* | If *class* is set to ACKS class, will display the appropriate title for the class and level in question. |
+| *class* | As a text field, allows for any class. However, if an ACKS class name (currently, ACKS Core only) is entered, will enable SRD class descriptions and summary in the sheet's Class tab, as well as auto-calculation of several key stats. **Important:** Setting/changing this property to an ACKS class - at any time - will over-write several other field values on the sheet. Change with caution! This field can now be 'locked', to help prevent accidental changes. |
+| *character_title* | If *class* is set to ACKS class, will display the appropriate title for the class and level in question. This field can now be 'locked', to help prevent accidental changes. |
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class, though auto-populated values are zeroed out if/when a particular class exceeds its level maximum. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prerequ' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
 | *hp* | May never exceed the *hp_max* value (auto-enforced through sheet worker). |
@@ -252,7 +252,7 @@ Of course, your preferences may differ.
 | Ver | Date | Notes |
 | --- | --- | --- |
 | 0.1 | 220707 | Initial Upload |
-| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; exposed thieivng skill target value fields; code optimizations |
+| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; exposed thieivng skill target value fields; added field locking mechanism, code optimizations |
 
 ---
 
