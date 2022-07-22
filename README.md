@@ -98,7 +98,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *item_weight* | Set this value equal to 0.17 for small items or bundles (ammo), or use smaller values for items like individual arrows, gems, holy symbols, etc. Include armor and weapons as well, as per ACKS Core pg. 48. |
 | *item_value* | An optional field used to track an item's value, in gold pieces. It is not used any place else on the sheet. |
 | *item_equipped* | A checkbox to indicate if the item(s) is being carried. If not, its weight is not factored into *encumbrance*. |
-| Currency | Fields for tracking coins carried, banked (not carried), and found but not yet returned to civilization (worth XP). The table includes a handy conversion rate for each coin type. |
+| Currency | Fields for tracking coins carried, banked (not carried), and found (and carried) but not yet returned to civilization (worth XP). The table includes a handy conversion rate for each coin type. |
 | Cost of Living | Adds the monthly cost of living for the selected *living_standard* and adds any applicable monthly hireling fees. |
 
 ### Author's Note Regarding Food & Water
@@ -154,6 +154,7 @@ If the following class names are entered into the *class* field, embedded descri
     - Elven Courtier
     - Elven Enchanter
     - Elven Ranger
+    - Gnomish Trickster
 
 **Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
 
@@ -251,9 +252,7 @@ Of course, your preferences may differ.
 | Ver | Date | Notes |
 | --- | --- | --- |
 | 0.1 | 220707 | Initial Upload |
-| 0.1.1 | 220717 | Added Anti-Paladin class; Added Barbarian class; split class-based damage bonus into melee and missile to support Barbarian class; added support for Heavy Helm modifiers |
-| 0.1.2 | 220718 | Added Dwarven Delver class; code optimizations |
-| 0.1.3 | 220721 | Added Dwarven Machinist, Elven Courtier, Elven Enchanter, and Elven Ranger classes; exposed thieving skills target value fields to allow for customized values for custom classes |
+| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; exposed thieivng skill target value fields; code optimizations |
 
 ---
 

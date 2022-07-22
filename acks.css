@@ -450,6 +450,7 @@ div.ElvenRanger,
 div.ElvenSpellsword,
 div.Explorer,
 div.Fighter,
+div.GnomishTrickster,
 div.Mage,
 div.Thief {
     display: none;
@@ -473,6 +474,7 @@ input.showElvenRanger[value='1'] ~ div.ElvenRanger,
 input.showElvenSpellsword[value='1'] ~ div.ElvenSpellsword,
 input.showExplorer[value='1'] ~ div.Explorer,
 input.showFighter[value='1'] ~ div.Fighter,
+input.showGnomishTrickster[value='1'] ~ div.GnomishTrickster,
 input.showMage[value='1'] ~ div.Mage,
 input.showThief[value='1'] ~ div.Thief {
     display: block;
