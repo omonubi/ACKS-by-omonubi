@@ -364,7 +364,8 @@ textarea.property {
 .equipment,
 .class,
 .hirelings,
-.journal {
+.journal,
+.settings {
 	display: none;
 }
 .tabstoggle[value='overview'] ~ div.overview,
