@@ -79,11 +79,15 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *attack_throw* | If *class* is set to an ACKS class, or if monster *xp_value* is set to any value, this is auto-calculated. The value is determined by *level* (for ACKS class) or *hit_dice* (for monster). The value is used as the base target for all melee and missile throws. |
 | *num_attacks* | This is a text field used mainly to track monster attack patterns (e.g. 'claw/claw/bite, or breath'). Its default value is '1' and isn't used anywhere else on the sheet. |
 | melee attacks | A repeating list to track a creature's hand-to-hand attacks. Use different melee attack entries to track one- vs. two-handed usage/damage for applicable weapons. |
+| *melee_wielding* | Indicates that the weapon is currently being wielded. |
 | *melee_throw* | When a throw is made, the user will be prompted for the target's AC, to select their fighting style (either 'Normal' or 'Dual-Wield'), and provide any additional modifier. The throw supports Exploding 20s to determine citical hits from ACKS HF pg. 85. |
+| *melee_2hand* | Indicates that the weapon is exclusively used two-handed. |
 | *melee_bonus* | Applies to attack throws, but not damage. |
 | *melee_damage* | Use 'xdy+z' format. |
 | missile attacks | A repeating list to reack a creature's missile attacks, the same as for melee attacks, above. Note that ammo consumption is not currently tracked/modified automatically. |
+| *missile_wielding* | Indicates that the weapon is currently being wielded. |
 | *missile_range* | A text field to track a missile attack's range bands. For example, '10/20/30'. It is not used anywhere else in the sheet. |
+| *missile_ammo* | Used to keep track of ammo (*not* under equipment). |
 
 ## Equipment Tab
 
@@ -100,8 +104,10 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Currency | Fields for tracking coins carried, banked (not carried), and found (and carried) but not yet returned to civilization (worth XP). The table includes a handy conversion rate for each coin type. |
 | Cost of Living | Adds the monthly cost of living for the selected *living_standard* and adds any applicable monthly hireling fees. |
 
-### Author's Note Regarding Food & Water
-I recommend tracking rations by day, instead of by week, with each day's rations weighing 0.17 stone. I also simplify water by inventorying a single water skin, weighing 1 stone. If the characters are *not* in a dungeon, desert, or other locale where water isn't readily available at the end of the day, mark the skin as not equipped and observe penalties for thirst. My equipment script, described below, makes these assumptions.
+### Author's Note Regarding Food, Water, and Ammunition
+- I recommend tracking rations by day, instead of by week, with each day's rations weighing 0.17 stone. 
+- I also simplify water by inventorying a single water skin, weighing 1 stone. If the characters are *not* in a dungeon, desert, or other locale where water isn't readily available at the end of the day, mark the skin as not equipped and observe penalties for thirst. My equipment script, described below, makes these assumptions. 
+- Every 20 rounds of ammo counts as one container, weighing 0.17 stone. For example, a quiver may contain up to 20 arrows (tracked on Combat tab > Missile Attacks) for a fixed weight of 0.17 stone.
 
 ## Hirelings Tab
 
@@ -229,7 +235,7 @@ The following scripts can be found in the /scripts directory of the git. They ar
 
 * **AddAttacks** : Invoked by selecting one or more tokens on the map and then typing '!AddAttacks' in the Roll20 chat window. This will add 'generic' melee and missile attacks to each selected tokens' character sheet > Combat > Melee/Missile Attacks repeating lists. For example, Punch, Kick, Improvised, etc.
 
-* **AddItems** : Invoked by selecting one or more tokens on the map and then typing '!AddItems CLASSNAME' in the Roll20 chat window. This will add the specified class's generic pack contents (including armor and weapons) to the selected tokens' character sheet > Equipment > Equipment repeating list. This data includes Wieght, Count, and Value, each marked as Equipped. The character's *encumbrance* and all derived values will be automatically updated after the script runs. **Important:** When running this script for 'racial classes', do **not** incluide the race name in the CLASSNAME attribute above. For example, 'Elven Spellsowrd' should be entered as 'Spellsword'.
+* **AddItems** : Invoked by selecting one or more tokens on the map and then typing '!AddItems CLASSNAME' in the Roll20 chat window. This will add the specified class's generic pack contents (including armor and weapons) to the selected tokens' character sheet > Equipment > Equipment repeating list. It will also create corresponding melee and missile attack entries, similar to !AddAttacks, above. The equipment data includes Wieght, Count, and Value, each marked as Equipped. The character's *encumbrance* and all derived values will be automatically updated after the script runs. **Important:** CLASSNAME is the capitalized class name without any spaces, hyphens, or special characters in between. For example, 'Elven Spellsowrd' should be entered as 'ElvenSpellsword'.
 
 ### Author's Note
 These scripts were derived from the same source found in the Roll20 forums. I did not author this script and do not recall who on the forums did. If anyone knows, please contact me so I can provide the proper credit.

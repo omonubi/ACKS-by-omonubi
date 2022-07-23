@@ -258,8 +258,10 @@
         <fieldset class='repeating_melee'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{str_mod}[str]+@{melee_bonus}[wpn]+?{Style|Normal,0|Dual-Wield,1}[style]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
+            <label>Wielding:</label><input type='checkbox' name='attr_melee_wielding'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_melee_damage'/>
-            <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+            <label>2-Hand:</label><input type='checkbox' name='attr_melee_2hand'/>
+            <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
@@ -272,10 +274,11 @@
         <fieldset class='repeating_missile'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
+            <label>Wielding:</label><input type='checkbox' name='attr_missile_wielding'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
             <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
-            <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+            <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>Attack Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
@@ -294,7 +297,7 @@
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
                 <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
-                <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+                <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
                     <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
@@ -317,7 +320,7 @@
                         <option>Class Ability</option>
                     </select>
                     <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
-                <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
+                <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
                     <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
@@ -354,7 +357,7 @@
                 <label>Count:</label><input type='number' value='1' name='attr_item_count'/>
                 <label>Value:</label><input type='number' step='0.01' name='attr_item_value'/>
                 <label>Equipped:</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
-                <label>Description: </label><input type='checkbox' class='toggle-show'/><br/>
+                <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'><textarea placeholder='Optional description...' name='attr_item_details'></textarea></div>
             </fieldset>
             <input type='hidden' value='0' name='attr_items_weight'/>
@@ -1224,7 +1227,7 @@
             <label class='spanheader'>Explorer Class Description</label>
             <p><em>Explorers are scouts and trackers, adept at both woodcraft and archery. Few adventuring parties would dare the wilderness without an experienced explorer to guide them. An explorer might be a military scout, a barbarian hunter from the north, or a settler pushing past the borders of civilization.</em></p>
             <p>Prime Requisite: <strong>STR and DEX</strong></p>
-            <p>Requirements: <strong>None</strong></p>
+            <p>Requirements: <strong>STR 9</strong></p>
             <p>Hit Dice: <strong>1d6</strong></p>
             <p>Maximum Level: <strong>14</strong></p>
             <h5>Summary</h5>
@@ -1584,6 +1587,7 @@ buttonlist.forEach(button => {
     });
 });
 
+/*************** toggle controls ****************/
 // Whisper toggle
 on('change:toggle_whisper', function(eventInfo) {
     /*console.log(eventInfo.sourceType + '(change:whispertoggle = ' + eventInfo.newValue + ')');*/
@@ -1614,6 +1618,8 @@ on('clicked:toggleLockTitle', function(eventInfo) {
         setAttrs(output);
     });
 });
+
+/**************** validators ********************/
 
 // Helpers/validation
 // global helper to retrieve repeating section item ids
