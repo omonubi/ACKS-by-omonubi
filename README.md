@@ -32,6 +32,9 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *Equipment* | Lists all equipment, calculates encumbrance and speed, currency (on hand, banked, and found recently), and standard of living and other monthly costs. |
 | *Hirelings* | Used for tracking henchmen, mercenaires, and specialists in the employ of the character. |
 | *Journal* | Tracks character background, languages, injuries. additional properties/debts, adventuring notes, and experience gains. |
+| *Settings* | Use these settings to alter base movement/encumbrance functionality for non-humanoid creatures, such as horses, mules, etc. |
+
+---
 
 ## Overview Tab
 
@@ -45,6 +48,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | saving throws | I have added an 'agility save' to assist the Judge with tracking agility-based DEX penalties seperate from the DEX attribute. Use if/when desired. All other save targets are configurable, though they will be autoset when *character_class* is set to an ACKS class (overwriting previous values). Use the modifier fields as needed. |
 | conditions | These are used to track various common conditions. Their effects are automatically applied to the appropriate areas of the character sheet. Note that *fatigued* can by stacked. *Movement* can be used to increase/reduce the character's base movement per turn.
 
+---
+
 ## Class Tab
 
 | Property | Description |
@@ -55,6 +60,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | thieving abilities | These buttons' throw targets are determined by class and level, and will only be displayed if *class* is set to an appropriate ACKS class. |
 | SRD content | This content will only be displayed if *class* is set to an ACKS class. For example, to see the SRD description of the Elven Spellsword class enter 'Elven Spellsword' as the characters class. Currently, only classes from the ACS Core rulebook are supported. |
 
+---
+
 ## Skills Tab
 
 | Property | Description |
@@ -64,6 +71,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *ability_target* | Sets the throw target for the ability. The Throw button supports the use of optional sheet attritbutes so more complex auto-calculations can be performed here. For example, '14 - (@{level}-1) * 2', to set the initial target to 18 and subract 2 for every additional character level over 1. |
 | proficiencies | Use this repeating section to track a character's ACKS proficiencies. |
 | *proficiency_target* | Sets the throw target for the proficiency. Supports the use of skill attribute formulas, as per *ability_target*, above. However, *proficiency_rank* modifiers are already factored into the throw and don't need to be accounted for here. |
+
+---
 
 ## Combat Tab
 
@@ -89,6 +98,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *missile_range* | A text field to track a missile attack's range bands. For example, '10/20/30'. It is not used anywhere else in the sheet. |
 | *missile_ammo* | Used to keep track of ammo (*not* under equipment). |
 
+---
+
 ## Equipment Tab
 
 | Property | Description |
@@ -104,10 +115,12 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Currency | Fields for tracking coins carried, banked (not carried), and found (and carried) but not yet returned to civilization (worth XP). The table includes a handy conversion rate for each coin type. |
 | Cost of Living | Adds the monthly cost of living for the selected *living_standard* and adds any applicable monthly hireling fees. |
 
-### Author's Note Regarding Food, Water, and Ammunition
+### Author's Note Regarding Equipment Assumptions
 - I recommend tracking rations by day, instead of by week, with each day's rations weighing 0.17 stone. 
 - I also simplify water by inventorying a single water skin, weighing 1 stone. If the characters are *not* in a dungeon, desert, or other locale where water isn't readily available at the end of the day, mark the skin as not equipped and observe penalties for thirst. My equipment script, described below, makes these assumptions. 
 - Every 20 rounds of ammo counts as one container, weighing 0.17 stone. For example, a quiver may contain up to 20 arrows (tracked on Combat tab > Missile Attacks) for a fixed weight of 0.17 stone.
+
+---
 
 ## Hirelings Tab
 
@@ -131,6 +144,17 @@ This tab contains text area fields for tracking additional character information
 * Experience Gained
 
 My recommendation is to add a new Experience Gained record to the repeating list each time the character returns to civilization and XP is calculated. This should include both monster and treasure XP, as well as any additional XP for decision-making, role-play, etc. Use the Date field to indicate the real date the character received the XP.
+
+---
+
+## Settings
+This tab contains base values used in making encumbrance and movement calculations. These values should only be changed when using the sheet to represent non-humanoid NPCs, such as mounts, draft animals, etc.
+
+| Property | Description |
+| --- | --- |
+| Max Encumbrance | Change to set the maximum limit that the creature can carry. Is modified by *str_mod*. |
+| Enc Threshold X | Change to alter the encumbrance threshold at which point max movement rate is divided by 3/4, 1/2, or 1/4. The ACKS humanoid defaults are 5, 7, and 10 stone, respectively. Thresholds should never be descending in value, but can be the same value. The latest value to exceed the current capacity is the threshold that will be used. For example, a mule would use 20, 20, and 40; a 20 encumbrance would only trigger 1/2 movement, never 3/4. |
+| Max Movement | Change to set the maximum movement value for the creature. The default is 120' per turn. |
 
 ---
 

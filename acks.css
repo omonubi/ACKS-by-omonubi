@@ -373,6 +373,7 @@ textarea.property {
 .tabstoggle[value='equipment'] ~ div.equipment,
 .tabstoggle[value='class'] ~ div.class,
 .tabstoggle[value='hirelings'] ~ div.hirelings,
+.tabstoggle[value='settings'] ~ div.settings,
 .tabstoggle[value='journal'] ~ div.journal {
 	display: block;
 }
@@ -382,7 +383,8 @@ textarea.property {
 .btnEquipment,
 .btnClass,
 .btnHirelings,
-.btnJournal {
+.btnJournal,
+.btnSettings {
 	background-color: lightgray;
     font-weight: bold;
 }
@@ -392,7 +394,8 @@ textarea.property {
 .buttonstoggle[value='equipment'] ~ button.btnEquipment,
 .buttonstoggle[value='class'] ~ button.btnClass,
 .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
-.buttonstoggle[value='journal'] ~ button.btnJournal {
+.buttonstoggle[value='journal'] ~ button.btnJournal,
+.buttonstoggle[value='settings'] ~ button.btnSettings {
 	background-color: white;
 }
 

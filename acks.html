@@ -19,6 +19,7 @@
     <button type='action' class='btnEquipment' name='act_equipment' >Equipment</button>   
     <button type='action' class='btnHirelings' name='act_hirelings' >Hirelings</button>
     <button type='action' class='btnJournal' name='act_journal' >Journal</button>
+    <button type='action' class='btnSettings' name='act_settings' >Settings</button>
     <div class='whispertoggle'><label>Whisper Toggle: </label><input type='checkbox' name='attr_toggle_whisper' /><input type='hidden' name='attr_whispertoggle'/></div>
 </div>
 
@@ -186,9 +187,7 @@
                 <input type='number' min='0' max='10' value='0' name='attr_mod_fatigued'/>
             <label>Inspired</label>
                 <input type='checkbox' value='1' name='attr_isInspired'/>
-            <label>Move, Base</label>
-                <input type='number'value='120' name='attr_base_movement'/>
-            <label>Move, Mod</label>
+            <label>Movement</label>
                 <input type='number'value='0' name='attr_mod_movement'/>
             <label>Prone</label>
                 <input type='checkbox' value='4' name='attr_isProne'/>
@@ -1521,6 +1520,21 @@
     </div>
     <hr/>
 </div>
+
+<div class='settings'>
+    <div class='grid8'>
+        <label class='spanheader'>Sheet Settings</label>
+        <label>Max Encumbrance</label>
+            <input type='number'value='20' name='attr_base_enc'/>
+        <label>Enc Threshold 1</label>
+            <input type='number'value='5' name='attr_move_thresh1'/>
+        <label>Enc Threshold 2</label>
+            <input type='number'value='7' name='attr_move_thresh2'/>
+        <label>Enc Threshold 3</label>
+            <input type='number'value='10' name='attr_move_thresh3'/>
+        <label>Max Movement</label>
+            <input type='number'value='120' name='attr_base_movement'/>
+    </div>
 </div>
 
 <input type='hidden' name='attr_banner_abilitythrow' value=''/>
@@ -1569,7 +1583,6 @@
 const ATTR_SCORE_DEFAULT = 10;
 const BARBARIAN_SPEC_DEFAULT = 'Melee';
 const BASE_AC = 11;
-const CAPACITY_MAX = 20;
 const COIN_WEIGHT = 0.001;
 const DIE_DELIMITER = 'd';
 const EMPTY_STRING = '';
@@ -1579,7 +1592,7 @@ const LEVEL_MIN = 0;
 const XP_BONUS_MAX = 10;
 
 // Button panel event handlers
-const buttonlist = ['overview','combat','skills','equipment','class','hirelings','journal'];
+const buttonlist = ['overview','combat','skills','equipment','class','hirelings','journal','settings'];
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function() {
         setAttrs({
@@ -2249,17 +2262,18 @@ function updateEncumbrance() {
 };
 
 /********** Encumbrance Capacity **********/
-on('change:str_mod change:mod_capacity', function(eventInfo) {
+on('change:str_mod change:mod_capacity change:base_enc', function(eventInfo) {
     updateEncumbranceCapacity();
 });
 
 function updateEncumbranceCapacity() {
     /*console.log('updateEncumbranceCapacity()');*/
-    getAttrs(['str_mod', 'mod_capacity'], function(values) {
+    getAttrs(['str_mod', 'mod_capacity', 'base_enc'], function(values) {
         const strMod = Number(values['str_mod']) || 0;
         const capacityMod = Number(values['mod_capacity']) || 0;
+        const baseEnc = Number(values['base_enc']) || 0;
 
-        let encCapacity = CAPACITY_MAX + strMod + capacityMod;
+        let encCapacity = baseEnc + strMod + capacityMod;
 
         const output = {};
         output['enc_capacity'] = encCapacity;
@@ -2538,13 +2552,13 @@ function setMaxLevel() {
 };
 
 /********** Movement Speed **********/
-on('change:enc_capacity change:encumbrance change:isBedrest change:isBlinded change:isCasting change:isConcentrating change:isProne change:isUnconscious change:isWithdrawing change:mod_movement', function(eventInfo) {
+on('change:enc_capacity change:encumbrance change:isBedrest change:isBlinded change:isCasting change:isConcentrating change:isProne change:isUnconscious change:isWithdrawing change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3 change:mod_movement', function(eventInfo) {
     updateMovementSpeed();
 });
 
 function updateMovementSpeed() {
     /*console.log('updateMovementSpeed()');*/
-    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'base_movement', 'mod_movement'], function(values) {
+    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'base_movement', 'move_thresh1', 'move_thresh2', 'move_thresh3', 'mod_movement'], function(values) {
         const encCapacity = Number(values['enc_capacity']) || 0; // how much can be carried?
         const theEncumbrance = Number(values['encumbrance']) || 0; // how much is being carried?
         const isBedrest = Number(values['isBedrest']) || 0; // half-speed
@@ -2554,10 +2568,13 @@ function updateMovementSpeed() {
         const isProne = Number(values['isProne']) || 0; // 5' maximum speed
         const isUnconscious = Number(values['isUnconscious']) || 0; // can't move
         const isWithdrawing = Number(values['isWithdrawing']) || 0; // half-speed
-        const movementBase = Number(values['base_movement']) || 0; // conditional modifier
+        const movementBase = Number(values['base_movement']) || 0; // base movement
+        const moveThresh1 = Number(values['move_thresh1']) || 0; // movement threshold
+        const moveThresh2 = Number(values['move_thresh2']) || 0; // movement threshold
+        const moveThresh3 = Number(values['move_thresh3']) || 0; // movement threshold
         const movementMod = Number(values['mod_movement']) || 0; // conditional modifier
 
-        const moveThresholds = [5,7,10,encCapacity,999]; //ACKS Core, pg. 48
+        const moveThresholds = [(moveThresh1 + .01),(moveThresh2 + .01),(moveThresh3 + .01),encCapacity+.01,999];
         const moveThresholdIndex = moveThresholds.findIndex(element => theEncumbrance < element);
 
         const moveSpeeds = [movementBase,(movementBase * .75),(movementBase * .5),(movementBase * .25),0]; //ACKS Core, pg. 48
@@ -2566,8 +2583,8 @@ function updateMovementSpeed() {
         const isMovementZero = (theMovementSpeed > 0 ? 0 : 1);
         
         const output = {};
-        output['move_turn'] = theMovementSpeed;
-        output['move_round'] = theMovementSpeed / 3;
+        output['move_turn'] = Math.round(theMovementSpeed);
+        output['move_round'] = Math.round(theMovementSpeed / 3);
         output['move_is_zero'] = isMovementZero;
         setAttrs(output);
     });
