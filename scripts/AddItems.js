@@ -88,6 +88,7 @@ const addItems = msg =>
             else if (itemList == 'ElvenCourtier') generateListElvenCourtier(reps)
             else if (itemList == 'ElvenEnchanter') generateListElvenEnchanter(reps)
             else if (itemList == 'ElvenNightblade') generateListElvenNightblade(reps)
+            else if (itemList == 'ElvenRanger') generateListElvenRanger(reps)
             else if (itemList == 'ElvenSpellsword') generateListElvenSpellsword(reps)
             else if (itemList == 'Explorer') generateListExplorer(reps)
             else if (itemList == 'Fighter') generateListFighter(reps)
@@ -607,6 +608,49 @@ const generateListElvenNightblade = reps =>
         
     })
     missileElvenNightblade.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_missile_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+}
+
+const generateListElvenRanger = reps =>
+{
+    itemsElvenRanger.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_items_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    meleeElvenRanger.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_melee_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    missileElvenRanger.forEach(item =>
     {
         const data = {};
         const repString = `repeating_missile_${generateRowID()}`;
@@ -2332,6 +2376,12 @@ const itemsElvenNightblade =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -2362,6 +2412,184 @@ const missileElvenNightblade =
             missile_damage: "1d6",
             missile_bonus: "0",
             missile_ammo: "20"
+        },
+        {
+            missile_name: "Dagger (Thrown)",
+            missile_range: "10/20/30",
+            missile_damage: "1d6",
+            missile_bonus: "0",
+            missile_ammo: "1"
+        }
+]
+
+const itemsElvenRanger =
+[
+        {
+            item_name: "Longbow",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "7"
+        },
+        {
+            item_name: "Quiver (20 Arrows)",
+            item_weight: ".17",
+            item_count: "1"
+        },
+        {
+            item_name: "Spear",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "3"
+        },
+        {
+            item_name: "Short Sword",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "7"
+        },
+        {
+            item_name: "Dagger",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "3"
+        },
+        {
+            item_name: "Chainmail Armor",
+            item_weight: "4",
+            item_count: "1",
+            item_value: "40"
+        },
+        {
+            item_name: "Cloak (Fur)",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "15"
+        },
+        {
+            item_name: "Tunic and Pants",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "4"
+        },
+        {
+            item_name: "Leather Belt",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "0.4"
+        },
+        {
+            item_name: "Boots",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".6"
+        },
+        {
+            item_name: "Backpack",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Lantern",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "10"
+        },
+        {
+            item_name: "Oil, Common",
+            item_weight: "0.17",
+            item_count: "2",
+            item_value: ".3"
+        },
+        {
+            item_name: "Blanket",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Rope, 50'",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "1"
+        },
+        {
+            item_name: "Iron Spikes",
+            item_weight: ".01",
+            item_count: "12",
+            item_value: ""
+        },
+        {
+            item_name: "Small Hammer",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
+        }
+]
+
+const meleeElvenRanger =
+[
+        {
+            melee_name: "Short Sword",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Spear",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Spear, 2-Handed",
+            melee_damage: "1d8",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Dagger",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        }
+]
+
+const missileElvenRanger =
+[
+        {
+            missile_name: "Longbow",
+            missile_range: "70/140/210",
+            missile_damage: "1d6",
+            missile_bonus: "0",
+            missile_ammo: "20"
+        },
+        {
+            missile_name: "Spear (Thrown)",
+            missile_range: "20/40/60",
+            missile_damage: "1d6",
+            missile_bonus: "0",
+            missile_ammo: "1"
         },
         {
             missile_name: "Dagger (Thrown)",
@@ -2451,6 +2679,12 @@ const itemsElvenSpellsword =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -2529,10 +2763,10 @@ const itemsExplorer =
             item_value: "40"
         },
         {
-            item_name: "Cloak",
+            item_name: "Cloak (Fur)",
             item_weight: "0.17",
             item_count: "1",
-            item_value: "1"
+            item_value: "15"
         },
         {
             item_name: "Boots",
@@ -2598,6 +2832,12 @@ const itemsExplorer =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
             item_value: ""
         }
 ]
@@ -2723,6 +2963,12 @@ const itemsFighter =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -2805,6 +3051,12 @@ const itemsMage =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "85 gp",
+            item_weight: "0",
+            item_count: "0",
             item_value: ""
         }
 ]
@@ -2943,6 +3195,12 @@ const itemsThief =
             item_weight: "1",
             item_count: "1",
             item_value: ".6"
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
