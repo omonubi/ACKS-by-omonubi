@@ -86,6 +86,7 @@ const addItems = msg =>
             else if (itemList == 'DwarvenMachinist') generateListDwarvenMachinist(reps)
             else if (itemList == 'DwarvenVaultguard') generateListDwarvenVaultguard(reps)
             else if (itemList == 'ElvenCourtier') generateListElvenCourtier(reps)
+            else if (itemList == 'ElvenEnchanter') generateListElvenEnchanter(reps)
             else if (itemList == 'ElvenNightblade') generateListElvenNightblade(reps)
             else if (itemList == 'ElvenSpellsword') generateListElvenSpellsword(reps)
             else if (itemList == 'Explorer') generateListExplorer(reps)
@@ -534,6 +535,48 @@ const generateListElvenCourtier = reps =>
         
     })
 }
+const generateListElvenEnchanter = reps =>
+{
+    itemsElvenEnchanter.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_items_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    meleeElvenEnchanter.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_melee_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    missileElvenEnchanter.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_missile_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+}
 
 const generateListElvenNightblade = reps =>
 {
@@ -847,6 +890,12 @@ const itemsAntiPaladin =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "12 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -944,6 +993,12 @@ const itemsAssassin =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "36 gp",
+            item_weight: "0",
+            item_count: "0",
             item_value: ""
         }
 ]
@@ -1075,6 +1130,12 @@ const itemsBarbarian =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "1 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1113,7 +1174,7 @@ const itemsBard =
             item_value: "30"
         },
         {
-            item_name: "Quarrel Case",
+            item_name: "Case (20 Bolts)",
             item_weight: ".17",
             item_count: "1"
         },
@@ -1181,6 +1242,12 @@ const itemsBard =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
             item_value: ""
         }
 ]
@@ -1278,6 +1345,12 @@ const itemsBladedancer =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1368,6 +1441,12 @@ const itemsCleric =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1446,6 +1525,12 @@ const itemsDwarvenCraftpriest =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "20 sp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1485,7 +1570,7 @@ const itemsDwarvenDelver =
             item_value: "30"
         },
         {
-            item_name: "Quarrel Case",
+            item_name: "Case (20 Bolts)",
             item_weight: ".17",
             item_count: "1"
         },
@@ -1584,6 +1669,12 @@ const itemsDwarvenDelver =
             item_weight: "1",
             item_count: "1",
             item_value: ".6"
+        },
+        {
+            item_name: "1 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1704,6 +1795,12 @@ const itemsDwarvenFury =
             item_weight: "1",
             item_count: "1",
             item_value: ".6"
+        },
+        {
+            item_name: "43 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -1841,6 +1938,12 @@ const itemsDwarvenMachinist =
             item_weight: "1",
             item_count: "1",
             item_value: ".6"
+        },
+        {
+            item_name: "1 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -2020,6 +2123,12 @@ const itemsElvenCourtier =
             item_weight: "1",
             item_count: "1",
             item_value: ""
+        },
+        {
+            item_name: "30 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
         }
 ]
 
@@ -2037,6 +2146,101 @@ const meleeElvenCourtier =
         }
 ]
 
+const itemsElvenEnchanter =
+[
+        {
+            item_name: "Quarterstaff",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "1"
+        },
+        {
+            item_name: "Darts (5)",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Mage's Cassock",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "7"
+        },
+        {
+            item_name: "Leather Belt",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "0.4"
+        },
+        {
+            item_name: "Boots",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".6"
+        },
+        {
+            item_name: "Backpack",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Spell Book",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "20"
+        },
+        {
+            item_name: "Quill & Ink",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "8"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "57 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
+        }
+]
+
+const meleeElvenEnchanter =
+[
+        {
+            melee_name: "Quarterstaff",
+            melee_damage: "1d4",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Quarterstaff, 2-Handed",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        }
+]
+
+const missileElvenEnchanter =
+[
+        {
+            missile_name: "Dart (Thrown)",
+            missile_range: "15/30/45",
+            missile_damage: "1d4",
+            missile_bonus: "0",
+            missile_ammo: "5"
+        }
+]
+
 const itemsElvenNightblade =
 [
         {
@@ -2046,7 +2250,7 @@ const itemsElvenNightblade =
             item_value: "30"
         },
         {
-            item_name: "Quarrel Case",
+            item_name: "Case (20 Bolts)",
             item_weight: ".17",
             item_count: "1",
             item_value: ""
@@ -2189,7 +2393,7 @@ const itemsElvenSpellsword =
             item_value: ""
         },
         {
-            item_name: "Quiver",
+            item_name: "Quiver (20 Arrows)",
             item_weight: ".17",
             item_count: "1",
             item_value: ""
@@ -2296,7 +2500,7 @@ const itemsExplorer =
             item_value: "7"
         },
         {
-            item_name: "Quiver",
+            item_name: "Quiver (20 Arrows)",
             item_weight: ".17",
             item_count: "1"
         },
@@ -2474,7 +2678,7 @@ const itemsFighter =
             item_value: "30"
         },
         {
-            item_name: "Quarrel Case",
+            item_name: "Case (20 Bolts)",
             item_weight: ".17",
             item_count: "1"
         },
@@ -2577,7 +2781,7 @@ const itemsMage =
             item_name: "Spell Book",
             item_weight: "0.17",
             item_count: "1",
-            item_value: ""
+            item_value: "20"
         },
         {
             item_name: "Tinderbox",
@@ -2640,7 +2844,7 @@ const itemsThief =
             item_value: "30"
         },
         {
-            item_name: "Quarrel Case",
+            item_name: "Case (20 Bolts)",
             item_weight: ".17",
             item_count: "1"
         },
