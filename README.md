@@ -231,11 +231,11 @@ The following macros can be found in the /macros sub-directory of the git. They 
 ## Supporting API Scripts
 The following scripts can be found in the /scripts directory of the git. They are also *highly* recommended:
 
-* **AddAbiliites**: Invoked by selecting one or more tokens on the map and then typing '!AddAbilities' in the Roll20 chat window. This will add common ACKS abilities to each selected tokens' character sheet > Skills > Abilities repeating list. For example, Find Secret Doors, Hear Noise, etc.
-
 * **AddAttacks** : Invoked by selecting one or more tokens on the map and then typing '!AddAttacks' in the Roll20 chat window. This will add 'generic' melee and missile attacks to each selected tokens' character sheet > Combat > Melee/Missile Attacks repeating lists. For example, Punch, Kick, Improvised, etc.
 
 * **AddItems** : Invoked by selecting one or more tokens on the map and then typing '!AddItems CLASSNAME' in the Roll20 chat window. This will add the specified class's generic pack contents (including armor and weapons) to the selected tokens' character sheet > Equipment > Equipment repeating list. It will also create corresponding melee and missile attack entries, similar to !AddAttacks, above. The equipment data includes Wieght, Count, and Value, each marked as Equipped. The character's *encumbrance* and all derived values will be automatically updated after the script runs. **Important:** CLASSNAME is the capitalized class name without any spaces, hyphens, or special characters in between. For example, 'Elven Spellsowrd' should be entered as 'ElvenSpellsword'.
+
+* **AddSkills**: Invoked by selecting one or more tokens on the map and then typing '!AddAbilities' in the Roll20 chat window. This will add common ACKS abilities to each selected tokens' character sheet > Skills > Abilities repeating list. For example, Find Secret Doors, Hear Noise, etc.
 
 ### Author's Note
 These scripts were derived from the same source found in the Roll20 forums. I did not author this script and do not recall who on the forums did. If anyone knows, please contact me so I can provide the proper credit.

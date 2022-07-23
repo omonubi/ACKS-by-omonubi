@@ -1,7 +1,6 @@
 // Game: ACKS
-// Adds item packs to character sheets, by name
-// Select PC tokens tokens, enter !AddItems [ClassName]
-// Do NOT include race name (Dwarven, Elven, etc.) in the ClassName parameter.
+// Adds common skills (detect traps, hear noise, etc.) to character sheet
+// Select PC tokens and enter !AddSkills in the chat
 
 var generateUUID = (function() {
     "use strict";
@@ -40,66 +39,48 @@ generateRowID = function () {
 on("ready", function() {
 
     on("chat:message", function (msg) {
-        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content.split(" ",1) == "!AddItems")  
+        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddSkills")  
         {
-            addItems(msg);
+            addAbilities(msg);
         }
     });
 });
 
 // const sc = str => sendChat("", `${str}`) // Needed if not declared elsewhere
 
-const addItems = msg =>
+const addAbilities = msg =>
 {
     if(!msg.selected) 
     {
-        sc("Select one or more representative tokens before running the api command.") 
+        sc("Please select one or more representative tokens before running the api command") 
         return
     }
     
-    const itemList = msg.content.split(" ",2)[1];
-    log('itemList: ' + itemList);
-    if (itemList == undefined) {
-        sc("No list property found.");
-        return;
-    }
-
     msg.selected.forEach((token, index) =>
     {
         if(!getObj(msg.selected[index]._type,msg.selected[index]._id).get('represents'))
         {
-            sc(`${getObj(msg.selected[index]._type,msg.selected[index]._id).get('name')} is not representative`);
-            return;
+            sc(`${getObj(msg.selected[index]._type,msg.selected[index]._id).get('name')} is not representative`)
+            return
         }
         else
         {
-            let reps = getObj(msg.selected[index]._type,msg.selected[index]._id).get('represents');
-            if (itemList == 'Assassin') generateListAssassin(reps)
-            else if (itemList == 'Bard') generateListBard(reps)
-            else if (itemList == 'Bladedancer') generateListBladedancer(reps)
-            else if (itemList == 'Cleric') generateListCleric(reps)
-            else if (itemList == 'Craftpriest') generateListCraftpriest(reps)
-            else if (itemList == 'Explorer') generateListExplorer(reps)
-            else if (itemList == 'Fighter') generateListFighter(reps)
-            else if (itemList == 'Mage') generateListMage(reps)
-            else if (itemList == 'Nightblade') generateListNightblade(reps)
-            else if (itemList == 'Spellsword') generateListSpellsword(reps)
-            else if (itemList == 'Thief') generateListThief(reps)
-            else if (itemList == 'Vaultguard') generateListVaultguard(reps)
-            else sc("Invalid list '" + itemList + "'.");
+            let reps = getObj(msg.selected[index]._type,msg.selected[index]._id).get('represents')
+            generateAbilities(reps)
+            generateProficiencies(reps)
         }
     })
 }
 
-const generateListAssassin = reps =>
+const generateAbilities = reps =>
 {
-    itemsAssassin.forEach(item =>
+    abilities.forEach(atk =>
     {
         const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
+        const repString = `repeating_abilities_${generateRowID()}`;
+        Object.keys(atk).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
+            data[`${repString}_${field}`] = atk[field];
         });
 
         // set attributes
@@ -108,15 +89,15 @@ const generateListAssassin = reps =>
     })
 }
 
-const generateListBard = reps =>
+const generateProficiencies = reps =>
 {
-    itemsBard.forEach(item =>
+    proficiencies.forEach(atk =>
     {
         const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
+        const repString = `repeating_skills_${generateRowID()}`;
+        Object.keys(atk).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
+            data[`${repString}_${field}`] = atk[field];
         });
 
         // set attributes
@@ -125,1104 +106,71 @@ const generateListBard = reps =>
     })
 }
 
-const generateListBladedancer = reps =>
-{
-    itemsBladedancer.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListCleric = reps =>
-{
-    itemsCleric.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListCraftpriest = reps =>
-{
-    itemsCraftpriest.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListExplorer = reps =>
-{
-    itemsExplorer.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListFighter = reps =>
-{
-    itemsFighter.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListMage = reps =>
-{
-    itemsMage.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListNightblade = reps =>
-{
-    itemsNightblade.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListSpellsword = reps =>
-{
-    itemsSpellsword.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListThief = reps =>
-{
-    itemsThief.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const generateListVaultguard = reps =>
-{
-    itemsVaultguard.forEach(item =>
-    {
-        const data = {};
-        const repString = `repeating_items_${generateRowID()}`;
-        Object.keys(item).forEach(field => {
-            log(`field: ${field}`)
-            data[`${repString}_${field}`] = item[field];
-        });
-
-        // set attributes
-        setAttrs(reps, data);
-        
-    })
-}
-
-const itemsAssassin =
+const abilities =
 [
         {
-            item_name: "Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
+            ability_name: "Estimate Value",
+            ability_source: "common",
+            ability_target: "18-(@{level}-1)",
+            ability_details: "This skills is general knowledge of the value of non-magical or ancient things; goods common to the campaign setting that a person might know the value of, based on their life experience. All characters can successfully guesstimate the value of such things on a throw of 18+. This is reduced by 1 for each additional level beyond the first."
         },
         {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "3"
+            ability_name: "Find Secret Door",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "Some doors are somehow concealed or hidden – these are secret doors. Common secret doors are sliding panels in a wall, trapdoors under rugs, and so on. Secret doors can only be spotted if characters are specifically looking for them. When a player declares that his character is looking for secret door, the Judge should make a proficiency throw on behalf of the character. All characters except elves will spot a secret door if one is present on a throw of 18+ on 1d20. Elves have keen eyes that allow them to detect hidden and secret doors with a proficiency throw of 8+ on 1d20 when actively searching, or 14+ on casual inspection. It takes 1 turn for a character to search a 10' x 10' area. Since the Judge rolls the dice, the players never know if the roll failed or if there simply is no door in the area searched. Each character has only one chance to find each secret door."
         },
         {
-            item_name: "Leather Armor",
-            item_weight: "2",
-            item_count: "1",
-            item_value: "20"
+            ability_name: "Find Traps",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "While thieves have a special skill to detect traps, characters of all classes can search for non-magical traps with time and caution. All characters except dwarves succeed in spotting a trap with a proficiency throw of 18+ on 1d20. Dwarves succeed with a proficiency throw of 14+. Players must declare that their characters are actively looking for traps, and they must be looking in the right place. This roll may only be made once per character in a particular location, and it takes 1 turn per 10' x 10' area searched. The Judge secretly rolls the dice for these checks, because the players will never know if they failed to find the trap or if there is not one present."
+        },
+	{
+            ability_name: "Forage",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "Foraging for food is an activity that can be accomplished without hindering travel by gathering fruit, nuts, and vegetables. For each day of travel while foraging, a character should attempt a proficiency throw of 18+ on 1d20. A successful result indicates that sufficient food for 1d6 man-sized creatures has been acquired. Characters with the Survival proficiency gain a +4 bonus on their proficiency throws to forage."
         },
         {
-            item_name: "Tunic and Pants",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "4"
+            ability_name: "Force Door",
+            ability_source: "common",
+            ability_target: "18-@{str_mod}*4",
+            ability_details: "A stuck door can be forced open with brute strength. Forcing open a door requires a proficiency throw of 18+. Doors of unusual material or size may impose a penalty on this proficiency throw. In addition, for each point of Strength adjustment, modify the result of the die roll by +/- 4. (A character with Strength 18 thus opens doors with a proficiency throw of 6+). If two characters cooperate to force open a door, use the stronger character’s Strength adjustment +4. A roll of 1 always fails to open a door. It takes only one combat round to force open a door, and characters may try again if they fail."
         },
         {
-            item_name: "Cloak",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
+            ability_name: "Hear Noise",
+            ability_source: "common",
+            ability_target: "18+(@{has_helm}*4)[helm]",
+            ability_details: "Players will sometimes want their character to listen at a door or intersection to hear any noises beyond. Again, the Judge should make a proficiency throw on behalf of the character. A throw of 18+ on 1d20 succeeds. Dwarves and elves only need to throw 14+ due to their keen hearing. A thief has specially trained for this task, and has a different chance of success (refer to the Thief Skills table). This attempt may only be made one time at any door or intersection by a character. Note that some creatures, such as undead, do not make noise."
         },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".6"
-        },
-        {
-            item_name: "Belt Pouch",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".5"
-        },
-        {
-            item_name: "Dice",
-            item_weight: ".01",
-            item_count: "2",
-            item_value: ""
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
+	{
+            ability_name: "Hunt",
+            ability_source: "common",
+            ability_target: "14",
+            ability_details: "Hunting succeeds on a proficiency throw of 14+ and indicates that sufficient food for 2d6 man-sized creatures has been acquired. However, hunting must be engaged as the sole activity for a day with no traveling possible. In addition, there will be one wandering monster check, from the table appropriate for the terrain, while the group is hunting. Characters with the Survival proficiency gain a +4 bonus on their proficiency throws to hunt."
         }
 ]
 
-const itemsBard =
-[,
-        {
-            item_name: "Crossbow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "30"
-        },
-        {
-            item_name: "Quarrel",
-            item_weight: ".01",
-            item_count: "20"
-        },
-        {
-            item_name: "Short Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },        
-        {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "3"
-        },
-        {
-            item_name: "Leather Armor",
-            item_weight: "2",
-            item_count: "1",
-            item_value: "20"
-        },
-        {
-            item_name: "Tunic and Pants",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "4"
-        },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".6"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Musical Instrument",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "25"
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsBladedancer =
-[,
-        {
-            item_name: "Sword",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: "10"
-        },
-        {
-            item_name: "Leather Armor",
-            item_weight: "2",
-            item_count: "1",
-            item_value: "20"
-        },
-        {
-            item_name: "Cloak, Silk",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "15"
-        },
-        {
-            item_name: "Bladedancer's Head Dress",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "20"
-        },
-        {
-            item_name: "Holy Symbol",
-            item_weight: "0",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsCleric =
+const proficiencies =
 [
         {
-            item_name: "Mace",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "5"
-        },
-        {
-            item_name: "Shield",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Banded Plate Armor",
-            item_weight: "5",
-            item_count: "1",
-            item_value: "50"
-        },
-        {
-            item_name: "Priest's Cassock",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Shoes",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".4"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Holy Symbol",
-            item_weight: "0",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Holy Book",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },,
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsCraftpriest =
-[,
-        {
-            item_name: "War Hammer",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "5"
-        },
-        {
-            item_name: "Banded Plate Armor",
-            item_weight: "5",
-            item_count: "1",
-            item_value: "50"
-        },
-        {
-            item_name: "Shield",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Holy Symbol",
-            item_weight: "0",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Craftman's Tools",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "25"
-        },,
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsExplorer =
-[
-        {
-            item_name: "Longbow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Arrows",
-            item_weight: ".01",
-            item_count: "20"
-        },
-        {
-            item_name: "Spear",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "3"
-        },
-        {
-            item_name: "Short Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "3"
-        },
-        {
-            item_name: "Chainmail Armor",
-            item_weight: "4",
-            item_count: "1",
-            item_value: "40"
-        },
-        {
-            item_name: "Cloak",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".6"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Lantern",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
-        },
-        {
-            item_name: "Oil, Common",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: ".3"
-        },
-        {
-            item_name: "Blanket",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Rope, 50'",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Iron Spikes",
-            item_weight: ".01",
-            item_count: "12",
-            item_value: ""
-        },
-        {
-            item_name: "Small Hammer",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        }
-]
-
-const itemsFighter =
-[
-        {
-            item_name: "Sword",
-            item_weight: "0.16",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Shield",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Chainmal Armor",
-            item_weight: "4",
-            item_count: "1",
-            item_value: "40"
-        },
-        {
-            item_name: "Crossbow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "30"
-        },
-        {
-            item_name: "Quarrel",
-            item_weight: ".01",
-            item_count: "20"
-        },
-        {
-            item_name: "Tunic and Pants",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "4"
-        },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".3"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsMage =
-[
-        {
-            item_name: "Quarterstaff",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Mage's Cassock",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Shoes",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".4"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Spell Book",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsNightblade =
-[
-        {
-            item_name: "Crossbow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "30"
-        },
-        {
-            item_name: "Quarrel",
-            item_weight: ".01",
-            item_count: "20",
-            item_value: ""
-        },
-        {
-            item_name: "Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "3"
-        },
-        {
-            item_name: "Leather Armor",
-            item_weight: "2",
-            item_count: "1",
-            item_value: "20"
-        },
-        {
-            item_name: "Cloak",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Grappling Hook",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "25"
-        },
-        {
-            item_name: "Rope, 50'",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Crowbar",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Oil, Military",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
-        },,
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsSpellsword =
-[,
-        {
-            item_name: "Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "3"
-        },
-        {
-            item_name: "Composite Bow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Arrow",
-            item_weight: ".01",
-            item_count: "20",
-            item_value: ""
-        },
-        {
-            item_name: "Chainmail Armor",
-            item_weight: "4",
-            item_count: "1",
-            item_value: "40"
-        },
-        {
-            item_name: "Cloak",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".6"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Spell Book",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ""
-        },,
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "8",
-            item_value: ""
-        }
-]
-
-const itemsThief =
-[
-        {
-            item_name: "Pole, 10'",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ".1"
-        },
-        {
-            item_name: "Short Sword",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Dagger",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: "3"
-        },
-        {
-            item_name: "Crossbow",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "30"
-        },
-        {
-            item_name: "Quarrel",
-            item_weight: ".01",
-            item_count: "20"
-        },
-        {
-            item_name: "Leather Armor",
-            item_weight: "2",
-            item_count: "1",
-            item_value: "20"
-        },
-        {
-            item_name: "Cloak",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Tunic and Pants",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "4"
-        },
-        {
-            item_name: "Boots",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".6"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Sack, Large",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: ".8"
-        },
-        {
-            item_name: "Thieves' Tools",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "25"
-        },
-        {
-            item_name: "Rope, 50'",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "1"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
-        },
-        {
-            item_name: "Lantern",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Hammer",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Iron Spike",
-            item_weight: ".01",
-            item_count: "12",
-            item_value: ""
-        },
-        {
-            item_name: "Oil, Military",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: "2"
-        },,
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ".6"
-        }
-]
-
-const itemsVaultguard =
-[,
-        {
-            item_name: "Battle Axe",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "7"
-        },
-        {
-            item_name: "Hand Axe",
-            item_weight: "0.17",
-            item_count: "3",
-            item_value: "4"
-        },
-        {
-            item_name: "Banded Plate Armor",
-            item_weight: "5",
-            item_count: "1",
-            item_value: "50"
-        },
-        {
-            item_name: "Shield",
-            item_weight: "1",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Backpack",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "2"
-        },
-        {
-            item_name: "Lantern",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
-            item_name: "Oil (Military)",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: "2"
-        },
-        {
-            item_name: "Oil (Common)",
-            item_weight: "0.17",
-            item_count: "3",
-            item_value: ".3"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
-        },,
-        {
-            item_name: "Rations (1 Day)",
-            item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
-            item_count: "1",
-            item_value: ""
+            skill_name: "Adventuring",
+            skill_rank: "1",
+            skill_type: "General",
+            skill_target: "18",
+            skill_details: "The character is well-equipped for a life of adventure. He knows how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. He has a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the proficiency throws of standard adventuring tasks."
+        },
+        {
+            skill_name: "TBD",
+            skill_rank: "1",
+            skill_type: "General",
+            skill_target: "18"
+        },
+        {
+            skill_name: "TBD",
+            skill_rank: "1",
+            skill_type: "Class",
+            skill_target: "18"
         }
 ]

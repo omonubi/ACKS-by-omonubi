@@ -120,11 +120,11 @@ const meleeAttacks =
         },
         {
             melee_name: "Torch",
-            melee_damage: "1d3",
+            melee_damage: "1d4",
             melee_bonus: "0"
         },
         {
-            melee_name: "Improvised",
+            melee_name: "Improvised Melee",
             melee_damage: "1d3",
             melee_bonus: "0"
         }
@@ -133,9 +133,9 @@ const meleeAttacks =
 const missileAttacks =
 [
         {
-            missile_name: "Improvised",
+            missile_name: "Improvised Throw",
             missile_range: "10/20/30",
             missile_damage: "1d3",
-            melee_bonus: "0"
+            missile_bonus: "0"
         }
 ]
