@@ -186,7 +186,9 @@
                 <input type='number' min='0' max='10' value='0' name='attr_mod_fatigued'/>
             <label>Inspired</label>
                 <input type='checkbox' value='1' name='attr_isInspired'/>
-            <label>Movement</label>
+            <label>Move, Base</label>
+                <input type='number'value='120' name='attr_base_movement'/>
+            <label>Move, Mod</label>
                 <input type='number'value='0' name='attr_mod_movement'/>
             <label>Prone</label>
                 <input type='checkbox' value='4' name='attr_isProne'/>
@@ -2542,7 +2544,7 @@ on('change:enc_capacity change:encumbrance change:isBedrest change:isBlinded cha
 
 function updateMovementSpeed() {
     /*console.log('updateMovementSpeed()');*/
-    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'mod_movement'], function(values) {
+    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'base_movement', 'mod_movement'], function(values) {
         const encCapacity = Number(values['enc_capacity']) || 0; // how much can be carried?
         const theEncumbrance = Number(values['encumbrance']) || 0; // how much is being carried?
         const isBedrest = Number(values['isBedrest']) || 0; // half-speed
@@ -2552,12 +2554,13 @@ function updateMovementSpeed() {
         const isProne = Number(values['isProne']) || 0; // 5' maximum speed
         const isUnconscious = Number(values['isUnconscious']) || 0; // can't move
         const isWithdrawing = Number(values['isWithdrawing']) || 0; // half-speed
+        const movementBase = Number(values['base_movement']) || 0; // conditional modifier
         const movementMod = Number(values['mod_movement']) || 0; // conditional modifier
 
         const moveThresholds = [5,7,10,encCapacity,999]; //ACKS Core, pg. 48
         const moveThresholdIndex = moveThresholds.findIndex(element => theEncumbrance < element);
 
-        const moveSpeeds = [120,90,60,30,0]; //ACKS Core, pg. 48
+        const moveSpeeds = [movementBase,(movementBase * .75),(movementBase * .5),(movementBase * .25),0]; //ACKS Core, pg. 48
         const moveDivisor = isBlinded == 4 ? 4 : ((isWithdrawing == 1 || isConcentrating == 1 || isBedrest == 1) ? 2 : 1);
         const theMovementSpeed = ((isCasting == 1 || isUnconscious == 1) ? 0 : ((isProne == 4) ? 15 : (moveSpeeds[moveThresholdIndex] + movementMod) / moveDivisor));
         const isMovementZero = (theMovementSpeed > 0 ? 0 : 1);
