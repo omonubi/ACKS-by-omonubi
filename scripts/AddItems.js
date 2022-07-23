@@ -825,6 +825,18 @@ const itemsAntiPaladin =
             item_value: "2"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -834,12 +846,6 @@ const itemsAntiPaladin =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -917,6 +923,18 @@ const itemsAssassin =
             item_value: "2"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -926,12 +944,6 @@ const itemsAssassin =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1035,6 +1047,18 @@ const itemsBarbarian =
             item_value: "25"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -1050,12 +1074,6 @@ const itemsBarbarian =
             item_name: "Wineskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1142,6 +1160,18 @@ const itemsBard =
             item_value: "25"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -1151,12 +1181,6 @@ const itemsBard =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1232,6 +1256,18 @@ const itemsBladedancer =
             item_value: "2"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -1241,12 +1277,6 @@ const itemsBladedancer =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1316,6 +1346,18 @@ const itemsCleric =
             item_value: ""
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -1325,12 +1367,6 @@ const itemsCleric =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1388,6 +1424,18 @@ const itemsDwarvenCraftpriest =
             item_value: "25"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -1397,12 +1445,6 @@ const itemsDwarvenCraftpriest =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -1514,6 +1556,12 @@ const itemsDwarvenDelver =
             item_value: "10"
         },
         {
+            item_name: "Oil, Military",
+            item_weight: "0.17",
+            item_count: "2",
+            item_value: "2"
+        },
+        {
             item_name: "Hammer",
             item_weight: "0.17",
             item_count: "1",
@@ -1524,12 +1572,6 @@ const itemsDwarvenDelver =
             item_weight: ".01",
             item_count: "12",
             item_value: ""
-        },
-        {
-            item_name: "Oil, Military",
-            item_weight: "0.17",
-            item_count: "2",
-            item_value: "2"
         },
         {
             item_name: "Rations (1 Day)",
@@ -1640,6 +1682,12 @@ const itemsDwarvenFury =
             item_value: ".8"
         },
         {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Oil, Military",
             item_weight: "0.17",
             item_count: "2",
@@ -1650,12 +1698,6 @@ const itemsDwarvenFury =
             item_weight: "0.17",
             item_count: "14",
             item_value: ".2"
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
-            item_value: ""
         },
         {
             item_name: "Waterskin",
@@ -1849,6 +1891,12 @@ const itemsDwarvenVaultguard =
             item_value: "2"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
             item_name: "Lantern",
             item_weight: "0.17",
             item_count: "1",
@@ -1865,12 +1913,6 @@ const itemsDwarvenVaultguard =
             item_weight: "0.17",
             item_count: "3",
             item_value: ".3"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
         },
         {
             item_name: "Rations (1 Day)",
@@ -2183,6 +2225,18 @@ const itemsElvenSpellsword =
             item_value: ""
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -2192,12 +2246,6 @@ const itemsElvenSpellsword =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -2295,28 +2343,16 @@ const itemsExplorer =
             item_value: "2"
         },
         {
-            item_name: "Rations (1 Day)",
+            item_name: "Tinderbox",
             item_weight: "0.17",
-            item_count: "14",
-            item_value: ".2"
-        },
-        {
-            item_name: "Waterskin",
-            item_weight: "1",
             item_count: "1",
-            item_value: ""
+            item_value: ".8"
         },
         {
             item_name: "Lantern",
             item_weight: "0.17",
             item_count: "1",
             item_value: "10"
-        },
-        {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
         },
         {
             item_name: "Oil, Common",
@@ -2347,6 +2383,18 @@ const itemsExplorer =
             item_weight: "0.17",
             item_count: "1",
             item_value: "2"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ""
         }
 ]
 
@@ -2449,6 +2497,18 @@ const itemsFighter =
             item_value: "2"
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -2458,12 +2518,6 @@ const itemsFighter =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -2526,6 +2580,18 @@ const itemsMage =
             item_value: ""
         },
         {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Torch",
+            item_weight: "0.17",
+            item_count: "12",
+            item_value: ""
+        },
+        {
             item_name: "Rations (1 Day)",
             item_weight: "0.17",
             item_count: "14",
@@ -2535,12 +2601,6 @@ const itemsMage =
             item_name: "Waterskin",
             item_weight: "1",
             item_count: "1",
-            item_value: ""
-        },
-        {
-            item_name: "Torch",
-            item_weight: "0.17",
-            item_count: "12",
             item_value: ""
         }
 ]
@@ -2639,18 +2699,6 @@ const itemsThief =
             item_value: "1"
         },
         {
-            item_name: "Tinderbox",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: ".8"
-        },
-        {
-            item_name: "Lantern",
-            item_weight: "0.17",
-            item_count: "1",
-            item_value: "10"
-        },
-        {
             item_name: "Hammer",
             item_weight: "0.17",
             item_count: "1",
@@ -2661,6 +2709,18 @@ const itemsThief =
             item_weight: ".01",
             item_count: "12",
             item_value: ""
+        },
+        {
+            item_name: "Tinderbox",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".8"
+        },
+        {
+            item_name: "Lantern",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "10"
         },
         {
             item_name: "Oil, Military",
