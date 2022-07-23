@@ -92,6 +92,7 @@ const addItems = msg =>
             else if (itemList == 'ElvenSpellsword') generateListElvenSpellsword(reps)
             else if (itemList == 'Explorer') generateListExplorer(reps)
             else if (itemList == 'Fighter') generateListFighter(reps)
+            else if (itemList == 'GnomishTrickster') generateListGnomishTrickster(reps)
             else if (itemList == 'Mage') generateListMage(reps)
             else if (itemList == 'Thief') generateListThief(reps)
             else sc("Invalid list '" + itemList + "'.");
@@ -780,6 +781,49 @@ const generateListFighter = reps =>
         
     })
     missileFighter.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_missile_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+}
+
+const generateListGnomishTrickster = reps =>
+{
+    itemsGnomishTrickster.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_items_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    meleeGnomishTrickster.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_melee_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    missileGnomishTrickster.forEach(item =>
     {
         const data = {};
         const repString = `repeating_missile_${generateRowID()}`;
@@ -2994,6 +3038,125 @@ const missileFighter =
             missile_damage: "1d6",
             missile_bonus: "0",
             missile_ammo: "20"
+        }
+]
+
+const itemsGnomishTrickster =
+[
+        {
+            item_name: "Short Sword",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "7"
+        },
+        {
+            item_name: "Dagger",
+            item_weight: "0.17",
+            item_count: "2",
+            item_value: "3"
+        },
+        {
+            item_name: "Crossbow",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "30"
+        },
+        {
+            item_name: "Case (20 Bolts)",
+            item_weight: ".17",
+            item_count: "1"
+        },
+        {
+            item_name: "Leather Armor",
+            item_weight: "2",
+            item_count: "1",
+            item_value: "20"
+        },
+        {
+            item_name: "Mummer's Mask",
+            item_weight: "0.01",
+            item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "Cloak",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "1"
+        },
+        {
+            item_name: "Tunic and Pants",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "4"
+        },
+        {
+            item_name: "Boots",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".6"
+        },
+        {
+            item_name: "Backpack",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Disguise Kit",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "25"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ".6"
+        },
+        {
+            item_name: "10 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
+        }
+]
+
+const meleeGnomishTrickster =
+[
+        {
+            melee_name: "Short Sword",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Dagger",
+            melee_damage: "1d4",
+            melee_bonus: "0"
+        }
+]
+
+const missileGnomishTrickster =
+[
+        {
+            missile_name: "Crossbow",
+            missile_range: "80/160/240",
+            missile_damage: "1d6",
+            missile_bonus: "0",
+            missile_ammo: "20"
+        },
+        {
+            missile_name: "Dagger (Thrown)",
+            missile_range: "10/20/30",
+            missile_damage: "1d4",
+            missile_bonus: "0",
+            missile_ammo: "1"
         }
 ]
 
