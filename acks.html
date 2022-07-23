@@ -2445,7 +2445,7 @@ function validateHitDice(theHitDice) {
 
 /********** Hit Point Check/Validation **********/
 on('change:hp', function(eventInfo) {
-    //if (eventInfo.sourceType == "player") validateHitPoints(); 
+    if (eventInfo.sourceType == "player") validateHitPoints(); 
 });
 
 function validateHitPoints() {
@@ -2457,7 +2457,7 @@ function validateHitPoints() {
         const validatedHP = theHP > theHPMax ? theHPMax : theHP;
 
         const output = {};
-        output['hp'] = validatedHP;
+        //output['hp'] = validatedHP;
         output['hp_is_below_one'] = (validatedHP < 1 ? 1 : 0);
         setAttrs(output);
     });
