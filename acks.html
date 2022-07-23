@@ -72,7 +72,7 @@
     <hr/>
     <div class='grid11'>        
         <div class='grid11111'>
-            <label class='spanheader'>Attributes</label>
+            <label class='spanheader'>Ability Scores</label>
             <label></label>
             <label>Current</label>
             <label>Nominal</label>
@@ -170,6 +170,8 @@
         </div>
         <div class='grid1111'>
             <label class='spanheader'>Current Conditions</label>
+            <label>Bedrest</label>
+                <input type='checkbox' value='1' name='attr_isBedrest'/>
             <label>Blinded</label>
                 <input type='checkbox' value='4' name='attr_isBlinded'/>
             <label>Casting</label>
@@ -285,13 +287,13 @@
 
 <div class='skills'>
     <div class='grid1'>
-        <label class='spanheader'>Abilities</label>
+        <label class='spanheader'>Skills</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_abilities'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
-                <input type='text' placeholder='Ability name...' name='attr_ability_name'/>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
+                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
                 <label>Details: </label><input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
@@ -2528,15 +2530,16 @@ function setMaxLevel() {
 };
 
 /********** Movement Speed **********/
-on('change:enc_capacity change:encumbrance change:isBlinded change:isCasting change:isConcentrating change:isProne change:isUnconscious change:isWithdrawing change:mod_movement', function(eventInfo) {
+on('change:enc_capacity change:encumbrance change:isBedrest change:isBlinded change:isCasting change:isConcentrating change:isProne change:isUnconscious change:isWithdrawing change:mod_movement', function(eventInfo) {
     updateMovementSpeed();
 });
 
 function updateMovementSpeed() {
     /*console.log('updateMovementSpeed()');*/
-    getAttrs(['enc_capacity', 'encumbrance', 'isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'mod_movement'], function(values) {
+    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'mod_movement'], function(values) {
         const encCapacity = Number(values['enc_capacity']) || 0; // how much can be carried?
         const theEncumbrance = Number(values['encumbrance']) || 0; // how much is being carried?
+        const isBedrest = Number(values['isBedrest']) || 0; // half-speed
         const isBlinded = Number(values['isBlinded']) || 0; // quarter-speed
         const isCasting = Number(values['isCasting']) || 0; // can't move
         const isConcentrating = Number(values['isConcentrating']) || 0; // half-speed
@@ -2549,7 +2552,7 @@ function updateMovementSpeed() {
         const moveThresholdIndex = moveThresholds.findIndex(element => theEncumbrance < element);
 
         const moveSpeeds = [120,90,60,30,0]; //ACKS Core, pg. 48
-        const moveDivisor = isBlinded == 4 ? 4 : ((isWithdrawing == 1 || isConcentrating == 1) ? 2 : 1);
+        const moveDivisor = isBlinded == 4 ? 4 : ((isWithdrawing == 1 || isConcentrating == 1 || isBedrest == 1) ? 2 : 1);
         const theMovementSpeed = ((isCasting == 1 || isUnconscious == 1) ? 0 : ((isProne == 4) ? 15 : (moveSpeeds[moveThresholdIndex] + movementMod) / moveDivisor));
         const isMovementZero = (theMovementSpeed > 0 ? 0 : 1);
         
