@@ -85,6 +85,7 @@ const addItems = msg =>
             else if (itemList == 'DwarvenFury') generateListDwarvenFury(reps)
             else if (itemList == 'DwarvenMachinist') generateListDwarvenMachinist(reps)
             else if (itemList == 'DwarvenVaultguard') generateListDwarvenVaultguard(reps)
+            else if (itemList == 'ElvenCourtier') generateListElvenCourtier(reps)
             else if (itemList == 'ElvenNightblade') generateListElvenNightblade(reps)
             else if (itemList == 'ElvenSpellsword') generateListElvenSpellsword(reps)
             else if (itemList == 'Explorer') generateListExplorer(reps)
@@ -493,6 +494,36 @@ const generateListDwarvenVaultguard = reps =>
     {
         const data = {};
         const repString = `repeating_missile_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+}
+
+const generateListElvenCourtier = reps =>
+{
+    itemsElvenCourtier.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_items_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    meleeElvenCourtier.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_melee_${generateRowID()}`;
         Object.keys(item).forEach(field => {
             log(`field: ${field}`)
             data[`${repString}_${field}`] = item[field];
@@ -1889,6 +1920,78 @@ const missileDwarvenVaultguard =
             missile_damage: "1d6",
             missile_bonus: "0",
             missile_ammo: "1"
+        }
+]
+
+const itemsElvenCourtier =
+[
+        {
+            item_name: "Sword",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "10"
+        },
+        {
+            item_name: "Chainmail Armor",
+            item_weight: "4",
+            item_count: "1",
+            item_value: "40"
+        },
+        {
+            item_name: "Shield",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "10"
+        },
+        {
+            item_name: "Cloak",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "1"
+        },
+        {
+            item_name: "Tunic and Pants (Armiger)",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "20"
+        },
+        {
+            item_name: "Boots (High)",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "3"
+        },
+        {
+            item_name: "Backpack",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ""
+        }
+]
+
+const meleeElvenCourtier =
+[
+        {
+            melee_name: "Sword",
+            melee_damage: "1d6",
+            melee_bonus: "0"
+        },
+        {
+            melee_name: "Sword, 2-Handed",
+            melee_damage: "1d8",
+            melee_bonus: "0"
         }
 ]
 
