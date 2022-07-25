@@ -532,7 +532,7 @@ input.showthievesskillshear[value='1'] ~ div.thievesskillshear {
 
 /**************** Repeating Styles  ****************/
 .repitem > input,
-.repitem > div > input 
+.repitem > div > input
 {
     margin-right: 10px;
 }
