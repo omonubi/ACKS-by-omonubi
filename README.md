@@ -88,8 +88,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *attack_throw* | If *class* is set to an ACKS class, or if monster *xp_value* is set to any value, this is auto-calculated. The value is determined by *level* (for ACKS class) or *hit_dice* (for monster). The value is used as the base target for all melee and missile throws. |
 | *num_attacks* | This is a text field used mainly to track monster attack patterns (e.g. 'claw/claw/bite, or breath'). Its default value is '1' and isn't used anywhere else on the sheet. |
 | melee attacks | A repeating list to track a creature's hand-to-hand attacks. Use different melee attack entries to track one- vs. two-handed usage/damage for applicable weapons. |
-| *melee_reach* | The weapon's reach, in feet. The default is 5. Not used elsewhere in the sheet - its only a visual reminder for the player. |
 | *melee_is_equipped* | Indicates that the weapon is currently equipped. |
+| *melee_reach* | The weapon's reach, in feet. The default is 5. Not used elsewhere in the sheet - its only a visual reminder for the player. |
 | *melee_throw* | When a throw is made, the user will be prompted for the target's AC, to select their fighting style (either 'Normal' or 'Dual-Wield'), and provide any additional modifier. The throw supports Exploding 20s to determine citical hits from ACKS HF pg. 85. |
 | *melee_is_twohanded* | Indicates that the weapon is exclusively used two-handed. If *melee_is_equipped* is also checked, triggers the ACKS -1 penalty to initiative rolls. |
 | *melee_bonus* | Applies to attack throws, but not damage. |
