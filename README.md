@@ -88,15 +88,27 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *attack_throw* | If *class* is set to an ACKS class, or if monster *xp_value* is set to any value, this is auto-calculated. The value is determined by *level* (for ACKS class) or *hit_dice* (for monster). The value is used as the base target for all melee and missile throws. |
 | *num_attacks* | This is a text field used mainly to track monster attack patterns (e.g. 'claw/claw/bite, or breath'). Its default value is '1' and isn't used anywhere else on the sheet. |
 | melee attacks | A repeating list to track a creature's hand-to-hand attacks. Use different melee attack entries to track one- vs. two-handed usage/damage for applicable weapons. |
-| *melee_wielding* | Indicates that the weapon is currently being wielded. |
+| *melee_reach* | The weapon's reach, in feet. The default is 5. Not used elsewhere in the sheet - its only a visual reminder for the player. |
+| *melee_is_equipped* | Indicates that the weapon is currently equipped. |
 | *melee_throw* | When a throw is made, the user will be prompted for the target's AC, to select their fighting style (either 'Normal' or 'Dual-Wield'), and provide any additional modifier. The throw supports Exploding 20s to determine citical hits from ACKS HF pg. 85. |
-| *melee_2hand* | Indicates that the weapon is exclusively used two-handed. |
+| *melee_is_twohanded* | Indicates that the weapon is exclusively used two-handed. If *melee_is_equipped* is also checked, triggers the ACKS -1 penalty to initiative rolls. |
 | *melee_bonus* | Applies to attack throws, but not damage. |
 | *melee_damage* | Use 'xdy+z' format. |
-| missile attacks | A repeating list to reack a creature's missile attacks, the same as for melee attacks, above. Note that ammo consumption is not currently tracked/modified automatically. |
-| *missile_wielding* | Indicates that the weapon is currently being wielded. |
+| missile attacks | A repeating list of a creature's missile attacks; the same as for melee attacks, above. Note that ammo consumption is not currently tracked/modified automatically. |
+| *missile_is_equipped* | Indicates that the weapon is currently equipped. |
 | *missile_range* | A text field to track a missile attack's range bands. For example, '10/20/30'. It is not used anywhere else in the sheet. |
+| *melee_damage* | Use 'xdy+z' format. |
 | *missile_ammo* | Used to keep track of ammo (*not* under equipment). |
+
+### A note concerning melee weapons and thier attacks
+This sheet was designed to accomodate the various ways in which ACKS allows characters to use different types of weapons in different modes of attacks, as follows:
+
+- Change the *melee_reach* value, as appropriate. For example, a spear has a reach of 10.
+- Check *melee_is_twohanded* checkbox to indicate that the weapon is exclusively for 2-handed use (and imparts a -1 initiative penalty).
+- For weapons that may be used as one- or two-handed, create two melee attack entries. For example, 'Spear' for 1d6 damage and 'Spear (Two-Handed) for 1d8 damage.
+- By default, anything can be thrown as 'Improvised' for 1d3 damage at 10/20/30 ranges (house rules); see ACKS pg. 103 for list of specialized throwing weapons and their ranges. These weapons should also have a dedicated missile attack line-item. For example, 'Spear (Thrown)' for 1d6 damage.
+- Check appropriate *melee_is_equipped* or *missile_is_equipped* checkboxes to indicate the character's current weapons configuration. For example, there would be three equipped weapon attacks for a spear; melee:'Spear', melee:'Spear (Two-Handed)', and missile:'Spear (Thrown)'. Neither melee attack would be checked as *melee_is_twohanded*, because a spear is not exclusively a two-handed weapon.
+- Finally, note that dual-wielding is a choice made during a melee strike, not a melee configuration per se. This option is captured during each combat roll (Style = Normal|Dual). Normal is the default.
 
 ---
 
@@ -281,7 +293,7 @@ Of course, your preferences may differ.
 | Ver | Date | Notes |
 | --- | --- | --- |
 | 0.1 | 220707 | Initial Upload |
-| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; exposed thieivng skill target value fields; added field locking mechanism, code optimizations |
+| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; added init penalty for wielding 2handed weapon; exposed thieivng skill target value fields; added field locking mechanism, code optimizations |
 
 ---
 

@@ -204,11 +204,12 @@
 
 <div class='combat'>
     <div class='grid1111'>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]-@{is_wielding_twohanded}[wpn]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]-@{isBlinded}/2[blind]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
         <input type='number' value='0' name='attr_mod_initiative'/>
+        <input type='hidden' value='0' name='attr_is_wielding_twohanded'/>
         <input type='number' value='0' name='attr_mod_surprise'/>
         <input type='number' value='0' name='attr_mod_reaction'/>
         <input type='number' value='0' name='attr_mod_morale'/>
@@ -259,11 +260,12 @@
         <fieldset class='repeating_melee'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{str_mod}[str]+@{melee_bonus}[wpn]+?{Style|Normal,0|Dual-Wield,1}[style]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
-            <label>Wielding:</label><input type='checkbox' name='attr_melee_wielding'/>
+            <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
+            <label>Equip:</label><input type='checkbox' name='attr_melee_is_equipped'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_melee_damage'/>
-            <label>2-Hand:</label><input type='checkbox' name='attr_melee_2hand'/>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
+                <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
                 <label>Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
@@ -2484,6 +2486,38 @@ function validateHitPoints() {
         //output['hp'] = validatedHP;
         output['hp_is_below_one'] = (validatedHP < 1 ? 1 : 0);
         setAttrs(output);
+    });
+};
+
+/********** Initiative Mods **********/
+on('change:repeating_melee:melee_is_equipped change:repeating_melee:melee_is_twohanded', function(eventInfo) {
+    updateInitiative(); 
+});
+
+// If character is equipped with a two-handed weapon, initative is -1
+function updateInitiative () {
+    /*console.log('updateInitiative()');*/
+
+    getSectionIDs('repeating_melee', function (ids) {
+        const equippedValues = [];
+        const twoHandValues = [];
+        ids.forEach(id => {
+            equippedValues.push('repeating_melee_' + id + '_melee_is_equipped');
+            twoHandValues.push('repeating_melee_' + id + '_melee_is_twohanded');
+        });
+        
+        let twoHandedIsEquipped = 0;
+        getAttrs([...equippedValues, ...twoHandValues], function (values) {
+            const output = {};
+
+            ids.forEach(id => {
+                const theEquipValue = values['repeating_melee_' + id + '_melee_is_equipped'] || 0;
+                const theTwoHandValue = values['repeating_melee_' + id + '_melee_is_twohanded'] || 0;
+                if (theEquipValue == 'on' && theTwoHandValue == 'on' ) twoHandedIsEquipped = 1;
+            });
+            output['is_wielding_twohanded'] = twoHandedIsEquipped;
+            setAttrs(output);
+        });
     });
 };
 
