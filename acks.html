@@ -280,10 +280,11 @@
             <label>Equipped:</label><input type='checkbox' name='attr_missile_wielding'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
-            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>Attack Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
+                <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>.
@@ -418,7 +419,7 @@
                     <option value='80000'>Lavishly Opulent</option>
                 </select>
             <label>Hireling Fees</label>
-                <div><input type='number' name='attr_hireling_fees' readonly/> gp</div>
+                <div><input type='number' value='0' name='attr_hireling_fees' readonly/> gp</div>
             <hr class='spangrid'/>
             <label class='emphasis'>Total Fees</label>
                 <div><input type='number' value='12' name='attr_total_monthly_fees' readonly/> gp</div>
@@ -1419,7 +1420,7 @@
             <label></label><label></label>
         </div>
         <div class='grid1111'>
-            <label>Hireling Fees:</label><input type='number' name='attr_hireling_fees' readonly/>
+            <label>Hireling Fees:</label><input type='number' value='0' name='attr_hireling_fees' readonly/>
             <label></label><label></label>
         </div>
     </div>
@@ -1514,6 +1515,7 @@
     <hr/>
     <div>
         <label class='spanheader'>Experience Log</label>
+        <label>XP Reserve:</label><input type='number' value='0' name='attr_xp_reserve'/>
         <fieldset class='repeating_experience'>            
             <label>Date: </label><input class='xpamount' type='text' name='attr_xp_date'/>
             <label>Amount: </label><input class='xpamount' type='number' name='attr_xp_amount'/>

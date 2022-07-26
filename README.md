@@ -98,7 +98,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *missile_is_equipped* | Indicates that the weapon is currently equipped. |
 | *missile_range* | A text field to track a missile attack's range bands. For example, '10/20/30'. It is not used anywhere else in the sheet. |
 | *melee_damage* | Use 'xdy+z' format. |
-| *missile_ammo* | Used to keep track of ammo (*not* under equipment). |
+| *missile_ammo* | Two fields (optional). Used to keep track of ammo (*not* tracked under equipment). Use the hidden field to track total ammo on-hand prior to combat, and the unhidden field to track ammo remaining after making attacks. Before battle, the two fields should have the same value. After battle, compute the difference and allow the character to retrieve half of their fired ammo. |
 
 ### A note concerning melee weapons and thier attacks
 This sheet was designed to accomodate the various ways in which ACKS allows characters to use different types of weapons in different modes of attacks, as follows:
