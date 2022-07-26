@@ -258,7 +258,7 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{str_mod}[str]+@{melee_bonus}[wpn]+?{Style|Normal,0|Dual-Wield,1}[style]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style]+@{melee_bonus}[wpn]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Equipped:</label><input type='checkbox' name='attr_melee_is_equipped'/>
             <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
@@ -266,7 +266,7 @@
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
-                <label>Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
+                <label>Additional Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>.

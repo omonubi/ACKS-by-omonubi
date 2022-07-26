@@ -90,7 +90,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | melee attacks | A repeating list to track a creature's hand-to-hand attacks. Use different melee attack entries to track one- vs. two-handed usage/damage for applicable weapons. |
 | *melee_is_equipped* | Indicates that the weapon is currently equipped. |
 | *melee_reach* | The weapon's reach, in feet. The default is 5. Not used elsewhere in the sheet - its only a visual reminder for the player. |
-| *melee_throw* | When a throw is made, the user will be prompted for the target's AC, to select their fighting style (either 'Normal' or 'Dual-Wield'), and provide any additional modifier. The throw supports Exploding 20s to determine citical hits from ACKS HF pg. 85. |
+| *melee_throw* | When a throw is made, the user will be prompted for the target's AC, to select their fighting style (either 'Normal', 'Dual-Wield', or 'Finesse'), and provide any additional modifier. Note that the character's str and/or dex is included in the fighting style calculation. The throw supports Exploding 20s to determine citical hits from ACKS HF pg. 85. |
 | *melee_is_twohanded* | Indicates that the weapon is exclusively used two-handed. If *melee_is_equipped* is also checked, triggers the ACKS -1 penalty to initiative rolls. |
 | *melee_bonus* | Applies to attack throws, but not damage. |
 | *melee_damage* | Use 'xdy+z' format. |
