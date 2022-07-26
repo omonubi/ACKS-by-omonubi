@@ -284,7 +284,7 @@
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>Attack Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+                <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/> <!--<button type='action' name='act_reset-ammo'>Reset</button>-->
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>.
@@ -1666,6 +1666,21 @@ function validateLevel(theLevel) {
     let validatedLevel = parseInt(theLevel)|0;
     return validatedLevel < LEVEL_MIN ? LEVEL_MIN : validatedLevel > LEVEL_MAX ? LEVEL_MAX : validatedLevel;
 };
+
+/********** Ammo reset *****************/
+on('clicked:repeating_missile:reset-ammo', function(eventInfo) {
+    getAttrs(['missile_ammo', 'missile_ammo_battle'], function(values) {
+        console.log(`value: ${getID(eventInfo.sourceAttribute)}`)
+        const ammoBeforeBattle = values['missile_ammo'];
+        const ammoAfterBattle = Number(values['ammo_missile_battle']) || 0;
+        console.log(`value: ${ammoBeforeBattle}`);
+        const usedAmmo = Math.max(ammoBeforeBattle - ammoAfterBattle,0);
+        const foundAmmo = Math.floor(usedAmmo / 2);
+        const output = {};
+        output['ammo'] = output['ammo_battle'] = ammoAfterBattle + foundAmmo;
+        setAttrs(output);
+    });
+});
 
 /********** Armor Class **********/
 on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isCharging change:isRetreating', function(eventInfo) {
