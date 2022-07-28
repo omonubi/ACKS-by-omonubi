@@ -46,7 +46,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class, though auto-populated values are zeroed out if/when a particular class exceeds its level maximum. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prereq' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
 | saving throws | I have added an 'agility save' to assist the Judge with tracking agility-based DEX penalties seperate from the DEX attribute. Use if/when desired. All other save targets are configurable, though they will be autoset when *character_class* is set to an ACKS class (overwriting previous values). Use the modifier fields as needed. |
-| conditions | These are used to track various common conditions. Their effects are automatically applied to the appropriate areas of the character sheet. Note that *fatigued* can by stacked. *Movement* can be used to increase/reduce the character's base movement per turn.
+| conditions | These are used to track various common conditions. Their effects are automatically applied to the appropriate areas of the character sheet. Note that *fatigued* can by stacked. *Movement* can be used to increase/reduce the character's base movement per turn. |
+| grayed-out fields | See Monster Stats, below. |
 
 ---
 

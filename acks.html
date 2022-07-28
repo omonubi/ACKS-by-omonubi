@@ -1432,7 +1432,7 @@
             <label>Class:</label>
                 <input type='text' name='attr_henchman_class'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{henchman_name}**}} {{subtitle=Henchman Loyalty Check}} {{color=brown}} {{Roll=[[2d6cs0cf0+@{henchman_morale}[morale]+@{class_henchmen_morale_bonus}[class]+?{Modifier (if any)|0}[mod]]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' > Morale Check</button>
-            <label>Details:</label><input type='checkbox' class='toggle-show' /><br/>
+            <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
                 <label>Level:</label>
                     <input type='number' min='0' max='14' value='0' name='attr_henchman_level'/>
@@ -1456,7 +1456,7 @@
             <label>Quantity:</label>
                 <input type='number' value='0' name='attr_merc_number'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{merc_type}**}} {{subtitle=Mercenary Loyalty Check}} {{color=brown}} {{Roll=[[2d6cs0cf0+@{merc_morale}[bonus]+?{Modifier (if any)|0}[mod]]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' > Morale Check</button>
-            <label>Details:</label><input type='checkbox' class='toggle-show' /><br/>
+            <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
                 <label>Monthly Fee:</label>
                     <input type='number' value='0' name='attr_merc_fee'/>
@@ -1475,7 +1475,7 @@
                 <input type='text' placeholder='See ACKS Core pg. 52...' name='attr_spec_occupation'/>
             <label>Monthly Fee:</label>
                 <input type='number' value='0' name='attr_spec_fee'/>
-            <label>Details:</label><input type='checkbox' class='toggle-show' /><br/><div class='details'>
+            <input type='checkbox' class='toggle-show' /><br/><div class='details'>
                 <textarea placeholder='Enter notes here...' name='attr_spec_details'></textarea>
             </div>
         </fieldset>
