@@ -1,5 +1,5 @@
 // Game: ACKS
-// Adds item packs to character sheets, by class name; including items (equipment) and attacks (melee and/or missile)
+// Adds item packs to character sheets, by class name; including items (equipment) and melee/missile defaults (melee and/or missile)
 // Select PC tokens, and enter !AddItems [ClassName] in Roll20 chat. 
 // ClassName must not contain spaces or symbols/hyphens, and each word in the name must be capitalized.
 

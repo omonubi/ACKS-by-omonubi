@@ -74,13 +74,13 @@ const addAbilities = msg =>
 
 const generateAbilities = reps =>
 {
-    abilities.forEach(atk =>
+    abilities.forEach(item =>
     {
         const data = {};
         const repString = `repeating_abilities_${generateRowID()}`;
-        Object.keys(atk).forEach(field => {
+        Object.keys(item).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = atk[field];
+            data[`${repString}_${field}`] = item[field];
         });
 
         // set attributes
@@ -91,13 +91,13 @@ const generateAbilities = reps =>
 
 const generateProficiencies = reps =>
 {
-    proficiencies.forEach(atk =>
+    proficiencies.forEach(item =>
     {
         const data = {};
         const repString = `repeating_skills_${generateRowID()}`;
-        Object.keys(atk).forEach(field => {
+        Object.keys(item).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = atk[field];
+            data[`${repString}_${field}`] = item[field];
         });
 
         // set attributes

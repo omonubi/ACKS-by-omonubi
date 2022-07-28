@@ -1,6 +1,6 @@
 // Game: ACKS
-// Adds common universal melee and missile attacks
-// Select PC tokens tokens, enter !AddAttacks
+// Adds common universal melee and missile repeating list entries
+// Select PC tokens tokens, enter !AddDefaults
 
 var generateUUID = (function() {
     "use strict";
@@ -39,16 +39,16 @@ generateRowID = function () {
 on("ready", function() {
 
     on("chat:message", function (msg) {
-        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddAttacks")  
+        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddDefaults")  
         {
-            meleeAttackAdd(msg);
+            meleeDefaultsAdd(msg);
         }
     });
 });
 
 const sc = str => sendChat("", `${str}`)
 
-const meleeAttackAdd = msg =>
+const meleeDefaultsAdd = msg =>
 {
     if(!msg.selected) 
     {
@@ -66,21 +66,21 @@ const meleeAttackAdd = msg =>
         else
         {
             let reps = getObj(msg.selected[index]._type,msg.selected[index]._id).get('represents')
-            generateMeleeAttacks(reps)
-	    generateMissileAttacks(reps)
+            generateMeleeDefaults(reps)
+	        generateMissileDefaults(reps)
         }
     })
 }
 
-const generateMeleeAttacks = reps =>
+const generateMeleeDefaults = reps =>
 {
-    meleeAttacks.forEach(atk =>
+    meleeDefaults.forEach(item =>
     {
         const data = {};
         const repString = `repeating_melee_${generateRowID()}`;
-        Object.keys(atk).forEach(field => {
+        Object.keys(item).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = atk[field];
+            data[`${repString}_${field}`] = item[field];
         });
 
         // set attributes
@@ -89,15 +89,15 @@ const generateMeleeAttacks = reps =>
     })
 }
 
-const generateMissileAttacks = reps =>
+const generateMissileDefaults = reps =>
 {
-    missileAttacks.forEach(atk =>
+    missileDefaults.forEach(item =>
     {
         const data = {};
         const repString = `repeating_missile_${generateRowID()}`;
-        Object.keys(atk).forEach(field => {
+        Object.keys(item).forEach(field => {
             log(`field: ${field}`)
-            data[`${repString}_${field}`] = atk[field];
+            data[`${repString}_${field}`] = item[field];
         });
 
         // set attributes
@@ -106,31 +106,35 @@ const generateMissileAttacks = reps =>
     })
 }
 
-const meleeAttacks =
+const meleeDefaults =
 [
         {
             melee_name: "Punch",
+            melee_reach: "5",
             melee_damage: "1d3",
             melee_bonus: "0"
         },
         {
             melee_name: "Kick",
+            melee_reach: "5",
             melee_damage: "1d4",
             melee_bonus: "-2"
         },
         {
             melee_name: "Torch",
+            melee_reach: "5",
             melee_damage: "1d4",
             melee_bonus: "0"
         },
         {
             melee_name: "Improvised Melee",
+            melee_reach: "5",
             melee_damage: "1d3",
             melee_bonus: "0"
         }
 ]
 
-const missileAttacks =
+const missileDefaults =
 [
         {
             missile_name: "Improvised Throw",
