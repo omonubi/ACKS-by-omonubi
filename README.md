@@ -108,7 +108,7 @@ This sheet was designed to accomodate the various ways in which ACKS allows char
 - For weapons that may be used as one- or two-handed, create two melee attack entries. For example, 'Spear' for 1d6 damage and 'Spear (Two-Handed) for 1d8 damage.
 - By default, anything can be thrown as 'Improvised' for 1d3 damage at 10/20/30 ranges (house rules); see ACKS pg. 103 for list of specialized throwing weapons and their ranges. These weapons should also have a dedicated missile attack line-item. For example, 'Spear (Thrown)' for 1d6 damage.
 - Check appropriate *melee_is_equipped* or *missile_is_equipped* checkboxes to indicate the character's current weapons configuration. For example, there would be three equipped weapon attacks for a spear; melee:'Spear', melee:'Spear (Two-Handed)', and missile:'Spear (Thrown)'. Neither melee attack would be checked as *melee_is_twohanded*, because a spear is not exclusively a two-handed weapon.
-- Finally, note that dual-wielding is a choice made during a melee strike, not a melee configuration per se. This option is captured during each combat roll (Style = Normal|Dual). Normal is the default.
+- Finally, note that dual-wielding and/or Weapon FInnesse proficiency is a choice made during a melee strike, not melee configurations per se. These options are captured during each combat roll (Style = Normal|Dual|Finesse). Normal is the default.
 
 ---
 
