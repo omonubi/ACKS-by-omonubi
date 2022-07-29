@@ -475,6 +475,7 @@ div.Explorer,
 div.Fighter,
 div.GnomishTrickster,
 div.Mage,
+div.Mystic,
 div.Thief {
     display: none;
     width: 100%;
@@ -499,6 +500,7 @@ input.showExplorer[value='1'] ~ div.Explorer,
 input.showFighter[value='1'] ~ div.Fighter,
 input.showGnomishTrickster[value='1'] ~ div.GnomishTrickster,
 input.showMage[value='1'] ~ div.Mage,
+input.showMystic[value='1'] ~ div.Mystic,
 input.showThief[value='1'] ~ div.Thief {
     display: block;
 }

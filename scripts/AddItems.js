@@ -94,6 +94,7 @@ const addItems = msg =>
             else if (itemList == 'Fighter') generateListFighter(reps)
             else if (itemList == 'GnomishTrickster') generateListGnomishTrickster(reps)
             else if (itemList == 'Mage') generateListMage(reps)
+            else if (itemList == 'Mystic') generateListMystic(reps)
             else if (itemList == 'Thief') generateListThief(reps)
             else sc("Invalid list '" + itemList + "'.");
         }
@@ -868,6 +869,49 @@ const generateListMage = reps =>
     })
 }
 
+const generateListMystic = reps =>
+{
+    itemsMystic.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_items_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    meleeMystic.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_melee_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+    missileMystic.forEach(item =>
+    {
+        const data = {};
+        const repString = `repeating_missile_${generateRowID()}`;
+        Object.keys(item).forEach(field => {
+            log(`field: ${field}`)
+            data[`${repString}_${field}`] = item[field];
+        });
+
+        // set attributes
+        setAttrs(reps, data);
+        
+    })
+}
+
 const generateListThief = reps =>
 {
     itemsThief.forEach(item =>
@@ -992,14 +1036,16 @@ const meleeAntiPaladin =
         {
             melee_name: "Morningstar",
             melee_damage: "1d10",
+            melee_reach: "5",
             melee_bonus: "0",
-            melee_2hand: "on"
+            melee_is_twohanded: "on"
         },
         {
             melee_name: "Two-Handed Sword",
             melee_damage: "1d10",
+            melee_reach: "5",
             melee_bonus: "0",
-            melee_2hand: "on"
+            melee_is_twohanded: "on"
         }
 ]
 
@@ -1096,16 +1142,19 @@ const meleeAssassin =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1117,7 +1166,8 @@ const missileAssassin =
             missile_range: "10/20/30",
             missile_damage: "1d4",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -1232,12 +1282,14 @@ const meleeBarbarian =
         {
             melee_name: "Two-Handed Sword",
             melee_damage: "1d10",
+            melee_reach: "5",
             melee_bonus: "0",
-            melee_2hand: "on"
+            melee_is_twohanded: "on"
         },
         {
             melee_name: "Hand Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1249,7 +1301,8 @@ const missileBarbarian =
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -1345,11 +1398,13 @@ const meleeBard =
         {
             melee_name: "Short Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1361,14 +1416,16 @@ const missileBard =
             missile_range: "80/160/240",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d4",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -1447,11 +1504,13 @@ const meleeBladedancer =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1543,11 +1602,13 @@ const meleeCleric =
         {
             melee_name: "Mace",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Mace, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1627,11 +1688,13 @@ const meleeDwarvenCraftpriest =
         {
             melee_name: "Warhammer",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Warhammer, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1771,16 +1834,19 @@ const meleeDwarvenDelver =
         {
             melee_name: "Battle Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Battle Axe, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Hand Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1792,21 +1858,24 @@ const missileDwarvenDelver =
             missile_range: "80/160/240",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Battle Axe (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         },
         {
             missile_name: "Hand Axe (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "2"
+            missile_ammo: "2",
+            missile_ammo_battle: "2"
         }
 ]
 
@@ -1897,16 +1966,19 @@ const meleeDwarvenFury =
         {
             melee_name: "Battle Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Battle Axe (2-Handed)",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Hand Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -1918,14 +1990,16 @@ const missileDwarvenFury =
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "2"
+            missile_ammo: "2",
+            missile_ammo_battle: "2"
         },
         {
             missile_name: "Hand Axe (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "2"
+            missile_ammo: "2",
+            missile_ammo_battle: "2"
         }
 ]
 
@@ -2040,11 +2114,13 @@ const meleeDwarvenMachinist =
         {
             melee_name: "Warhammer",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Warhammer (2-Handed)",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2124,16 +2200,19 @@ const meleeDwarvenVaultguard =
         {
             melee_name: "Battle Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Battle Axe, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Hand Axe",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2145,14 +2224,16 @@ const missileDwarvenVaultguard =
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         },
         {
             missile_name: "Hand Axe (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -2225,11 +2306,13 @@ const meleeElvenCourtier =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2309,11 +2392,13 @@ const meleeElvenEnchanter =
         {
             melee_name: "Quarterstaff",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Quarterstaff, 2-Handed",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2325,7 +2410,8 @@ const missileElvenEnchanter =
             missile_range: "15/30/45",
             missile_damage: "1d4",
             missile_bonus: "0",
-            missile_ammo: "5"
+            missile_ammo: "5",
+            missile_ammo_battle: "5"
         }
 ]
 
@@ -2434,16 +2520,19 @@ const meleeElvenNightblade =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2455,14 +2544,16 @@ const missileElvenNightblade =
             missile_range: "80/60/120",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -2600,21 +2691,25 @@ const meleeElvenRanger =
         {
             melee_name: "Short Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Spear",
             melee_damage: "1d6",
+            melee_reach: "10",
             melee_bonus: "0"
         },
         {
             melee_name: "Spear, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "10",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2626,21 +2721,24 @@ const missileElvenRanger =
             missile_range: "70/140/210",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Spear (Thrown)",
             missile_range: "20/40/60",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -2737,16 +2835,19 @@ const meleeElvenSpellsword =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2758,14 +2859,16 @@ const missileElvenSpellsword =
             missile_range: "70/140/210",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -2891,21 +2994,25 @@ const meleeExplorer =
         {
             melee_name: "Short Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Spear",
             melee_damage: "1d6",
+            melee_reach: "10",
             melee_bonus: "0"
         },
         {
             melee_name: "Spear, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "10",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -2917,21 +3024,24 @@ const missileExplorer =
             missile_range: "70/140/210",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Spear (Thrown)",
             missile_range: "20/40/60",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -3021,11 +3131,13 @@ const meleeFighter =
         {
             melee_name: "Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Sword, 2-Handed",
             melee_damage: "1d8",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -3037,7 +3149,8 @@ const missileFighter =
             missile_range: "80/160/240",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         }
 ]
 
@@ -3133,11 +3246,13 @@ const meleeGnomishTrickster =
         {
             melee_name: "Short Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -3149,14 +3264,16 @@ const missileGnomishTrickster =
             missile_range: "80/160/240",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d4",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
 
@@ -3229,13 +3346,116 @@ const meleeMage =
         {
             melee_name: "Quarterstaff",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Quarterstaff, 2-Handed",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         }
+]
+
+const itemsMystic =
+[
+        {
+            item_name: "Pole Arm",
+            item_weight: "1",
+            item_count: "1",
+            item_value: "7"
+        },
+        {
+            item_name: "Dagger",
+            item_weight: "0.17",
+            item_count: "2",
+            item_value: "3"
+        },
+        {
+            item_name: "Darts (5)",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Robe",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "6"
+        },
+        {
+            item_name: "Leather Belt",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "0.4"
+        },
+        {
+            item_name: "Sandals",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: ".4"
+        },
+        {
+            item_name: "Backpack",
+            item_weight: "0.17",
+            item_count: "1",
+            item_value: "2"
+        },
+        {
+            item_name: "Rations (1 Day)",
+            item_weight: "0.17",
+            item_count: "14",
+            item_value: ".2"
+        },
+        {
+            item_name: "Waterskin",
+            item_weight: "1",
+            item_count: "1",
+            item_value: ""
+        },
+        {
+            item_name: "80 gp",
+            item_weight: "0",
+            item_count: "0",
+            item_value: ""
+        }
+]
+
+const meleeMystic =
+[
+        {
+            melee_name: "Pole Arm",
+            melee_damage: "1d10",
+            melee_reach: "10",
+            melee_bonus: "0",
+            melee_is_twohanded: "on"
+        },
+        {
+            melee_name: "Dagger",
+            melee_damage: "1d4",
+            melee_reach: "5",
+            melee_bonus: "0"
+        }
+]
+
+const missileMystic =
+[
+        {
+            missile_name: "Dagger (Thrown)",
+            missile_range: "10/20/30",
+            missile_damage: "1d4",
+            missile_bonus: "0",
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
+        },
+        {
+            missile_name: "Dart (Thrown)",
+            missile_range: "15/30/45",
+            missile_damage: "1d4",
+            missile_bonus: "0",
+            missile_ammo: "5",
+            missile_ammo_battle: "5"
+        },
 ]
 
 const itemsThief =
@@ -3372,11 +3592,13 @@ const meleeThief =
         {
             melee_name: "Short Sword",
             melee_damage: "1d6",
+            melee_reach: "5",
             melee_bonus: "0"
         },
         {
             melee_name: "Dagger",
             melee_damage: "1d4",
+            melee_reach: "5",
             melee_bonus: "0"
         }
 ]
@@ -3388,13 +3610,15 @@ const missileThief =
             missile_range: "80/160/240",
             missile_damage: "1d6",
             missile_bonus: "0",
-            missile_ammo: "20"
+            missile_ammo: "20",
+            missile_ammo_battle: "20"
         },
         {
             missile_name: "Dagger (Thrown)",
             missile_range: "10/20/30",
             missile_damage: "1d4",
             missile_bonus: "0",
-            missile_ammo: "1"
+            missile_ammo: "1",
+            missile_ammo_battle: "1"
         }
 ]
