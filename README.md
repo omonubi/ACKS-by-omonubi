@@ -291,14 +291,6 @@ Of course, your preferences may differ.
 
 ---
 
-## Versionin History
-| Ver | Date | Notes |
-| --- | --- | --- |
-| 0.1 | 220707 | Initial Upload |
-| 0.1.1 | 2207xx (ongoing) | Added Player's Companion class descriptions; split class-based damage bonus into melee and missile; added support for Heavy Helm modifiers; added init penalty for wielding 2handed weapon; exposed thieivng skill target value fields; added field locking mechanism, code optimizations |
-
----
-
 ## Built With
 
 * [Roll20](https://roll20.net/)

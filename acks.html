@@ -277,7 +277,7 @@
         <fieldset class='repeating_missile'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
-            <label>Equipped:</label><input type='checkbox' name='attr_missile_wielding'/>
+            <label>Equipped:</label><input type='checkbox' name='attr_missile_is_equipped'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
             <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
             <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
@@ -1562,7 +1562,6 @@
     <hr/>
     <div>
         <label class='spanheader'>Experience Log</label>
-        <label>XP Reserve:</label><input type='number' value='0' name='attr_xp_reserve'/>
         <fieldset class='repeating_experience'>            
             <label>Date: </label><input class='xpamount' type='text' name='attr_xp_date'/>
             <label>Amount: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
