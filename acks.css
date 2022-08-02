@@ -206,7 +206,10 @@ img.floatright {
     float: right;
     margin: 0px 10px 15px 15px;
 }
-
+input 
+{
+    background-color: white;
+}
 input.width45 {
     text-align: center;
     width: 60px;
@@ -340,6 +343,7 @@ span.xpbonus {
 }
 
 textarea {
+    background-color: white;
     width: 98%;
 }
 div.journalbox {
