@@ -109,12 +109,6 @@ const generateProficiencies = reps =>
 const abilities =
 [
         {
-            ability_name: "Estimate Value",
-            ability_source: "common",
-            ability_target: "18-(@{level}-1)",
-            ability_details: "This skills is general knowledge of the value of non-magical or ancient things; goods common to the campaign setting that a person might know the value of, based on their life experience. All characters can successfully guesstimate the value of such things on a throw of 18+. This is reduced by 1 for each additional level beyond the first."
-        },
-        {
             ability_name: "Find Secret Door",
             ability_source: "common",
             ability_target: "18",
@@ -126,7 +120,7 @@ const abilities =
             ability_target: "18",
             ability_details: "While thieves have a special skill to detect traps, characters of all classes can search for non-magical traps with time and caution. All characters except dwarves succeed in spotting a trap with a proficiency throw of 18+ on 1d20. Dwarves succeed with a proficiency throw of 14+. Players must declare that their characters are actively looking for traps, and they must be looking in the right place. This roll may only be made once per character in a particular location, and it takes 1 turn per 10' x 10' area searched. The Judge secretly rolls the dice for these checks, because the players will never know if they failed to find the trap or if there is not one present."
         },
-	{
+	    {
             ability_name: "Forage",
             ability_source: "common",
             ability_target: "18",
@@ -144,11 +138,17 @@ const abilities =
             ability_target: "18+(@{has_helm}*4)[helm]",
             ability_details: "Players will sometimes want their character to listen at a door or intersection to hear any noises beyond. Again, the Judge should make a proficiency throw on behalf of the character. A throw of 18+ on 1d20 succeeds. Dwarves and elves only need to throw 14+ due to their keen hearing. A thief has specially trained for this task, and has a different chance of success (refer to the Thief Skills table). This attempt may only be made one time at any door or intersection by a character. Note that some creatures, such as undead, do not make noise."
         },
-	{
+	    {
             ability_name: "Hunt",
             ability_source: "common",
             ability_target: "14",
             ability_details: "Hunting succeeds on a proficiency throw of 14+ and indicates that sufficient food for 2d6 man-sized creatures has been acquired. However, hunting must be engaged as the sole activity for a day with no traveling possible. In addition, there will be one wandering monster check, from the table appropriate for the terrain, while the group is hunting. Characters with the Survival proficiency gain a +4 bonus on their proficiency throws to hunt."
+        },
+	    {
+            ability_name: "Perception",
+            ability_source: "common",
+            ability_target: "14-((@{wis_mod}[wis]+@{int_mod}[int])/2)*2",
+            ability_details: "Perception is a combination of intelligence and wisdom, applied to a base detection chance of 70%. The Judge may modify the roll based on environmental and other conditions."
         }
 ]
 
