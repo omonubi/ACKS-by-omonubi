@@ -153,9 +153,6 @@
             <label></label>
             <label>Base</label>
             <label>Mod</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_agility} **@{character_title} @{selected|token_name}**}} {{subtitle=Agility Throw}} {{color=orange}} {{Target=[[@{dex}]]}} {{Roll=[[1d20[die]+@{save_6_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_6'> Agility</button>
-                <input type='number' value='10' name='attr_dex'/>
-                <input type='number' value='0' name='attr_save_6_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blast & Breath}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_3_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_3'> Blast</button>
                 <input type='number' value='0' name='attr_save_3'/>
                 <input type='number' value='0' name='attr_save_3_mod'/>
@@ -1540,7 +1537,11 @@
         <label class='spanheader'>Character Background</label>
         <textarea placeholder='Enter details...' name='attr_background'></textarea>
     </div>
-    <div class='grid111'>
+    <div class='grid1111'>
+        <div class='journalbox'>
+            <label class='spanheader'>Appearance</label>
+            <textarea class='journalnotes' placeholder='Enter details...' name='attr_appearance'></textarea>
+        </div>
         <div class='journalbox'>
             <label class='spanheader'>Languages</label>
             <textarea class='journalnotes' name='attr_languages'>Common</textarea>
