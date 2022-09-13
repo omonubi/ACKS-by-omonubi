@@ -5,6 +5,17 @@ Hopefully, this documentation below comes in useful. I know I've struggled over 
 
 ---
 
+## Version 2.0
+This is v2 of the character sheet. The main differences between v1 and v2 are that I removed any/all SRD class-specific information from the sheet. I did this because, after a thorough review of just about all ACKS content I could find, it became clear that embedding this information was a fool's errand. It streamlined a lot of work when generating and using ACKS-specific classes, but also became un-maintainable. If you've been using the sheet and enjoiying this feature, my apoligies, but I couldn't maintain it.
+
+Additionally, I removed any spellcasting modifications beyond ACKS Core and Player's Companion; specifically Cantrips support and Shades of Magic. The further into ACKS Heroic Fantasy Handbook I delved, the more it became clear that the two magic systems (Core vs. HFH) are really not compatible without extensive sheet customizations to account for spellsinging and ceremonial magic. For now, this sheet sticks to non-HFH with the following exceptions, all of which can be ignored if desired:
+
+ - A BHR button exists to roll BHR, based on the character's max hit points
+ - Natural 20 combat rolls explode (to determine crits as per HFH)
+ - Fate points can be tracked
+
+---
+
 ## Installing
 To use this sheet in your own games:
 
@@ -26,12 +37,12 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Tab Title | Description |
 | --- | ---|
 | *Overview*     | The characters attributes, saves, key characteristics, names, and a summary of important combat stats and conditions. |
-| *Class* | Class-specific information. By default, displays a generic set of editable 'class-specific' modifiers, as well as spellcasting slots and a repertoire. If an ACKS class is specified in the *class* field, is reconfigured with custom class abilities and SRD information from the ACKS source books. |
+| *Class* | Class-specific information, such as class-specific global combat modifiers, spellcasting, and thieivng abilities. If the class in question doesn't require some (or any) of these, leave them alone. |
 | *Skills* | The first section is for custom abilities, such as *Find Secret Door* and *Hear Noise*. The second is for listing proficiencies. Each section provides a throw and a description button (see below). |
-| *Combat* | Contains buttons for initiative, surprise, etc., armor configuration, attack throw and type, melee attacks, missile attacks, and a few effects generators (crits and mortal wounds). |
+| *Combat* | Contains buttons for initiative, surprise, etc., armor configuration, attack throw and type, melee attacks, missile attacks, and critical effects generators. |
 | *Equipment* | Lists all equipment, calculates encumbrance and speed, currency (on hand, banked, and found recently), and standard of living and other monthly costs. |
 | *Hirelings* | Used for tracking henchmen, mercenaires, and specialists in the employ of the character. |
-| *Journal* | Tracks character background, languages, injuries. additional properties/debts, adventuring notes, and experience gains. |
+| *Journal* | Tracks character background, appearance, languages, injuries. additional properties/debts, adventuring notes, and experience gains. |
 | *Settings* | Use these settings to alter base movement/encumbrance functionality for non-humanoid creatures, such as horses, mules, etc. |
 
 ---
@@ -41,11 +52,11 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | Property | Description |
 | --- | --- |
 | *character_fullname* | Provided to allow for more 'expressive' and complete names than either the standard *character_name* or *token_name* properties. |
-| *class* | As a text field, allows for any class. However, if an ACKS class name (currently, ACKS Core only) is entered, will enable SRD class descriptions and summary in the sheet's Class tab, as well as auto-calculation of several key stats. **Important:** Setting/changing this property to an ACKS class - at any time - will over-write several other field values on the sheet. Change with caution! This field can now be 'locked', to help prevent accidental changes. |
-| *character_title* | If *class* is set to ACKS class, will display the appropriate title for the class and level in question. This field can now be 'locked', to help prevent accidental changes. |
-| *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class, though auto-populated values are zeroed out if/when a particular class exceeds its level maximum. |
+| *class* | As a text field, allows for any class name desired. |
+| *character_title* | As a text field, allows for any title name desired. |
+| *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prereq' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
-| saving throws | All save targets are configurable, though they will be autoset when *character_class* is set to an ACKS class (overwriting previous values). Use the modifier fields as needed. |
+| saving throws | Use the modifier fields as needed. |
 | conditions | These are used to track various common conditions. Their effects are automatically applied to the appropriate areas of the character sheet. Note that *fatigued* can by stacked. *Movement* can be used to increase/reduce the character's base movement per turn. |
 | grayed-out fields | See Monster Stats, below. |
 
@@ -55,11 +66,10 @@ The sheet is divided into tabs to help isolate different bodies of information a
 
 | Property | Description |
 | --- | --- |
-| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. If ACKS classes are selected (see below), the appropriate values will automatically be entered/overwritten. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. Note that *class_damage_reduction* must be applied manually at the time of the damage roll. |
-| spell slots | These can be used for any ACKS magic class, and they include a place to track cantrips and corruption (AXIOMS Shades of Magic). |
-| spell list | These should be self-explanatory. Use the Prepared checkbox to indicate if a spell is in the characater's repertoire or not (in a spellbook). Obviously, divine magical classes should always have all spells Prepared. Shades of Magic are also included but are optional. |
-| thieving abilities | These buttons' throw targets are determined by class and level, and will only be displayed if *class* is set to an appropriate ACKS class. |
-| SRD content | This content will only be displayed if *class* is set to an ACKS class. For example, to see the SRD description of the Elven Spellsword class enter 'Elven Spellsword' as the characters class. Currently, only classes from the ACS Core rulebook are supported. |
+| class bonuses | These fields are intended to capture *global* bonuses specific to the *class* selection. Class abilities that provide one or more of these bonuses but only under certain conditions should **not** be tracked here. Note that *class_damage_reduction* must be applied manually at the time of the damage roll. |
+| spell slots | These can be used for any spellcasting class. |
+| spell list | These should be self-explanatory. Use the Prepared checkbox to indicate if a spell is in the characater's repertoire or not (in a spellbook). |
+| thieving abilities | These buttons' throw targets are set manually. Leaving them empty will not produice a roll result. |
 
 ---
 
@@ -86,8 +96,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *armor_class* | This value is determine by selecting the appriopriate armor from the drop-down list, providing a bonus if necessary (e.g. magical armor), checking the Shield checkbox if wielded, and then accounting for DEX bonus. This value may also be auto-adjusted based on current, applicable conditions (see Overview tab). |
 | *has_helm* | If checked, activates heavy helm penalties and bonuses described in the ACKS Player's Companion sourcebook. |
 | effects generators | See Roll Templates, below. |
-| *attack_throw* | If *class* is set to an ACKS class, or if monster *xp_value* is set to any value, this is auto-calculated. The value is determined by *level* (for ACKS class) or *hit_dice* (for monster). The value is used as the base target for all melee and missile throws. |
-| *num_attacks* | This is a text field used mainly to track monster attack patterns (e.g. 'claw/claw/bite, or breath'). Its default value is '1' and isn't used anywhere else on the sheet. |
+| *attack_throw* | The value is used as the base target for all melee and missile throws. |
+| *num_attacks* | This is a text field used mainly to track monster attack patterns (e.g. 'claw/claw/bite, or breath'). Its default value is '1 (by weapon)' and isn't used anywhere else on the sheet. |
 | melee attacks | A repeating list to track a creature's hand-to-hand attacks. Use different melee attack entries to track one- vs. two-handed usage/damage for applicable weapons. |
 | *melee_is_equipped* | Indicates that the weapon is currently equipped. |
 | *melee_reach* | The weapon's reach, in feet. The default is 5. Not used elsewhere in the sheet - its only a visual reminder for the player. |
@@ -172,53 +182,13 @@ This tab contains base values used in making encumbrance and movement calculatio
 
 ---
 
-## Embedded Class Information
-If the following class names are entered into the *class* field, embedded descriptions, stats, saving throws, titles, XP goals, etc., with automagically be populated, based on the character's current level:
-
-- ACKS Core:
-    - Assassin
-    - Bard
-    - Bladedancer
-    - Cleric
-    - Dwarven Craftpriest
-    - Dwarven Vaultguard
-    - Elven Nightblade
-    - Elven Spellsword
-    - Explorer
-    - Fighter
-    - Mage
-    - Thief
-- ACKS Player's Companion:
-    - Anti-Paladin
-    - Barbarian
-    - Dwarven Delver
-    - Dwarven Fury
-    - Dwarven Machinist
-    - Elven Courtier
-    - Elven Enchanter
-    - Elven Ranger
-    - Gnomish Trickster
-    - Mystic
-
-**Important:** If when an ACKS class listed above is entered into the *class* field, any/all relevant data/values listed above will be immediately *overwritten*. Use cautiously!
-
----
-
 ## Monster Sheets
 Four additional, gray-labeled fields are used mainly for creature (non-PC or NPC) character sheets:
 
 ### Creature Morale & XP Value
-If/when an 'XP Value' is entered on the Overview tab, the sheet will assume the character data represents a monster or other 'non-class' creature, and the following constraints are implemented:
-
-* *attack_throw* is auto-calculated using the creature's *hit_dice* value, instead of class/level.
-* *class_damage_bonus* is not auto-calculated based on level
-* *character_title* is not set
-
-Use the class and level fields to set the creatures saving throw profile, as necessary.
+If/when an 'XP Value' is entered on the Overview tab, the sheet will assume the character data represents a monster or other 'non-class' creature.
 
 ### Creature Movement
-Use the Conditions > Movement field to increase/decrease the creatures base movement, as necessary.
-
 Use these fields to track an additional mode of movement (E.G. 'Fly' & 40).
 
 ### Armor Class
@@ -254,7 +224,7 @@ If the banners are located in your Roll20 library, you can obtain its *Banner_UR
 I recommend that banners be 300px-by-80px and PNG format.
 
 ### Other Templates
-The sheet uses additional roll templates to provide results when rolling on the Combat > Effects Generators for critical hits (character or monster) as per ACKS HF pg. 85, and the Mortal Wounds table from ACKS Core pg. 106. The ACKS Core Tampering With Mortality table has **not** been included by-design.
+The sheet uses additional roll templates to provide results when rolling on the Combat > Effects Generators for critical hits (character or monster) as per ACKS HF pg. 85.
 
 ---
 
@@ -271,8 +241,6 @@ The following macros can be found in the /macros sub-directory of the git. They 
 The following scripts can be found in the /scripts directory of the git. They are also *highly* recommended:
 
 * **AddDefaults** : Invoked by selecting one or more tokens on the map and then typing '!AddDefaults' in the Roll20 chat window. This will add 'generic' melee and missile attacks to each selected tokens' character sheet > Combat > Melee/Missile Attacks repeating lists. For example, Punch, Kick, Improvised, etc.
-
-* **AddItems** : Invoked by selecting one or more tokens on the map and then typing '!AddItems CLASSNAME' in the Roll20 chat window. This will add the specified class's generic pack contents (including armor and weapons) to the selected tokens' character sheet > Equipment > Equipment repeating list. It will also create corresponding melee and missile attack entries, similar to !AddDefaults, above. The equipment data includes Wieght, Count, and Value, each marked as Equipped. The character's *encumbrance* and all derived values will be automatically updated after the script runs. **Important:** CLASSNAME is the capitalized class name without any spaces, hyphens, or special characters in between. For example, 'Elven Spellsowrd' should be entered as 'ElvenSpellsword'.
 
 * **AddSkills**: Invoked by selecting one or more tokens on the map and then typing '!AddAbilities' in the Roll20 chat window. This will add common ACKS abilities to each selected tokens' character sheet > Skills > Abilities repeating list. For example, Find Secret Doors, Hear Noise, etc.
 
@@ -324,4 +292,4 @@ The ACKS intellectual property contained within the character sheet is covered u
 
 * Alexander Macris, author of ACKS and owner of Autarch
 * GiGs, TheAaron, Kraynic, and everyone else in the [Roll20 Forums](https://app.roll20.net/forum/) that have helped me progress to where I am in sheet development over the years.
-* My Friday night ACKS gaming group, who have put up with me for far too long. ;)
+* My Wednesday night ACKS gaming group, who have put up with me for far too long. ;)

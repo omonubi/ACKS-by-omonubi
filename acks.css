@@ -89,20 +89,12 @@
 .gridspellslots {
     column-gap: 5px;
     display: grid;
-    grid-template-columns: [first] repeat(8, 1fr) [last];
+    grid-template-columns: [first] repeat(10, 1fr) [last];
     justify-items: center;
     row-gap: 5px;
     width: 100%
 }
 
-.gridthiefskills {
-    column-gap: 5px;
-    display: grid;
-    grid-template-columns: [first] repeat(9, 1fr) [last];
-    row-gap: 5px;
-    width: 100%
-
-}
 .thiefField {
     color: lightgray;
     justify-self: center;
@@ -149,15 +141,6 @@ button.combatbutton {
 div {
     align-self: start;
     justify-self: start;
-}
-div.thievesskillslocks,
-div.thievesskillstraps,
-div.thievesskillspick,
-div.thievesskillsmove,
-div.thievesskillsclimb,
-div.thievesskillshide,
-div.thievesskillshear {
-    text-align: center;
 }
 div.encumbrance {
     justify-self: center;
@@ -243,6 +226,10 @@ input.henchmenText {
 }
 input.skillScript {
     width: 70%;
+}
+input.spellRange,
+input.spellDuration {
+    width: 60px; 
 }
 input.xp {
     text-align: right;
@@ -407,13 +394,11 @@ textarea.property {
 /**************** Alert Styles ****************/
 span.redhp,
 span.redmove,
-span.redcorruption,
 .limitExceeded {
     color: black;
 }
 input.hpcheck[value='1'] ~ .redhp,
 input.movecheck[value='1'] ~ .redmove,
-input.corruptioncheck[value='1'] ~ .redcorruption,
 input.henchmenCheck[value='1'] ~ .limitExceeded {
     background-color: lightpink; 
     border-color: red;
@@ -456,84 +441,6 @@ input.toggleLockTitle[value='1'] ~ input.characterTitleReadonly {
 input.toggleLockClass[value='1'] ~ .toggleLock .locked,
 input.toggleLockTitle[value='1'] ~ .toggleLock .locked {
     display: none;
-}
-
-/***************** Class tabs ********************/
-div.AntiPaladin,
-div.Assassin,
-div.Barbarian,
-div.Bard,
-div.Bladedancer,
-div.Cleric,
-div.DwarvenCraftpriest,
-div.DwarvenDelver,
-div.DwarvenFury,
-div.DwarvenMachinist,
-div.DwarvenVaultguard,
-div.ElvenCourtier,
-div.ElvenEnchanter,
-div.ElvenNightblade,
-div.ElvenRanger,
-div.ElvenSpellsword,
-div.Explorer,
-div.Fighter,
-div.GnomishTrickster,
-div.Mage,
-div.Mystic,
-div.Thief {
-    display: none;
-    width: 100%;
-}
-input.showAntiPaladin[value='1'] ~ div.AntiPaladin,
-input.showAssassin[value='1'] ~ div.Assassin,
-input.showBarbarian[value='1'] ~ div.Barbarian,
-input.showBard[value='1'] ~ div.Bard,
-input.showBladedancer[value='1'] ~ div.Bladedancer,
-input.showCleric[value='1'] ~ div.Cleric,
-input.showDwarvenCraftpriest[value='1'] ~ div.DwarvenCraftpriest,
-input.showDwarvenDelver[value='1'] ~ div.DwarvenDelver,
-input.showDwarvenFury[value='1'] ~ div.DwarvenFury,
-input.showDwarvenMachinist[value='1'] ~ div.DwarvenMachinist,
-input.showDwarvenVaultguard[value='1'] ~ div.DwarvenVaultguard,
-input.showElvenCourtier[value='1'] ~ div.ElvenCourtier,
-input.showElvenEnchanter[value='1'] ~ div.ElvenEnchanter,
-input.showElvenNightblade[value='1'] ~ div.ElvenNightblade,
-input.showElvenRanger[value='1'] ~ div.ElvenRanger,
-input.showElvenSpellsword[value='1'] ~ div.ElvenSpellsword,
-input.showExplorer[value='1'] ~ div.Explorer,
-input.showFighter[value='1'] ~ div.Fighter,
-input.showGnomishTrickster[value='1'] ~ div.GnomishTrickster,
-input.showMage[value='1'] ~ div.Mage,
-input.showMystic[value='1'] ~ div.Mystic,
-input.showThief[value='1'] ~ div.Thief {
-    display: block;
-}
-
-/*** Supporting Class Tabs ***/
-div.backstab,
-div.spellcasting,
-div.thievesskills,
-div.thievesskillslocks,
-div.thievesskillstraps,
-div.thievesskillspick,
-div.thievesskillsmove,
-div.thievesskillsclimb,
-div.thievesskillshide,
-div.thievesskillshear {
-    display: none;
-    width: 100%;
-}
-input.showbackstab[value='1'] ~ div.backstab,
-input.showspellcasting[value='1'] ~ div.spellcasting,
-input.showthievesskills[value='1'] ~ div.thievesskills,
-input.showthievesskillslocks[value='1'] ~ div.thievesskillslocks,
-input.showthievesskillstraps[value='1'] ~ div.thievesskillstraps,
-input.showthievesskillspick[value='1'] ~ div.thievesskillspick,
-input.showthievesskillsmove[value='1'] ~ div.thievesskillsmove,
-input.showthievesskillsclimb[value='1'] ~ div.thievesskillsclimb,
-input.showthievesskillshide[value='1'] ~ div.thievesskillshide,
-input.showthievesskillshear[value='1'] ~ div.thievesskillshear {
-    display: block;
 }
 
 /**************** Repeating Styles  ****************/
