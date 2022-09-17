@@ -14,6 +14,8 @@ Additionally, I removed any spellcasting modifications beyond ACKS Core and Play
  - Natural 20 combat rolls explode (to determine crits as per HFH)
  - Fate points can be tracked
 
+ Finally, all conditions controls were removed. Playtesting demonstrated that embedding conditions into the the character sheet just over-complicated the process of tracking and applying condition modifiers throughout. Conditions should now be tracked using token icons and their impacts applied to rolls through the global Modifiers prompt.
+
 ---
 
 ## Installing
@@ -232,6 +234,7 @@ The sheet uses additional roll templates to provide results when rolling on the 
 The following macros can be found in the /macros sub-directory of the git. They are *highly* recommended:
 
 * **actions**: uses the Roll20 [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to whisper a list of nearly all sheet buttons into the Roll20 chat. Buttons are organzied by type: Combat Rolls, Attack Throws (only if *melee_wielded* and *missile_wielded* are checked), Skill & Proficiency Throws, Attribute Throws, and Saving Throws. This script saves the players a **lot** of time and is highly recommended. Specify 'Show as Token Action' to apply the macro to every sheet token. Select the token, and then click the macro to use it.
+* **conditions**: uses the Roll20 [TokenMod] API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional, custom icons that I created and imported into the game, but the script can be modified to use only the stock icons, as desired.
 * **repertoire**: also uses ChatMenu API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
 * **spellbook**: same as for repertoire, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status.
 
