@@ -154,49 +154,23 @@
             <label>Base</label>
             <label>Mod</label>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blast & Breath}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_3_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_3'> Blast</button>
-                <input type='number' value='0' name='attr_save_3'/>
+                <input type='number' value='16' name='attr_save_3'/>
                 <input type='number' value='0' name='attr_save_3_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Petrification & Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_1_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_1'> Paralysis</button>
-                <input type='number' value='0' name='attr_save_1'/>
+                <input type='number' value='15' name='attr_save_1'/>
                 <input type='number' value='0' name='attr_save_1_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Poison & Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_2_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_2'> Poison</button>
-                <input type='number' value='0' name='attr_save_2'/>
+                <input type='number' value='14' name='attr_save_2'/>
                 <input type='number' value='0' name='attr_save_2_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Staffs & Wands}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_4_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_4'> Staffs</button>
-                <input type='number' value='0' name='attr_save_4'/>
+                <input type='number' value='16' name='attr_save_4'/>
                 <input type='number' value='0' name='attr_save_4_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_5_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_5'> Spells</button>
-                <input type='number' value='0' name='attr_save_5'/>
+                <input type='number' value='17' name='attr_save_5'/>
                 <input type='number' value='0' name='attr_save_5_mod'/>
         </div>
         <div class='grid1111'>
             <label class='spanheader'>Current Conditions</label>
-            <label>Bedrest</label>
-                <input type='checkbox' value='1' name='attr_isBedrest'/>
-            <label>Blinded</label>
-                <input type='checkbox' value='4' name='attr_isBlinded'/>
-            <label>Casting</label>
-                <input type='checkbox' value='1' name='attr_isCasting'/>
-            <label>Charging</label>
-                <input type='checkbox' value='2' name='attr_isCharging'/>
-            <label>Concentrating</label>
-                <input type='checkbox' value='1' name='attr_isConcentrating'/>
-            <label>Engaged</label>
-                <input type='checkbox' value='1' name='attr_chkEngaged'/>
-            <label>Fatigued</label>
-                <input type='number' min='0' max='10' value='0' name='attr_mod_fatigued'/>
-            <label>Inspired</label>
-                <input type='checkbox' value='1' name='attr_isInspired'/>
-            <label>Movement</label>
-                <input type='number'value='0' name='attr_mod_movement'/>
-            <label>Prone</label>
-                <input type='checkbox' value='4' name='attr_isProne'/>
-            <label>Retreating</label>
-                <input type='checkbox' value='1' name='attr_isRetreating'/>
-            <label>Unconscious</label>
-                <input type='checkbox' value='1' name='attr_isUnconscious'/>
-            <label>Withdrawing</label>
-                <input type='checkbox' value='1' name='attr_isWithdrawing'/>
         </div>
     </div>
     <hr/>
@@ -205,7 +179,7 @@
 <div class='combat'>
     <div class='grid1111'>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]-@{is_wielding_twohanded}[wpn]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]-@{isBlinded}/2[blind]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
         <input type='number' value='0' name='attr_mod_initiative'/>
@@ -257,7 +231,7 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]-@{isBlinded}[blind]+@{isCharging}[charge]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Equipped:</label><input type='checkbox' name='attr_melee_is_equipped'/>
             <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
@@ -274,7 +248,7 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]-@{isBlinded}[blind]-@{mod_fatigued}[fatigue]+@{isInspired}[inspired]-@{isProne}[prone]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class]+@{isInspired}[inspired]-@{mod_fatigued}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Equipped:</label><input type='checkbox' name='attr_missile_is_equipped'/>
             <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
@@ -798,22 +772,20 @@ on('clicked:repeating_missile:reset-ammo', function(eventInfo) {
 });
 
 /********** Armor Class **********/
-on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isCharging change:isRetreating', function(eventInfo) {
+on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isRetreating', function(eventInfo) {
     updateArmorClass();
 });
 
 function updateArmorClass() {
     /*console.log('updateArmorClass()');*/
-    getAttrs(['armor', 'armor_bonus', 'has_shield', 'class_ac_bonus', 'dex_mod', 'isCharging', 'isRetreating'], function(values) {
+    getAttrs(['armor', 'armor_bonus', 'has_shield', 'class_ac_bonus', 'dex_mod'], function(values) {
         const theArmorIndex = Number(values['armor']) || 0; // base AC
         const theArmorBonus = Number(values['armor_bonus']) || 0; // magic bonus, if any
         const hasShield = Number(values['has_shield']) || 0; // shield (+1 AC)
         const classACBonus = Number(values['class_ac_bonus']) || 0; // class bonus, if any
         const theDexMod = Number(values['dex_mod']) || 0; // dex modifier
-        const isCharging = Number(values['isCharging']) || 0; // -2 AC
-        const isRetreating = Number(values['isRetreating']) || 0; // no shield bonus
 
-        const theAC = Math.max(0, theArmorIndex + theArmorBonus + hasShield * (isRetreating == 1 ? 0 : 1) + classACBonus + theDexMod - isCharging);
+        const theAC = Math.max(0, theArmorIndex + theArmorBonus + hasShield + classACBonus + theDexMod);
         
         const output = {};
         output['armor_class'] = theAC;
@@ -1318,35 +1290,26 @@ function updateItemEncumbrance(
 };
 
 /********** Movement Speed **********/
-on('change:enc_capacity change:encumbrance change:isBedrest change:isBlinded change:isCasting change:isConcentrating change:isProne change:isUnconscious change:isWithdrawing change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3 change:mod_movement', function(eventInfo) {
+on('change:enc_capacity change:encumbrance change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3', function(eventInfo) {
     updateMovementSpeed();
 });
 
 function updateMovementSpeed() {
     /*console.log('updateMovementSpeed()');*/
-    getAttrs(['enc_capacity', 'encumbrance', 'isBedrest','isBlinded', 'isCasting', 'isConcentrating', 'isProne', 'isUnconscious', 'isWithdrawing', 'base_movement', 'move_thresh1', 'move_thresh2', 'move_thresh3', 'mod_movement'], function(values) {
+    getAttrs(['enc_capacity', 'encumbrance', 'base_movement', 'move_thresh1', 'move_thresh2', 'move_thresh3'], function(values) {
         const encCapacity = Number(values['enc_capacity']) || 0; // how much can be carried?
         const theEncumbrance = Number(values['encumbrance']) || 0; // how much is being carried?
-        const isBedrest = Number(values['isBedrest']) || 0; // half-speed
-        const isBlinded = Number(values['isBlinded']) || 0; // quarter-speed
-        const isCasting = Number(values['isCasting']) || 0; // can't move
-        const isConcentrating = Number(values['isConcentrating']) || 0; // half-speed
-        const isProne = Number(values['isProne']) || 0; // 5' maximum speed
-        const isUnconscious = Number(values['isUnconscious']) || 0; // can't move
-        const isWithdrawing = Number(values['isWithdrawing']) || 0; // half-speed
         const movementBase = Number(values['base_movement']) || 0; // base movement
         const moveThresh1 = Number(values['move_thresh1']) || 0; // movement threshold
         const moveThresh2 = Number(values['move_thresh2']) || 0; // movement threshold
         const moveThresh3 = Number(values['move_thresh3']) || 0; // movement threshold
-        const movementMod = Number(values['mod_movement']) || 0; // conditional modifier
 
         const moveThresholds = [(moveThresh1 + .01),(moveThresh2 + .01),(moveThresh3 + .01),encCapacity+.01,999];
         const moveThresholdIndex = moveThresholds.findIndex(element => theEncumbrance < element);
 
         const moveSpeeds = [movementBase,(movementBase * .75),(movementBase * .5),(movementBase * .25),0]; //ACKS Core, pg. 48
-        const moveDivisor = isBlinded == 4 ? 4 : ((isWithdrawing == 1 || isConcentrating == 1 || isBedrest == 1) ? 2 : 1);
-        const theMovementSpeed = ((isCasting == 1 || isUnconscious == 1) ? 0 : ((isProne == 4) ? 15 : (moveSpeeds[moveThresholdIndex] + movementMod) / moveDivisor));
-        const isMovementZero = (theMovementSpeed > 0 ? 0 : 1);
+        const theMovementSpeed = moveSpeeds[moveThresholdIndex];
+        const isMovementZero = theMovementSpeed > 0 ? 0 : 1;
         
         const output = {};
         output['move_turn'] = Math.round(theMovementSpeed);
