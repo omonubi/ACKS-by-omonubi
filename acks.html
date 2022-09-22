@@ -210,8 +210,8 @@
         </div>
         <div class='grid111'>
             <label class='spanheader'>Effects Generators</label>
-            <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
-            <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
+            <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Character)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
+            <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Monster)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
         </div>
     </div>
     <hr/>
@@ -1402,6 +1402,53 @@ on('change:class change:level', function(eventInfo) {
                 <div class="sheet-desc">{{desc}}</div>
             {{/desc}}
         </div>
+    </div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-critchar">
+    <div class="sheet-container sheet-color-{{color}}">
+      <div class="sheet-header">
+        {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
+        {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
+      </div>
+      <div class="sheet-content">
+        {{#allprops() title subtitle color}}
+        <div class="sheet-key">{{key}}</div>
+        <div class="sheet-value">{{value}}</div>
+        {{/allprops() title subtitle color}}
+
+        <div class="sheet-key">Result</div>
+        {{#rollTotal() Roll 1}}
+        <div class="sheet-value"><span><strong>Brawling</strong> - The target suffers an additional 1d4 damage from a strike from the attacker’s gauntlet, pommel, or shield rim. If the attacker has no metal weapons, the damage is nonlethal, but otherwise the brawling damage can be lethal or nonlethal, at his discretion.</span></div>
+        {{/rollTotal() Roll 1}}
+        {{#rollTotal() Roll 2}}
+        <div class="sheet-value"><span><strong>Damage Shield</strong> - The target’s shield is damaged, reducing its effectiveness by 1. If the shield is non-magical, this will destroy it. Damaged shields can be repaired at a cost of 10gp per point of effectiveness. Magic shields cannot be damaged except by magic weapons or monsters of 5 HD or more.</span></div>
+        {{/rollTotal() Roll 2}}
+        {{#rollTotal() Roll 3}}
+        <div class="sheet-value"><span><strong>Damage Armor</strong> - The target’s armor is damaged, reducing its effectiveness by 1 point. Armor that loses all effectiveness is ruined. Damaged armor can be repaired at a cost of 10gp per point of effectiveness. Magic armor cannot be damaged except by magic weapons or monsters of 5 HD or more.</span></div>
+        {{/rollTotal() Roll 3}}
+        {{#rollTotal() Roll 4}}
+        <div class="sheet-value"><span><strong>Disarm</strong> - The target is disarmed of its weapon (as the special maneuver). The weapon drops to a point chosen by the attacker who dealt the critical hit, up to 5’ distant from the target.</span></div>
+        {{/rollTotal() Roll 4}}
+        {{#rollTotal() Roll 5}}
+        <div class="sheet-value"><span><strong>Force Back</strong> - The target is forced back (as the special maneuver). It must withdraw a number of feet equal to the attacker’s damage roll. If this would push the opponent into a wall or obstacle, the opponent is knocked down, and takes 1d6 points of damage per 10’ he has traveled.</span></div>
+        {{/rollTotal() Roll 5}}
+        {{#rollTotal() Roll 6}}
+        <div class="sheet-value"><span><strong>Knockdown</strong> - The target is immediately knocked down (as the special maneuver). Once prone, the creature can move, but only to crawl at a movement rate of 5’, to take an action in lieu of moving, or to end the condition by using an action in lieu of moving to stand up. If engaged, the prone creature remains subject to the movement restrictions of being engaged, so it can only crawl if using defensive movement, and cannot stand up in lieu of moving. The prone creature can attack, but suffers a -4 penalty on its attack throws. Alternatively the prone creature can stand up in lieu of attacking. The prone creature can be backstabbed by creatures capable of doing so. Attack throws against the prone creatures gain a +2 bonus, or a +4 bonus if the attacker backstabs the stunned creature. The conditions is ended immediately when the creature stands up.</span></div>
+        {{/rollTotal() Roll 6}}
+        {{#rollTotal() Roll 7}}
+        <div class="sheet-value"><span><strong>Sunder Weapon</strong> - The target’s weapon is sundered (as the special maneuver). If the target’s weapon is a non-magical spear, staff, or pole arm, it shatters into splinters when sundered, dealing an additional 1d4 nonlethal damage to the target. Swords cannot be sundered by non-metal weapons or natural attacks by creatures of less than 5 HD. Magic weapons cannot be sundered except by other magic weapons or monsters of 5 HD or more.</span></div>
+        {{/rollTotal() Roll 7}}
+        {{#rollTotal() Roll 8}}
+        <div class="sheet-value"><span><strong>Stun</strong> - The target is stunned until the end of its next initiative. A stunned creature cannot attack, cast spells, or move. It gains no benefit to its AC from its shield (if any), and can be ambushed or backstabbed by creatures capable of doing so. All attack throws against stunned creatures gain a +2 bonus, or a +4 bonus if the attacker ambushes or backstabs the stunned creature.</span></div>
+        {{/rollTotal() Roll 8}}
+        {{#rollTotal() Roll 9}}
+        <div class="sheet-value"><span><strong>Wrestle/Clamber</strong> - The results of this critical effect depend on the difference in size between the attacker and target. If the target is the same size category or smaller than the attacker, the attacker has grabbed the target in a wrestling hold (as the special maneuver). If the target is one or more size categories larger than the attacker, the attacker has clambered on top of or mounted the target (as the special maneuver).</span></div>
+        {{/rollTotal() Roll 9}}
+        {{#rollTotal() Roll 10}}
+        <div class="sheet-value"><span><strong>Attacker's Choice</strong> - The attacker may choose any desired critical effect (Brawling, Damage Shield, Damage Armor, Disarm, Force Back, Knockdown, Sunder Weapon, Stun, Wrestle/Clamber).</span></div>
+        {{/rollTotal() Roll 10}}
+      </div>
     </div>
 </rolltemplate>
 
