@@ -114,7 +114,7 @@
             <input type='checkbox' name='attr_chr_pre'/>
         </div>
         <div class='grid1111'>
-            <label class='spanheader'>Additional Stats</label>
+            <label class='spanheader'>Summary</label>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit Dice</button>
                 <input class='width45' type='text' name='attr_hit_dice' />
                 <input type='hidden' name='attr_hit_die'/>
@@ -130,20 +130,16 @@
                 <input type='number' value='0' name='attr_armor_class' readonly/>
             <label>Attack Throw</label>
                 <input type='number' value='10' name='attr_attack_throw' readonly/>
+            <label>Encumbrance</label>
+                <input type='number' value='0' name='attr_encumbrance' readonly />
+            <label>Capacity, Max</label>
+                <input type='number' value='20' name='attr_enc_capacity' readonly/>
             <label class='redtext'>Feet / Turn</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
             <label class='redtext'>Feet / Round</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
-            <label class='monster'>Alt Mode</label> 
-                <input class='width45' type='text' name='attr_alt_move_mode'/> 
-            <label class='monster'>Feet / Round</label> 
-                <input class='width45' type='text' name='attr_alt_move'/>
-            <label class='monster'>Morale</label>
-                <input type='number' value='0' name='attr_morale'/>
-            <label class='monster'>XP Value</label>
-                <input type='number' name='attr_xp_value' />
         </div>
     </div>
     <hr/>
@@ -170,7 +166,17 @@
                 <input type='number' value='0' name='attr_save_5_mod'/>
         </div>
         <div class='grid1111'>
-            <label class='spanheader'></label>
+            <label class='spanheader'>Monster Stats</label>
+            <label class='monster'>Alt Mode</label> 
+                <input class='width45' type='text' name='attr_alt_move_mode'/> 
+            <label class='monster'>Feet / Round</label> 
+                <input class='width45' type='text' name='attr_alt_move'/>
+            <label class='monster'>Morale</label>
+                <input type='number' name='attr_morale'/>
+            <label class='monster'>XP Value</label>
+                <input type='number' name='attr_xp_value' />
+            <label class='monster'>Save</label>
+                <input class='width45' type='text' maxlength='3' name='attr_monster_save'/>
         </div>
     </div>
     <hr/>
@@ -1321,6 +1327,43 @@ function updateMovementSpeed() {
         output['move_turn'] = Math.round(theMovementSpeed);
         output['move_round'] = Math.round(theMovementSpeed / 3);
         output['move_is_zero'] = isMovementZero;
+        setAttrs(output);
+    });
+};
+
+/********** Saving Throws (Monsters) **********/
+on('change:monster_save', function(eventInfo) {
+    updateMonsterSaves();
+});
+
+function updateMonsterSaves() {
+    console.log('updateMonsterSaves()');
+    getAttrs(['monster_save'], function(values) {
+        const saveString = values['monster_save'];
+        
+        const clericSaves = [13,10,16,13,16,13,10,16,13,16,13,10,16,13,16,12,9,15,12,15,12,9,15,12,15,11,8,14,11,14,11,8,14,11,14,10,7,13,10,13,10,7,13,10,13,9,6,12,9,12,9,6,12,9,12,8,5,11,8,11,8,5,11,8,11,7,4,10,7,10,7,4,10,7,10,6,3,9,6,9,6,3,9,6,9,5,2,8,5,8,5,2,8,5,8,4,1,7,4,7,4,1,7,4,7];
+        const dwarvenvaultguardSaves = [9,10,12,12,13,9,10,12,12,13,8,9,11,11,12,8,9,11,11,12,7,8,10,10,11,6,7,9,9,10,6,7,9,9,10,5,6,8,8,9,4,5,7,7,8,4,5,7,7,8,3,4,6,6,7,2,3,5,5,6,2,3,5,5,6,1,2,4,4,5,0,1,3,3,4,0,1,3,3,4,-1,0,2,2,3,-2,-1,1,1,2,-2,-1,1,1,2,-3,-2,0,0,1,-4,-3,-1,-1,0];
+        const elvenspellsword = [12,14,15,16,16,12,14,15,16,16,11,13,14,15,15,11,13,14,15,15,10,12,13,14,14,9,11,12,13,13,9,11,12,13,13,8,10,11,12,12,7,9,10,11,11,7,9,10,11,11,6,8,9,10,10,5,7,8,9,9,5,7,8,9,9,4,6,7,8,8,3,5,6,7,7,3,5,6,7,7,2,4,5,6,6,1,3,4,5,5,1,3,4,5,5,0,2,3,4,4,-1,1,2,3,3];
+        const fighterSaves = [13,14,15,16,17,13,14,15,16,17,12,13,14,15,16,12,13,14,15,16,11,12,13,14,15,10,11,12,13,14,10,11,12,13,14,9,10,11,12,13,8,9,10,11,12,8,9,10,11,12,7,8,9,10,11,6,7,8,9,10,6,7,8,9,10,5,6,7,8,9,4,5,6,7,8,4,5,6,7,8,3,4,5,6,7,2,3,4,5,6,2,3,4,5,6,1,2,3,4,5,0,1,2,3,4];
+        const mageSaves = [13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8,9,9,11,7,8,8,8,10,6,7,8,8,10,6,7,8,8,10,6,7,7,7,9,5,6,7,7,9,5,6];
+        const thiefSaves = [13,13,13,14,15,13,13,13,14,15,13,13,13,14,15,12,12,12,13,14,12,12,12,13,14,11,11,11,12,13,11,11,11,12,13,10,10,10,11,12,10,10,10,11,12,9,9,9,10,11,9,9,9,10,11,8,8,8,9,10,8,8,8,9,10,7,7,7,8,9,7,7,7,8,9,6,6,6,7,8,6,6,6,7,8,5,5,5,6,7,5,5,5,6,7,4,4,4,5,6,4,4,4,5,6];
+
+        const saveClass = saveString.substr(0,1);
+        const saveLevel = Math.max(Math.min(Number(saveString.substr(1,2)) || 0,20),0);
+
+        let appliedSaves = [];
+        switch (saveClass) { 
+            case 'C': appliedSaves = clericSaves; break;
+            case 'D': appliedSaves = dwarvenvaultguardSaves; break;
+            case 'E': appliedSaves = elvenspellsword; break;
+            case 'F': appliedSaves = fighterSaves; break;
+            case 'M': appliedSaves = mageSaves; break;
+            case 'T': appliedSaves = thiefSaves; break;
+            default: return;
+        }
+        
+        const output = {};
+        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1)] = appliedSaves[(saveLevel) * 5 + i]};
         setAttrs(output);
     });
 };

@@ -58,9 +58,8 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *character_title* | As a text field, allows for any title name desired. |
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prereq' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
-| saving throws | Use the modifier fields as needed. |
-| conditions | These are used to track various common conditions. Their effects are automatically applied to the appropriate areas of the character sheet. Note that *fatigued* can by stacked. *Movement* can be used to increase/reduce the character's base movement per turn. |
-| grayed-out fields | See Monster Stats, below. |
+| saving throws | Use the modifier fields as needed. Save values are automatically set if the Monster Stats > Save field is popoulated (e.g. 'F3') |
+| monster stats | These fields are intended for use with monster sheets. |
 
 ---
 
@@ -95,7 +94,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *roll_surprise* | When the button is clicked, accepts a modifier and then applies it to a 1d6 roll, modified by *mod_surprise* field value if any. A result of 1 or 2 results in 'surprised'; otheriwse 'ready', as per ACKS Core pg. 97. The result is output in the Roll20 chat window. |
 | *roll_reaction* | When the button is clicked, accepts a modifier and then applies it to a 2d6 roll, modified by *mod_reaction* field value if any. The result is sent to the Roll20 chat window and includes a short-hand table to explain the result, as per ACKS Core pg. 99. |
 | *roll_morale* | Intended for use with non-PC characters, when the button is clicked, accepts a modifier and then applies it to a 2d6 roll, modified by *mod_morale* field value if any. The result is sent to the Roll20 chat window and includes a short-hand table to explain the result, as per ACKS Core pg. 110. |
-| *armor_class* | This value is determine by selecting the appriopriate armor from the drop-down list, providing a bonus if necessary (e.g. magical armor), checking the Shield checkbox if wielded, and then accounting for DEX bonus. This value may also be auto-adjusted based on current, applicable conditions (see Overview tab). |
+| *armor_class* | This value is determine by selecting the appriopriate armor from the drop-down list, providing a bonus if necessary (e.g. magical armor, or a monster's natural AC), checking the Shield checkbox if wielded, and then accounting for DEX bonus. This value may also be auto-adjusted based on current, applicable conditions (see Overview tab). |
 | *has_helm* | If checked, activates heavy helm penalties and bonuses described in the ACKS Player's Companion sourcebook. |
 | effects generators | See Roll Templates, below. |
 | *attack_throw* | The value is used as the base target for all melee and missile throws. |
@@ -181,20 +180,6 @@ This tab contains base values used in making encumbrance and movement calculatio
 | Max Encumbrance | Change to set the maximum limit that the creature can carry. Is modified by *str_mod*. |
 | Enc Threshold X | Change to alter the encumbrance threshold at which point max movement rate is divided by 3/4, 1/2, or 1/4. The ACKS humanoid defaults are 5, 7, and 10 stone, respectively. Thresholds should never be descending in value, but can be the same value. The latest value to exceed the current capacity is the threshold that will be used. For example, a mule would use 20, 20, and 40; a 20 encumbrance would only trigger 1/2 movement, never 3/4. |
 | Max Movement | Change to set the maximum movement value for the creature. The default is 120' per turn. |
-
----
-
-## Monster Sheets
-Four additional, gray-labeled fields are used mainly for creature (non-PC or NPC) character sheets:
-
-### Creature Morale & XP Value
-If/when an 'XP Value' is entered on the Overview tab, the sheet will assume the character data represents a monster or other 'non-class' creature.
-
-### Creature Movement
-Use these fields to track an additional mode of movement (E.G. 'Fly' & 40).
-
-### Armor Class
-The Combat > Armor Class > Bonus field should be used to set a monter's natural AC (or any creature's AC if its armor type is undetermined but the AC is.)
 
 ---
 
