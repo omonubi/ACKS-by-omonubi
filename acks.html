@@ -431,7 +431,8 @@
     <div class='spellcasting'>
         <div class='gridspellslots'>
             <label class='spanheader'>Spellcasting Slots by Spell Level</label>
-            <label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
+            <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
+            <label>Slots</label>
             <input type='number' value='0' name='attr_spells_1_max' />
             <input type='number' value='0' name='attr_spells_2_max' />
             <input type='number' value='0' name='attr_spells_3_max' />
@@ -442,6 +443,7 @@
             <input type='number' value='0' name='attr_spells_8_max' />
             <input type='number' value='0' name='attr_spells_9_max' />
             <span></span>
+            <label>Current</label>
             <input type='number' value='0' name='attr_spells_1'/>
             <input type='number' value='0' name='attr_spells_2'/>
             <input type='number' value='0' name='attr_spells_3'/>
@@ -1320,8 +1322,35 @@ function updateMovementSpeed() {
 
 /********** Spells Reset **********/
 on('clicked:reset_spells', function(eventInfo) {
-    //updateSpellcasting();
+    updateSpellcasting();
 });
+
+function updateSpellcasting() {
+    /*console.log('updateSpellcasting()');*/
+    getAttrs(['spells_1_max', 'spells_2_max', 'spells_3_max', 'spells_4_max', 'spells_5_max', 'spells_6_max', 'spells_7_max', 'spells_8_max', 'spells_9_max'], function(values) {
+        const spells1 = Number(values['spells_1_max']) || 0;
+        const spells2 = Number(values['spells_2_max']) || 0;
+        const spells3 = Number(values['spells_3_max']) || 0;
+        const spells4 = Number(values['spells_4_max']) || 0;
+        const spells5 = Number(values['spells_5_max']) || 0;
+        const spells6 = Number(values['spells_6_max']) || 0;
+        const spells7 = Number(values['spells_7_max']) || 0;
+        const spells8 = Number(values['spells_8_max']) || 0;
+        const spells9 = Number(values['spells_9_max']) || 0;
+
+        const output = {};
+        output['spells_1'] = spells1;
+        output['spells_2'] = spells2;
+        output['spells_3'] = spells3;
+        output['spells_4'] = spells4;
+        output['spells_5'] = spells5;
+        output['spells_6'] = spells6;
+        output['spells_7'] = spells7;
+        output['spells_8'] = spells8;
+        output['spells_9'] = spells9;
+        setAttrs(output);
+    });
+};
 
 /********** XP Bonus **********/
 on('change:str change:int change:wis change:dex change:con change:cha change:str_pre change:int_pre change:wis_pre change:dex_pre change:con_pre change:cha_pre', function(eventInfo) {

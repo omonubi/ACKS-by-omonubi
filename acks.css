@@ -89,7 +89,7 @@
 .gridspellslots {
     column-gap: 5px;
     display: grid;
-    grid-template-columns: [first] repeat(10, 1fr) [last];
+    grid-template-columns: [first] repeat(11, 1fr) [last];
     justify-items: center;
     row-gap: 5px;
     width: 100%
