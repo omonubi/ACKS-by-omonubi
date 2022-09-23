@@ -231,15 +231,17 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
-            <label>Equipped:</label><input type='checkbox' name='attr_melee_is_equipped'/>
+            <label>Equip:</label><input type='checkbox' name='attr_melee_is_equipped'/>
             <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
-            <label>Damage:</label><input class='width45' type='text' name='attr_melee_damage'/>
+            <label>Dmg:</label>
+                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'></button>
+                <input class='width45' type='text' name='attr_melee_damage'/>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
+                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
                 <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
-                <label>Additional Attack Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>.
@@ -248,16 +250,19 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
-            <label>Equipped:</label><input type='checkbox' name='attr_missile_is_equipped'/>
-            <label>Range:</label><input type='text' class='missilerange' name='attr_missile_range'/>
-            <label>Damage:</label><input class='width45' type='text' name='attr_missile_damage'/>
+            <label>Equip:</label><input type='checkbox' name='attr_missile_is_equipped'/>
+            <label>Rng:</label><input type='text' class='missilerange' name='attr_missile_range'/>
+            <label>Dmg:</label>
+                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'></button>
+                <input class='width45' type='text' name='attr_missile_damage'/>
             <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <label>Attack Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/> <!--<button type='action' name='act_reset-ammo'>Reset</button>-->
+                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
+                <label>STR Bonus:</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
+                <label>Starting Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>.
