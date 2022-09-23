@@ -109,16 +109,10 @@ const generateProficiencies = reps =>
 const abilities =
 [
         {
-            ability_name: "Find Secret Door",
+            ability_name: "Fish",
             ability_source: "common",
-            ability_target: "18",
-            ability_details: "Some doors are somehow concealed or hidden – these are secret doors. Common secret doors are sliding panels in a wall, trapdoors under rugs, and so on. Secret doors can only be spotted if characters are specifically looking for them. When a player declares that his character is looking for secret door, the Judge should make a proficiency throw on behalf of the character. All characters except elves will spot a secret door if one is present on a throw of 18+ on 1d20. Elves have keen eyes that allow them to detect hidden and secret doors with a proficiency throw of 8+ on 1d20 when actively searching, or 14+ on casual inspection. It takes 1 turn for a character to search a 10' x 10' area. Since the Judge rolls the dice, the players never know if the roll failed or if there simply is no door in the area searched. Each character has only one chance to find each secret door."
-        },
-        {
-            ability_name: "Find Traps",
-            ability_source: "common",
-            ability_target: "18",
-            ability_details: "While thieves have a special skill to detect traps, characters of all classes can search for non-magical traps with time and caution. All characters except dwarves succeed in spotting a trap with a proficiency throw of 18+ on 1d20. Dwarves succeed with a proficiency throw of 14+. Players must declare that their characters are actively looking for traps, and they must be looking in the right place. This roll may only be made once per character in a particular location, and it takes 1 turn per 10' x 10' area searched. The Judge secretly rolls the dice for these checks, because the players will never know if they failed to find the trap or if there is not one present."
+            ability_target: "14",
+            ability_details: "A character can fish when stationary in a hex of river, lake, or ocean terrain. Fishing counts as a singular major activity. When fishing, each character may attempt a proficiency throw of 14+ on 1d20. Characters with the Survival proficiency gain a +4 bonus on their proficiency throw to fish. A successful result indicates that sufficient food to feed 2d6 man-sized creatures for one day has been caught."
         },
 	    {
             ability_name: "Forage",
@@ -133,10 +127,10 @@ const abilities =
             ability_details: "A stuck door can be forced open with brute strength. Forcing open a door requires a proficiency throw of 18+. Doors of unusual material or size may impose a penalty on this proficiency throw. In addition, for each point of Strength adjustment, modify the result of the die roll by +/- 4. (A character with Strength 18 thus opens doors with a proficiency throw of 6+). If two characters cooperate to force open a door, use the stronger character’s Strength adjustment +4. A roll of 1 always fails to open a door. It takes only one combat round to force open a door, and characters may try again if they fail."
         },
         {
-            ability_name: "Hear Noise",
+            ability_name: "Hide",
             ability_source: "common",
-            ability_target: "18+(@{has_helm}*4)[helm]",
-            ability_details: "Players will sometimes want their character to listen at a door or intersection to hear any noises beyond. Again, the Judge should make a proficiency throw on behalf of the character. A throw of 18+ on 1d20 succeeds. Dwarves and elves only need to throw 14+ due to their keen hearing. A thief has specially trained for this task, and has a different chance of success (refer to the Thief Skills table). This attempt may only be made one time at any door or intersection by a character. Note that some creatures, such as undead, do not make noise."
+            ability_target: "18",
+            ability_details: "To start hiding, a character must be out of line of sight or not be obvious to any enemy target(s), and must use a movement action or attack action to minimize his visibility by crouching, kneeling, pressing against a wall, etc. As long as the character remains stationary and does not take an attack action, he does not need to throw again. The base throw is 18+, with a botch on a natural roll of 1-3. A character proficient in Hiding, such as a thief, gains a +1 per level, can add his DEX modifier, and only botches on a natural 1. If the throw succeeds, the character becomes partially hidden or nigh indiscernible (depending on the illumination and cover). If the throw fails, the character may still be partially hidden if circumstances permit, but will not be nigh- indiscernible. If the throw botches, the character becomes obvious to everyone with line of sight to him, regardless of illumination or cover."
         },
 	    {
             ability_name: "Hunt",
@@ -145,10 +139,34 @@ const abilities =
             ability_details: "Hunting succeeds on a proficiency throw of 14+ and indicates that sufficient food for 2d6 man-sized creatures has been acquired. However, hunting must be engaged as the sole activity for a day with no traveling possible. In addition, there will be one wandering monster check, from the table appropriate for the terrain, while the group is hunting. Characters with the Survival proficiency gain a +4 bonus on their proficiency throws to hunt."
         },
 	    {
-            ability_name: "Perception",
+            ability_name: "Listen",
             ability_source: "common",
-            ability_target: "14-((@{wis_mod}[wis]+@{int_mod}[int])/2)*2",
-            ability_details: "Perception is a combination of intelligence and wisdom, applied to a base detection chance of 70%. The Judge may modify the roll based on environmental and other conditions."
+            ability_target: "18+(@{has_helm}*4)[helm]",
+            ability_details: "The base throw is 18+, with a botch (automatic failure) occurring on a natural roll of 1-3. A character proficient in Listening, such as a thief, gains a +1 per level and only botches on a natural 1. A dwarf or elf gains a +4 bonus to listening and only botches on a natural 1. When the ambient noise is distracting, characters suffer a -4 penalty to their Listening proficiency throw. When the ambient noise is silent, characters gain a +2 bonus to their Listening proficiency throws."
+        },
+	    {
+            ability_name: "Probe",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "Probing is the visual-tactile investigation of a small area (up to 10’ squared) for hidden or partially hidden creatures or objects. A character often will probe an area after spotting a clue or hint, but a character can probe an area even if he has no evidence there’s anything there. The base throw is 18+, with a botch (automatic failure) occurring on a natural roll of 1-3. A character proficient in Probing, such as a thief, gains a +1 per level, can add his DEX bonus to his throws, and only botches on a natural 1. A dwarf gains a +4 bonus to Probing and only botches on a natural 1."
+        },
+	    {
+            ability_name: "Sneak",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "A character can start sneaking anytime he takes a movement action simply by stating that he is attempting to move silently. The Judge makes a Sneaking proficiency throw for the character to determine the success of his effort. The base throw is 18+, with a botch on a natural roll of 1-3. A character proficient in Sneaking, such as a thief, gains a +1 per level, can add his DEX modifier, and only botches on a natural 1. The character may move at ½ his combat movement rate without penalty. If he moves greater than ½ speed, he takes a -5 penalty to the proficiency throw. If he runs, he takes a -10 penalty."
+        },
+	    {
+            ability_name: "Spot",
+            ability_source: "common",
+            ability_target: "18",
+            ability_details: "Spotting is the visual identification of nigh-indiscernible or partially hidden characters or objects. The base throw is 18+, with a botch (automatic failure) occurring on a natural roll of 1-3. A character proficient in Spotting, such as a thief, gains a +1 per level and only botches on a natural 1. An elf gains a +4 bonus to spotting and only botches on a natural 1."
+        },
+	    {
+            ability_name: "Turn Undead",
+            ability_source: "common",
+            ability_target: "?{Target}",
+            ability_details: "Many divine spellcasters have the ability to turn undead, calling upon the name and power of their deity to turn away, and even destroy, undead. The potency of this ability is determined by level. On the Turning Undead table, there will be a dash, a “T”, a “D”, or a number corresponding to the type of undead monster and the level of the character. A dash means that the character has not attained high enough level to turn the undead type. A “T” means that the character automatically turns the undead, and a “D” means that the undead will be destroyed automatically. A number indicates that the player must roll that number or higher on 1d20 in order to turn the undead. If this roll is successful, or there is a “T” in the chart, the player rolls 2d6 and the result equals the number of total Hit Dice of undead monsters turned. A “D” in the chart requires the same roll to determine how many HD of undead are destroyed. No matter what the dice roll result, at least one undead monster will always be turned or destroyed, as appropriate, on a successful use of turning."
         }
 ]
 
