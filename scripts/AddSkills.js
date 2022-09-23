@@ -142,7 +142,7 @@ const abilities =
             ability_name: "Listen",
             ability_source: "common",
             ability_target: "18+(@{has_helm}*4)[helm]",
-            ability_details: "The base throw is 18+, with a botch (automatic failure) occurring on a natural roll of 1-3. A character proficient in Listening, such as a thief, gains a +1 per level and only botches on a natural 1. A dwarf or elf gains a +4 bonus to listening and only botches on a natural 1. When the ambient noise is distracting, characters suffer a -4 penalty to their Listening proficiency throw. When the ambient noise is silent, characters gain a +2 bonus to their Listening proficiency throws."
+            ability_details: "The base throw is 18+, with a botch (automatic failure) occurring on a natural roll of 1-3. A character proficient in Listening, such as a thief, gains a +1 per level and only botches on a natural 1. A dwarf gains a +4 bonus to listening and only botches on a natural 1. When the ambient noise is distracting, characters suffer a -4 penalty to their Listening proficiency throw. When the ambient noise is silent, characters gain a +2 bonus to their Listening proficiency throws."
         },
 	    {
             ability_name: "Probe",
