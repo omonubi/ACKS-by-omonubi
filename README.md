@@ -230,21 +230,10 @@ The following scripts can be found in the /scripts directory of the git. They ar
 
 * **AddDefaults** : Invoked by selecting one or more tokens on the map and then typing '!AddDefaults' in the Roll20 chat window. This will add 'generic' melee and missile attacks to each selected tokens' character sheet > Combat > Melee/Missile Attacks repeating lists. For example, Punch, Kick, Improvised, etc.
 
-* **AddSkills**: Invoked by selecting one or more tokens on the map and then typing '!AddAbilities' in the Roll20 chat window. This will add common ACKS abilities to each selected tokens' character sheet > Skills > Abilities repeating list. For example, Find Secret Doors, Hear Noise, etc.
+* **AddSkills**: Invoked by selecting one or more tokens on the map and then typing '!AddSkills' in the Roll20 chat window. This will add common ACKS abilities to each selected tokens' character sheet > Skills > Abilities repeating list. For example, Find Secret Doors, Hear Noise, etc.
 
 ### Author's Note
 These scripts were derived from the same source found in the Roll20 forums. I did not author this script and do not recall who on the forums did. If anyone knows, please contact me so I can provide the proper credit.
-
----
-
-## Technical/Design Notes
-I came of age with computers in the 1980's. Though I made a career early on with ECMA-262 scripts and web dev, it was an awful, bloody affair. I eventually went into management and promptly gave up staying current with code sometime around 2009. So much has changed in recent years and I'm learning a lot of new stuff (ES6, git, React).
-
-That said, I'm a firm believer in code readability over terseness. In the past, I often couldn't fathon how/why I may have written something the way I did because I endeavored to write my code as terse as possible. However, clarity matters so the sheet worker code for this project is intentionally verbose. I realize there are speed trade-offs, but this being a character sheet, I don't think speed is as important as maintainability and understandability.
-
-Additionally, I believe strongly in function berfore form, especially if/when the deliverable is changing rapidly. Without tools such as React available, its just not worth all the extra effort (IMO) to make things look overly pretty if its going to cause additional work every time a change to the sheet needs to be made. My motto is to honor the whitespace and use good, simple layout (CSS Grid, in this case).
-
-Of course, your preferences may differ.
 
 ---
 
@@ -253,12 +242,6 @@ Of course, your preferences may differ.
 * [Roll20](https://roll20.net/)
 * [VS Code](https://code.visualstudio.com/)
 * [CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-
----
-
-## Contributing
-
-Please contact me directly if you'd like to be a contributor.
 
 ---
 
