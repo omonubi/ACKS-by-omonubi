@@ -58,7 +58,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *character_title* | As a text field, allows for any title name desired. |
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prereq' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
-| saving throws | Use the modifier fields as needed. Save values are automatically set if the Monster Stats > Save field is popoulated (e.g. 'F3') |
+| saving throws | Use the modifier fields as needed. Save values are automatically set if the Monster Stats > Save field is popoulated (e.g. 'F3'). This feature can also be used to auto-update save targets for most player classes. |
 | monster stats | These fields are intended for use with monster sheets. |
 
 ---
