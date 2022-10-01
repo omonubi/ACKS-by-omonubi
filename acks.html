@@ -1260,7 +1260,7 @@ function updateInitiative () {
 
 /********** Items **********/
 on('change:repeating_items:item_weight change:repeating_items:item_count change:repeating_items:item_equipped remove:repeating_items', function(eventInfo) {
-    updateItemEncumbrance(
+    if (eventInfo.sourceType == "player") updateItemEncumbrance(
         'repeating_items', 
         '_item_weight',
         '_item_count',
