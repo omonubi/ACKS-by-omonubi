@@ -182,236 +182,6 @@
     <hr/>
 </div>
 
-<div class='combat'>
-    <div class='grid1111'>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]-@{is_wielding_twohanded}[wpn]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
-        <input type='number' value='0' name='attr_mod_initiative'/>
-        <input type='hidden' value='0' name='attr_is_wielding_twohanded'/>
-        <input type='number' value='0' name='attr_mod_surprise'/>
-        <input type='number' value='0' name='attr_mod_reaction'/>
-        <input type='number' value='0' name='attr_mod_morale'/>
-    </div>
-    <hr/>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Armor</label>
-            <label>Bonus</label>
-            <label>Shield</label>
-            <label>Helm</label>
-            <select name='attr_armor'>
-                <option value='0' selected>Clothing Only (AC 0)</option>
-                <option value='1'>Hide and Fur (AC 1)</option>
-                <option value='2'>Leather (AC 2)</option>
-                <option value='3'>Ring or Scale (AC 3)</option>
-                <option value='4'>Chain Mail (AC 4)</option>
-                <option value='5'>Banded or Lamellar (AC 5)</option>
-                <option value='6'>Plate (AC 6)</option>
-            </select>
-            <input type='number' value='0' name='attr_armor_bonus'/>
-            <input type='checkbox' value='1' name='attr_has_shield'/>
-            <input type='checkbox' value='1' name='attr_has_helm'/>
-        </div>
-        <div class='grid111'>
-            <label class='spanheader'>Effects Generators</label>
-            <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Character)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
-            <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Monster)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
-        </div>
-    </div>
-    <hr/>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Armor Class</label>
-                <input type='number' value='0' name='attr_armor_class' readonly/>
-            <label>Attack Throw</label>
-                <input type='number' value='10' name='attr_attack_throw'/>
-        </div>
-        <div class='grid11'> 
-            <label>Number of Attacks: </label>
-                <input type='text' value='1 (weapon)' name='attr_num_attacks'/>
-        </div>
-    </div>
-    <hr/>
-    <div>
-        <label class='spanheader'>Melee Attacks</label>
-        <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
-            <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
-            <label>Equip:</label><input type='checkbox' name='attr_melee_is_equipped'/>
-            <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
-            <label>Dmg:</label>
-                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'></button>
-                <input class='width45' type='text' name='attr_melee_damage'/>
-            <input type='checkbox' class='toggle-show'/><br/>
-            <div class='details'>
-                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
-                <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
-                <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
-            </div>
-        </fieldset>.
-    </div>
-    <hr/>
-    <div>
-        <label class='spanheader'>Missile Attacks</label>
-        <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
-            <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
-            <label>Equip:</label><input type='checkbox' name='attr_missile_is_equipped'/>
-            <label>Rng:</label><input type='text' class='missilerange' name='attr_missile_range'/>
-            <label>Dmg:</label>
-                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'></button>
-                <input class='width45' type='text' name='attr_missile_damage'/>
-            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
-            <input type='checkbox' class='toggle-show'/><br/>
-            <div class='details'>
-                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <label>STR Bonus:</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
-                <label>Starting Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
-                <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
-            </div>
-        </fieldset>.
-    </div>
-    <hr/>
-</div>
-
-<div class='skills'>
-    <div class='grid1'>
-        <label class='spanheader'>Skills</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_abilities'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
-                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
-                <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
-                    <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <hr/>
-    <div class='grid1'>
-        <label class='spanheader'>Proficiencies</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_skills'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
-                <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
-                <label>Rank:</label><input type='number' value='1' name='attr_skill_rank'/>
-                <label>Type:</label>
-                    <select name='attr_skill_type'>
-                        <option selected>General</option>
-                        <option>Class</option>
-                        <option>Class Power</option>
-                    </select>
-                    <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
-                    <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <hr/>
-</div>
-
-<div class='equipment'>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/> <input type='hidden' name='attr_mod_capacity'/>
-            <label>Encumbrance</label> <input type='number' value='0' name='attr_encumbrance' readonly />
-        </div>
-        <div class='grid1111'> 
-            <label class='redtext'>Feet / Turn</label> 
-                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
-            <label class='redtext'>Feet / Round</label> 
-                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
-        </div>
-    </div>
-    <hr/>
-    <div>
-        <label class='spanheader'>Equipment</label>
-        <input class='toggle-show' type='checkbox' name='attr_show_equipment' checked/> show/hide
-        <div class='details'>
-            <fieldset class='repeating_items'>
-                <input type='text' placeholder='Item name...' name='attr_item_name'/>
-                <label>Weight:</label><input class='itemWeight' type='number' step='0.01' value='0.17' name='attr_item_weight'/>
-                <label>Count:</label><input type='number' value='1' name='attr_item_count'/>
-                <label>Value:</label><input type='number' step='0.01' name='attr_item_value'/>
-                <label>Equipped:</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'><textarea placeholder='Optional description...' name='attr_item_details'></textarea></div>
-            </fieldset>
-            <input type='hidden' value='0' name='attr_items_weight'/>
-        </div>
-    </div>
-    <hr/>
-    <div class='grid11'>
-        <div class='gridcurrency'>
-            <input type='hidden' value='0' name='attr_currency_weight'/>
-            <label class='spanheader'>Currency</label>
-            <label></label><label>On Hand</label><label>Banked</label><label>Found</label><label>x:GP</label>  
-            <label>PP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_platinum'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_platinum_bank'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_platinum_found'/>
-                <label>1:5</label>
-            <label>GP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_gold'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_gold_bank'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_gold_found'/>
-                <label>1:1</label>
-            <label>EP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_electrum'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_electrum_bank'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_electrum_found'/>
-                <label>2:1</label>
-            <label>SP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_silver'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_silver_bank'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_silver_found'/>
-                <label>10:1</label>
-            <label>CP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_copper'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_copper_bank'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_copper_found'/>  
-                <label>100:1</label>
-            <label></label><label>capacity</label><label>wealth</label><label>xp</label><label></label>
-            <label></label>
-            <input class='currency' type='number' value='0' name='attr_currency_capacity' readonly/>
-            <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
-            <input class='currency' type='number' value='0' name='attr_currency_xp' readonly/>
-        </div>
-        <div class='grid11'>
-            <label class='spanheader'>Monthly Cost of Living</label>
-            <label>Living Standard</label>
-                <select name='attr_living_standard'>
-                    <option value='1'>Wretched</option>
-                    <option value='3'>Meager</option>
-                    <option value='12' selected>Adequate</option>
-                    <option value='40'>Confortable</option>
-                    <option value='100'>Prosperous</option>
-                    <option value='450'>Affluent</option>
-                    <option value='2000'>Sumptuous</option>
-                    <option value='12000'>Luxuriant</option>
-                    <option value='80000'>Lavishly Opulent</option>
-                </select>
-            <label>Hireling Fees</label>
-                <div><input type='number' value='0' name='attr_hireling_fees' readonly/> gp</div>
-            <hr class='spangrid'/>
-            <label class='emphasis'>Total Fees</label>
-                <div><input type='number' value='12' name='attr_total_monthly_fees' readonly/> gp</div>
-        </div>
-    </div>
-    <hr/>
-</div>
-
 <div class='class'>
 
     <div>
@@ -520,6 +290,236 @@
     <div>
         <p>Designed for use with the Adventurer Conqueror King System and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
     </div>
+</div>
+
+<div class='skills'>
+    <div class='grid1'>
+        <label class='spanheader'>Skills</label>
+        <div class='spanrepeater'>
+            <fieldset class='repeating_abilities'>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
+                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
+                <label>Source: </label><input type='text' name='attr_ability_source'/>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
+                    <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <hr/>
+    <div class='grid1'>
+        <label class='spanheader'>Proficiencies</label>
+        <div class='spanrepeater'>
+            <fieldset class='repeating_skills'>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
+                <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
+                <label>Rank:</label><input type='number' value='1' name='attr_skill_rank'/>
+                <label>Type:</label>
+                    <select name='attr_skill_type'>
+                        <option selected>General</option>
+                        <option>Class</option>
+                        <option>Class Power</option>
+                    </select>
+                    <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
+                    <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <hr/>
+</div>
+
+<div class='combat'>
+    <div class='grid1111'>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]-@{is_wielding_twohanded}[wpn]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
+        <input type='number' value='0' name='attr_mod_initiative'/>
+        <input type='hidden' value='0' name='attr_is_wielding_twohanded'/>
+        <input type='number' value='0' name='attr_mod_surprise'/>
+        <input type='number' value='0' name='attr_mod_reaction'/>
+        <input type='number' value='0' name='attr_mod_morale'/>
+    </div>
+    <hr/>
+    <div class='grid11'>
+        <div class='grid1111'>
+            <label>Armor</label>
+            <label>Bonus</label>
+            <label>Shield</label>
+            <label>Helm</label>
+            <select name='attr_armor'>
+                <option value='0' selected>Clothing Only (AC 0)</option>
+                <option value='1'>Hide and Fur (AC 1)</option>
+                <option value='2'>Leather (AC 2)</option>
+                <option value='3'>Ring or Scale (AC 3)</option>
+                <option value='4'>Chain Mail (AC 4)</option>
+                <option value='5'>Banded or Lamellar (AC 5)</option>
+                <option value='6'>Plate (AC 6)</option>
+            </select>
+            <input type='number' value='0' name='attr_armor_bonus'/>
+            <input type='checkbox' value='1' name='attr_has_shield'/>
+            <input type='checkbox' value='1' name='attr_has_helm'/>
+        </div>
+        <div class='grid111'>
+            <label class='spanheader'>Effects Generators</label>
+            <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Character)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
+            <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Monster)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
+        </div>
+    </div>
+    <hr/>
+    <div class='grid11'>
+        <div class='grid1111'>
+            <label>Armor Class</label>
+                <input type='number' value='0' name='attr_armor_class' readonly/>
+            <label>Attack Throw</label>
+                <input type='number' value='10' name='attr_attack_throw'/>
+        </div>
+        <div class='grid11'> 
+            <label>Number of Attacks: </label>
+                <input type='text' value='1 (weapon)' name='attr_num_attacks'/>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <label class='spanheader'>Melee Attacks</label>
+        <fieldset class='repeating_melee'>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
+            <label>Equip:</label><input type='checkbox' name='attr_melee_is_equipped'/>
+            <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
+            <label>Dmg:</label>
+                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'></button>
+                <input class='width45' type='text' name='attr_melee_damage'/>
+            <input type='checkbox' class='toggle-show'/><br/>
+            <div class='details'>
+                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
+                <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
+                <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
+            </div>
+        </fieldset>.
+    </div>
+    <hr/>
+    <div>
+        <label class='spanheader'>Missile Attacks</label>
+        <fieldset class='repeating_missile'>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
+            <label>Equip:</label><input type='checkbox' name='attr_missile_is_equipped'/>
+            <label>Rng:</label><input type='text' class='missilerange' name='attr_missile_range'/>
+            <label>Dmg:</label>
+                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'></button>
+                <input class='width45' type='text' name='attr_missile_damage'/>
+            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
+            <input type='checkbox' class='toggle-show'/><br/>
+            <div class='details'>
+                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
+                <label>STR Bonus:</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
+                <label>Starting Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+                <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
+            </div>
+        </fieldset>.
+    </div>
+    <hr/>
+</div>
+
+<div class='equipment'>
+    <div class='grid11'>
+        <div class='grid1111'>
+            <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/> <input type='hidden' name='attr_mod_capacity'/>
+            <label>Encumbrance</label> <input type='number' value='0' name='attr_encumbrance' readonly />
+        </div>
+        <div class='grid1111'> 
+            <label class='redtext'>Feet / Turn</label> 
+                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+                <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
+            <label class='redtext'>Feet / Round</label> 
+                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+                <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <label class='spanheader'>Equipment</label>
+        <input class='toggle-show' type='checkbox' name='attr_show_equipment' checked/> show/hide
+        <div class='details'>
+            <fieldset class='repeating_items'>
+                <input type='text' placeholder='Item name...' name='attr_item_name'/>
+                <label>Weight:</label><input class='itemWeight' type='number' step='0.01' value='0.17' name='attr_item_weight'/>
+                <label>Count:</label><input type='number' value='1' name='attr_item_count'/>
+                <label>Value:</label><input type='number' step='0.01' name='attr_item_value'/>
+                <label>Equipped:</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'><textarea placeholder='Optional description...' name='attr_item_details'></textarea></div>
+            </fieldset>
+            <input type='hidden' value='0' name='attr_items_weight'/>
+        </div>
+    </div>
+    <hr/>
+    <div class='grid11'>
+        <div class='gridcurrency'>
+            <input type='hidden' value='0' name='attr_currency_weight'/>
+            <label class='spanheader'>Currency</label>
+            <label></label><label>On Hand</label><label>Banked</label><label>Found</label><label>x:GP</label>  
+            <label>PP</label>
+                <input class='currency' type='number' value='0' min='0' name='attr_platinum'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_platinum_bank'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_platinum_found'/>
+                <label>1:5</label>
+            <label>GP</label>
+                <input class='currency' type='number' value='0' min='0' name='attr_gold'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_gold_bank'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_gold_found'/>
+                <label>1:1</label>
+            <label>EP</label>
+                <input class='currency' type='number' value='0' min='0' name='attr_electrum'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_electrum_bank'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_electrum_found'/>
+                <label>2:1</label>
+            <label>SP</label>
+                <input class='currency' type='number' value='0' min='0' name='attr_silver'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_silver_bank'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_silver_found'/>
+                <label>10:1</label>
+            <label>CP</label>
+                <input class='currency' type='number' value='0' min='0' name='attr_copper'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_copper_bank'/>
+                <input class='currency' type='number' value='0' min='0' name='attr_copper_found'/>  
+                <label>100:1</label>
+            <label></label><label>capacity</label><label>wealth</label><label>xp</label><label></label>
+            <label></label>
+            <input class='currency' type='number' value='0' name='attr_currency_capacity' readonly/>
+            <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
+            <input class='currency' type='number' value='0' name='attr_currency_xp' readonly/>
+        </div>
+        <div class='grid11'>
+            <label class='spanheader'>Monthly Cost of Living</label>
+            <label>Living Standard</label>
+                <select name='attr_living_standard'>
+                    <option value='1'>Wretched</option>
+                    <option value='3'>Meager</option>
+                    <option value='12' selected>Adequate</option>
+                    <option value='40'>Confortable</option>
+                    <option value='100'>Prosperous</option>
+                    <option value='450'>Affluent</option>
+                    <option value='2000'>Sumptuous</option>
+                    <option value='12000'>Luxuriant</option>
+                    <option value='80000'>Lavishly Opulent</option>
+                </select>
+            <label>Hireling Fees</label>
+                <div><input type='number' value='0' name='attr_hireling_fees' readonly/> gp</div>
+            <hr class='spangrid'/>
+            <label class='emphasis'>Total Fees</label>
+                <div><input type='number' value='12' name='attr_total_monthly_fees' readonly/> gp</div>
+        </div>
+    </div>
+    <hr/>
 </div>
 
 <div class='hirelings'>
