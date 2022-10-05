@@ -137,7 +137,7 @@ This sheet was designed to accomodate the various ways in which ACKS allows char
 | *item_value* | An optional field used to track an item's value, in gold pieces. It is not used any place else on the sheet. |
 | *item_equipped* | A checkbox to indicate if the item(s) is being carried. If not, its weight is not factored into *encumbrance*. |
 | Currency | Fields for tracking coins carried, banked (not carried), and new (and carried) but not yet claimed by the player. Use the new field to add/subtract coinage on behalf of the player, then ask them to "accept" the change by clicking the Claim button. The table includes a handy conversion rate for each coin type. |
-| Cost of Living | Adds the monthly cost of living for the selected *living_standard* and adds any applicable monthly hireling fees. |
+| Monthly Budget | Subtracts the monthly Cost of Living for the selected *living_standard* and any applicable monthly hireling fees. Adds any applicable monthly fees from professional Professions. |
 
 ### Author's Note Regarding Equipment Assumptions
 - I recommend tracking rations by day, instead of by week, with each day's rations weighing 0.17 stone. 

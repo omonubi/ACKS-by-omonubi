@@ -499,7 +499,7 @@
             <button class='sheetbutton' type='action' name='act_claim_currency'>Claim</button>
         </div>
         <div class='grid11'>
-            <label class='spanheader'>Monthly Cost of Living</label>
+            <label class='spanheader'>Monthly Budget</label>
             <label>Living Standard</label>
                 <select name='attr_living_standard'>
                     <option value='1'>Wretched</option>
@@ -514,9 +514,11 @@
                 </select>
             <label>Hireling Fees</label>
                 <div><input type='number' value='0' name='attr_hireling_fees' readonly/> gp</div>
+            <label>Professional Income</label>
+                <div><input type='number' value='0' name='attr_professional_income'/> gp</div>
             <hr class='spangrid'/>
-            <label class='emphasis'>Total Fees</label>
-                <div><input type='number' value='12' name='attr_total_monthly_fees' readonly/> gp</div>
+            <label class='emphasis'>Monthly Balance</label>
+                <div><input type='number' value='12' name='attr_monthly_balance' readonly/> gp</div>
         </div>
     </div>
     <hr/>
@@ -854,20 +856,21 @@ function updateBHR() {
 };
 
 /********** Cost of Living ****************/
-on('change:living_standard change:hireling_fees', function(eventInfo) {
+on('change:living_standard change:hireling_fees change:professional_income', function(eventInfo) {
     updateCostOfLiving();
 });
 
 function updateCostOfLiving() {
     /*console.log('updateCostOfLiving()');*/
-    getAttrs(['living_standard', 'hireling_fees'], function(values) {
+    getAttrs(['living_standard', 'hireling_fees', 'professional_income'], function(values) {
         const theLivingStandard = Number(values['living_standard']) || 0;
         const theHirelingFees = Number(values['hireling_fees']) || 0;
+        const theProIncome = Number(values['professional_income']) || 0;
         
-        const totalMonthlyFees = theLivingStandard + theHirelingFees;
+        const totalMonthlyFees = 0 - (theLivingStandard + theHirelingFees) + theProIncome;
 
         const output = {};
-        output['total_monthly_fees'] = totalMonthlyFees;
+        output['monthly_balance'] = totalMonthlyFees;
         setAttrs(output);
     });
 };
