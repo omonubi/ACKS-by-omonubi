@@ -234,7 +234,7 @@
             <input type='number' value='0' name='attr_spells_7'/>
             <input type='number' value='0' name='attr_spells_8'/>
             <input type='number' value='0' name='attr_spells_9'/>
-            <button type='action' name='act_reset_spells'>Reset</button>
+            <button class='sheetbutton' type='action' name='act_reset_spells'>Reset</button>
         </div>
         <hr/>
         <div class='grid11'>
@@ -466,7 +466,7 @@
         <div class='gridcurrency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
             <label class='spanheader'>Currency</label>
-            <label></label><label>On Hand</label><label>Banked</label><label>Found</label><label>x:GP</label>  
+            <label></label><label>On Hand</label><label>Banked</label><label>New</label><label>x:GP</label>  
             <label>PP</label>
                 <input class='currency' type='number' value='0' min='0' name='attr_platinum'/>
                 <input class='currency' type='number' value='0' min='0' name='attr_platinum_bank'/>
@@ -492,11 +492,11 @@
                 <input class='currency' type='number' value='0' min='0' name='attr_copper_bank'/>
                 <input class='currency' type='number' value='0' min='0' name='attr_copper_found'/>  
                 <label>100:1</label>
-            <label></label><label>capacity</label><label>wealth</label><label>xp</label><label></label>
+            <label></label><label>capacity</label><label>wealth</label><label></label><label></label>
             <label></label>
             <input class='currency' type='number' value='0' name='attr_currency_capacity' readonly/>
             <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
-            <input class='currency' type='number' value='0' name='attr_currency_xp' readonly/>
+            <button class='sheetbutton' type='action' name='act_claim_currency'>Claim</button>
         </div>
         <div class='grid11'>
             <label class='spanheader'>Monthly Cost of Living</label>
@@ -868,6 +868,36 @@ function updateCostOfLiving() {
 
         const output = {};
         output['total_monthly_fees'] = totalMonthlyFees;
+        setAttrs(output);
+    });
+};
+
+/********** Currency Claim **********/
+on('clicked:claim_currency', function(eventInfo) {
+    claimCurrency();
+});
+
+function claimCurrency() {
+    /*console.log('claimCurrency()');*/
+    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
+        const coinsGold = Number(values['gold']) || 0;
+        const coinsSilver = Number(values['silver']) || 0;
+        const coinsCopper = Number(values['copper']) || 0;
+        const coinsElectrum = Number(values['electrum']) || 0;
+        const coinsPlatinum = Number(values['platinum']) || 0;
+        const coinsGoldFound = Number(values['gold_found']) || 0;
+        const coinsSilverFound = Number(values['silver_found']) || 0;
+        const coinsCopperFound = Number(values['copper_found']) || 0;
+        const coinsElectrumFound = Number(values['electrum_found']) || 0;
+        const coinsPlatinumFound = Number(values['platinum_found']) || 0;
+
+        const output = {};
+        output['gold'] = coinsGold + coinsGoldFound;
+        output['silver'] = coinsSilver + coinsSilverFound;
+        output['copper'] = coinsCopper + coinsCopperFound;
+        output['electrum'] = coinsElectrum + coinsElectrumFound;
+        output['platinum'] = coinsPlatinum + coinsPlatinumFound;
+        output['gold_found'] = output['silver_found'] = output['copper_found'] = output['electrum_found'] = output['platinum_found'] = 0;
         setAttrs(output);
     });
 };

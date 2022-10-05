@@ -136,7 +136,7 @@ This sheet was designed to accomodate the various ways in which ACKS allows char
 | *item_weight* | Set this value equal to 0.17 for small items or bundles (ammo), or use smaller values for items like individual arrows, gems, holy symbols, etc. Include armor and weapons as well, as per ACKS Core pg. 48. |
 | *item_value* | An optional field used to track an item's value, in gold pieces. It is not used any place else on the sheet. |
 | *item_equipped* | A checkbox to indicate if the item(s) is being carried. If not, its weight is not factored into *encumbrance*. |
-| Currency | Fields for tracking coins carried, banked (not carried), and found (and carried) but not yet returned to civilization (worth XP). The table includes a handy conversion rate for each coin type. |
+| Currency | Fields for tracking coins carried, banked (not carried), and new (and carried) but not yet claimed by the player. Use the new field to add/subtract coinage on behalf of the player, then ask them to "accept" the change by clicking the Claim button. The table includes a handy conversion rate for each coin type. |
 | Cost of Living | Adds the monthly cost of living for the selected *living_standard* and adds any applicable monthly hireling fees. |
 
 ### Author's Note Regarding Equipment Assumptions

@@ -138,6 +138,20 @@ button.combatbutton {
     width: 90%;
 }
 
+button[type='action'].sheetbutton {
+    background-image: linear-gradient(#ffffff, #dddddd);
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+}
+button[type='action'].sheetbutton:hover {
+    background-color: #eeeeee;
+}
+button[type='action'].sheetbutton:active {
+    border: 2px solid black;
+}
+
 div {
     align-self: start;
     justify-self: start;
