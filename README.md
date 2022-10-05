@@ -168,7 +168,7 @@ This tab contains text area fields for tracking additional character information
 * Adventuring Notes
 * Experience Gained
 
-My recommendation is to add a new Experience Gained record to the repeating list each time the character returns to civilization and XP is calculated. This should include both monster and treasure XP, as well as any additional XP for decision-making, role-play, etc. Use the Date field to indicate the real date the character received the XP.
+Add a new Experience Gained record to the repeating list each time the character returns to civilization and XP is calculated. This should include both monster and treasure XP, as well as any additional XP for decision-making, role-play, etc. Use the Date field to indicate the real date the character received the XP. The character's total XP (read-only) is calculated based on these entries.
 
 ---
 

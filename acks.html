@@ -48,7 +48,7 @@
                 <input type='text' name='attr_alignment'/>
             <div><label class='xp'>Experience (+</label><span class='xpbonus' name='attr_xp_bonus'>0</span><label>%)</label></div>
                 <div>
-                    <input class='xp' type='text' value='0' name='attr_xp'/>
+                    <input class='xp' type='text' value='0' name='attr_xp' readonly/>
                     <input class='xp' type='text' value='0' name='attr_xp_next_level'/>
                 </div>
             <label>Level</label>
@@ -1050,6 +1050,33 @@ function updateEncumbranceCapacity() {
         const output = {};
         output['enc_capacity'] = encCapacity;
         setAttrs(output);
+    });
+};
+
+/********** Experience Points **********/
+on('change:repeating_experience:xp_amount remove:repeating_experience', function(eventInfo) {
+    updateTotalExperience();
+});
+
+function updateTotalExperience() {
+    /*console.log('updateTotalExperience()');*/
+
+    getSectionIDs('repeating_experience', function (ids) {
+        const XPFieldnames = [];
+        ids.forEach(id => {
+            XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
+        });
+        
+        getAttrs([...XPFieldnames], function (values) {
+            let totalXP = 0;
+            const output = {};
+            ids.forEach(id => {
+                const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount'])||0;
+                totalXP += itemXP;
+            });
+            output['xp'] = totalXP;
+            setAttrs(output);
+        });
     });
 };
 
