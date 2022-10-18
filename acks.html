@@ -300,7 +300,7 @@
                 <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{Target=[[@{ability_target}]]}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
@@ -323,7 +323,7 @@
                         <option>Class</option>
                         <option>Class Power</option>
                     </select>
-                    <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
+                    <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{Target=[[@{skill_target}]]}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
