@@ -5,8 +5,10 @@ Hopefully, this documentation below comes in useful. I know I've struggled over 
 
 ---
 
-## Version 2.0
-This is v2 of the character sheet. The main differences between v1 and v2 are that I removed any/all SRD class-specific information from the sheet. I did this because, after a thorough review of just about all ACKS content I could find, it became clear that embedding this information was a fool's errand. It streamlined a lot of work when generating and using ACKS-specific classes, but also became un-maintainable. If you've been using the sheet and enjoiying this feature, my apoligies, but I couldn't maintain it.
+## Version 3.0
+This is v3 of the character sheet, for supporting ACKS II.
+
+The main differences between v1 and v2 was that I removed any/all SRD class-specific information from the sheet. I did this because, after a thorough review of just about all ACKS content I could find, it became clear that embedding this information was a fool's errand. It streamlined a lot of work when generating and using ACKS-specific classes, but also became un-maintainable. If you've been using the sheet and enjoiying this feature, my apoligies, but I couldn't maintain it.
 
 Additionally, I removed any spellcasting modifications beyond ACKS Core and Player's Companion; specifically Cantrips support and Shades of Magic. The further into ACKS Heroic Fantasy Handbook I delved, the more it became clear that the two magic systems (Core vs. HFH) are really not compatible without extensive sheet customizations to account for spellsinging and ceremonial magic. For now, this sheet sticks to non-HFH with the following exceptions, all of which can be ignored if desired:
 
@@ -14,7 +16,7 @@ Additionally, I removed any spellcasting modifications beyond ACKS Core and Play
  - Natural 20 combat rolls explode (to determine crits as per HFH)
  - Fate points can be tracked
 
- Finally, all conditions controls were removed. Playtesting demonstrated that embedding conditions into the the character sheet just over-complicated the process of tracking and applying condition modifiers throughout. Conditions should now be tracked using token icons and their impacts applied to rolls through the global Modifiers prompt.
+ Finally, all conditions controls were removed. Playtesting demonstrated that embedding conditions into the character sheet just over-complicated the process of tracking and applying condition modifiers throughout. Conditions should now be tracked using token icons and their impacts applied to rolls through the global Modifiers prompt.
 
 ---
 
@@ -56,6 +58,7 @@ The sheet is divided into tabs to help isolate different bodies of information a
 | *character_fullname* | Provided to allow for more 'expressive' and complete names than either the standard *character_name* or *token_name* properties. |
 | *class* | As a text field, allows for any class name desired. |
 | *character_title* | As a text field, allows for any title name desired. |
+| *experience* | Auto calculated based on entries made to the Journal tab. Also, automatically applies the character's XP bonus from attribute prerequisites. |
 | *level* | Minimum value allowed is 0; maximum is 14. Currently, the sheet doesn't limit level based on class. |
 | attributes | Minimum value for each is 0; maximum is 20. Use/edit the 'Nominal' column to track (and preserve) the character's un-modified scores. This is done via the Roll20 character sheet 'Attributes & Abilities' tab by inputing 'Max' values for each attribute. Click the 'Prereq' checkbox(es) to auto-calculate the character's XP bonus, shown next to the 'Experience' field label, above. |
 | saving throws | Use the modifier fields as needed. Save values are automatically set if the Monster Stats > Save field is popoulated (e.g. 'F3'). This feature can also be used to auto-update save targets for most player classes. |
