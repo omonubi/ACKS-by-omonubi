@@ -115,7 +115,7 @@
         </div>
         <div class='grid1111'>
             <label class='spanheader'>Summary</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit Dice</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit </button>
                 <input class='width45' type='text' name='attr_hit_dice' />
                 <input type='hidden' name='attr_hit_die'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_bhr} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Rest / Healing}} {{Base Healing Rate=@{bhr}}} {{Roll=[[@{bhr}]]}}' name='roll_BHR'> Heal BHR</button>
@@ -356,10 +356,10 @@
             <label>Helm</label>
             <select name='attr_armor'>
                 <option value='0' selected>Clothing Only (AC 0)</option>
-                <option value='1'>Hide and Fur (AC 1)</option>
-                <option value='2'>Leather (AC 2)</option>
+                <option value='1'>Hide, Fur, or Padded (AC 1)</option>
+                <option value='2'>Leather or AA Lite (AC 2)</option>
                 <option value='3'>Ring or Scale (AC 3)</option>
-                <option value='4'>Chain Mail (AC 4)</option>
+                <option value='4'>Chain, Laminated, or AA Hvy (AC 4)</option>
                 <option value='5'>Banded or Lamellar (AC 5)</option>
                 <option value='6'>Plate (AC 6)</option>
             </select>
