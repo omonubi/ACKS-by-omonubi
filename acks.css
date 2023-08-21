@@ -37,7 +37,6 @@
 }
 .grid1111-table {
     align-items: left;
-    justify-items: left;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(4, 1fr) [last];
@@ -45,7 +44,6 @@
 }
 .grid11111 {
     align-items: center;
-    justify-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(5, 1fr) [last];
@@ -54,7 +52,6 @@
 }
 .grid8 {
     align-items: center;
-    justify-items: right;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(8, 1fr) [last];
@@ -63,7 +60,6 @@
 }
 .gridthievesskills {
     align-items: center;
-    justify-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(8, 1fr) [last];
@@ -220,14 +216,6 @@ input[type=number].currency {
 }
 input.attackname {
     width: 150px;
-}
-input.characterClass,
-input.characterClassReadonly {
-    width: 182px;
-}
-input.characterTitle,
-input.characterTitleReadonly {
-    width: 182px;
 }
 input.mercarmaments {
     width: 400px;
@@ -426,34 +414,6 @@ div.body {
 }
 
 input.toggle-show:not(:checked) ~ div.details {
-    display: none;
-}
-
-/**************** Sheet field readonly toggles *****************/
-button.toggleLock {
-    background-color: white;
-    border: none;
-    width: 12px;
-}
-button.toggleLock .locked,
-button.toggleLock .unlocked {
-    font-family: "Pictos" !important;
-}
-
-input.toggleLockClass[value='0'] ~ input.characterClass,
-input.toggleLockTitle[value='0'] ~ input.characterTitle {
-    display: none;
-}
-input.toggleLockClass[value='0'] ~ .toggleLock .unlocked,
-input.toggleLockTitle[value='0'] ~ .toggleLock .unlocked {
-    display: none;
-}
-input.toggleLockClass[value='1'] ~ input.characterClassReadonly,
-input.toggleLockTitle[value='1'] ~ input.characterTitleReadonly {
-    display: none;
-}
-input.toggleLockClass[value='1'] ~ .toggleLock .locked,
-input.toggleLockTitle[value='1'] ~ .toggleLock .locked {
     display: none;
 }
 

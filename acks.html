@@ -8,13 +8,13 @@
 -->
 <!-- Tab Controls -->
 <div class='page-title'>
-    <h1>Adventurer Conqueror King System</h1>
+    <h1>Adventurer Conqueror King System: Imperial Imprint</h1>
 </div>
 <div class='button-panel'>
     <input type='hidden' class='buttonstoggle' name='attr_sheetButtons' value='overview'/>
     <button type='action' class='btnOverview' name='act_overview' >Overview</button> 
     <button type='action' class='btnClass' name='act_class' >Class</button>
-    <button type='action' class='btnSkills' name='act_skills' >Skills</button>
+    <button type='action' class='btnSkills' name='act_skills' >Abilities</button>
     <button type='action' class='btnCombat' name='act_combat' >Combat</button>    
     <button type='action' class='btnEquipment' name='act_equipment' >Equipment</button>   
     <button type='action' class='btnHirelings' name='act_hirelings' >Hirelings</button>
@@ -32,17 +32,11 @@
                 <input type='text' name='attr_character_fullname' />
             <label>Class</label> 
                 <div>
-                    <input class='toggleLockClass' type='hidden' value='1' name='attr_toggleLock_class'/>
-                    <button class='toggleLock' type='action' name='act_toggleLockClass'><span class='locked'>(</span><span class='unlocked'>)</span></button>
-                    <input class='characterClass' type='text' name='attr_class'/>
-                    <input class='characterClassReadonly' type='text' name='attr_class' readonly/>
+                    <input type='text' name='attr_class'/>
                 </div>
             <label>Title</label>
                 <div>
-                    <input class='toggleLockTitle' type='hidden' value='1' name='attr_toggleLock_title'/>
-                    <button class='toggleLock' type='action' name='act_toggleLockTitle'><span class='locked'>(</span><span class='unlocked'>)</span></button>
-                    <input class='characterTitle' type='text' name='attr_character_title'/>
-                    <input class='characterTitleReadonly' type='text' name='attr_character_title' readonly/>
+                    <input type='text' name='attr_character_title'/>
                 </div>
             <label>Alignment</label>
                 <input type='text' name='attr_alignment'/>
@@ -66,11 +60,11 @@
                 <input type='text' name='attr_weight'/>
             <label>Age</label>
                 <input type='number' name='attr_age' />
-            <label>Fate</label>
-                <div>
-                    <input type='number' value='1' name='attr_fate' /> / 
-                    <input type='number' value='1' name='attr_fate_max' />
-                </div>
+            <label>Hit Dice</label>
+            <div>
+                <input class='width45' type='text' name='attr_hit_dice' />
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit Points</button>
+            </div>
         </div>
     </div>
     <hr/>
@@ -87,12 +81,12 @@
             <input type='number' value='10' name='attr_str_max'readonly/>
             <input type='number' value='0' name='attr_str_mod' readonly />
             <input type='checkbox' name='attr_str_pre'/>
-            <label>Intelligence:</label>
+            <label>Intellect:</label>
             <input type='number' value='10' min='0' max='20' name='attr_int' />
             <input type='number' value='10' name='attr_int_max'readonly/>
             <input type='number' value='0' name='attr_int_mod' readonly />
             <input type='checkbox' name='attr_int_pre'/>
-            <label>Wisdom:</label>
+            <label>Will:</label>
             <input type='number' value='10' min='0' max='20' name='attr_wis' />
             <input type='number' value='10' name='attr_wis_max'readonly/>
             <input type='number' value='0' name='attr_wis_mod' readonly />
@@ -115,12 +109,6 @@
         </div>
         <div class='grid1111'>
             <label class='spanheader'>Summary</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit </button>
-                <input class='width45' type='text' name='attr_hit_dice' />
-                <input type='hidden' name='attr_hit_die'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_bhr} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Rest / Healing}} {{Base Healing Rate=@{bhr}}} {{Roll=[[@{bhr}]]}}' name='roll_BHR'> Heal BHR</button>
-                <input class='width45' type='text' value='1d2' name='attr_bhr' readonly/>
-                <input type='hidden' name='attr_temp_hd'/>
             <label>Hit Points</label>
                 <input type='hidden' class='hpcheck' name='attr_hp_is_below_one'/>
                 <input class='redhp' type='number' value='1' name='attr_hp'/> 
@@ -149,16 +137,16 @@
             <label></label>
             <label>Base</label>
             <label>Mod</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Petrification & Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_1_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_1'> Petrification/Paralysis</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Petrification & Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_1_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
                 <input type='number' value='0' name='attr_save_1_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Poison & Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_2_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_2'> Poison/Death</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Poison & Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_2_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_2'> Death</button>
                 <input type='number' value='14' name='attr_save_2'/>
                 <input type='number' value='0' name='attr_save_2_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blast & Breath}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_3_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_3'> Blast/Breath</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blast & Breath}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_3_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_3'> Blasts</button>
                 <input type='number' value='15' name='attr_save_3'/>
                 <input type='number' value='0' name='attr_save_3_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Staffs & Wands}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_4_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_4'> Staffs/Wands</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Staffs & Wands}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_4_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_4'> Implements</button>
                 <input type='number' value='16' name='attr_save_4'/>
                 <input type='number' value='0' name='attr_save_4_mod'/>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_5_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_5'> Spells</button>
@@ -184,6 +172,20 @@
 
 <div class='class'>
 
+    <div class='grid1'>
+        <label class='spanheader'>Class Powers</label>
+        <div class='spanrepeater'>
+            <fieldset class='repeating_powers'>
+                <input type='text' placeholder='Class Power name...' name='attr_power_name'/>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <textarea placeholder='Optional description...' name='attr_power_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+        <hr/>
+    </div>
+
     <div>
         <label class='spanheader'>Global (Unconditional) Class Bonuses</label>
         <div class='grid11'>
@@ -198,13 +200,6 @@
                 <label>Morale:</label> <input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
             </div>
         </div>
-        <hr/>
-    </div>
-
-    
-    <div>
-        <label class='spanheader'>Class Abilities</label>
-        <textarea placeholder='Enter details...' name='attr_class_abilities'></textarea>
         <hr/>
     </div>
 
@@ -237,11 +232,6 @@
             <button class='sheetbutton' type='action' name='act_reset_spells'>Reset</button>
         </div>
         <hr/>
-        <div class='grid11'>
-            <div><label>Gnostic Corruption:</label><input type='number' value='0' name='attr_corruption'/></div>
-            <div><label>Gnostic Stigma:</label><input type='number' value='0' name='attr_stigma'/></div>
-        </div>
-        <hr/>
         <div>
             <label class='spanheader'>Available Spells / Invocations</label>
             <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
@@ -262,45 +252,20 @@
         </div>
         <hr/>
     </div>
-
-    <input class='showthievesskills' type='hidden' value='1' name='attr_show_thievesskills'/>
-    <div class='thievesskills'>
-        <div class='gridthievesskills'>
-            <label class='spanheader'>Thieving Abilities</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_locks} **@{character_title} @{selected|token_name}**}} {{subtitle=Open Locks}} {{color=black}} {{Target=[[@{thief_1}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_1'> Open Lock</button>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_traps} **@{character_title} @{selected|token_name}**}} {{subtitle=Remove Traps}} {{color=black}} {{Target=[[@{thief_2}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_2'> Find Trap</button>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_pockets} **@{character_title} @{selected|token_name}**}} {{subtitle=Pick Pockets}} {{color=black}} {{Target=[[@{thief_3}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+?{Modifier|0}[mod]]]}}' name='roll_thief_3'> Pick Pocket</button>
-            <button type='roll' value='/w gm &{template:custom} {{title=@{banner_sneak} **@{character_title} @{selected|token_name}**}} {{subtitle=Move Silently}} {{color=black}} {{Target=[[@{thief_4}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_4'> Move Silent</button>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_climb} **@{character_title} @{selected|token_name}**}} {{subtitle=Climb Walls}} {{color=black}} {{Target=[[@{thief_5}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_5'> Climb Wall</button>
-            <button type='roll' value='/w gm &{template:custom} {{title=@{banner_hide} **@{character_title} @{selected|token_name}**}} {{subtitle=Hide}} {{color=black}} {{Target=[[@{thief_6}]]}} {{Roll=[[d20[die]+@{dex_mod}[dex]+@{thiefEncBonus}[enc]+?{Modifier|0}[mod]]]}}' name='roll_thief_6'> Shadow Hide</button>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_listen} **@{character_title} @{selected|token_name}**}} {{subtitle=Listen}} {{color=black}} {{Target=[[@{thief_7}]]}} {{Roll=[[d20[die]+?{Modifier|0}[mod]]]}}' name='roll_thief_7'> Hear Noise</button>
-            <label>Backstab:</label>
-            <input type='number' name='attr_thief_1'/>
-            <input type='number' name='attr_thief_2'/>
-            <input type='number' name='attr_thief_3'/>
-            <input type='number' name='attr_thief_4'/>
-            <input type='number' name='attr_thief_5'/>
-            <input type='number' name='attr_thief_6'/>
-            <input type='number' name='attr_thief_7'/>
-            <input class='width45' type='text' value='0' name='attr_thief_backstab'/>
-        </div>
-        <hr/>
-    </div>
   
     <div>
-        <p>Designed for use with the Adventurer Conqueror King System and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
+        <p>Designed for use with the Adventurer Conqueror King System, Imperial Imprint and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
     </div>
 </div>
 
 <div class='skills'>
     <div class='grid1'>
-        <label class='spanheader'>Skills</label>
+        <label class='spanheader'>Abilities</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_abilities'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitydesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Skill Description}} {{color=brown}} {{Name=@{ability_name}}} {{Source=@{ability_source}}} {{Target=[[@{ability_target}]]}} {{desc=@{ability_details}}}' name='roll_ability_description'> </button>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
@@ -321,9 +286,7 @@
                     <select name='attr_skill_type'>
                         <option selected>General</option>
                         <option>Class</option>
-                        <option>Class Power</option>
                     </select>
-                    <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profdesc} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Description}} {{color=brown}} {{Name=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{Target=[[@{skill_target}]]}} {{desc=@{skill_details}}}' name='roll_ability_description'> </button>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
@@ -337,10 +300,10 @@
 
 <div class='combat'>
     <div class='grid1111'>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]-@{is_wielding_twohanded}[wpn]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2])*100+d99)&{tracker}]]}}' name='roll_initiative'> Initiative</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2]))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Very Favorable}}' name='roll_reaction'> Reaction</button>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Retreat&#13;3-5: Fighting Withdrawal&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Friendly, helpful}}' name='roll_reaction'> Reaction</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} @{selected|token_name}**}} {{subtitle=Morale Check}} {{Roll=[[2d6cs0cf0+@{morale}[rating]+?{Modifier|0}[mod]]]}} {{desc=2 or less: Frightened Retreat&#13;3-5: Morale Faltering&#13;6-8: Fight On&#13;9-11: Advance and Pursue&#13;12+: Victory or Death}}' name='roll_morale'> Morale</button>
         <input type='number' value='0' name='attr_mod_initiative'/>
         <input type='hidden' value='0' name='attr_is_wielding_twohanded'/>
         <input type='number' value='0' name='attr_mod_surprise'/>
@@ -355,31 +318,32 @@
             <label>Shield</label>
             <label>Helm</label>
             <select name='attr_armor'>
-                <option value='0' selected>Clothing Only (AC 0)</option>
-                <option value='1'>Hide, Fur, or Padded (AC 1)</option>
-                <option value='2'>Leather or AA Lite (AC 2)</option>
-                <option value='3'>Ring or Scale (AC 3)</option>
-                <option value='4'>Chain, Laminated, or AA Hvy (AC 4)</option>
-                <option value='5'>Banded or Lamellar (AC 5)</option>
-                <option value='6'>Plate (AC 6)</option>
+                <option value='0' selected>None (AC 0)</option>
+                <option value='1'>Very Light (AC 1)</option>
+                <option value='2'>Light (AC 2)</option>
+                <option value='3'>Medium (AC 3)</option>
+                <option value='4'>Medium (AC 4)</option>
+                <option value='5'>Heavy (AC 5)</option>
+                <option value='6'>Heavy (AC 6)</option>
             </select>
             <input type='number' value='0' name='attr_armor_bonus'/>
             <input type='checkbox' value='1' name='attr_has_shield'/>
             <input type='checkbox' value='1' name='attr_has_helm'/>
         </div>
-        <div class='grid111'>
-            <label class='spanheader'>Effects Generators</label>
-            <button type='roll' value='@{whispertoggle} &{template:critchar} {{title=@{banner_critchar} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Character)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_character'> Crit Character</button>
-            <button type='roll' value='@{whispertoggle} &{template:critmon} {{title=@{banner_critmon} **@{character_title} @{selected|token_name}**}} {{subtitle=Critical Effect (Monster)}} {{color=red}} {{Roll=[[1d10cf0]]}}' name='roll_crit_monster'> Crit Monster</button>
+        <div class='grid11'>            
+            <label>Armor Class</label>
+            <div></div>
+            <input type='number' value='0' name='attr_armor_class' readonly/>
+            <div></div>
         </div>
     </div>
     <hr/>
     <div class='grid11'>
         <div class='grid1111'>
-            <label>Armor Class</label>
-                <input type='number' value='0' name='attr_armor_class' readonly/>
             <label>Attack Throw</label>
                 <input type='number' value='10' name='attr_attack_throw'/>
+            <label>Max Cleaves</label>
+                <input type='number' value='0' name='attr_max_cleaves'/>
         </div>
         <div class='grid11'> 
             <label>Number of Attacks: </label>
@@ -391,16 +355,15 @@
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw (@{melee_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
-            <label>Equip:</label><input type='checkbox' name='attr_melee_is_equipped'/>
-            <label>Reach:</label><input type='number' value='5' name='attr_melee_reach'/>
-            <label>Dmg:</label>
-                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'></button>
-                <input class='width45' type='text' name='attr_melee_damage'/>
+            <label>Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
+            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'> Dmg</button>
+            <input class='width45' type='text' name='attr_melee_damage'/>
+            <label>Long:</label><input type='checkbox' name='attr_melee_long'/>
+            <label>Details</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
-                <label>2H Wpn:</label><input type='checkbox' name='attr_melee_is_twohanded'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>.
@@ -410,18 +373,15 @@
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
             <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
-            <label>Equip:</label><input type='checkbox' name='attr_missile_is_equipped'/>
-            <label>Rng:</label><input type='text' class='missilerange' name='attr_missile_range'/>
-            <label>Dmg:</label>
-                <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'></button>
-                <input class='width45' type='text' name='attr_missile_damage'/>
-            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo_battle'/>
+            <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
+            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
+            <input class='width45' type='text' name='attr_missile_damage'/>
+            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+            <label>Details</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <label>Attack Throw Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <label>STR Bonus:</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
-                <label>Starting Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>.
@@ -658,34 +618,34 @@
     </div>
 </div>
 
-<input type='hidden' name='attr_banner_abilitythrow' value=''/>
-<input type='hidden' name='attr_banner_abilitydesc' value=''/>
-<input type='hidden' name='attr_banner_bhr' value=''/>
-<input type='hidden' name='attr_banner_blast' value=''/>
-<input type='hidden' name='attr_banner_climb' value=''/>
-<input type='hidden' name='attr_banner_critchar' value=''/>
-<input type='hidden' name='attr_banner_critmon' value=''/>
-<input type='hidden' name='attr_banner_hide' value=''/>
-<input type='hidden' name='attr_banner_hd' value=''/>
-<input type='hidden' name='attr_banner_init' value=''/>
-<input type='hidden' name='attr_banner_listen' value=''/>
-<input type='hidden' name='attr_banner_locks' value=''/>
-<input type='hidden' name='attr_banner_melee' value=''/>
-<input type='hidden' name='attr_banner_missile' value=''/>
-<input type='hidden' name='attr_banner_morale' value=''/>
-<input type='hidden' name='attr_banner_moralecheck' value=''/>
-<input type='hidden' name='attr_banner_paralysis' value=''/>
-<input type='hidden' name='attr_banner_pockets' value=''/>
-<input type='hidden' name='attr_banner_poison' value=''/>
-<input type='hidden' name='attr_banner_profthrow' value=''/>
-<input type='hidden' name='attr_banner_profdesc' value=''/>
-<input type='hidden' name='attr_banner_reaction' value=''/>
-<input type='hidden' name='attr_banner_sneak' value=''/>
-<input type='hidden' name='attr_banner_spellcast' value=''/>
-<input type='hidden' name='attr_banner_spells' value=''/>
-<input type='hidden' name='attr_banner_staffs' value=''/>
-<input type='hidden' name='attr_banner_surprise' value=''/>
-<input type='hidden' name='attr_banner_traps' value=''/>
+<input type='hidden' name='attr_banner_abilitythrow' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
+<input type='hidden' name='attr_banner_abilitydesc' value='[x](https://s3.amazonaws.com/files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?16001823395#.png)'/>
+<input type='hidden' name='attr_banner_bhr' value='[x](https://s3.amazonaws.com/files.d20.io/images/165068704/1I4pUgtI2ANx6Z1XTbB-6w/original.png?16003758415#.png)'/>
+<input type='hidden' name='attr_banner_blast' value='[x](https://s3.amazonaws.com/files.d20.io/images/164351057/V_5Pg1KGLIFLY3hfmQnIAQ/original.png?16000385285#.png)'/>
+<input type='hidden' name='attr_banner_climb' value='[x](https://s3.amazonaws.com/files.d20.io/images/164576947/VCDwMFLEzGxz2TIRmO8B2Q/original.png?16001420665#.png)'/>
+<input type='hidden' name='attr_banner_critchar' value='[x](https://s3.amazonaws.com/files.d20.io/images/164243200/hKjALkHGX4_gj5GYWZEfmw/original.png?16000138925#.png)'/>
+<input type='hidden' name='attr_banner_critmon' value='[x](https://s3.amazonaws.com/files.d20.io/images/164319112/w9iRcBuEc3vZcFvB41B2cA/original.png?16000311685#.png)'/>
+<input type='hidden' name='attr_banner_hide' value='[x](https://s3.amazonaws.com/files.d20.io/images/164550402/eoU-wD5yau9lv73M0ok08g/original.png?16153950135#.png)'/>
+<input type='hidden' name='attr_banner_hd' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
+<input type='hidden' name='attr_banner_init' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
+<input type='hidden' name='attr_banner_listen' value='[x](https://s3.amazonaws.com/files.d20.io/images/207158604/34Vzrkx7J2nxNs9STGOuzg/original.png?16153942615#.png)'/>
+<input type='hidden' name='attr_banner_locks' value='[x](https://s3.amazonaws.com/files.d20.io/images/164528179/32MQFEUbgEnYE4QBpv2JkA/original.png?16001240355#.png)'/>
+<input type='hidden' name='attr_banner_melee' value='[x](https://s3.amazonaws.com/files.d20.io/images/208788284/v3Vh7I66OLF3eKErbCtE8g/original.png?16159365185#.png)'/>
+<input type='hidden' name='attr_banner_missile' value='[x](https://s3.amazonaws.com/files.d20.io/images/208379586/aJ7XMROQPw9EdHe_cTeuwA/original.png?16157644605#.png)'/>
+<input type='hidden' name='attr_banner_morale' value='[x](https://s3.amazonaws.com/files.d20.io/images/164502952/QDUm2hoU_8YnEidHpdt3gA/original.png?16001161945#.png)'/>
+<input type='hidden' name='attr_banner_moralecheck' value='[x](https://s3.amazonaws.com/files.d20.io/images/164482040/OH6hqtvCHGeesUaO0b37vQ/original.png?16001087875#.png)'/>
+<input type='hidden' name='attr_banner_paralysis' value='[x](https://s3.amazonaws.com/files.d20.io/images/164446142/pUtaLtutH011f9ZjtaQgrg/original.png?16000939805#.png)'/>
+<input type='hidden' name='attr_banner_pockets' value='[x](https://s3.amazonaws.com/files.d20.io/images/164543632/9HoVA3mH5HvlPZPdBqIg2g/original.png?16001284195#.png)'/>
+<input type='hidden' name='attr_banner_poison' value='[x](https://s3.amazonaws.com/files.d20.io/images/164431733/S44njdUWMNsVpYVQ8O3TiA/original.png?16000843735#.png)'/>
+<input type='hidden' name='attr_banner_profthrow' value='[x](https://s3.amazonaws.com/files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
+<input type='hidden' name='attr_banner_profdesc' value='[x](https://s3.amazonaws.com/files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?16001823395#.png)'/>
+<input type='hidden' name='attr_banner_reaction' value='[x](https://s3.amazonaws.com/files.d20.io/images/164051897/DDBz__NPDHQATVmlK4-fkw/original.png?15999466705#.png)'/>
+<input type='hidden' name='attr_banner_sneak' value='[x](https://s3.amazonaws.com/files.d20.io/images/207160747/rVwt43rsKPT5fVyfg6wkhg/original.png#.png)'/>
+<input type='hidden' name='attr_banner_spellcast' value='[x](https://s3.amazonaws.com/files.d20.io/images/164818577/jtP4uMJplv3U1PGD7TstAQ/original.png?16002676365#.png)'/>
+<input type='hidden' name='attr_banner_spells' value='[x](https://s3.amazonaws.com/files.d20.io/images/236093721/4s45PlQQ20RYJjwZaqIQTA/original.png?16271747125#.png)'/>
+<input type='hidden' name='attr_banner_staffs' value='[x](https://s3.amazonaws.com/files.d20.io/images/164818577/jtP4uMJplv3U1PGD7TstAQ/original.png?16002676365#.png)'/>
+<input type='hidden' name='attr_banner_surprise' value='[x](https://s3.amazonaws.com/files.d20.io/images/207175947/Nx7GqGT7T3jyTOUgWEtb4A/original.png?16153997375#.png)'/>
+<input type='hidden' name='attr_banner_traps' value='[x](https://s3.amazonaws.com/files.d20.io/images/164540585/V0d7_hhPqcsN_Paj4vVdhQ/original.png?16001276485#.png)'/>
 
 <script type='text/worker'>
 const ATTR_SCORE_DEFAULT = 10;
@@ -1291,38 +1251,6 @@ function validateHitPoints() {
     });
 };
 
-/********** Initiative Mods **********/
-on('change:repeating_melee:melee_is_equipped change:repeating_melee:melee_is_twohanded', function(eventInfo) {
-    updateInitiative(); 
-});
-
-// If character is equipped with a two-handed weapon, initative is -1
-function updateInitiative () {
-    /*console.log('updateInitiative()');*/
-
-    getSectionIDs('repeating_melee', function (ids) {
-        const equippedValues = [];
-        const twoHandValues = [];
-        ids.forEach(id => {
-            equippedValues.push('repeating_melee_' + id + '_melee_is_equipped');
-            twoHandValues.push('repeating_melee_' + id + '_melee_is_twohanded');
-        });
-        
-        let twoHandedIsEquipped = 0;
-        getAttrs([...equippedValues, ...twoHandValues], function (values) {
-            const output = {};
-
-            ids.forEach(id => {
-                const theEquipValue = values['repeating_melee_' + id + '_melee_is_equipped'] || 0;
-                const theTwoHandValue = values['repeating_melee_' + id + '_melee_is_twohanded'] || 0;
-                if (theEquipValue == 'on' && theTwoHandValue == 'on' ) twoHandedIsEquipped = 1;
-            });
-            output['is_wielding_twohanded'] = twoHandedIsEquipped;
-            setAttrs(output);
-        });
-    });
-};
-
 /********** Items **********/
 on('change:repeating_items:item_weight change:repeating_items:item_count change:repeating_items:item_equipped remove:repeating_items', function(eventInfo) {
     if (eventInfo.sourceType == "player") updateItemEncumbrance(
@@ -1552,99 +1480,5 @@ function calculateXPBonus() {
                 <div class="sheet-desc">{{desc}}</div>
             {{/desc}}
         </div>
-    </div>
-</rolltemplate>
-
-<rolltemplate class="sheet-rolltemplate-critchar">
-    <div class="sheet-container sheet-color-{{color}}">
-      <div class="sheet-header">
-        {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
-        {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
-      </div>
-      <div class="sheet-content">
-        {{#allprops() title subtitle color}}
-        <div class="sheet-key">{{key}}</div>
-        <div class="sheet-value">{{value}}</div>
-        {{/allprops() title subtitle color}}
-
-        <div class="sheet-key">Result</div>
-        {{#rollTotal() Roll 1}}
-        <div class="sheet-value"><span><strong>Brawling</strong> - The target suffers an additional 1d4 damage from a strike from the attacker’s gauntlet, pommel, or shield rim. If the attacker has no metal weapons, the damage is nonlethal, but otherwise the brawling damage can be lethal or nonlethal, at his discretion.</span></div>
-        {{/rollTotal() Roll 1}}
-        {{#rollTotal() Roll 2}}
-        <div class="sheet-value"><span><strong>Damage Shield</strong> - The target’s shield is damaged, reducing its effectiveness by 1. If the shield is non-magical, this will destroy it. Damaged shields can be repaired at a cost of 10gp per point of effectiveness. Magic shields cannot be damaged except by magic weapons or monsters of 5 HD or more.</span></div>
-        {{/rollTotal() Roll 2}}
-        {{#rollTotal() Roll 3}}
-        <div class="sheet-value"><span><strong>Damage Armor</strong> - The target’s armor is damaged, reducing its effectiveness by 1 point. Armor that loses all effectiveness is ruined. Damaged armor can be repaired at a cost of 10gp per point of effectiveness. Magic armor cannot be damaged except by magic weapons or monsters of 5 HD or more.</span></div>
-        {{/rollTotal() Roll 3}}
-        {{#rollTotal() Roll 4}}
-        <div class="sheet-value"><span><strong>Disarm</strong> - The target is disarmed of its weapon (as the special maneuver). The weapon drops to a point chosen by the attacker who dealt the critical hit, up to 5’ distant from the target.</span></div>
-        {{/rollTotal() Roll 4}}
-        {{#rollTotal() Roll 5}}
-        <div class="sheet-value"><span><strong>Force Back</strong> - The target is forced back (as the special maneuver). It must withdraw a number of feet equal to the attacker’s damage roll. If this would push the opponent into a wall or obstacle, the opponent is knocked down, and takes 1d6 points of damage per 10’ he has traveled.</span></div>
-        {{/rollTotal() Roll 5}}
-        {{#rollTotal() Roll 6}}
-        <div class="sheet-value"><span><strong>Knockdown</strong> - The target is immediately knocked down (as the special maneuver). Once prone, the creature can move, but only to crawl at a movement rate of 5’, to take an action in lieu of moving, or to end the condition by using an action in lieu of moving to stand up. If engaged, the prone creature remains subject to the movement restrictions of being engaged, so it can only crawl if using defensive movement, and cannot stand up in lieu of moving. The prone creature can attack, but suffers a -4 penalty on its attack throws. Alternatively the prone creature can stand up in lieu of attacking. The prone creature can be backstabbed by creatures capable of doing so. Attack throws against the prone creatures gain a +2 bonus, or a +4 bonus if the attacker backstabs the stunned creature. The conditions is ended immediately when the creature stands up.</span></div>
-        {{/rollTotal() Roll 6}}
-        {{#rollTotal() Roll 7}}
-        <div class="sheet-value"><span><strong>Sunder Weapon</strong> - The target’s weapon is sundered (as the special maneuver). If the target’s weapon is a non-magical spear, staff, or pole arm, it shatters into splinters when sundered, dealing an additional 1d4 nonlethal damage to the target. Swords cannot be sundered by non-metal weapons or natural attacks by creatures of less than 5 HD. Magic weapons cannot be sundered except by other magic weapons or monsters of 5 HD or more.</span></div>
-        {{/rollTotal() Roll 7}}
-        {{#rollTotal() Roll 8}}
-        <div class="sheet-value"><span><strong>Stun</strong> - The target is stunned until the end of its next initiative. A stunned creature cannot attack, cast spells, or move. It gains no benefit to its AC from its shield (if any), and can be ambushed or backstabbed by creatures capable of doing so. All attack throws against stunned creatures gain a +2 bonus, or a +4 bonus if the attacker ambushes or backstabs the stunned creature.</span></div>
-        {{/rollTotal() Roll 8}}
-        {{#rollTotal() Roll 9}}
-        <div class="sheet-value"><span><strong>Wrestle/Clamber</strong> - The results of this critical effect depend on the difference in size between the attacker and target. If the target is the same size category or smaller than the attacker, the attacker has grabbed the target in a wrestling hold (as the special maneuver). If the target is one or more size categories larger than the attacker, the attacker has clambered on top of or mounted the target (as the special maneuver).</span></div>
-        {{/rollTotal() Roll 9}}
-        {{#rollTotal() Roll 10}}
-        <div class="sheet-value"><span><strong>Attacker's Choice</strong> - The attacker may choose any desired critical effect (Brawling, Damage Shield, Damage Armor, Disarm, Force Back, Knockdown, Sunder Weapon, Stun, Wrestle/Clamber).</span></div>
-        {{/rollTotal() Roll 10}}
-      </div>
-    </div>
-</rolltemplate>
-
-<rolltemplate class="sheet-rolltemplate-critmon">
-    <div class="sheet-container sheet-color-{{color}}">
-      <div class="sheet-header">
-        {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
-        {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
-      </div>
-      <div class="sheet-content">
-        {{#allprops() title subtitle color}}
-        <div class="sheet-key">{{key}}</div>
-        <div class="sheet-value">{{value}}</div>
-        {{/allprops() title subtitle color}}
-
-        <div class="sheet-key">Result</div>
-        {{#rollTotal() Roll 1}}
-        <div class="sheet-value"><span><strong>Brawling</strong> - The target suffers an additional 1d4 damage from a strike from the attacker’s gauntlet, pommel, or shield rim. If the attacker has no metal weapons, the damage is nonlethal, but otherwise the brawling damage can be lethal or nonlethal, at his discretion.</span></div>
-        {{/rollTotal() Roll 1}}
-        {{#rollTotal() Roll 2}}
-        <div class="sheet-value"><span><strong>Fatigued</strong> - The target is wearied by the flurry of blows. The target suffers a -1 penalty to attack throws and damage throws until it rests. If additional fatigue effects are rolled, the effects are cumulative.</span></div>
-        {{/rollTotal() Roll 2}}
-        {{#rollTotal() Roll 3}}
-        <div class="sheet-value"><span><strong>Injure Hide</strong> - The target’s hide is bruised, cut, or broken open such that its AC is reduced by 1 until it rests.</span></div>
-        {{/rollTotal() Roll 3}}
-        {{#rollTotal() Roll 4}}
-        <div class="sheet-value"><span><strong>Impair Move</strong> - The movement rate of the target’s primary movement is reduced by 25% or 30’ (whichever is less) until the target rests. This represents a leg being wrenched, an ankle twisted, and so on.</span></div>
-        {{/rollTotal() Roll 4}}
-        {{#rollTotal() Roll 5}}
-        <div class="sheet-value"><span><strong>Force Back</strong> - The target is forced back (as the special maneuver). It must withdraw a number of feet equal to the attacker’s damage roll. If this would push the opponent into a wall or obstacle, the opponent is knocked down, and takes 1d6 points of damage per 10’ he has traveled.</span></div>
-        {{/rollTotal() Roll 5}}
-        {{#rollTotal() Roll 6}}
-        <div class="sheet-value"><span><strong>Knockdown</strong> - The target is immediately knocked down (as the special maneuver). Once prone, the creature can move, but only to crawl at a movement rate of 5’, to take an action in lieu of moving, or to end the condition by using an action in lieu of moving to stand up. If engaged, the prone creature remains subject to the movement restrictions of being engaged, so it can only crawl if using defensive movement, and cannot stand up in lieu of moving. The prone creature can attack, but suffers a -4 penalty on its attack throws. Alternatively the prone creature can stand up in lieu of attacking. The prone creature can be backstabbed by creatures capable of doing so. Attack throws against the prone creatures gain a +2 bonus, or a +4 bonus if the attacker backstabs the stunned creature. The conditions is ended immediately when the creature stands up.</span></div>
-        {{/rollTotal() Roll 6}}
-        {{#rollTotal() Roll 7}}
-        <div class="sheet-value"><span><strong>Impair Attack</strong> - One of the target’s natural attacks (determined randomly) is somehow impaired – muscles sprained, claws ripped, etc. The target suffers a -4 to attack throws with the impaired natural attack until it rests.</span></div>
-        {{/rollTotal() Roll 7}}
-        {{#rollTotal() Roll 8}}
-        <div class="sheet-value"><span><strong>Stun</strong> - The target is stunned until the end of its next initiative. A stunned creature cannot attack, cast spells, or move. It gains no benefit to its AC from its shield (if any), and can be ambushed or backstabbed by creatures capable of doing so. All attack throws against stunned creatures gain a +2 bonus, or a +4 bonus if the attacker ambushes or backstabs the stunned creature.</span></div>
-        {{/rollTotal() Roll 8}}
-        {{#rollTotal() Roll 9}}
-        <div class="sheet-value"><span><strong>Wrestle/Clamber</strong> - The results of this critical effect depend on the difference in size between the attacker and target. If the target is the same size category or smaller than the attacker, the attacker has grabbed the target in a wrestling hold (as the special maneuver). If the target is one or more size categories larger than the attacker, the attacker has clambered on top of or mounted the target (as the special maneuver).</span></div>
-        {{/rollTotal() Roll 9}}
-        {{#rollTotal() Roll 10}}
-        <div class="sheet-value"><span><strong>Attacker's Choice</strong> - The attacker may choose any desired critical effect (Brawling, Fatigued, Injure Hide, Impair Attack, Force Back, Knockdown, Impair Attack, Stun, Wrestle/Clamber).</span></div>
-        {{/rollTotal() Roll 10}}
-      </div>
     </div>
 </rolltemplate>
