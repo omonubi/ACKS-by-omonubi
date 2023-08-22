@@ -164,19 +164,19 @@ const proficiencies =
             skill_name: "Adventuring",
             skill_rank: "1",
             skill_type: "General",
-            skill_target: "11",
+            skill_target: "",
             skill_details: "The character is well-equipped for a life of adventure. He knows how to clean and sharpen weapons, set up a camp, cook meals over open flame, saddle and ride a horse outside of combat, and perform rough-and-ready first aid. He has a rough idea of the value of common coins, trade goods, gems, and jewelry, and of the nature of different types of magic and monsters."
         },
         {
             skill_name: "TBD",
             skill_rank: "1",
             skill_type: "General",
-            skill_target: "11"
+            skill_target: ""
         },
         {
             skill_name: "TBD",
             skill_rank: "1",
             skill_type: "Class",
-            skill_target: "11"
+            skill_target: ""
         }
 ]

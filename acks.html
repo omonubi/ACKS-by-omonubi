@@ -128,21 +128,24 @@
             <label class='redtext'>Feet / Round</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+            <label class='redtext'>Fatigue Level</label>
+                <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
+                <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
         </div>
     </div>
     <hr/>
     <div class='grid11'>
         <div class='grid11'>
             <label class='spanheader'>Saving Throws</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_1'> Paralysis</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_2'> Death</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_save_2'> Death</button>
                 <input type='number' value='14' name='attr_save_2'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blasts}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_3'> Blasts</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blasts}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_save_3'> Blasts</button>
                 <input type='number' value='15' name='attr_save_3'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Implements}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_4'> Implements</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Implements}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_save_4'> Implements</button>
                 <input type='number' value='16' name='attr_save_4'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_5'> Spells</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_save_5'> Spells</button>
                 <input type='number' value='17' name='attr_save_5'/>
         </div>
         <div class='grid1111'>
@@ -246,7 +249,7 @@
         <label class='spanheader'>Abilities</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_abilities'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_ability_check'> Throw</button>
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
                 <input type='checkbox' class='toggle-show'/><br/>
@@ -262,7 +265,7 @@
         <label class='spanheader'>Proficiencies</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_skills'>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}}' name='roll_skill_check'> Throw</button>
                 <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
                 <label>Rank:</label><input type='number' value='1' name='attr_skill_rank'/>
                 <label>Type:</label>
@@ -338,11 +341,11 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw (@{melee_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw (@{melee_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
-            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class], 0d1+1}k1]]}}' name='roll_melee_damage'> Dmg</button>
+            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Dmg</button>
             <input class='width45' type='text' name='attr_melee_damage'/>
             <label>Long:</label><input type='checkbox' name='attr_melee_long'/>
             <label>Details</label>
@@ -356,11 +359,11 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
+            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
             <input class='width45' type='text' name='attr_missile_damage'/>
             <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
             <label>Details</label>
@@ -578,8 +581,9 @@
         <label class='spanheader'>Experience Log</label>
         <fieldset class='repeating_experience'>            
             <label>Date: </label><input class='xpamount' type='text' name='attr_xp_date'/>
-            <label>Amount: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
-            <label>Description: </label><input class='xpdescription' type='text' name='attr_xp_description'/>
+            <label>XP: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
+            <label>Bonus %: </label><input class='xpamount' type='number' name='attr_xp_bonus'/>
+            <label>Note: </label><input class='xpdescription' type='text' name='attr_xp_description'/>
         </fieldset>
     </div>
     <hr/>
@@ -587,18 +591,24 @@
 
 <div class='settings'>
     <div class='grid8'>
-        <label class='spanheader'>Sheet Settings</label>
+        <label class='spanheader'>Sheet Settings - DO NOT CHANGE</label>
         <label>Enc Threshold 1</label>
-            <input type='number'value='5' name='attr_move_thresh1'/>
+            <input type='number' value='5' name='attr_move_thresh1'/>
         <label>Enc Threshold 2</label>
-            <input type='number'value='7' name='attr_move_thresh2'/>
+            <input type='number' value='7' name='attr_move_thresh2'/>
         <label>Enc Threshold 3</label>
-            <input type='number'value='10' name='attr_move_thresh3'/>
+            <input type='number' value='10' name='attr_move_thresh3'/>
         <span></span><span></span>
+
         <label>Max Encumbrance</label>
-            <input type='number'value='20' name='attr_base_enc'/>
+            <input type='number' value='20' name='attr_base_enc'/>
         <label>Max Movement</label>
-            <input type='number'value='120' name='attr_base_movement'/>
+            <input type='number' value='120' name='attr_base_movement'/>
+        <span></span><span></span>
+        <span></span><span></span>
+
+        <label>Experience % Modifier</label>
+            <input type='number' value='0' name='attr_xp_modifier'/>
     </div>
 </div>
 
@@ -715,21 +725,6 @@ function validateLevel(theLevel) {
     return validatedLevel < LEVEL_MIN ? LEVEL_MIN : validatedLevel > LEVEL_MAX ? LEVEL_MAX : validatedLevel;
 };
 
-/********** Ammo reset *****************/
-on('clicked:repeating_missile:reset-ammo', function(eventInfo) {
-    getAttrs(['missile_ammo', 'missile_ammo_battle'], function(values) {
-        console.log(`value: ${getID(eventInfo.sourceAttribute)}`)
-        const ammoBeforeBattle = values['missile_ammo'];
-        const ammoAfterBattle = Number(values['ammo_missile_battle']) || 0;
-        console.log(`value: ${ammoBeforeBattle}`);
-        const usedAmmo = Math.max(ammoBeforeBattle - ammoAfterBattle,0);
-        const foundAmmo = Math.floor(usedAmmo / 2);
-        const output = {};
-        output['ammo'] = output['ammo_battle'] = ammoAfterBattle + foundAmmo;
-        setAttrs(output);
-    });
-});
-
 /********** Armor Class **********/
 on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isRetreating', function(eventInfo) {
     updateArmorClass();
@@ -768,33 +763,6 @@ function updateAttributeBonus(theAttribute) {
 
         const output = {};
         output[theAttribute + '_mod'] = bonus;
-        setAttrs(output);
-    });
-};
-
-/********** Base Healing Rate **********/
-on('change:hp', function(eventInfo) {
-    if (eventInfo.newValue == eventInfo.previousValue) updateBHR();
-});
-
-function updateBHR() {
-    /*console.log('updateBHR()');*/
-    getAttrs(['hp_max'], function(values) {
-        const maxHP = Number(values['hp_max']) || 0;
-        
-        const bhrThresholds = [0,3,9,16,23,29,36,49,63,76,89,110,140,170,1000];
-        const bhrDice = ['0','1d2','1d3','1d4','1d6','1d8','1d10','2d6','2d8','2d10','2d12','3d10','4d10','5d10','6d10'];
-
-        let bhrDie = '0';
-        for (i = 0; i <= bhrThresholds.length; i++) {
-            if (maxHP <= bhrThresholds[i]) {
-                bhrDie = bhrDice[i];
-                break;
-            } 
-        }
-
-        const output = {};
-        output['bhr'] = bhrDie;
         setAttrs(output);
     });
 };
@@ -998,36 +966,51 @@ function updateEncumbranceCapacity() {
 };
 
 /********** Experience Points **********/
-on('change:repeating_experience:xp_amount remove:repeating_experience', function(eventInfo) {
+on('change:repeating_experience:xp_amount change:repeating_experience:xp_bonus remove:repeating_experience', function(eventInfo) {
     updateTotalExperience();
 });
 
 function updateTotalExperience() {
     /*console.log('updateTotalExperience()');*/
 
-    
-    getAttrs(['xp_bonus'], function(values) {
-        const theXPBonus = parseInt(values['xp_bonus']) || 0;
-
-        getSectionIDs('repeating_experience', function (ids) {
-            const XPFieldnames = [];
+    getSectionIDs('repeating_experience', function (ids) {
+        const XPFieldnames = [];
+        ids.forEach(id => {
+            XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
+            XPFieldnames.push('repeating_experience_' + id + '_xp_bonus');
+        });
+        
+        getAttrs([...XPFieldnames], function (values) {
+            let totalXP = 0;
+            const output = {};
             ids.forEach(id => {
-                XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
+                const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount'])||0;
+                const xpBonus = parseFloat(values['repeating_experience_' + id + '_xp_bonus'])||0;
+                totalXP += Math.floor(itemXP + (itemXP * (xpBonus / 100)));
             });
-            
-            getAttrs([...XPFieldnames], function (values) {
-                let totalXP = 0;
-                const output = {};
-                ids.forEach(id => {
-                    const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount'])||0;
-                    totalXP += Math.floor(itemXP + (itemXP * theXPBonus / 100));
-                });
-                output['xp'] = totalXP;
-                setAttrs(output);
-            });
+            output['xp'] = totalXP;
+            setAttrs(output);
         });
     });
 };
+
+/************* Fatigue *****************/
+on('change:fatigue', function(eventInfo) {
+    updateFatigue();
+});
+
+function updateFatigue() {
+    /*console.log('updateFatigue()');*/
+
+    getAttrs(['fatigue'], function (values) {
+        const fatigueLevel = Number(values['fatigue']) || 0;
+
+        const output = {};
+        output['is_fatigued'] = (fatigueLevel > 0 ? 1 : 0);
+        setAttrs(output);
+    });
+}
+
 
 /********** Fees **********/
 on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(eventInfo) {
@@ -1379,15 +1362,16 @@ function updateSpellcasting() {
 };
 
 /********** XP Bonus **********/
-on('change:str change:int change:wis change:dex change:con change:cha change:str_pre change:int_pre change:wis_pre change:dex_pre change:con_pre change:cha_pre', function(eventInfo) {
+on('change:str change:int change:wis change:dex change:con change:cha change:str_pre change:int_pre change:wis_pre change:dex_pre change:con_pre change:cha_pre change:xp_modifier', function(eventInfo) {
     calculateXPBonus();
 });
 
 function calculateXPBonus() {
     /*console.log('calculateXPBonus()');*/
-    getAttrs(['str', 'int', 'wis', 'dex', 'con', 'cha', 'str_pre', 'int_pre', 'wis_pre', 'dex_pre', 'con_pre', 'cha_pre'], function(values) {
+    getAttrs(['str', 'int', 'wis', 'dex', 'con', 'cha', 'str_pre', 'int_pre', 'wis_pre', 'dex_pre', 'con_pre', 'cha_pre', 'xp_modifier'], function(values) {
         const attributes = [values['str'],values['int'],values['wis'],values['dex'],values['con'],values['cha']];
         const prerequisites = [values['str_pre'],values['int_pre'],values['wis_pre'],values['dex_pre'],values['con_pre'],values['cha_pre']];
+        const theModifier = Number(values['xp_modifier']) || 0;
         
         const output = {};
         let theBonus = XP_BONUS_MAX;
@@ -1398,7 +1382,7 @@ function calculateXPBonus() {
                 noPrereq = 0;
             }
         }
-        output['xp_bonus'] = (noPrereq == 1 ? 0 : theBonus);
+        output['xp_bonus'] = (noPrereq == 1 ? 0 : (theBonus + theModifier));
         setAttrs(output); 
     });
 };

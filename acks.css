@@ -249,7 +249,7 @@ input.xpamount {
     width: 75px;
 }
 input.xpdescription {
-    width: 55%;
+    width: 48%;
 }
 
 .charsheet label {
@@ -402,11 +402,13 @@ textarea.property {
 }
 
 /**************** Alert Styles ****************/
+span.redfatigue,
 span.redhp,
 span.redmove,
 .limitExceeded {
     color: black;
 }
+input.fatiguecheck[value='1'] ~ .redfatigue,
 input.hpcheck[value='1'] ~ .redhp,
 input.movecheck[value='1'] ~ .redmove,
 input.henchmenCheck[value='1'] ~ .limitExceeded {
