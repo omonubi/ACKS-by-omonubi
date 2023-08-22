@@ -63,7 +63,7 @@
             <label>Hit Dice</label>
             <div>
                 <input class='width45' type='text' name='attr_hit_dice' />
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}]]}}' name='roll_hit_dice'> Hit Points</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **@{character_title} @{selected|token_name}**}} {{color=green}} {{subtitle=Hit Dice Roll}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Points</button>
             </div>
         </div>
     </div>
@@ -132,26 +132,18 @@
     </div>
     <hr/>
     <div class='grid11'>
-        <div class='grid111'>
+        <div class='grid11'>
             <label class='spanheader'>Saving Throws</label>
-            <label></label>
-            <label>Base</label>
-            <label>Mod</label>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Petrification & Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_1_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_1'> Paralysis</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
-                <input type='number' value='0' name='attr_save_1_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Poison & Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_2_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_2'> Death</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_2'> Death</button>
                 <input type='number' value='14' name='attr_save_2'/>
-                <input type='number' value='0' name='attr_save_2_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blast & Breath}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_3_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_3'> Blasts</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blasts}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_3'> Blasts</button>
                 <input type='number' value='15' name='attr_save_3'/>
-                <input type='number' value='0' name='attr_save_3_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Staffs & Wands}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_4_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_4'> Implements</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Implements}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_4'> Implements</button>
                 <input type='number' value='16' name='attr_save_4'/>
-                <input type='number' value='0' name='attr_save_4_mod'/>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+@{save_5_mod}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_save_5'> Spells</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]+?{Modifier|0}[mod]]]}}' name='roll_save_5'> Spells</button>
                 <input type='number' value='17' name='attr_save_5'/>
-                <input type='number' value='0' name='attr_save_5_mod'/>
         </div>
         <div class='grid1111'>
             <label class='spanheader'>Monster Stats</label>
@@ -172,20 +164,6 @@
 
 <div class='class'>
 
-    <div class='grid1'>
-        <label class='spanheader'>Class Powers</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_powers'>
-                <input type='text' placeholder='Class Power name...' name='attr_power_name'/>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <textarea placeholder='Optional description...' name='attr_power_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-        <hr/>
-    </div>
-
     <div>
         <label class='spanheader'>Global (Unconditional) Class Bonuses</label>
         <div class='grid11'>
@@ -201,6 +179,11 @@
             </div>
         </div>
         <hr/>
+    </div>
+    
+    <div>
+        <label class='spanheader'>Class Abilities</label>
+        <textarea placeholder='Enter details...' name='attr_class_abilities'></textarea>
     </div>
 
     <input class='showspellcasting' type='hidden' value='1' name='attr_show_spellcasting'/>
@@ -268,7 +251,7 @@
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_ability_target'/><br/>
+                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
                     <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
                 </div>
             </fieldset>
@@ -286,10 +269,11 @@
                     <select name='attr_skill_type'>
                         <option selected>General</option>
                         <option>Class</option>
+                        <option>Class Power</option>
                     </select>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' value='11' name='attr_skill_target'/><br/>
+                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_skill_target'/><br/>
                     <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
                 </div>
             </fieldset>
@@ -299,7 +283,7 @@
 </div>
 
 <div class='combat'>
-    <div class='grid1111'>
+    <div class='grid1111-c'>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **@{selected|character_name}**}} {{subtitle=Initiative Roll}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{mod_initiative}[mod1]+?{Modifier|0}[mod2]))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **@{character_title} @{selected|token_name}**}} {{subtitle=Surprise Check}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+@{mod_surprise}[mod1]+?{Modifier|0}[mod2]]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **@{character_title} @{selected|token_name}**}} {{subtitle=Reaction Roll}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+@{mod_reaction}[mod1]+?{Modifier|0}[mod2]]]}} {{desc=2 or less: Hostile, attacks&#13;3-5: Unfriendly, may attack&#13;6-8: Neutral, uncertain&#13;9-11: Indifferent, uninterested&#13;12+: Friendly, helpful}}' name='roll_reaction'> Reaction</button>
@@ -318,13 +302,13 @@
             <label>Shield</label>
             <label>Helm</label>
             <select name='attr_armor'>
-                <option value='0' selected>None (AC 0)</option>
-                <option value='1'>Very Light (AC 1)</option>
-                <option value='2'>Light (AC 2)</option>
-                <option value='3'>Medium (AC 3)</option>
-                <option value='4'>Medium (AC 4)</option>
-                <option value='5'>Heavy (AC 5)</option>
-                <option value='6'>Heavy (AC 6)</option>
+                <option value='0' selected>AC 0 - Clothing Only</option>
+                <option value='1'>AC 1 - Hide, Fur, Padded</option>
+                <option value='2'>AC 2 - Leather, Arena</option>
+                <option value='3'>AC 3 - Ring, Scale</option>
+                <option value='4'>AC 4 - Chain, Laminated, Arena</option>
+                <option value='5'>AC 5 - Banded, Lamellar</option>
+                <option value='6'>AC 6 - Plate</option>
             </select>
             <input type='number' value='0' name='attr_armor_bonus'/>
             <input type='checkbox' value='1' name='attr_has_shield'/>

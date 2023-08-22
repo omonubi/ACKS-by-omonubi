@@ -120,10 +120,34 @@ const abilities =
             ability_target: "18-@{str_mod}*4",
             ability_details: "Bash down stuck doors as a combat action by succeeding on a Dungeonbashing proficiency throw."
         },
+	    {
+            ability_name: "Find Firewood",
+            ability_source: "Adventuring",
+            ability_target: "?{Target|Normal,14|Forest,3}",
+            ability_details: "Foraging for firewood is an ancillary activity that can be undertaken as often as desired. Each adventurer can attempt a Foraging proficiency throw. The target value is 3+ in forest terrain and 14+ in other terrain. If the throw succeeds, that adventurer gathers 10 st. of firewood (enough to maintain a campfire for 4 hours). An adventurer with Survival proficiency gains a +4 bonus to forage for firewood."
+        },
+	    {
+            ability_name: "Find Food",
+            ability_source: "Adventuring",
+            ability_target: "?{Terrain|Normal,18|Desert,22}",
+            ability_details: "Foraging for food is also an ancillary activity that can be undertaken once per day. For each day of travel while foraging, each adventurer can attempt a Foraging proficiency throw of 18+. If the throw succeeds, that adventurer gathers ½ stone of food, enough for three man-sized creatures. If the throw fails, the adventurer doesn’t find anything edible. An adventurer with the Survival proficiency automatically forages enough to feed himself and gains a +4 bonus on his Foraging proficiency throw to gather another ½ stone of food. Adventurers suffer a -4 penalty to forage in barrens or desert."
+        },
+	    {
+            ability_name: "Find Water",
+            ability_source: "Adventuring",
+            ability_target: "?{Terrain|Normal,14|Desert,18}",
+            ability_details: "Foraging for water is an ancillary activity that can be undertaken once per day. Adventurers can automatically gather as much water as they can carry in any hex they cross containing a river or lake. Otherwise the party as a whole (up to 30 man-sized creatures) can attempt a single Foraging proficiency throw to find water. The target value is 14+ in clear, forest, hills, jungle, mountains, or swamp terrain, or 18+ in barrens or desert. If the throw succeeds, the party finds enough water to meet three day’s rations for each character foraging. If the throw fails, the party does not find a source of drinkable water. If any of the adventurers in the party has the Survival proficiency, the party gains a +4 bonus on its Foraging proficiency throw. Parties larger than 30 man-sized creatures should make multiple rolls, with success finding water enough for that group only."
+        },
+	    {
+            ability_name: "Hunting",
+            ability_source: "Adventuring",
+            ability_target: "14",
+            ability_details: "Hunting for food is a dedicated activity. For each day dedicated to hunting, each adventurer can attempt a Hunting proficiency throw of 14+. If the throw succeeds, the character brings in 1 stone of game, e.g. enough to feed 6 man-sized creatures. Adventurers who hunt risk encountering wandering monsters, however, with the Judge rolling on his encounter table based on the terrain. An adventurer with the Survival proficiency gains a +4 bonus on his own Hunting proficiency throw."
+        },
         {
             ability_name: "Listen",
             ability_source: "Adventuring",
-            ability_target: "18",
+            ability_target: "18+(@{has_helm}[helm]*4)",
             ability_details: "Pause and listen for noises by spending one round and succeeding on a Listening proficiency throw."
         },
         {

@@ -28,6 +28,14 @@
 }
 .grid1111 {
     align-items: center;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(4, 1fr) [last];
+    row-gap: 5px;
+    width: 100%
+}
+.grid1111-c {
+    align-items: center;
     justify-items: center;
     display: grid;
     column-gap: 10px;
