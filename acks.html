@@ -319,9 +319,16 @@
         </div>
         <div class='grid11'>            
             <label>Armor Class</label>
-            <div></div>
+            <label>Fighting Style Specialization</label>
             <input type='number' value='0' name='attr_armor_class' readonly/>
-            <div></div>
+            <select name='attr_fss'>
+                <option value='0' selected>None</option>
+                <option value='1'>Missile Weapon (+1 Atk)</option>
+                <option value='2'>Single Weapon (+1 Init)</option>
+                <option value='3'>Dual Weapons (+1 Atk)</option>
+                <option value='4'>Two-Handed (+1 Dmg)</option>
+                <option value='5'>Wpn & Shield (+1 AC)</option>
+            </select>
         </div>
     </div>
     <hr/>
@@ -341,7 +348,7 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw (@{melee_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+(?{Style|Normal,@{str_mod&#125|Dual-Wield,@{str_mod&#125+1|Finesse,@{dex_mod&#125}[style])+@{melee_bonus}[wpn]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Melee Throw (@{melee_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20+@{melee_bonus}[wpn]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+@{class_damage_bonus}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Bonus:</label><input type='number' value='0' name='attr_melee_bonus'/>
@@ -353,13 +360,13 @@
             <div class='details'>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
-        </fieldset>.
+        </fieldset>
     </div>
     <hr/>
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20!+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
@@ -371,7 +378,7 @@
             <div class='details'>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
-        </fieldset>.
+        </fieldset>
     </div>
     <hr/>
 </div>
