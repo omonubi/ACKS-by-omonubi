@@ -372,7 +372,7 @@
             <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
             <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
             <input class='width45' type='text' name='attr_missile_damage'/>
-            <label>Ammo:</label><input class='width45' type='text' name='attr_missile_ammo'/>
+            <label>Range:</label><input class='missilerange' type='text' name='attr_missile_range'/>
             <label>Details</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
