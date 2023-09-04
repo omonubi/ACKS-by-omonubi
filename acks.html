@@ -366,16 +366,17 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Missile Throw (@{missile_name})}} {{color=red}} {{Target=[[@{attack_throw}+?{Target AC|0}[target AC]]]}} {{Roll=[[1d20+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_accuracy_bonus}[class]-@{fatigue}[fatigue]+?{Modifier|0}[mod]]]}} {{damage=[[{@{missile_damage}+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
+            <button type='roll' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+@{class_damage_bonus_missile}[class]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Dmg</button>
             <input class='width45' type='text' name='attr_missile_damage'/>
             <label>Range:</label><input class='missilerange' type='text' name='attr_missile_range'/>
             <label>Details</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
+                <label>Thrown</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>
@@ -1309,7 +1310,7 @@ function updateMonsterSaves() {
     getAttrs(['monster_save'], function(values) {
         const saveString = values['monster_save'];
         
-        const clericSaves = [14,15,16,17,18,13,10,16,13,16,13,10,16,13,16,12,9,15,12,15,12,9,15,12,15,11,8,14,11,14,11,8,14,11,14,10,7,13,10,13,10,7,13,10,13,9,6,12,9,12,9,6,12,9,12,8,5,11,8,11,8,5,11,8,11,7,4,10,7,10,7,4,10,7,10,6,3,9,6,9,6,3,9,6,9,5,2,8,5,8,5,2,8,5,8,4,1,7,4,7,4,1,7,4,7];
+        const clericSaves = [14,15,16,17,18,13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9,6,3,9,6,8,6,3,9,6,8,5,2,8,5,7,5,2,8,5,7,4,1,7,4,6,4,1,7,4,6];
         const dwarvenvaultguardSaves = [14,15,16,17,18,9,10,12,12,13,8,9,11,11,12,8,9,11,11,12,7,8,10,10,11,6,7,9,9,10,6,7,9,9,10,5,6,8,8,9,4,5,7,7,8,4,5,7,7,8,3,4,6,6,7,2,3,5,5,6,2,3,5,5,6,1,2,4,4,5,0,1,3,3,4,0,1,3,3,4,-1,0,2,2,3,-2,-1,1,1,2,-2,-1,1,1,2,-3,-2,0,0,1,-4,-3,-1,-1,0];
         const elvenspellsword = [14,15,16,17,18,12,14,15,16,16,11,13,14,15,15,11,13,14,15,15,10,12,13,14,14,9,11,12,13,13,9,11,12,13,13,8,10,11,12,12,7,9,10,11,11,7,9,10,11,11,6,8,9,10,10,5,7,8,9,9,5,7,8,9,9,4,6,7,8,8,3,5,6,7,7,3,5,6,7,7,2,4,5,6,6,1,3,4,5,5,1,3,4,5,5,0,2,3,4,4,-1,1,2,3,3];
         const fighterSaves = [14,15,16,17,18,13,14,15,16,17,12,13,14,15,16,12,13,14,15,16,11,12,13,14,15,10,11,12,13,14,10,11,12,13,14,9,10,11,12,13,8,9,10,11,12,8,9,10,11,12,7,8,9,10,11,6,7,8,9,10,6,7,8,9,10,5,6,7,8,9,4,5,6,7,8,4,5,6,7,8,3,4,5,6,7,2,3,4,5,6,2,3,4,5,6,1,2,3,4,5,0,1,2,3,4];

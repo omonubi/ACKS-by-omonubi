@@ -39,7 +39,7 @@ generateRowID = function () {
 on("ready", function() {
 
     on("chat:message", function (msg) {
-        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddMomster")  
+        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddMonster")  
         {
             meleeDefaultsAdd(msg);
         }
@@ -159,27 +159,32 @@ const missileDefaults =
         {
             missile_name: "d6 Missile",
             missile_damage: "1d6",
-            missile_bonus: "0"
+            missile_bonus: "0",
+            missile_has_str_bonus: "0"
         },
         {
             missile_name: "d6 Thrown",
             missile_damage: "1d6",
-            missile_bonus: "0"
+            missile_bonus: "0",
+            missile_has_str_bonus: "1"
         },
         {
             missile_name: "d4 Thrown",
             missile_damage: "1d4",
-            missile_bonus: "0"
+            missile_bonus: "0",
+            missile_has_str_bonus: "1"
         },
         {
             missile_name: "d3 Thrown",
             missile_damage: "1d3",
-            missile_bonus: "0"
+            missile_bonus: "0",
+            missile_has_str_bonus: "1"
         },
         {
             missile_name: "Improvised Throw",
             missile_range: "10/20/30",
             missile_damage: "1d3",
-            missile_bonus: "0"
+            missile_bonus: "0",
+            missile_has_str_bonus: "1"
         }
 ]
