@@ -11,7 +11,8 @@
     <h2>Adventurer Conqueror King System</h2>
 </div>
 <div class='button-panel'>
-    <input type='hidden' class='buttonstoggle' name='attr_sheetButtons' value='overview'/>
+    <input type='hidden' class='b
+    uttonstoggle' name='attr_sheetButtons' value='overview'/>
     <button type='action' class='btnOverview' name='act_overview' >Overview</button> 
     <button type='action' class='btnClass' name='act_class' >Class</button>
     <button type='action' class='btnSkills' name='act_skills' >Skills</button>
@@ -128,6 +129,12 @@
             <label class='redtext'>Feet / Round</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+            <label class='redtext'>Miles / Day</label> 
+                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+                <input class='redmove' type='number' value='24' name='attr_miles_day' readonly/>
+            <label class='redtext'>Miles / Hour</label> 
+                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+                <input class='redmove' type='number' value='0.75' name='attr_miles_hour' readonly/>
             <label class='redtext'>Fatigue Level</label>
                 <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
                 <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
@@ -405,7 +412,7 @@
         <div class='details'>
             <fieldset class='repeating_items'>
                 <input type='text' placeholder='Item name...' name='attr_item_name'/>
-                <label>Weight:</label><input class='itemWeight' type='number' min='1' step='0.01' value='0.17' name='attr_item_weight'/>
+                <label>Weight:</label><input class='itemWeight' type='number' min='1' value='0.17' name='attr_item_weight'/>
                 <label>Count:</label><input type='number' min='0' value='1' name='attr_item_count'/>
                 <label>Value:</label><input type='number' min='0' name='attr_item_value'/>
                 <label>Equipped:</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
@@ -1309,6 +1316,8 @@ function updateMovementSpeed() {
         const output = {};
         output['move_turn'] = Math.round(theMovementSpeed);
         output['move_round'] = Math.round(theMovementSpeed / 3);
+        output['miles_day'] = Math.round(theMovementSpeed / 5);
+        output['miles_hour'] = theMovementSpeed / 40;
         output['move_is_zero'] = isMovementZero;
         setAttrs(output);
     });

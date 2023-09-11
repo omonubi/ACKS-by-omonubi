@@ -134,6 +134,8 @@ This tab contains all the general information for the creature, including a summ
 | Capacity, Max | *enc_capacity* | duplicate | See the Equipment tab. |
 | Feet / Turn | *move_turn* | duplicate | See the Equipment tab. |
 | Feet / Round | *move_round* | duplicate | See the Equipment tab. |
+| Miles / Day | *miles_day* | calculated | *move_turn* / 5. |
+| Miles / Hour | *miles_hour* | calculated | *move_turn* / 40. |
 | Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers from fatigue are automatically applied to sheet stats and rolls. |
 |||||
 | Saving Throws | *save_1*, *save_2*, *save_3*, *save_4*, *save_5* | number | The character's base saving throw targets. |
