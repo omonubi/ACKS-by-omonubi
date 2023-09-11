@@ -39,7 +39,7 @@ generateRowID = function () {
 on("ready", function() {
 
     on("chat:message", function (msg) {
-        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddMonster")  
+        if (msg.type === "api" && playerIsGM(msg.playerid) &&  msg.content === "!AddActions")  
         {
             meleeDefaultsAdd(msg);
         }
