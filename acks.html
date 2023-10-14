@@ -193,6 +193,7 @@
     <div>
         <label class='spanheader'>Class Abilities</label>
         <textarea placeholder='Enter details...' name='attr_class_abilities'></textarea>
+        <hr/>
     </div>
 
     <input class='showspellcasting' type='hidden' value='1' name='attr_show_spellcasting'/>
@@ -258,6 +259,8 @@
                 <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
+                <label>OnCD:</label><input type='checkbox' name='attr_ability_cooldown'/>
+                <label>Details</label>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
@@ -279,7 +282,8 @@
                         <option selected>General</option>
                         <option>Class</option>
                         <option>Class Power</option>
-                    </select>
+                    </select>&nbsp;&nbsp;&nbsp;
+                <label>Details</label>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_skill_target'/><br/>
