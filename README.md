@@ -188,6 +188,7 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | (name) | *ability_name* | text | The name of the ability. |
 | Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
 | Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
+| OnCD | *ability_cooldown* | checkbox | Whether the ability is currently on cooldown.
 | Description | *ability_details* | text | The ability's text description. |
 |||||
 | **Proficiencies** | *repeating_skills* | repeating | A list of the creature's proficiencies. |
