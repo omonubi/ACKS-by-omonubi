@@ -211,9 +211,6 @@ input
 {
     background-color: white;
 }
-select.monster {
-    width: 80px;
-}
 input.width45 {
     text-align: center;
     width: 60px;
@@ -329,6 +326,9 @@ select.selectclass {
 }
 select.spellshade {
     width: 70px;
+}
+select.monster {
+    width: 80px;
 }
 
 span {
