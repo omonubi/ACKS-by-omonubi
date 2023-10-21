@@ -436,7 +436,16 @@ input.toggle-show:not(:checked) ~ div.details {
 {
     margin-right: 10px;
 }
+.repitem > input[type=number].itemCount {
+    text-align: right;
+    width: 45px !important;
+}
+.repitem > input[type=number].itemValue {
+    text-align: right;
+    width: 100px !important;
+}
 .repitem > input[type=number].itemWeight {
+    text-align: right;
     width: 60px;
 }
 .repitem > input[type=text].itemSize {

@@ -260,11 +260,11 @@ This tab keeps track of all equipment and coinage. It also has optional controls
 |||||
 | **Equipment** | *repeating_items* | repeating | A list of the creature's equipment / inventory, both carried or otherwise. |
 | (name) | *item_name* | text | The name of the equipment item. |
-| Weight | *item_weight* | number | The item's weight, in stone. The minimum value is 0. There is no maximum. The default weight for all new items in 0.17 (one-sixth of a stone, as per ACKS encumbrance for small items). |
-| Count | *item_count* | number | A count of the number of items included. The minimum value is 0. There is no maximum. The default value is 1. |
+| # | *item_count* | number | A count of the number of items included. The minimum value is 0. There is no maximum. The default value is 1. |
+| Wt | *item_weight* | number | The item's weight, in stone. The minimum value is 0. There is no maximum. The default weight for all new items in 0.17 (one-sixth of a stone, as per ACKS encumbrance for small items). |
 | Value | *item_value* | number | An optional field for tracking the value of the item, for reference only. By default, this field is empty. Typically, used only for tracking the value of valuable and/or exceptional items. |
 | Equipped | *item_equipped* | checkbox | If checked, the item's total *item_weight* x *item_count* is included in the creature's encumbrance. Otherwise, it is not. The default value is *checked*. |
-| Description | *item_details* | text | An optional text area to add item details, for reference only. |
+| Details | *item_details* | text | An optional text area to add item details, for reference only. |
 |||||
 | Currency, On Hand | *platinum*, *gold*, *electrum*, *silver*, *copper* | number | The amount of coins (of each type) being carried. The weight of coins is factored into *encumbrance*. The minimum value is 0. |
 | Currency, Banked | *TYPE_bank* | number | The amount of coins (of each type) not carried. The minimum value is 0. |
