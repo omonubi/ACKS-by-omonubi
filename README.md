@@ -145,6 +145,8 @@ This tab contains all the general information for the creature, including a summ
 | Morale | *morale* | number | The creature's morale score (default is 0). |
 | XP Value | *xp_value* | number | The creature's value in experience points. |
 | Save | *monster_save* | text | A letter and a number (E.G. 'F1') that indicates a creature's saving throw progression found in their creature description. Valid letters are 'F', 'C', 'M', 'T', 'D', and 'E'. Numbers can range from 0 to 14. Setting to a valid string value auto-computes and overwrites the creature's base saving throws, above. | 
+| Treasure Type | *monster_treasuretype* | text | The creature's treasure type, if any. |
+| Size | *monster_size* | list | The monster's size. The default is 'medium' (man-sized). |
 
 ---
 
