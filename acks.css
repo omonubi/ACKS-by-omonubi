@@ -211,6 +211,9 @@ input
 {
     background-color: white;
 }
+select.monster {
+    width: 80px;
+}
 input.width45 {
     text-align: center;
     width: 60px;
