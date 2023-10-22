@@ -166,8 +166,9 @@ This tab keeps track of class-specific information, such as global modifiers, cl
 |||||
 | Class Abilities | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
 |||||
-| Spellcasting (Slots) | *spells_LVL_max* | number | The maximum number of spells available, by spell level. |
-| Spellcasting (Current) | *spells_LVL* | number | The current number of spells the creature has remaining, by spell level. |
+| Spellcasting (Slots) | *spells_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
+| Spellcasting (Current) | *spells_LVL* | number | The current number of spells the creature has remaining, by spell level. Min is 0; max is 6. |
+| Caster Level | *caster_level* | number | The character's caster level. Min is 0; max is 14. |
 |||||
 | **Spells** | *repeating_spells_arcane* | repeating | A list of the creature's spells, if any. |
 | Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Note that [[in-line rolls]] can be included in the texts below, if desired. |

@@ -213,27 +213,29 @@
             <label class='spanheader'>Spellcasting Slots by Spell Level</label>
             <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
             <label>Slots</label>
-            <input type='number' value='0' name='attr_spells_1_max' />
-            <input type='number' value='0' name='attr_spells_2_max' />
-            <input type='number' value='0' name='attr_spells_3_max' />
-            <input type='number' value='0' name='attr_spells_4_max' />
-            <input type='number' value='0' name='attr_spells_5_max' />
-            <input type='number' value='0' name='attr_spells_6_max' />
-            <input type='number' value='0' name='attr_spells_7_max' />
-            <input type='number' value='0' name='attr_spells_8_max' />
-            <input type='number' value='0' name='attr_spells_9_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_1_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_2_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_3_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_4_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_5_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_6_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_7_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_8_max' />
+            <input type='number' min='0' max='6' value='0' name='attr_spells_9_max' />
             <span></span>
             <label>Current</label>
-            <input type='number' value='0' name='attr_spells_1'/>
-            <input type='number' value='0' name='attr_spells_2'/>
-            <input type='number' value='0' name='attr_spells_3'/>
-            <input type='number' value='0' name='attr_spells_4'/>
-            <input type='number' value='0' name='attr_spells_5'/>
-            <input type='number' value='0' name='attr_spells_6'/>
-            <input type='number' value='0' name='attr_spells_7'/>
-            <input type='number' value='0' name='attr_spells_8'/>
-            <input type='number' value='0' name='attr_spells_9'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_1'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_2'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_3'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_4'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_5'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_6'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_7'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_8'/>
+            <input type='number' min='0' max='6' value='0' name='attr_spells_9'/>
             <button class='sheetbutton' type='action' name='act_reset_spells'>Reset</button>
+            <label>Caster Level</label>
+            <input type='number' min='0' max='14' value='0' name='attr_caster_level'/>
         </div>
         <hr/>
         <div>
@@ -258,7 +260,7 @@
     </div>
   
     <div>
-        <p>Designed for use with the Adventurer Conqueror King System, Imperial Imprint (v109) and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
+        <p>Designed for use with the Adventurer Conqueror King System, Imperial Imprint and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
     </div>
 </div>
 
