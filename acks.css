@@ -405,12 +405,14 @@ textarea.property {
 }
 
 /**************** Alert Styles ****************/
+span.redbedrest,
 span.redfatigue,
 span.redhp,
 span.redmove,
 .limitExceeded {
     color: black;
 }
+input.bedrestcheck[value='1'] ~ .redbedrest,
 input.fatiguecheck[value='1'] ~ .redfatigue,
 input.hpcheck[value='1'] ~ .redhp,
 input.movecheck[value='1'] ~ .redmove,

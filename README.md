@@ -137,6 +137,7 @@ This tab contains all the general information for the creature, including a summ
 | Miles / Day | *miles_day* | calculated | *move_turn* / 5. |
 | Miles / Hour | *miles_hour* | calculated | *move_turn* / 40. |
 | Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers from fatigue are automatically applied to sheet stats and rolls. |
+| Needs Bedrest (Days) | *bedrest* | number | The amount of bedrest the character currently needs before they can heal. Purely informational. |
 |||||
 | Saving Throws | *save_1*, *save_2*, *save_3*, *save_4*, *save_5* | number | The character's base saving throw targets. |
 |||||

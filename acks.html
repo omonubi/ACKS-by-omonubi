@@ -137,6 +137,9 @@
             <label class='redtext'>Fatigue Level</label>
                 <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
                 <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
+            <label class='redtext'>Bedrest Needed (Days)</label>
+                <input type='hidden' class='bedrestcheck' name='attr_is_bedrest'/>
+                <input class='redbedrest' type='number' value='0' min='0' name='attr_bedrest'/>
         </div>
     </div>
     <hr/>
@@ -813,6 +816,23 @@ function updateAttributeBonus(theAttribute) {
         setAttrs(output);
     });
 };
+
+/************* Bedrest *****************/
+on('change:bedrest', function(eventInfo) {
+    updateBedrest();
+});
+
+function updateBedrest() {
+    /*console.log('updateBedrest()');*/
+
+    getAttrs(['bedrest'], function (values) {
+        const bedrestDays = Number(values['bedrest']) || 0;
+
+        const output = {};
+        output['is_bedrest'] = (bedrestDays > 0 ? 1 : 0);
+        setAttrs(output);
+    });
+}
 
 /********** Cost of Living ****************/
 on('change:living_standard change:hireling_fees change:professional_income', function(eventInfo) {
