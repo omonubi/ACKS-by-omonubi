@@ -1,1 +1,1 @@
-!token-mod {{--set compact_bar|?{Compact|on|off} bar1_link|hp bar2_link|move_round bar3_link|armor_class}}
+!token-mod {{--set compact_bar|?{Compact|on|off} width|.85u height|.85u bar1_link|hp bar2_link|move_round bar3_link|armor_class}}
