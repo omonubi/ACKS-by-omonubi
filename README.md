@@ -400,7 +400,7 @@ The following macros can be found in the /macros sub-directory of the git. They 
 
 * **spellbook**: same as for repertoire, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status.
 
-* **tokenInit**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API to bind a new token's bars to three specific sheet attributes: green to *hp* (and *hp_max*); blue to *move_round*; and red to *armor_class*. Click on the token and immediately see it's current values for these attributes.
+* **tokenInit**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API to bind a new token's bars to three specific sheet attributes: green to *hp* (and *hp_max*); blue to *move_round*; and red to *armor_class*. Click on the token and immediately see it's current values for these attributes. Note this also also allows for selection of compact or normal bar, and it "standardizes" the token to 85% of 1 unit (70 px, by Roll20 default). These settings can easily be changes/removed from the macro.
 
 ---
 
