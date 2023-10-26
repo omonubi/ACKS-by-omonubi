@@ -23,6 +23,9 @@
     <div class='whispertoggle'><label>Whisper Toggle: </label><input type='checkbox' name='attr_toggle_whisper' /><input type='hidden' name='attr_whispertoggle'/></div>
 </div>
 
+<!-- Tracks sheet upgrade version to fire events on first sheet:opened() -->
+<input type='hidden' name='attr_upgradeVersion' value='-1'/>
+
 <input type='hidden' class='tabstoggle' name='attr_sheetTab' value='overview'/>
 <!-- Character Sheet -->
 <div class='overview'>
@@ -111,9 +114,9 @@
             <label class='spanheader'>Summary</label>
             <label>Hit Points</label>
                 <input type='hidden' class='hpcheck' name='attr_hp_is_below_one'/>
-                <input class='redhp' type='number' value='1' name='attr_hp'/> 
+                <input class='redhp' type='number' value='0' name='attr_hp'/> 
             <label>HP Max</label>
-                <input type='number' value='1' name='attr_hp_max'/>
+                <input type='number' value='0' name='attr_hp_max'/>
             <label>Armor Class</label>
                 <input type='number' value='0' name='attr_armor_class' readonly/>
             <label>Attack Throw</label>
@@ -699,8 +702,12 @@ const COIN_WEIGHT = 0.001;
 const DIE_DELIMITER = 'd';
 const EMPTY_STRING = '';
 const HENCHMEN_LIMIT = 4;
+const INIT_HP = 1;
+const INIT_MOVE_ROUND = 30;
+const INIT_AC = 0;
 const LEVEL_MAX = 14;
 const LEVEL_MIN = 0;
+const UPGRADE_VERSION = 1;
 const XP_BONUS_MAX = 10;
 
 // Button panel event handlers
@@ -774,6 +781,30 @@ function validateLevel(theLevel) {
     let validatedLevel = parseInt(theLevel)|0;
     return validatedLevel < LEVEL_MIN ? LEVEL_MIN : validatedLevel > LEVEL_MAX ? LEVEL_MAX : validatedLevel;
 };
+
+/================= sheet initialization ===================/
+
+on('sheet:opened',function(){
+    getAttrs(['alignment', 'upgradeVersion'], function(values) {
+        const alignment = values['alignment'];
+        const upgradeVersion = Number(values['upgradeVersion']) || -1;
+        
+        const output = {};
+
+        // Forces the creation of sheet attributes that can be bound to 
+        // immediately by token bars (w/o having to change attributes manually).
+        // Ignores sheets w. a pre-existing 'alignment' value.
+        if (alignment == '' && upgradeVersion == -1)
+        {
+            output['upgradeVersion'] = UPGRADE_VERSION;
+            output['hp'] = output['hp_max'] = INIT_HP;
+            output['move_round'] = INIT_MOVE_ROUND;
+            output['armor_class'] = INIT_AC;
+        }
+
+        setAttrs(output);
+    });
+});
 
 /********** Armor Class **********/
 on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isRetreating', function(eventInfo) {

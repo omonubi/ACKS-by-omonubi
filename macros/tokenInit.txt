@@ -1,0 +1,1 @@
+!token-mod {{--set bar1_link|hp bar2_link|move_round bar3_link|armor_class}}

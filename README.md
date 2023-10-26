@@ -393,9 +393,14 @@ I recommend that banners be 300px-by-80px and PNG format.
 The following macros can be found in the /macros sub-directory of the git. They are *highly* recommended:
 
 * **actions**: uses the Roll20 [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to whisper a list of nmany sheet buttons into the Roll20 chat. Buttons are organzied by type. Note that melee and missile attacks will only appear in the output if they've been marked as "equipped" This script saves the players a **lot** of time and is highly recommended. Specify 'Show as Token Action' to apply the macro to every sheet token. Select the token, and then click the macro to use it. (The corallary here is that a token **must** be selected for many of the sheet buttons to work, with our without the macro...)
-* **conditions**: uses the Roll20 [TokenMod] API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these), but the script can be modified to use only the stock icons, as desired.
-* **repertoire**: also uses ChatMenu API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
+
+* **conditions**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these), but the script can be modified to use only the stock icons, as desired.
+
+* **repertoire**: also uses [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
+
 * **spellbook**: same as for repertoire, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status.
+
+* **tokenInit**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API to bind a new token's bars to three specific sheet attributes: green to *hp* (and *hp_max*); blue to *move_round*; and red to *armor_class*. Click on the token and immediately see it's current values for these attributes.
 
 ---
 
