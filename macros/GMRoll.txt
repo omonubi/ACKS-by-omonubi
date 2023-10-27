@@ -1,0 +1,1 @@
+/w ?{To Who|GM|charName1|charName2|Etc} &{template:custom} {{title=GM Throw for ?{To Who}}} {{subtitle=?{Reason}}} {{Rolling=?{Dice}}} {{Result=[[?{Dice}]]}} {{Target=?{Target|None}}}

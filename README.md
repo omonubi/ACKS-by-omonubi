@@ -396,11 +396,15 @@ The following macros can be found in the /macros sub-directory of the git. They 
 
 * **conditions**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these), but the script can be modified to use only the stock icons, as desired.
 
+* **GMRoll**: A simple macro that allows the GM to send a custom, formatted whisper roll to the Roll20 Chat, including a Reason for the throw, a Roll 20 dice formula to be rolled, and an optional Target value. The GM can whisper themself (by default), or a specific party member. Intended to be used to track secret GM throws in a gracefull chat format.
+
+* **initToken**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) to pre-configure a new token that's already bound to a character sheet. I used to standardize tokens - make sure game-wide token settings are already configured. The current macro sets token size to 85% of 1 unit (usually 70 px), and binds the three bar fields to *hp* (and *hp_max*), *move_round*, and *armor_class*. This can be customized anyway the user seems fit. See the TokenMod documentation for more settings.
+
+* **initMonster**: intended to be applied *after* initToken. This will use [TokenMod](https://wiki.roll20.net/Script:Token_Mod) to decouple the token's bar1 binding from the *hp* field, randomize the token's *hp*=*hp_max* to the bound character sheet's *hit_dice* value, add 60' nightvision to the token, and append a random 3-digit number to the token's name. As with initToken, this can be further customized, as desired.
+
 * **repertoire**: also uses [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
 
 * **spellbook**: same as for repertoire, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status.
-
-* **tokenInit**: uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API to bind a new token's bars to three specific sheet attributes: green to *hp* (and *hp_max*); blue to *move_round*; and red to *armor_class*. Click on the token and immediately see it's current values for these attributes. Note this also also allows for selection of compact or normal bar, and it "standardizes" the token to 85% of 1 unit (70 px, by Roll20 default). These settings can easily be changes/removed from the macro.
 
 ---
 
