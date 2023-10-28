@@ -7,6 +7,7 @@
 }
 .charsheet {
     background-color: burlywood;
+    /*background-image: url();*/
 }
 
 /**************** Grid Layouts ****************/
@@ -331,6 +332,7 @@ input.xpdescription {
 }
 .charsheet label.spanheader {
     background-color: navajowhite;
+    /*background-image: url();*/
     border-radius: 4px;
     font-size: 1.2em;
     grid-column: first / last;
