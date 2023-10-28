@@ -1,6 +1,12 @@
-* {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+.charsheet * {
+    color: saddlebrown !important;
+    font-family: 'Papyrus', sans-serif !important;
+    font-size: 100%; 
+    font-size-adjust: 0.46;
     padding-top: 2px;
+}
+.charsheet {
+    background-color: burlywood;
 }
 
 /**************** Grid Layouts ****************/
@@ -77,7 +83,7 @@
 .gridcurrency {
     display: grid;
     column-gap: 10px;
-    grid-template-columns: [first] repeat(5, 1fr) [last];
+    grid-template-columns: [first] repeat(4, 1fr) [last];
     justify-items: center;
     row-gap: 5px;
     width: 100%
@@ -99,22 +105,6 @@
     width: 100%
 }
 
-.thiefField {
-    color: lightgray;
-    justify-self: center;
-    text-align: center;
-    width: 45px;
-}
-.thiefFieldTotal {
-    font-weight: bold;
-    justify-self: center;
-    text-align: center;
-    width: 45px;
-}
-.thiefLabel {
-    justify-self: right;
-}
-
 .spanrepeater {
     grid-column: first / last;
     justify-self: start;
@@ -123,71 +113,77 @@
 }
 
 /**************** Element Styles ****************/
-button[type='roll'] {
-    border-color: goldenrod;
-    font-size: 1em !important;
+/* Roll20 button styles */
+button.btn {
+    background-image: linear-gradient(white, navajowhite);
+    border-color: saddlebrown;
+    font-weight: bold;
 }
-/* Hide the roll20 die icon */
-button[type=roll].blank-roll-button::before { 
-    content: ''; 
+button.btn:hover {
+    background-image: none;
+    background-color: navajowhite;
 }
-button.attribute {
-    width: 80px;
+/* Custom type="action" buttons */
+button.actionbutton {
+    background-image: linear-gradient(white, navajowhite);
+    border: 1px solid saddlebrown;
+    border-radius: 4px;
+    font-size: 1.0em;
+    font-weight: bold;
+    height: 18px;
+    padding: 4px 10px;
 }
-
-button[type='roll'].width25 {
-    width: 25px;
+button.actionbutton:hover {
+    background-image: none;
+    background-color: navajowhite;
 }
+/* Custom type="roll" buttons */
+/* !important needed to override r20 classes */
 button.combatbutton {
+    font-size: 1.0em !important; 
     width: 90%;
 }
-
-button[type='action'].sheetbutton {
-    background-image: linear-gradient(#ffffff, #dddddd);
-    border: 1px solid #aaaaaa;
-    border-radius: 4px;
-    text-align: center;
-    display: inline-block;
+button.reviewSpell {
+    font-size: 1.0em !important;
+    margin-bottom: 9px !important;
 }
-button[type='action'].sheetbutton:hover {
-    background-color: #eeeeee;
+.ui-dialog .charsheet button[type=roll].reviewSpell::before {
+    content: "";
 }
-button[type='action'].sheetbutton:active {
-    border: 2px solid black;
+button.rollbutton {
+    font-size: 1.0em !important;
+    margin-bottom: 9px !important;
 }
 
-div {
+.charsheet div {
     align-self: start;
     justify-self: start;
 }
 div.encumbrance {
     justify-self: center;
 }
+div.journalbox {
+    width: 95%;
+}
 div.whispertoggle {
-    background-color: navajowhite;
-    border-radius: 4px;
     display: inline-block;
     font-size: 0.9em;
-    height: 20px;
-    margin: 0px 0px 0px 0px;
-    padding: 3px 6px;
+    margin-left: 10px;
 }
 div.whispertoggle > .charsheet label {
-    display: inline;    
+    display: inline;   
 }
 
-.charsheet h3 {
-    font-size: 1.2em;
-    line-height: unset;
-    margin-bottom: 5px;
+.charsheet h1 {
+    font-size: 2.0em;
 }
 
 div.page-title {
     margin-bottom: 10px;
 }
 
-hr {
-    color: black;
+.charsheet hr {
+    border-top: 1px solid saddlebrown;
 }
 hr.spangrid {
     grid-column: first / last;
@@ -196,37 +192,68 @@ hr.spangrid {
     width: 100%;
 }
 
-img {
-    border-radius: 8px;
-    -webkit-box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.75);
-    box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.75);
+.charsheet input {
+    background-color: transparent;
+    border-color: saddlebrown;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #41403e;
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 23px;
+    margin-bottom: 9px !important;
+    outline: none;
+    padding: 2px 5px 0px 5px;
+    text-decoration: none;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
 }
-img.floatright {
-    clear: right;
-    float: right;
-    margin: 0px 10px 15px 15px;
+.charsheet input:read-only {
+    background-color: transparent;
+    border: none;
 }
-input 
-{
-    background-color: white;
-}
-input.width45 {
-    text-align: center;
-    width: 60px;
-}
-input[type=number] {
+.charsheet input[type=number] {
     text-align: center;
     width: 60px !important;
 }
 input[type=number].currency {
-    width: 60px;
+    width: 80px !important;
+}
+input[type=number].currency::-webkit-outer-spin-button,
+input[type=number].currency::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number].currency {
+  -moz-appearance: textfield;
 }
 input.attackname {
     width: 150px;
 }
 input.hirelingtext {
-    width: 150px;
+    width: 100px;
+}
+input[type=number].itemValue::-webkit-outer-spin-button,
+input[type=number].itemValue::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number].itemValue {
+  -moz-appearance: textfield;
+}
+input[type=number].itemWeight::-webkit-outer-spin-button,
+input[type=number].itemWeight::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number].itemWeight {
+  -moz-appearance: textfield;
 }
 input.missilerange {
     width: 100px;
@@ -241,27 +268,32 @@ input.spellRange,
 input.spellDuration {
     width: 60px; 
 }
+input.smallWidth {
+    text-align: center;
+    width: 60px;
+}
 input.xp {
     text-align: right;
-    width: 103px;
+    width: 90px;
 }
 input.xpamount {
     width: 75px;
 }
 input.xpdescription {
-    width: 48%;
+    width: 40%;
 }
 
 .charsheet label {
     align-self: start;
     display: inline-block;
-    font-size: 1.0em;
+    font-size: 1.3em;
+    padding-top: 7px;
     white-space: nowrap;
     width: auto;
 }
 .repitem .charsheet label {
     font-size: 0.9em;
-    padding-left: 5px;
+    padding-left: 15px;
 }
 .charsheet label.emphasis {
     font-size: 1.1em;
@@ -298,12 +330,12 @@ input.xpdescription {
     color: lightgray;
 }
 .charsheet label.spanheader {
-    background-color: #EEE;
+    background-color: navajowhite;
     border-radius: 4px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     grid-column: first / last;
     justify-self: start;
-    padding: 2px 0px 2px 5px;
+    padding: 5px 0px 2px 5px;
     width: 100%;
 }
 .charsheet label.spelllevel {
@@ -316,8 +348,11 @@ input.xpdescription {
     padding-right: 0px;
 }
 
-select {
-    margin: 0px;
+.charsheet select {
+    background-color: navajowhite;
+    border-color: saddlebrown;
+    font-weight: bold;
+    margin: 0px 0px 9px 0px;
 }
 
 select.selectalignment,
@@ -331,7 +366,7 @@ select.monster {
     width: 80px;
 }
 
-span {
+.charsheet span {
     line-height: 26px;
     padding-top: 0px;
 }
@@ -342,12 +377,33 @@ span.xpbonus {
     font-weight: bold;
 }
 
-textarea {
-    background-color: white;
+.charsheet textarea {
+    background-color: transparent;
+    border-color: saddlebrown;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-sizing: border-box;
+    color: #41403e;
+    display: inline-block;
+    font-size: 1.03em;
+    font-weight: bold;
+    line-height: 23px;
+    margin-bottom: 9px !important;
+    outline: none;
+    padding: 2px 5px 0px 5px;
+    text-decoration: none;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
     width: 98%;
 }
-div.journalbox {
-    width: 95%;
+textarea::placeholder {
+    color: #8a795d;
+}
+textarea.background {
+    width: 99%;
 }
 textarea.journalnotes {
     height: 120px;
@@ -390,9 +446,56 @@ textarea.property {
 .btnHirelings,
 .btnJournal,
 .btnSettings {
-	background-color: lightgray;
-    font-weight: bold;
-}
+    align-self: center;
+    background-color: navajowhite;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-color: saddlebrown;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #41403e;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 23px;
+    outline: none;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .btnOverview:hover,
+  .btnCombat:hover,
+  .btnSkills:hover,
+  .btnEquipment:hover,
+  .btnClass:hover,
+  .btnHirelings:hover,
+  .btnJournal:hover,
+  .btnSettings:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+  }
+  
+  .btnOverview:focus,
+  .btnCombat:focus,
+  .btnSkills:focus,
+  .btnEquipment:focus,
+  .btnClass:focus,
+  .btnHirelings:focus,
+  .btnJournal:focus,
+  .btnSettings:focus {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  }
 .buttonstoggle[value='overview'] ~ button.btnOverview,
 .buttonstoggle[value='combat'] ~ button.btnCombat,
 .buttonstoggle[value='skills'] ~ button.btnSkills,
@@ -401,7 +504,9 @@ textarea.property {
 .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
 .buttonstoggle[value='journal'] ~ button.btnJournal,
 .buttonstoggle[value='settings'] ~ button.btnSettings {
-	background-color: white;
+    background-color: white;
+    font-weight: bold;
+    transform: translate3d(0, 2px, 0);
 }
 
 /**************** Alert Styles ****************/
@@ -444,7 +549,7 @@ input.toggle-show:not(:checked) ~ div.details {
 }
 .repitem > input[type=number].itemValue {
     text-align: right;
-    width: 100px !important;
+    width: 80px !important;
 }
 .repitem > input[type=number].itemWeight {
     text-align: right;

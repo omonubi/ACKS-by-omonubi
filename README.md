@@ -7,13 +7,14 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 
 ---
 
-## Version 3.0
+## Version 3.1
 - This is v3 of the character sheet, for supporting ACKS II.
 - With ACKS II in beta, the current rules version refereced is v109.
 - Many small changes to this sheet were needed.
 - Several optional rules references not specifically included in ACKS II were removed from the sheet. E.G., base healing rate.
 - Some changes made to how attacks are executed on the Combat tab.
 - The Hirelings tab was overhauled to include loyalty and obedience checks.
+- The sheet was styled.
 
 ---
 
@@ -91,13 +92,13 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 ## Sheet Variable Manifest
 This section details all fields and controls on the sheet and how they are calculated, used, etc.
 
-1. **IMPORTANT:** Most buttons on the sheet *require* that a token is selected in order to function.
+1. **IMPORTANT:** Most buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro.
 2. The term 'creature' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
 3. All field values are optional, unless otherwise specified.
 4. Attribute variable names shown below do not include the *attr_* portion of the name. The names for roll buttons and repeating sections include the full variable name.
 5. All *CAPS* text within a *variable_name* indicates a placeholder for that indicated value. E.G., '*some_LVL_variable*' indicates a level number for the *LVL* portion of the variable name.
 6. Some fields are included to hold "reference values". These are purely informational fields that aren't used any place else on the sheet, and are identified as such, below.
-7. Some sections of the character sheet employ checkbox toggles used to show/hide sections of content or details specific to the item type in question. These toggle checkboxes are not always labeled, but should be self-evident when clicked.
+7. Some sections of the character sheet employ checkbox toggles used to show/hide sections of content or details specific to the item type in question.
 
 ---
 
@@ -137,7 +138,7 @@ This tab contains all the general information for the creature, including a summ
 | Miles / Day | *miles_day* | calculated | *move_turn* / 5. |
 | Miles / Hour | *miles_hour* | calculated | *move_turn* / 40. |
 | Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers from fatigue are automatically applied to sheet stats and rolls. |
-| Needs Bedrest (Days) | *bedrest* | number | The amount of bedrest the character currently needs before they can heal. Purely informational. |
+| Needs Bedrest | *bedrest* | number | The amount of bedrest (in days) the character currently needs before they can heal. Purely informational. |
 |||||
 | Saving Throws | *save_1*, *save_2*, *save_3*, *save_4*, *save_5* | number | The character's base saving throw targets. |
 |||||
@@ -165,13 +166,14 @@ This tab keeps track of class-specific information, such as global modifiers, cl
 | Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
-| Class Abilities | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
+| Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
 |||||
 | Spellcasting (Slots) | *spells_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
 | Spellcasting (Current) | *spells_LVL* | number | The current number of spells the creature has remaining, by spell level. Min is 0; max is 6. |
 | Caster Level | *caster_level* | number | The character's caster level. Min is 0; max is 14. |
 |||||
 | **Spells** | *repeating_spells_arcane* | repeating | A list of the creature's spells, if any. |
+| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
 | Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Note that [[in-line rolls]] can be included in the texts below, if desired. |
 | (name) | *spell_name* | text | The name of the spell. |
 | Level | *spell_level* | number | The spell's level. Can be set to 1 - 9, with a default vaule of 1. |
@@ -192,7 +194,7 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | (name) | *ability_name* | text | The name of the ability. |
 | Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
 | Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
-| OnCD | *ability_cooldown* | checkbox | Whether the ability is currently on cooldown.
+| Used | *ability_cooldown* | checkbox | Whether the ability is currently on cooldown.
 | Description | *ability_details* | text | The ability's text description. |
 |||||
 | **Proficiencies** | *repeating_skills* | repeating | A list of the creature's proficiencies. |
@@ -233,20 +235,21 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Attack | *roll_melee_attack* | button | When clicked, makes a 1d20 attack throw for the melee attack. The target value is set to the creature's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the creature's STR modifier, the attack's melee attack modifier, fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *melee_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 sword attack and a d8 sword attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the creature's Actions macro (see below). |
 | (name) | *melee_name* | text | The name of the melee attack. |
-| Bonus | *melee_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
-| Dmg | *roll_melee_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the creature's STR modifier, its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
-| (damage formula) | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
-| Long | *melee_long* | checkbox | Indicates if the attack has the *Long* characteristic (has reach). This value is purely for reference. |
+| Dmg | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
+| is long | *melee_long* | checkbox | Indicates if the attack has the *Long* characteristic (has reach). This value is purely for reference. |
+| Attk Bonus | *melee_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
+| Roll Dmg | *roll_melee_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the creature's STR modifier, its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
 | Effects | *melee_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
 |||||
 | **Missile Attacks** | *repeating_missile_attacks* | repeating | A list of the creature's missile attacks. |
 | Attack | *roll_missile_attack* | button | When clicked, makes a 1d20 attack throw for the missile attack. The target value is set to the creature's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the creature's DEX modifier, the attack's missile attack modifier, a range modifier (queried), a class accuracy bonus (if any), fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *missile_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 arrow attack and a d6+1 magic arrow attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the creature's Actions macro (see below). |
 | (name) | *missile_name* | text | The name of the missile attack. |
-| Bonus | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
-| Dmg | *roll_missile_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the creature's STR modifier (if Thrown - see below), its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
-| (damage formula) | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
-| Range | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
+| Dmg | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
+| Rng | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
+| Ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. |
+| Attk Bonus | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
+| Roll Dmg | *roll_missile_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the creature's STR modifier (if Thrown - see below), its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
 | Thrown | *missile_has_str_bonus* | checkbox | If checked, applies the creature's STR modifier to the attack's damage roll. |
 | Effects | *missile_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
 
