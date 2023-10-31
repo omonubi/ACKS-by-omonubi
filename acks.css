@@ -7,6 +7,9 @@
 }
 .charsheet {
     background-color: tan;
+}
+.charsheet,
+.charsheet label.spanheader {
     /*background-image: url();*/
 }
 
@@ -341,7 +344,6 @@ input.xpdescription {
 }
 .charsheet label.spanheader {
     background-color: navajowhite;
-    /*background-image: url();*/
     border-radius: 4px;
     font-size: 1.2em;
     grid-column: first / last;
