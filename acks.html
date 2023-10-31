@@ -14,11 +14,12 @@
     <input type='hidden' class='buttonstoggle' name='attr_sheetButtons' value='overview'/>
     <button type='action' class='btnOverview' name='act_overview' >Overview</button> 
     <button type='action' class='btnClass' name='act_class' >Class</button>
+    <button type='action' class='btnCombat' name='act_combat' >Combat</button>
     <input type='hidden' class='hideSpells' value='0' name='attr_show_spells'/>
     <button type='action' class='btnSpells' name='act_spells' >Spells</button>
-    <button type='action' class='btnSkills' name='act_skills' >Skills</button>
-    <button type='action' class='btnCombat' name='act_combat' >Combat</button>    
-    <button type='action' class='btnEquipment' name='act_equipment' >Equipment</button>   
+    <button type='action' class='btnSkills' name='act_skills' >Profs</button>  
+    <button type='action' class='btnEquipment' name='act_equipment' >Equip</button>
+    <button type='action' class='btnWealth' name='act_wealth' >Wealth</button>   
     <button type='action' class='btnHirelings' name='act_hirelings' >Hirelings</button>
     <button type='action' class='btnJournal' name='act_journal' >Journal</button>
     <button type='action' class='btnSettings' name='act_settings' >Settings</button>
@@ -456,6 +457,9 @@
         </div>
     </div>
     <hr/>
+</div>
+
+<div class='wealth'>
     <div class='grid11'>
         <div class='gridcurrency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
@@ -769,7 +773,7 @@ function getID(repeatingItemName) {
 };
 
 /*************** tab controls ******************/
-const buttonlist = ['overview','class','spells','skills','combat','equipment','hirelings','journal','settings'];
+const buttonlist = ['overview','class','spells','skills','combat','equipment','wealth','hirelings','journal','settings'];
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function() {
         setAttrs({

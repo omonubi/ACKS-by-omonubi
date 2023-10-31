@@ -435,6 +435,7 @@ textarea.property {
 .skills,
 .combat,
 .equipment,
+.wealth,
 .hirelings,
 .journal,
 .settings {
@@ -446,6 +447,7 @@ textarea.property {
 .tabstoggle[value='skills'] ~ div.skills,
 .tabstoggle[value='combat'] ~ div.combat,
 .tabstoggle[value='equipment'] ~ div.equipment,
+.tabstoggle[value='wealth'] ~ div.wealth,
 .tabstoggle[value='hirelings'] ~ div.hirelings,
 .tabstoggle[value='settings'] ~ div.settings,
 .tabstoggle[value='journal'] ~ div.journal {
@@ -457,6 +459,7 @@ textarea.property {
 .btnSkills,
 .btnCombat,
 .btnEquipment,
+.btnWealth,
 .btnHirelings,
 .btnJournal,
 .btnSettings {
@@ -493,6 +496,7 @@ textarea.property {
   .btnSkills:hover,
   .btnCombat:hover,
   .btnEquipment:hover,
+  .btnWealth:hover,
   .btnHirelings:hover,
   .btnJournal:hover,
   .btnSettings:hover {
@@ -505,6 +509,7 @@ textarea.property {
   .btnSkills:focus,
   .btnCombat:focus,
   .btnEquipment:focus,
+  .btnWealth:focus,
   .btnHirelings:focus,
   .btnJournal:focus,
   .btnSettings:focus {
@@ -516,6 +521,7 @@ textarea.property {
 .buttonstoggle[value='skills'] ~ button.btnSkills,
 .buttonstoggle[value='combat'] ~ button.btnCombat,
 .buttonstoggle[value='equipment'] ~ button.btnEquipment,
+.buttonstoggle[value='wealth'] ~ button.btnWealth,
 .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
 .buttonstoggle[value='journal'] ~ button.btnJournal,
 .buttonstoggle[value='settings'] ~ button.btnSettings {
