@@ -203,21 +203,20 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
+| **Proficiencies** | *repeating_skills* | repeating | A list of the creature's proficiencies. |
+| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
+| (name) | *skill_name* | text | The name of the proficiency. |
+| Rank | *skill_rank* | number | The creature's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
+| Type | *skill_type* | list | The type of proficiency: *General*, *Class*, or *Class Power*. The default is *General*. |
+| Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
+| Description | *skill_details* | text | The proficiency's text description. |
+|||||
 | **Abilities** | *repeating_abilities* | repeating | A list of the creature's non-proficiency abilities. Can be used to add specific proficiency-driven abilities such as *Listen* (Adventuring) or *Diagnose Illness* (Healing), class-specific ability descriptions, or anything else desired. |
 | Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
 | (name) | *ability_name* | text | The name of the ability. |
 | Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
 | Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
-| Used | *ability_cooldown* | checkbox | Whether the ability is currently on cooldown.
 | Description | *ability_details* | text | The ability's text description. |
-|||||
-| **Proficiencies** | *repeating_skills* | repeating | A list of the creature's proficiencies. |
-| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
-| (name) | *skill_name* | text | The name of the proficiency. |
-| Rank | *skill_rank* | number | The creature's rank in the proficiency. Minimum value is '1'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
-| Type | *skill_type* | list | The type of proficiency: *General*, *Class*, or *Class Power*. The default is *General*. |
-| Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
-| Description | *skill_details* | text | The proficiency's text description. |
 ---
 
 ### The Combat Tab

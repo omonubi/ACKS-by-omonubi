@@ -278,35 +278,16 @@
 
 <div class='skills'>
     <div class='grid1'>
-        <label class='spanheader'>Abilities</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_abilities'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
-                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
-                <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <label>used</label><input type='checkbox' name='attr_ability_cooldown'/>
-                <label>more...</label>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
-                    <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <hr/>
-    <div class='grid1'>
         <label class='spanheader'>Proficiencies</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_skills'>
                 <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Proficiency Throw}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
                 <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
-                <label>Rank:</label><input type='number' min='1' max='4' value='1' name='attr_skill_rank'/>
+                <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
                 <label>Type:</label>
                     <select name='attr_skill_type'>
                         <option selected>General</option>
                         <option>Class</option>
-                        <option>Class Power</option>
                     </select>&nbsp;&nbsp;&nbsp;
                 <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
@@ -318,6 +299,22 @@
         </div>
     </div>
     <hr/>
+    <div class='grid1'>
+        <label class='spanheader'>Abilities</label>
+        <div class='spanrepeater'>
+            <fieldset class='repeating_abilities'>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Ability Throw}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
+                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
+                <label>Source: </label><input type='text' name='attr_ability_source'/>
+                <label>more...</label>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
+                    <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 
 <div class='combat'>
