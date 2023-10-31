@@ -277,8 +277,17 @@ input.xp {
     text-align: right;
     width: 90px;
 }
-input.xpamount {
-    width: 75px;
+input.xpamount,
+input.xpdate {
+    width: 100px;
+}
+input[type=number].xpamount::-webkit-outer-spin-button,
+input[type=number].xpamount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number].xpamount {
+  -moz-appearance: textfield;
 }
 input.xpdescription {
     width: 40%;

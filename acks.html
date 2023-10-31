@@ -65,7 +65,7 @@
             <label>Current</label>
             <label>Nominal</label>
             <label>Mod</label>
-            <label>Prereq</label>
+            <label>Key Attr</label>
             <label>Strength:</label>
             <input type='number' value='10' min='0' max='20' name='attr_str' />
             <input type='number' value='10' name='attr_str_max'readonly/>
@@ -104,6 +104,12 @@
                 <input class='redhp' type='number' value='0' name='attr_hp'/> 
             <label>HP Max</label>
                 <input type='number' value='0' name='attr_hp_max'/>
+            <label class='redtext'>Fatigue Level</label>
+                <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
+                <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
+            <label class='redtext'>Bedrest Needed</label>
+                <input type='hidden' class='bedrestcheck' name='attr_is_bedrest'/>
+                <input class='redbedrest' type='number' value='0' min='0' name='attr_bedrest'/>
             <label>Armor Class</label>
                 <input type='number' value='0' name='attr_armor_class' readonly/>
             <label>Attack Throw</label>
@@ -124,12 +130,6 @@
             <label class='redtext'>Miles / Hour</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='0.75' name='attr_miles_hour' readonly/>
-            <label class='redtext'>Fatigue Level</label>
-                <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
-                <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
-            <label class='redtext'>Bedrest Needed</label>
-                <input type='hidden' class='bedrestcheck' name='attr_is_bedrest'/>
-                <input class='redbedrest' type='number' value='0' min='0' name='attr_bedrest'/>
         </div>
     </div>
     <hr/>
@@ -624,7 +624,7 @@
     <div>
         <label class='spanheader'>Experience Log</label>
         <fieldset class='repeating_experience'>            
-            <label>Date: </label><input class='xpamount' type='text' name='attr_xp_date'/>
+            <label>Date: </label><input class='xpdate' type='text' name='attr_xp_date'/>
             <label>XP: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
             <label>Bonus %: </label><input class='xpamount' type='number' name='attr_xp_bonus'/>
             <label>Note: </label><input class='xpdescription' type='text' name='attr_xp_description'/>
