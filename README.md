@@ -7,7 +7,7 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 
 ---
 
-## Version 3.1
+## Version 3.2
 - This is v3 of the character sheet, for supporting ACKS II.
 - With ACKS II in beta, the current rules version refereced is v109.
 - Many small changes to this sheet were needed.
@@ -15,6 +15,7 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 - Some changes made to how attacks are executed on the Combat tab.
 - The Hirelings tab was overhauled to include loyalty and obedience checks.
 - The sheet was styled.
+- Sheet layout/tabs were change for usability
 
 ---
 
@@ -153,7 +154,7 @@ This tab contains all the general information for the creature, including a summ
 ---
 
 ### The Class Tab
-This tab keeps track of class-specific information, such as global modifiers, class description, and spellcasting information.
+This tab keeps track of class-specific information, such as global modifiers and class description.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -167,7 +168,13 @@ This tab keeps track of class-specific information, such as global modifiers, cl
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
-|||||
+
+---
+### The Spells Tab
+This tab is used to track spell slots, spell usage, repertoire selection (if applicable), and spell descriptions. The tab and its content can be hidden by the *hide_spells* setting on the Settings tab.
+
+| Field | Variable(s) | Type | Description |
+| --- | --- | --- | --- |
 | Spellcasting (Slots) | *spells_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
 | Spellcasting (Current) | *spells_LVL* | number | The current number of spells the creature has remaining, by spell level. Min is 0; max is 6. |
 | Caster Level | *caster_level* | number | The character's caster level. Min is 0; max is 14. |
@@ -360,6 +367,7 @@ This tab contains base values used in some sheet worker calculations; mainly whe
 | Max Encumbrance | *base_enc* | number | The creature's base maximum encumbrance threshold, which is the point at which the creature can no longer move. The default is the humanoid maximum base limit of 20 stone. |
 | Max Movement | *base_movement* | number | Change to set the maximum movement value per turn for the creature. The default is the humanoid base movement of 120' per turn. |
 | Experience % Modifier | *xp_modifier* | number | Used to change the creature's displayed XP bonus from its prime requisite attribute score(s). Typically used if the creature has suffered an organic impediment or injury that nagtively impacts its intellectual / reasoning capability. |
+| Hide Spells Tab | *toggle_spells* | checkbox | If checked, hides the Spells tab. |
 
 ---
 

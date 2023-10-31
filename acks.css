@@ -430,30 +430,33 @@ textarea.property {
     padding-bottom: 15px;
 }
 .overview,
-.combat,
-.skills,
-.equipment,
 .class,
+.spells,
+.skills,
+.combat,
+.equipment,
 .hirelings,
 .journal,
 .settings {
 	display: none;
 }
 .tabstoggle[value='overview'] ~ div.overview,
-.tabstoggle[value='combat'] ~ div.combat,
-.tabstoggle[value='skills'] ~ div.skills,
-.tabstoggle[value='equipment'] ~ div.equipment,
 .tabstoggle[value='class'] ~ div.class,
+.tabstoggle[value='spells'] ~ div.spells,
+.tabstoggle[value='skills'] ~ div.skills,
+.tabstoggle[value='combat'] ~ div.combat,
+.tabstoggle[value='equipment'] ~ div.equipment,
 .tabstoggle[value='hirelings'] ~ div.hirelings,
 .tabstoggle[value='settings'] ~ div.settings,
 .tabstoggle[value='journal'] ~ div.journal {
 	display: block;
 }
 .btnOverview,
-.btnCombat,
-.btnSkills,
-.btnEquipment,
 .btnClass,
+.btnSpells,
+.btnSkills,
+.btnCombat,
+.btnEquipment,
 .btnHirelings,
 .btnJournal,
 .btnSettings {
@@ -483,41 +486,46 @@ textarea.property {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-  }
-  
+  }  
   .btnOverview:hover,
-  .btnCombat:hover,
-  .btnSkills:hover,
-  .btnEquipment:hover,
   .btnClass:hover,
+  .btnSpells:hover,
+  .btnSkills:hover,
+  .btnCombat:hover,
+  .btnEquipment:hover,
   .btnHirelings:hover,
   .btnJournal:hover,
   .btnSettings:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
   }
-  
   .btnOverview:focus,
-  .btnCombat:focus,
-  .btnSkills:focus,
-  .btnEquipment:focus,
   .btnClass:focus,
+  .btnSpells:focus,
+  .btnSkills:focus,
+  .btnCombat:focus,
+  .btnEquipment:focus,
   .btnHirelings:focus,
   .btnJournal:focus,
   .btnSettings:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
 .buttonstoggle[value='overview'] ~ button.btnOverview,
-.buttonstoggle[value='combat'] ~ button.btnCombat,
-.buttonstoggle[value='skills'] ~ button.btnSkills,
-.buttonstoggle[value='equipment'] ~ button.btnEquipment,
 .buttonstoggle[value='class'] ~ button.btnClass,
+.buttonstoggle[value='spells'] ~ button.btnSpells,
+.buttonstoggle[value='skills'] ~ button.btnSkills,
+.buttonstoggle[value='combat'] ~ button.btnCombat,
+.buttonstoggle[value='equipment'] ~ button.btnEquipment,
 .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
 .buttonstoggle[value='journal'] ~ button.btnJournal,
 .buttonstoggle[value='settings'] ~ button.btnSettings {
     background-color: white;
     font-weight: bold;
     transform: translate3d(0, 2px, 0);
+}
+/* Hide Spells tab button on Settings toggle */
+input.hideSpells[value='1'] ~ button.btnSpells {
+    display: none;
 }
 
 /**************** Alert Styles ****************/

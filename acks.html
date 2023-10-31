@@ -14,6 +14,8 @@
     <input type='hidden' class='buttonstoggle' name='attr_sheetButtons' value='overview'/>
     <button type='action' class='btnOverview' name='act_overview' >Overview</button> 
     <button type='action' class='btnClass' name='act_class' >Class</button>
+    <input type='hidden' class='hideSpells' value='0' name='attr_show_spells'/>
+    <button type='action' class='btnSpells' name='act_spells' >Spells</button>
     <button type='action' class='btnSkills' name='act_skills' >Skills</button>
     <button type='action' class='btnCombat' name='act_combat' >Combat</button>    
     <button type='action' class='btnEquipment' name='act_equipment' >Equipment</button>   
@@ -21,7 +23,7 @@
     <button type='action' class='btnJournal' name='act_journal' >Journal</button>
     <button type='action' class='btnSettings' name='act_settings' >Settings</button>
     <div class='whispertoggle'>
-        <label>Whisper Toggle</label>
+        <label>whisper</label>
         <input type='checkbox' name='attr_toggle_whisper' />
         <input type='hidden' name='attr_whispertoggle'/>
     </div>
@@ -199,8 +201,9 @@
         <textarea placeholder='Enter details from ACKS rules reference...' name='attr_class_abilities'></textarea>
         <hr/>
     </div>
+</div>
 
-    <input class='showspellcasting' type='hidden' value='1' name='attr_show_spellcasting'/>
+<div class='spells'>
     <div class='spellcasting'>
         <div class='gridspellslots'>
             <label class='spanheader'>Spellcasting Slots by Spell Level</label>
@@ -653,6 +656,15 @@
 
         <label>Experience % Modifier</label>
             <input type='number' value='0' name='attr_xp_modifier'/>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+
+        <label>Hide Spells Tab</label>
+            <input type='checkbox' checked name='attr_toggle_spells'/>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
     </div>
     <hr/>
 </div>
@@ -707,79 +719,7 @@ const LEVEL_MIN = 0;
 const UPGRADE_VERSION = 1;
 const XP_BONUS_MAX = 10;
 
-// Button panel event handlers
-const buttonlist = ['overview','combat','skills','equipment','class','hirelings','journal','settings'];
-buttonlist.forEach(button => {
-    on(`clicked:${button}`, function() {
-        setAttrs({
-            sheetButtons: button,
-            sheetTab: button
-        });
-    });
-});
-
-/*************** toggle controls ****************/
-// Whisper toggle
-on('change:toggle_whisper', function(eventInfo) {
-    /*console.log(eventInfo.sourceType + '(change:whispertoggle = ' + eventInfo.newValue + ')');*/
-    const toggleValue = eventInfo.newValue.toString();
-    const output = {};
-    output['whispertoggle'] = (toggleValue == 'on' ? '/w gm' : EMPTY_STRING);
-    setAttrs(output);
-});
-
-// Class field toggle
-on('clicked:toggleLockClass', function(eventInfo) {
-    getAttrs(['toggleLock_class'], function(values) {
-        const theToggleState = Number(values['toggleLock_class']) || 0;
-
-        const output = {};
-        output['toggleLock_class'] = (theToggleState == 0 ? 1 : 0);
-        setAttrs(output);
-    });
-});
-
-// Title field toggle
-on('clicked:toggleLockTitle', function(eventInfo) {
-    getAttrs(['toggleLock_title'], function(values) {
-        const theToggleState = Number(values['toggleLock_title']) || 0;
-
-        const output = {};
-        output['toggleLock_title'] = (theToggleState == 0 ? 1 : 0);
-        setAttrs(output);
-    });
-});
-
-/**************** validators ********************/
-
-// Helpers/validation
-// global helper to retrieve repeating section item ids
-function getID(repeatingItemName) {
-    const idStartPosition = repeatingItemName.indexOf('_',10) + 1;
-    const idEndPosition = repeatingItemName.indexOf('_',idStartPosition+1);
-    const theID = repeatingItemName.substring(idStartPosition, idEndPosition);
-    return theID;
-};
-
-// isNumber function that returns true/false
-var isNumber = function isNumber(value) 
-{
-   return typeof value === 'number' && isFinite(value);
-}
-
-// Sanitizes (lower case, no white space) a string
-// Used for class names
-function getSanitizedString(theString) {
-    return theString.toLowerCase().replace(/\s/g, "")
-}
-
-// Ensures that a character's level falls within appropriate limits.
-function validateLevel(theLevel) {
-    let validatedLevel = parseInt(theLevel)|0;
-    return validatedLevel < LEVEL_MIN ? LEVEL_MIN : validatedLevel > LEVEL_MAX ? LEVEL_MAX : validatedLevel;
-};
-
-/================= sheet initialization ===================/
+/**************** sheet initialization ****************/
 
 on('sheet:opened',function(){
     getAttrs(['alignment', 'upgradeVersion'], function(values) {
@@ -802,6 +742,58 @@ on('sheet:opened',function(){
         setAttrs(output);
     });
 });
+
+/**************** helper functions ********************/
+// global helper to retrieve repeating section item ids
+function getID(repeatingItemName) {
+    const idStartPosition = repeatingItemName.indexOf('_',10) + 1;
+    const idEndPosition = repeatingItemName.indexOf('_',idStartPosition+1);
+    const theID = repeatingItemName.substring(idStartPosition, idEndPosition);
+    return theID;
+};
+
+/*************** tab controls ******************/
+const buttonlist = ['overview','class','spells','skills','combat','equipment','hirelings','journal','settings'];
+buttonlist.forEach(button => {
+    on(`clicked:${button}`, function() {
+        setAttrs({
+            sheetButtons: button,
+            sheetTab: button
+        });
+    });
+});
+
+// Show/hide the Spells tab
+on('change:toggle_spells', function(eventInfo) {
+    console.log('eventInfo.newValue = ' + eventInfo.newValue);
+
+    const output = {};
+    output['show_spells'] = (eventInfo.newValue == 'on' ? 1 : 0);
+    console.log('output = ' + output['show_spells']);
+    setAttrs(output);
+});
+
+/*************** toggle controls ****************/
+// Whisper toggle
+on('change:toggle_whisper', function(eventInfo) {
+    /*console.log(eventInfo.sourceType + '(change:whispertoggle = ' + eventInfo.newValue + ')');*/
+    const toggleValue = eventInfo.newValue.toString();
+    const output = {};
+    output['whispertoggle'] = (toggleValue == 'on' ? '/w gm' : EMPTY_STRING);
+    setAttrs(output);
+});
+
+/* Class field toggle - not in use
+on('clicked:toggleLockClass', function(eventInfo) {
+    getAttrs(['toggleLock_class'], function(values) {
+        const theToggleState = Number(values['toggleLock_class']) || 0;
+
+        const output = {};
+        output['toggleLock_class'] = (theToggleState == 0 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+*/
 
 /********** Armor Class **********/
 on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isRetreating', function(eventInfo) {
