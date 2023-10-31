@@ -195,7 +195,23 @@
         </div>
         <hr/>
     </div>
-    
+    <div class='grid1'>
+        <label class='spanheader'>Class Powers</label>
+        <div class='spanrepeater'>
+            <fieldset class='repeating_classpowers'>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Class Power Check}} {{color=brown}} {{Using=@{classpower_name}}} {{Target=[[@{classpower_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_classpower_check'> Throw</button>
+                <input type='text' placeholder='Class power name...' name='attr_classpower_name'/>
+                <label>Target:</label><input type='text' name='attr_classpower_target'/>
+                <label>on cooldown</label><input type='checkbox' name='attr_classpower_cooldown'/>
+                <label>more...</label>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <textarea placeholder='Optional description...' name='attr_classpower_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <hr/>    
     <div>
         <label class='spanheader'>Class Description</label>
         <textarea placeholder='Enter details from ACKS rules reference...' name='attr_class_abilities'></textarea>

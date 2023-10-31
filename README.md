@@ -167,6 +167,13 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
+| **Class Powers** | *repeating_classpowers* | repeating | A list of the creature's class powers, if any. |
+| Throw | *roll_classpower_check* | button | When clicked, makes a 1d20 throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
+| (name) | *classpower_name* | text | The name of the class power. |
+| Target | *classpower_target* | text | Empty by default. If present, should be a formula used to set the class power's throw target. |
+| on cooldown | *classpower_cooldown* | checkbox | Whether the ability is currently on cooldown. For example, a bard's Inspiration class power. |
+| (details) | *classpower_details* | text | The class powers's text description. |
+|||||
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
 
 ---
