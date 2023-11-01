@@ -139,15 +139,15 @@
     <div class='grid11'>
         <div class='grid11'>
             <label class='spanheader'>Saving Throws</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_paralysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Paralysis}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_poison} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Death}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
                 <input type='number' value='14' name='attr_save_2'/>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_blast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blasts}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blasts</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Blasts}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blasts</button>
                 <input type='number' value='15' name='attr_save_3'/>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_spells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Implements}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Implements}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
                 <input type='number' value='16' name='attr_save_4'/>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_staffs} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **@{character_title} @{selected|token_name}**}} {{subtitle=Save vs. Spells}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wis_mod}[wis]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
                 <input type='number' value='17' name='attr_save_5'/>
         </div>
         <div class='grid1111'>
@@ -374,7 +374,7 @@
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>   
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_melee} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Roll Dmg</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{melee_name})}} {{color=red}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Roll Dmg</button>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
@@ -396,7 +396,7 @@
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <label>Attk Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missile} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Roll Dmg</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **@{character_title} @{selected|token_name}**}} {{subtitle=Damage Roll (@{missile_name})}} {{color=red}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Roll Dmg</button>
                 <label>thrown</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
@@ -519,10 +519,10 @@
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_henchman_name'/>
             <label class='detailslabel'>Loyalty</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{henchman_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **@{henchman_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_henchman_loyalty'/>
             <label class='detailslabel'>Morale</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{henchman_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_henchman_obedience_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **@{henchman_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_henchman_obedience_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_henchman_morale'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
@@ -545,10 +545,10 @@
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_merc_name'/>
             <label class='detailslabel'>Loyalty</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{merc_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **@{merc_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_merc_loyalty'/>
             <label class='detailslabel'>Morale</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{merc_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_merc_obedience_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **@{merc_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_merc_obedience_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_merc_morale'/>
                 <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
@@ -573,10 +573,10 @@
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_spec_name'/>
             <label class='detailslabel'>Loyalty</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{spec_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_spec_loyalty_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_specialist} **@{spec_name}**}} {{subtitle=Loyalty Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_spec_loyalty_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_spec_loyalty'/>
             <label class='detailslabel'>Morale</label>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_moralecheck} **@{spec_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_morale}[morale])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_spec_obedience_check' ></button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_specialist} **@{spec_name}**}} {{subtitle=Obedience Check}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_morale}[morale])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_spec_obedience_check' ></button>
                 <input type='number' min='-4' max='4' value='0' name='attr_spec_morale'/>
                 <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
@@ -674,41 +674,31 @@
     <p>Designed for use with the Adventurer Conqueror King System, Imperial Imprint and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>
 </div>
 
+<!-- Banner placeholders (see readme) -->
 <input type='hidden' name='attr_banner_abilitythrow' value=''/>
-<input type='hidden' name='attr_banner_abilitydesc' value=''/>
-<input type='hidden' name='attr_banner_bhr' value=''/>
-<input type='hidden' name='attr_banner_blast' value=''/>
-<input type='hidden' name='attr_banner_classpower' value=''/>
-<input type='hidden' name='attr_banner_climb' value=''/>
-<input type='hidden' name='attr_banner_critchar' value=''/>
-<input type='hidden' name='attr_banner_critmon' value=''/>
-<input type='hidden' name='attr_banner_hide' value=''/>
 <input type='hidden' name='attr_banner_hd' value=''/>
+<input type='hidden' name='attr_banner_henchmen' value=''/>
 <input type='hidden' name='attr_banner_init' value=''/>
 <input type='hidden' name='attr_banner_knowledge' value=''/>
-<input type='hidden' name='attr_banner_listen' value=''/>
-<input type='hidden' name='attr_banner_locks' value=''/>
 <input type='hidden' name='attr_banner_melee' value=''/>
+<input type='hidden' name='attr_banner_meleedamage' value=''/>
+<input type='hidden' name='attr_banner_mercenary' value=''/>
 <input type='hidden' name='attr_banner_missile' value=''/>
+<input type='hidden' name='attr_banner_missiledamage' value=''/>
 <input type='hidden' name='attr_banner_morale' value=''/>
-<input type='hidden' name='attr_banner_moralecheck' value=''/>
-<input type='hidden' name='attr_banner_paralysis' value=''/>
-<input type='hidden' name='attr_banner_pockets' value=''/>
-<input type='hidden' name='attr_banner_poison' value=''/>
 <input type='hidden' name='attr_banner_profthrow' value=''/>
-<input type='hidden' name='attr_banner_profdesc' value=''/>
 <input type='hidden' name='attr_banner_reaction' value=''/>
-<input type='hidden' name='attr_banner_sneak' value=''/>
+<input type='hidden' name='attr_banner_saveblast' value=''/>
+<input type='hidden' name='attr_banner_savedeath' value=''/>
+<input type='hidden' name='attr_banner_saveimplements' value=''/>
+<input type='hidden' name='attr_banner_saveparalysis' value=''/>
+<input type='hidden' name='attr_banner_savespells' value=''/>
+<input type='hidden' name='attr_banner_specialist' value=''/>
 <input type='hidden' name='attr_banner_spellcast' value=''/>
-<input type='hidden' name='attr_banner_spells' value=''/>
-<input type='hidden' name='attr_banner_staffs' value=''/>
 <input type='hidden' name='attr_banner_surprise' value=''/>
-<input type='hidden' name='attr_banner_traps' value=''/>
 
 <script type='text/worker'>
 const ATTR_SCORE_DEFAULT = 10;
-const BARBARIAN_SPEC_DEFAULT = 'Melee';
-const BASE_AC = 11;
 const COIN_WEIGHT = 0.001;
 const DIE_DELIMITER = 'd';
 const EMPTY_STRING = '';
@@ -716,8 +706,6 @@ const HENCHMEN_LIMIT = 4;
 const INIT_HP = 1;
 const INIT_MOVE_ROUND = 30;
 const INIT_AC = 0;
-const LEVEL_MAX = 14;
-const LEVEL_MIN = 0;
 const UPGRADE_VERSION = 1;
 const XP_BONUS_MAX = 10;
 
