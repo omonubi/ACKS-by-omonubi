@@ -444,7 +444,7 @@
             <fieldset class='repeating_items'>
                 <input type='text' placeholder='Item name...' name='attr_item_name'/>
                 <label>#</label><input class='itemCount' type='number' min='0' value='1' name='attr_item_count'/>
-                <label>stone</label><input class='itemWeight' type='number' value='0.17' step='.001' name='attr_item_weight'/>
+                <label>stone</label><input class='itemWeight' type='number' min='0' value='0.16' step='.01' name='attr_item_weight'/>
                 <label>value</label><input class='itemValue' type='number' min='0' name='attr_item_value'/>
                 <label>equipped</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
                 <label>more...</label><input type='checkbox' class='toggle-show'/><br/>
@@ -1321,7 +1321,7 @@ function validateHitPoints() {
 };
 
 /********** Items **********/
-on('change:repeating_items:item_weight change:repeating_items:item_count change:repeating_items:item_equipped remove:repeating_items', function(eventInfo) {
+on('change:repeating_items:item_name change:repeating_items:item_weight change:repeating_items:item_count change:repeating_items:item_equipped remove:repeating_items', function(eventInfo) {
     if (eventInfo.sourceType == "player") updateItemEncumbrance(
         'repeating_items', 
         '_item_weight',
