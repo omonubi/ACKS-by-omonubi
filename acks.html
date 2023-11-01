@@ -243,7 +243,7 @@
                     <button type='roll' class='reviewSpell' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_knowledge} **Review Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
                     <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
                     <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
-                    <label>Level:</label><input type='number' min='1' max='9' value='1' name='attr_spell_level'/>
+                    <label>Level:</label><input type='number' min='0' max='9' value='1' name='attr_spell_level'/>
                     <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
                     <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
