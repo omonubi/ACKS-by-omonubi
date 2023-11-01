@@ -195,24 +195,7 @@
             </div>
         </div>
         <hr/>
-    </div>
-    <div class='grid1'>
-        <label class='spanheader'>Class Powers</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_classpowers'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **@{character_title} @{selected|token_name}**}} {{subtitle=Class Power Check}} {{color=gold}} {{Using=@{classpower_name}}} {{Target=[[@{classpower_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_classpower_check'> Throw</button>
-                <input type='text' placeholder='Class power name...' name='attr_classpower_name'/>
-                <label>Target:</label><input type='text' name='attr_classpower_target'/>
-                <label>on cooldown</label><input type='checkbox' name='attr_classpower_cooldown'/>
-                <label>more...</label>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <textarea placeholder='Optional description...' name='attr_classpower_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <hr/>    
+    </div>   
     <div>
         <label class='spanheader'>Class Description</label>
         <textarea placeholder='Enter details from ACKS rules reference...' name='attr_class_abilities'></textarea>
@@ -258,7 +241,7 @@
                 <fieldset class='repeating_spellsarcane'>
                     
                     <button type='roll' class='reviewSpell' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_knowledge} **@{character_title} @{selected|token_name}**}} {{subtitle=Review Spell}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
-                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=blue}} {{title=@{banner_spellcast} **@{character_title} @{selected|token_name}**}} {{subtitle=Cast Spell}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
+                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **@{character_title} @{selected|token_name}**}} {{subtitle=Cast Spell}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
                     <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
                     <label>Level:</label><input type='number' min='1' max='9' value='1' name='attr_spell_level'/>
                     <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
@@ -288,6 +271,7 @@
                     <select name='attr_skill_type'>
                         <option selected>General</option>
                         <option>Class</option>
+                        <option>Class Power</option>
                     </select>&nbsp;&nbsp;&nbsp;
                 <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
@@ -694,6 +678,7 @@
 <input type='hidden' name='attr_banner_abilitydesc' value=''/>
 <input type='hidden' name='attr_banner_bhr' value=''/>
 <input type='hidden' name='attr_banner_blast' value=''/>
+<input type='hidden' name='attr_banner_classpower' value=''/>
 <input type='hidden' name='attr_banner_climb' value=''/>
 <input type='hidden' name='attr_banner_critchar' value=''/>
 <input type='hidden' name='attr_banner_critmon' value=''/>
