@@ -35,14 +35,16 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 ### How to Use the Character Sheet
 1. Generate an ACKS character.
 2. On the **Overview** tab, enter the creature's basic info and its generated attributes. Save each attribute's Nominal value in the Max column of the Roll20 sheet's Attributes & Abilities tab. Generate the character's hit points and save the value in both Hit Point fields.
-3. On the **Class** tab, input any class-specific modifiers and a desired class description. If the creature is a spellcaster, enter the maximum and current spell slots by spell level.
-4. On the **Skills** tab, enter the creature's selected proficiency information and any additional ability information desired. (Note: Use the **!AddSkills** custom API script to pre-populate common abiltiies and proficiencies - see later in this document.)
-5. Enter the appropriate information on the **Combat** tab, based on the creature's equipment and other characteristics. Enter the creature's melee and missile attack options. Use one line-item for each attack type, combination, and/or damage formula. Check the (equipped) checkboxes to indicate which attacks are available at any given time.
-7. On the **Equipment** tab, save the creature's current equipment, currency info, and monthly budget. All of this information is optional for NPCs and monsters.
-8. Use the **Hirelings** tab to keep track of Henchmen, Mercenaries, and Specialists in the creature's employ.
-9. Use the **Journal** tab to capture additional information such as background, appearance, languages spoken, injuries, and property. The Adventure Notes can be used by the player to keep track of miscellaneous details. The GM uses the Experience Log to input earned experience after the creature completes an expedition.
-10. The GM can use the **Settings** tab to customize or modify certain core base traits used in sheet calculations, such as bas movement rate, encumbrance thresholds, and earned XP modifiers.
-11. Use the **whisper toggle** to send any Roll20 Chat window output as a whisper to oneself. Otherwise, any such Chat output is viewable by all.
+3. On the **Class** tab, input any class-specific modifiers and a desired class description.
+4. Enter the appropriate information on the **Combat** tab, based on the creature's equipment and other characteristics. Enter the creature's melee and missile attack options. Use one line-item for each attack type, combination, and/or damage formula. Check the (equipped) checkboxes to indicate which attacks are available at any given time.
+5. On the **Spells** tab, enter the maximum and current spell slots by spell level. (If the character is not a spellcaster, this tab can be hidden on the Settings tab.)
+6. On the **Skills** tab, enter the creature's selected proficiency information and any additional ability information desired. (Note: Use the **!AddSkills** custom API script to pre-populate common abiltiies and proficiencies - see later in this document.)
+7. On the **Equipment** tab, save the creature's current equipment. This information is optional for NPCs and monsters.
+8. On the **Wealth** tab, save the creature's coinage info and monthly budget, if any. This information is optional for NPCs and monsters.
+9. Use the **Hirelings** tab to keep track of Henchmen, Mercenaries, and Specialists in the creature's employ.
+10. Use the **Journal** tab to capture additional information such as background, appearance, languages spoken, injuries, and property. The Adventure Notes can be used by the player to keep track of miscellaneous details. The GM uses the Experience Log to input earned experience after the creature completes an expedition.
+11. The GM can use the **Settings** tab to customize or modify certain core base traits used in sheet calculations, such as bas movement rate, encumbrance thresholds, and earned XP modifiers.
+12. Use the **whisper toggle** to send any Roll20 Chat window output as a whisper to oneself. Otherwise, any such Chat output is viewable by all.
 
 **Refer to the Sheet Variable Manifest, below, for details on how each field and control function.**
 
@@ -75,13 +77,11 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 
 ### How to Work with Equipment and Money
 - Uncheck the Equipped checkbox to "warehouse" (not carry) inventory.
-- If tracking amunition on the Equipment tab, each round weighs 0.02 stone.
-- If tracking individual items within a "small item" (such as 12 spikes), track the count within the item's name. Alternately, reduce the Weight of each item by the appropriate amount and use the Count field.
+- As per ACKS, collections of small items should be tracked as a single item in the increments specified in the *ACKS Rules Reference*.
 - There are multiple ways to handle rations (assumed to be iron):
-    - Individually, each day's ration weighs 1/6 (0.17) stone. 
-    - Each day's waterskin (full) weighs 5/6 (0.83) stone.
+    - Individually, each day's ration weighs 1/6 (0.16) stone.
+    - Each day's waterskin (full) weighs 5/6 (0.8) stone.
     - Combined, a "day's rations" (food and water) weigh 1 stone.
-    - If using the ACKS II survival simplified approach, a "day's rations" weigh 0.5 stone.
 - Each coin weighs 0.001 stone. Use the Banked column to offload coinage On Hand. Use the New column to add or remove coins from the inventory. The GM should use this feature, then ask the player to click the Claim button and move it to On Hand. 
 
 ### How to Award and Track Experience Points
@@ -93,13 +93,13 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 ## Sheet Variable Manifest
 This section details all fields and controls on the sheet and how they are calculated, used, etc.
 
-1. **IMPORTANT:** Most buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro.
+1. **IMPORTANT:** Most buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
 2. The term 'creature' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
 3. All field values are optional, unless otherwise specified.
 4. Attribute variable names shown below do not include the *attr_* portion of the name. The names for roll buttons and repeating sections include the full variable name.
 5. All *CAPS* text within a *variable_name* indicates a placeholder for that indicated value. E.G., '*some_LVL_variable*' indicates a level number for the *LVL* portion of the variable name.
 6. Some fields are included to hold "reference values". These are purely informational fields that aren't used any place else on the sheet, and are identified as such, below.
-7. Some sections of the character sheet employ checkbox toggles used to show/hide sections of content or details specific to the item type in question.
+7. Some sections of the character sheet employ checkbox toggles ("more...") used to show/hide sections of content or details specific to the item type in question.
 
 ---
 
@@ -121,7 +121,7 @@ This tab contains all the general information for the creature, including a summ
 | Experience | *xp_next_level* | text | The amount of experience points needed by the character for next level. |
 | Age | *age* | number | The character's current age. |
 | Level | *level* | number | The character's current level. The minimum allowed is 0; the maximum is 14. Note: The sheet doesn't limit level based on class. |
-| Hit Dice | *hit_dice* | text | The character's current number of hit dice, in Roll20 /roll format. |
+| Hit Dice | *hit_dice* | text | The character's current number of hit dice, in Roll20 /roll format. **Required** for rolling hit points. |
 | Hit Points | *roll_hit_dice* | button | Rolls the Hit Dice formula above in the Roll20 Chat window. |
 |||||
 | Attributes, Current | *str*, *int*, *wis*, *dex*, *con*, *chr*  | number | Minimum value for each is 0; maximum is 20. |
@@ -129,7 +129,8 @@ This tab contains all the general information for the creature, including a summ
 | Attributes, Mod | *VAR_mod* | calculated | Each attribute's auto-calculated modifier. |
 |||||
 | Hit Points | *hp* | number | The character's current amount of hit points. |
-| HP Max | *hp_max* | number | The character's maximum amount of hit points. |
+| HP Max | *hp_max* | number | The character's maximum amount of hit points. |from fatigue are automatically applied to sheet stats and rolls. |
+| Needs Bedrest | *bedrest* | number | The amount of bedrest (in days) the character currently needs before they can heal. Purely informational. |
 | Armor Class | *armor_class* | duplicate | See the Combat tab. |
 | Attack Throw | *attack_throw* | duplicate | See the Combat tab. |
 | Encumbrance | *encumbrance* | duplicate | See the Equipment tab. |
@@ -138,8 +139,7 @@ This tab contains all the general information for the creature, including a summ
 | Feet / Round | *move_round* | duplicate | See the Equipment tab. |
 | Miles / Day | *miles_day* | calculated | *move_turn* / 5. |
 | Miles / Hour | *miles_hour* | calculated | *move_turn* / 40. |
-| Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers from fatigue are automatically applied to sheet stats and rolls. |
-| Needs Bedrest | *bedrest* | number | The amount of bedrest (in days) the character currently needs before they can heal. Purely informational. |
+| Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers 
 |||||
 | Saving Throws | *save_1*, *save_2*, *save_3*, *save_4*, *save_5* | number | The character's base saving throw targets. |
 |||||
@@ -167,12 +167,6 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
-| **Class Powers** | *repeating_classpowers* | repeating | A list of the creature's class powers, if any. |
-| Throw | *roll_classpower_check* | button | When clicked, makes a 1d20 throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
-| (name) | *classpower_name* | text | The name of the class power. |
-| Target | *classpower_target* | text | Empty by default. If present, should be a formula used to set the class power's throw target. |
-| on cooldown | *classpower_cooldown* | checkbox | Whether the ability is currently on cooldown. For example, a bard's Inspiration class power. |
-| (details) | *classpower_details* | text | The class powers's text description. |
 |||||
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the creature's class. I.e., copying in an ACKS class description. |
 
@@ -269,7 +263,7 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 ---
 
 ### The Equipment Tab
-This tab keeps track of all equipment and coinage. It also has optional controls for tracking standard of living and monthly expenses.
+This tab keeps track of all equipment.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -285,7 +279,13 @@ This tab keeps track of all equipment and coinage. It also has optional controls
 | Value | *item_value* | number | An optional field for tracking the value of the item, for reference only. By default, this field is empty. Typically, used only for tracking the value of valuable and/or exceptional items. |
 | Equipped | *item_equipped* | checkbox | If checked, the item's total *item_weight* x *item_count* is included in the creature's encumbrance. Otherwise, it is not. The default value is *checked*. |
 | Details | *item_details* | text | An optional text area to add item details, for reference only. |
-|||||
+
+---
+
+### The Equipment Tab
+This tab keeps track of all coinage. It also has optional controls for tracking standard of living and monthly expenses.
+| Field | Variable(s) | Type | Description |
+| --- | --- | --- | --- |
 | Currency, On Hand | *platinum*, *gold*, *electrum*, *silver*, *copper* | number | The amount of coins (of each type) being carried. The weight of coins is factored into *encumbrance*. The minimum value is 0. |
 | Currency, Banked | *TYPE_bank* | number | The amount of coins (of each type) not carried. The minimum value is 0. |
 | Currency, New | *TYPE_found* | number | The balance of coins recently added and/or removed from On Hand. The GM should use this field when adding or deducting coins from the player's account. |
@@ -295,7 +295,6 @@ This tab keeps track of all equipment and coinage. It also has optional controls
 | Hireling Fees | *hireling_fees* | duplicate | See this Hirelings tab. |
 | Professional Income | *professional_income* | number | A field for tracking the creature's monthly income (gp) from proficiencies, jobs, etc. |
 | Monthly Balance | **monthly_balance* | calculated | A total of the creature's monthly costs shown above, in gp. A positive number is a negative cashflow and should be deducted from the creature's currency every month. |
-
 ---
 
 ## Hirelings Tab
@@ -310,7 +309,7 @@ This tab keeps track of the creature's hirelings and associated fees.
 | Name | *henchman_name* | text | The name of the henchman. |
 | (Loyalty Check) | *roll_henchman_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the henchman, modified by the creature's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *henchman_loyalty* | number | The henchman's base loyalty rating to the creature, used to make loyalty checks. Minimum value is -4; maximum is +4, default is 0. |
-| (Obedience Check) | *roll_henchman_obedience_check* | button | When clicked, makes a 2d6 obedience check for the henchman, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (Morale Check) | *roll_henchman_obedience_check* | button | When clicked, makes a 2d6 obedience check for the henchman, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *henchman_morale* | number | The henchman's base morale rating, used to make obedience chacks. Minimum value is -4; maximum is +4, default is 0. |
 | Class | *henchman_class* | text | The class name of the henchman. |
 | Level | *henchman_level* | number | The class level of the henchman. |
@@ -322,7 +321,7 @@ This tab keeps track of the creature's hirelings and associated fees.
 | Quantity | *merc_number* | number | The number of troops currently within the mercenary group. |
 | (Loyalty Check) | *roll_merc_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the mercenary group, modified by the creature's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *merc_loyalty* | number | The mercenary group's base loyalty rating to the creature, used to make loyatly checks.  Minimum value is -4; maximum is +4, default is 0. |
-| (Obedience Check) | *roll_merc_obedience_check* | button | When clicked, makes a 2d6 obedience check for the mercenary group, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (Morale Check) | *roll_merc_obedience_check* | button | When clicked, makes a 2d6 morale  check for the mercenary group, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *merc_morale* | number | The mercenary group's base morale rating, used to make obedience checks. Minimum value is -4; maximum is +4, default is 0. |
 | Type | *merc_type* | text | The mercenary group's type. E.G., *Medium Calvary*. |
 | Race | *merc_race* | text | The mercenary group's race. E.G., *Goblin*. |
@@ -334,7 +333,7 @@ This tab keeps track of the creature's hirelings and associated fees.
 | Type | *spec_type* | text | The specialist's type/occupation. |
 | (Loyalty Check) | *roll_spec_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the specialist, modified by the creature's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *spec_loyalty* | number | The specialist's base loyalty rating to the creature, used to make loyatly checks.  Minimum value is -4; maximum is +4, default is 0. |
-| (Obedience Check) | *roll_spec_obedience_check* | button | When clicked, makes a 2d6 obedience check for the specialist, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (Morale Check) | *roll_spec_obedience_check* | button | When clicked, makes a 2d6 morale check for the specialist, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *spec_morale* | number | The specialist's base morale rating, used to make obedience checks. Minimum value is -4; maximum is +4, default is 0. |
 | Wage | *spec_fee* | number | The monthly wage that the creature must pay the specialist. Mimimum value is 0; default is 0. |
 | Notes | *spec_details* | text | Additional notes about the specialist, typically its description from the ACKS rule book. |
