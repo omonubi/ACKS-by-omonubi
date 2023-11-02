@@ -201,7 +201,7 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
 | (name) | *skill_name* | text | The name of the proficiency. |
 | Rank | *skill_rank* | number | The creature's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
-| Type | *skill_type* | list | The type of proficiency: *General*, *Class*, or *Class Power*. The default is *General*. |
+| Type | *skill_type* | list | The type of proficiency: *Bonus*, *Class*, *Class Power*, or *General*. The default is *General*. *Bonus* is intended for tracking additional proficiencies added via the *ACKS II RR "Gaining Proficiencies by Time and Training"* optional rule. |
 | Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
 | Description | *skill_details* | text | The proficiency's text description. |
 |||||
