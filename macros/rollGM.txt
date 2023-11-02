@@ -1,0 +1,1 @@
+&{template:custom} {{title=**GM Throw**}} {{subtitle=@{selected|character_title} @{selected|token_name}}} {{Reason=?{Reason}}} {{Rolling=?{Dice}}} {{Modifier=?{Modifier}}} {{Result=[[?{Dice} + (?{Modifier})]]}} {{Target=?{Target|None}}}
