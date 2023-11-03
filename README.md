@@ -22,13 +22,16 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 ## How To...
 
 ### How to Install the Character Sheet
-1. In Roll 20, click *Create New Game* and select *Custom* from the *Optional: Choose Character Sheet* drop-down menu.
-2. Once the game is created, go to *Settings* > *Game Settings*.
-3. Under *Character Sheet Template*...
+1. In Github, go to Code. Click the Code button and select "Download ZIP". Unzip to your local computer.
+2. In Roll 20, click *Create New Game* and select *Custom* from the *Optional: Choose Character Sheet* drop-down menu.
+3. Once the game is created, go to *Settings* > *Game Settings*.
+4. Under *Character Sheet Template*...
     1. Within the *HTML Layout* tab, paste in the contents of charactersheet.html.
     2. Within the *CSS Styiling* tab, paste in the contents of charactersheet.css. If desired, update the .charsheet { background-image } style with an image URL of your choosing.
     3. Ensure that *Legacy Sanitation* is **NOT** checked.
-4. Save your changes and launch the game.
+5. Save your changes and launch the game.
+
+Note that configuration of API scripts and macros is additional work not covered in these instructions. See Roll20 forums for more help.
 
 **This sheet does not yet support translation.**
 
