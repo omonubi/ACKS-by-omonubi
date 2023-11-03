@@ -1,0 +1,13 @@
+This macro requires the GroupInitiative Roll20 API script to be installed.
+
+To configure the script for use with the character sheet, go to the R20 Chat window and enter this command:
+* !group-init --add-group Bare dex_mod Bare class_initiative_bonus Bare mod_initiative
+
+Access !group-init --help, then set the "Initiative Die Size" property to '6'.
+
+Make other customization as desired - see the script documentation, above, as well as:
+https://wiki.roll20.net/Script:Group_Initiative
+
+Here's the macro text that I use:
+!group-init --clear
+!group-init
