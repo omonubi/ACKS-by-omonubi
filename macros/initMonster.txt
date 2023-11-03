@@ -1,1 +1,1 @@
-!token-mod {{--set compact_bar|off name|"@{selected|character_name} [[d899+100]]" bar1_link| bar1|[[@{selected|hit_dice}]] has_night_vision|yes night_vision_distance|60}}
+!token-mod {{--set compact_bar|off bar1|[[@{selected|hit_dice}]] name|"@{selected|character_name} [[d899+100]]" has_night_vision|yes night_vision_distance|60}}
