@@ -15,7 +15,7 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 - Some changes made to how attacks are executed on the Combat tab.
 - The Hirelings tab was overhauled to include loyalty and obedience checks.
 - The sheet was styled.
-- Sheet layout/tabs were change for usability
+- Sheet layout/tabs were changed for usability
 
 ---
 
@@ -26,7 +26,7 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 2. Once the game is created, go to *Settings* > *Game Settings*.
 3. Under *Character Sheet Template*...
     1. Within the *HTML Layout* tab, paste in the contents of charactersheet.html.
-    2. Within the *CSS Styiling* tab, paste in the contents of charactersheet.css.
+    2. Within the *CSS Styiling* tab, paste in the contents of charactersheet.css. If desired, update the .charsheet { background-image } style with an image URL of your choosing.
     3. Ensure that *Legacy Sanitation* is **NOT** checked.
 4. Save your changes and launch the game.
 
