@@ -273,7 +273,7 @@
                         <option>Class</option>
                         <option>Class Power</option>
                         <option selected>General</option>
-                    </select>&nbsp;&nbsp;&nbsp;
+                    </select>
                 <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
                     <div class='details'>
@@ -498,6 +498,31 @@
         </div>
     </div>
     <hr/>
+    <div>
+        <label class='spanheader'>Passive Investments</label>
+        <input class='toggle-show' type='checkbox' name='attr_show_investments' checked/> show/hide
+        <div class='details'>
+            <fieldset class='repeating_investments'>
+                <label>Amount</label><input class='currency' type='number' min='0' name='attr_investment_amount'/>
+                <label>Type</label>
+                    <select class='investment' name='attr_investment_type'>
+                        <option value='1'>Buisiness Establishment</option>
+                        <option value='2'>Commercial Investment</option>
+                        <option value='3'>Money Lending</option>
+                    </select>
+                <label>Level of Risk</label>
+                    <select class='investment' name='attr_investment_risk'>
+                        <option value='1'>Safe (0.25% / mo.)</option>
+                        <option value='2'>Cautious (0.5% / mo.)</option>
+                        <option value='3'>Balanced (1% / mo.)</option>
+                        <option value='4'>Risky (3% / mo.)</option>
+                        <option value='5'>Perilous (9% / mo.)</option>
+                    </select>
+                <label>more...</label><input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'><textarea placeholder='Investment details...' name='attr_investment_details'></textarea></div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 
 <div class='hirelings'>

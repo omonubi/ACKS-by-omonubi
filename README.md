@@ -285,7 +285,7 @@ This tab keeps track of all equipment.
 
 ---
 
-### The Equipment Tab
+### The Wealth Tab
 This tab keeps track of all coinage. It also has optional controls for tracking standard of living and monthly expenses.
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -298,6 +298,13 @@ This tab keeps track of all coinage. It also has optional controls for tracking 
 | Hireling Fees | *hireling_fees* | duplicate | See this Hirelings tab. |
 | Professional Income | *professional_income* | number | A field for tracking the creature's monthly income (gp) from proficiencies, jobs, etc. |
 | Monthly Balance | **monthly_balance* | calculated | A total of the creature's monthly costs shown above, in gp. A positive number is a negative cashflow and should be deducted from the creature's currency every month. |
+|||||
+| **Investments** | *repeating_investments* | repeating | A list of the creature's passive investments (via mercantile adventures). |
+| Amount | *investment_amount* | number | The amount of gold invested. The minimum value is 0. |
+| Type | *investment_type* | list | The type of passive investment. |
+| Level of Risk | *investment_risk* | list | The level of risk and matching rate of return. |
+| Details | *investment_details* | text | An optional text area to add investment details, for reference only. |
+
 ---
 
 ## Hirelings Tab

@@ -371,18 +371,11 @@ input.xpdescription {
     background-color: navajowhite;
     border-color: saddlebrown;
     font-weight: bold;
-    margin: 0px 0px 9px 0px;
+    margin: 0px 9px 9px 0px;
 }
 
-select.selectalignment,
-select.selectclass {
-    width: 210px;
-}
-select.spellshade {
-    width: 70px;
-}
-select.monster {
-    width: 80px;
+select.investment {
+    width: 175px;
 }
 
 .charsheet span {
