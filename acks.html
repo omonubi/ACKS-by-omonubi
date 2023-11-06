@@ -263,8 +263,8 @@
         <label class='spanheader'>Proficiencies</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_skills'>
-                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_profthrow} **Review Proficiency**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Proficiency=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{Target=@{skill_target}}} {{desc=@{skill_details}}}' name='roll_review_proficiency'> Review</button>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_throw'> Throw</button>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_profthrow} **Review Proficiency**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Proficiency=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{Target=@{skill_target}}} {{desc=@{skill_details}}}' name='roll_review_skill'> Review</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
                 <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
                 <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
                 <label>Type:</label>
