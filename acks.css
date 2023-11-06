@@ -153,11 +153,11 @@ button.combatbutton {
     font-size: 1.0em !important; 
     width: 90%;
 }
-button.reviewSpell {
+button.reviewButton {
     font-size: 1.0em !important;
     margin-bottom: 9px !important;
 }
-.ui-dialog .charsheet button[type=roll].reviewSpell::before {
+.ui-dialog .charsheet button[type=roll].reviewButton::before {
     content: "";
 }
 button.rollbutton {
@@ -272,7 +272,7 @@ input.henchmenText {
     width: 140px;
 }
 input.skillScript {
-    width: 70%;
+    width: 200px;
 }
 input.spellRange,
 input.spellDuration {
@@ -374,8 +374,8 @@ input.xpdescription {
     margin: 0px 9px 9px 0px;
 }
 
-select.investment {
-    width: 175px;
+select.shorter {
+    width: 160px;
 }
 
 .charsheet span {

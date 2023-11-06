@@ -239,9 +239,8 @@
             <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
             <div class='details'>
                 <fieldset class='repeating_spellsarcane'>
-                    
-                    <button type='roll' class='reviewSpell' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_knowledge} **Review Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
-                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
+                    <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_knowledge} **Review Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Spell Level=@{spell_level}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
+                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast Spell**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell=@{spell_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}} {{Cast Confirmed=?{Confirm Action|Cast}}}' name='roll_cast_spell'> Cast</button>
                     <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
                     <label>Level:</label><input type='number' min='0' max='9' value='1' name='attr_spell_level'/>
                     <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
@@ -264,11 +263,12 @@
         <label class='spanheader'>Proficiencies</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_skills'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target} - ((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_profthrow} **Review Proficiency**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Proficiency=@{skill_name}}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{Target=@{skill_target}}} {{desc=@{skill_details}}}' name='roll_review_proficiency'> Review</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_throw'> Throw</button>
                 <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
                 <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
                 <label>Type:</label>
-                    <select name='attr_skill_type'>
+                    <select class='shorter' name='attr_skill_type'>
                         <option>Bonus</option>
                         <option>Class</option>
                         <option>Class Power</option>
@@ -277,7 +277,8 @@
                 <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
                     <div class='details'>
-                        <label class='detailslabel'>Target:<input class='skillScript' type='text' name='attr_skill_target'/></label><br/>
+                        <label class='detailslabel'>Target:</label>
+                        <input class='skillScript' type='text' name='attr_skill_target'/><br/>
                         <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
                     </div>
             </fieldset>
@@ -288,6 +289,7 @@
         <label class='spanheader'>Abilities</label>
         <div class='spanrepeater'>
             <fieldset class='repeating_abilities'>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=@{banner_abilitythrow} **Review Ability**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Ability=@{ability_name}}} {{Source=@{ability_source}}} {{Target=@{ability_target}}} {{desc=@{ability_details}}}' name='roll_review_ability'> Review</button>
                 <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **Ability Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
                 <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
                 <label>Source: </label><input type='text' name='attr_ability_source'/>
@@ -505,13 +507,13 @@
             <fieldset class='repeating_investments'>
                 <label>Amount</label><input class='currency' type='number' min='0' name='attr_investment_amount'/>
                 <label>Type</label>
-                    <select class='investment' name='attr_investment_type'>
+                    <select class='shorter' name='attr_investment_type'>
                         <option value='1'>Buisiness Establishment</option>
                         <option value='2'>Commercial Investment</option>
                         <option value='3'>Money Lending</option>
                     </select>
                 <label>Level of Risk</label>
-                    <select class='investment' name='attr_investment_risk'>
+                    <select class='shorter' name='attr_investment_risk'>
                         <option value='1'>Safe (0.25% / mo.)</option>
                         <option value='2'>Cautious (0.5% / mo.)</option>
                         <option value='3'>Balanced (1% / mo.)</option>
