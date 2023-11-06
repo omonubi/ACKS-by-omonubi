@@ -738,7 +738,6 @@ const UPGRADE_VERSION = 1;
 const XP_BONUS_MAX = 10;
 
 /**************** sheet initialization ****************/
-
 on('sheet:opened',function(){
     getAttrs(['alignment', 'upgradeVersion'], function(values) {
         const alignment = values['alignment'];
