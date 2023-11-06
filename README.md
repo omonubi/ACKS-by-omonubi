@@ -201,6 +201,7 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | **Proficiencies** | *repeating_skills* | repeating | A list of the creature's proficiencies. |
+| Review | *roll_review_skill* | button | When clicked, whispers the proficiency's information (below) to the Roll20 Chat window (to the character).
 | Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
 | (name) | *skill_name* | text | The name of the proficiency. |
 | Rank | *skill_rank* | number | The creature's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
@@ -209,6 +210,7 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | Description | *skill_details* | text | The proficiency's text description. |
 |||||
 | **Abilities** | *repeating_abilities* | repeating | A list of the creature's non-proficiency abilities. Can be used to add specific proficiency-driven abilities such as *Listen* (Adventuring) or *Diagnose Illness* (Healing), class-specific ability descriptions, or anything else desired. |
+| Review | *roll_review_ability* | button | When clicked, whispers the ability's information (below) to the Roll20 Chat window (to the character).
 | Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
 | (name) | *ability_name* | text | The name of the ability. |
 | Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
@@ -428,11 +430,13 @@ The following macros can be found in the /macros sub-directory of the git. They 
 
 * **newMonster**: This macro is intended to be applied **at game time** to a monster token. This will use [TokenMod](https://wiki.roll20.net/Script:Token_Mod) to randomize the token's *hp*=*hp_max* to the bound character sheet's *hit_dice* value, add 60' nightvision to the token, and append a random 3-digit number to the token's name. As with initToken, this can be further customized, as desired. **Important:** For proper results, this macro must be applied to **each** instantiated monster token individually. IMPORTANT: Generic monster sheets should **not** have their *hp* bound to *bar1* when applying this macro.
 
-* **repertoire**: This macro uses [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
+* **repertoire**: This macro uses [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to output the character's repertoire (*spell_prepared* checkbox = on) to the Roll20 chat as clickable links. Links are provided to review each spell as well as cast. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
 
 * **rollInit**: This macro uses [GroupInitiative](https://wiki.roll20.net/Script:Group_Initiative) API script to roll ACKS initiative for all selected tokens on the current Roll20 page. Takes into consideration modifiers from the character's dexterity attribute, any class modifier, and any additional modifer entered on the Combat tab. Requires additional configuration detailed in the .txt file.
 
-* **spellbook**: This macro is similar to *repertoire*, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status.
+* **skills**: This macro is similar to *repertoire*, above, but outputs a list of all proficiencies and abilities on the character's Skills tab. Clicking the names triggers the Review button for each. (For actually using a skills, see the *actions* macro, above. Should be added to all characters as a token action.
+
+* **spellbook**: This macro is similar to *repertoire*, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
 
 ---
 
