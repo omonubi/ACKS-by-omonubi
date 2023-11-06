@@ -1,1 +1,1 @@
-!chatmenu @{selected|character_id} {template:menu} {{color=brown}} {{title=**@{selected|character_title} @{selected|character_name}**}} {{desc=CHATMENU}} --separator: ~ : --title:Spellbook --repeating_spellsarcane|spell_name|review_spell
+!chatmenu @{selected|character_id} {template:menu} {{title=**Spellbook**}} {{subtitle=@{selected|character_title} @{selected|character_name}}} {{desc=CHATMENU}} --separator: ~ : --title:Review --repeating_spellsarcane|spell_name|review_spell|spell_prepared
