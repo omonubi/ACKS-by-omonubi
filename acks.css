@@ -275,7 +275,8 @@ input.skillScript {
     width: 200px;
 }
 input.spellRange,
-input.spellDuration {
+input.spellDuration,
+input.spellLevel {
     width: 60px; 
 }
 input.smallWidth {

@@ -185,9 +185,10 @@ This tab is used to track spell slots, spell usage, repertoire selection (if app
 |||||
 | **Spells** | *repeating_spells_arcane* | repeating | A list of the creature's spells, if any. |
 | Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
-| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Note that [[in-line rolls]] can be included in the texts below, if desired. |
+| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
 | (name) | *spell_name* | text | The name of the spell. |
-| Level | *spell_level* | number | The spell's level. Can be set to 1 - 9, with a default vaule of 1. |
+| Level | *spell_level* | text | The spell's level, intended to be entered as 'A1' or ;D3' to reflect school and level. |
+| Type | *spell_type* | text | The spell's type. |
 | Range | *spell_range* | text | The spell's range description. |
 | Duration | *spell_duration* | text | The spell's duration description. |
 | Prepared | *spell_prepared* | checkbox | Whether the spell is currently prepared or not. Only prepared spells are listed if/when the Action macro is used (see below). |

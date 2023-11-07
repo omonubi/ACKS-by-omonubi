@@ -239,14 +239,15 @@
             <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
             <div class='details'>
                 <fieldset class='repeating_spellsarcane'>
-                    <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name}**}} {{Spell Level=@{spell_level}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
-                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name}**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}} {{Cast Confirmed=?{Confirm Action|Cast}}}' name='roll_cast_spell'> Cast</button>
+                    <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name} (@{spell_level})**}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
+                    <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name} (@{spell_level})**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Cast}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
                     <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
-                    <label>Level:</label><input type='number' min='0' max='9' value='1' name='attr_spell_level'/>
+                    <label>Level:</label><input class='spellLevel' type='text' name='attr_spell_level'/>
                     <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
                     <label>more...</label>
                     <input type='checkbox' class='toggle-show'/><br/>
                     <div class='details'>
+                        <label>Type:</label><input type='text' name='attr_spell_type'/>
                         <label>Range:</label><input class='spellRange' type='text' name='attr_spell_range'/>
                         <label>Duration:</label><input class='spellDuration' type='text' name='attr_spell_duration'/>
                         <textarea placeholder='Spell description...' name='attr_spell_details'></textarea>
