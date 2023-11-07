@@ -118,7 +118,8 @@
             <label>Attack Throw</label>
                 <input type='number' value='10' name='attr_attack_throw' readonly/>
             <label>Encumbrance</label>
-                <input type='number' value='0' name='attr_encumbrance' readonly />
+                <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
+                <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
             <label>Capacity, Max</label>
                 <input type='number' value='20' name='attr_enc_capacity' readonly/>
             <label class='redtext'>Feet / Turn</label> 
@@ -413,7 +414,9 @@
     <div class='grid11'>
         <div class='grid1111'>
             <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/>
-            <label>Encumbrance</label> <input type='number' value='0' name='attr_encumbrance' readonly />
+            <label>Encumbrance</label> 
+            <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
+            <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
         </div>
         <div class='grid1111'> 
             <label class='redtext'>Feet / Turn</label> 
@@ -681,7 +684,8 @@
             <input type='number' min='0' value='20' name='attr_base_enc'/>
         <label>Max Movement</label>
             <input type='number' min='0' value='120' name='attr_base_movement'/>
-        <span></span><span></span>
+        <label>Encumbrance Alert</label>
+            <input type='checkbox' name='attr_enc_alert_toggle'/>
         <span></span><span></span>
 
         <label>Experience % Modifier</label>
@@ -1029,22 +1033,25 @@ function updateCurrencyXP() {
 };
 
 /********** Encumbrance **********/
-on('change:currency_weight change:items_weight change:enc_capacity', function(eventInfo) {
+on('change:currency_weight change:items_weight change:enc_capacity change:move_thresh1 change:enc_alert_toggle', function(eventInfo) {
     updateEncumbrance();
 });
 
 function updateEncumbrance() {
     /*console.log('updateEncumbrance()');*/
-    getAttrs(['currency_weight', 'items_weight', 'enc_capacity'], function(values) {
-        const theCurrencyWeight = Number(values['currency_weight']) || 0;
-        const theItemWeight = Number(values['items_weight']) || 0;
-        const theMaxCapacity = Number(values['enc_capacity']) || 0;
+    getAttrs(['currency_weight', 'items_weight', 'enc_capacity', 'move_thresh1', 'enc_alert_toggle'], function(values) {
+        const theCurrencyWeight = Number(values['currency_weight']) || 0; // Currency weight
+        const theItemWeight = Number(values['items_weight']) || 0; // Items weight
+        const theMaxCapacity = Number(values['enc_capacity']) || 0; // Used to determine alert status
+        const theThresholdLimit = Number(values['move_thresh1']) || 0; // Used to determine alert status
+        const encAlertToggle = (values['enc_alert_toggle'] == 'on' ? true : false); // Used to determine alert status
         
         const theEncumbrance = theCurrencyWeight + theItemWeight;
         const theCurrencyCapacity = (theMaxCapacity - theEncumbrance) / COIN_WEIGHT;
 
         const output = {};
         output['encumbrance'] = Math.ceil(theEncumbrance);
+        output['enc_over_five'] = (encAlertToggle == true ? (theEncumbrance > theThresholdLimit ? 1 : 0) : 0);
         output['currency_capacity'] = Math.ceil(theCurrencyCapacity);
         setAttrs(output);
     });

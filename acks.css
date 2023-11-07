@@ -537,6 +537,7 @@ input.hideSpells[value='1'] ~ button.btnSpells {
 }
 
 /**************** Alert Styles ****************/
+span.orangeEnc,
 span.redbedrest,
 span.redfatigue,
 span.redhp,
@@ -552,6 +553,10 @@ input.henchmenCheck[value='1'] ~ .limitExceeded {
     background-color: lightpink; 
     border-color: red;
     color: red;
+    font-weight: bold;
+}
+input.encOverFive[value='1'] ~ .orangeEnc {
+    background-color: orange; 
     font-weight: bold;
 }
 
