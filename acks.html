@@ -185,14 +185,14 @@
         <label class='spanheader'>Global Class Bonuses</label>
         <div class='grid11'>
             <div class='grid8'>
-                <label>Accuracy:</label> <input type='number' value='0' name='attr_class_accuracy_bonus'/>
-                <label>Dmg, Melee:</label> <input type='number' value='0' name='attr_class_damage_bonus'/>
-                <label>Dmg, Missile:</label> <input type='number' value='0' name='attr_class_damage_bonus_missile'/>
-                <label>Dmg Reduction:</label> <input type='number' value='0' name='attr_class_damage_reduction'/>
-                <label>Armor Class:</label> <input type='number' value='0' name='attr_class_ac_bonus'/>
-                <label>Initiative:</label> <input type='number' value='0' name='attr_class_initiative_bonus'/>
-                <label>Surprise:</label> <input type='number' value='0' name='attr_class_surprise_bonus'/>
-                <label>Hench Morale:</label> <input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
+                <label>Accuracy:</label><input type='number' value='0' name='attr_class_accuracy_bonus'/>
+                <label>Dmg, Melee:</label><input type='number' value='0' name='attr_class_damage_bonus'/>
+                <label>Dmg, Missile:</label><input type='number' value='0' name='attr_class_damage_bonus_missile'/>
+                <label>Dmg Reduction:</label><input type='number' value='0' name='attr_class_damage_reduction'/>
+                <label>Armor Class:</label><input type='number' value='0' name='attr_class_ac_bonus'/>
+                <label>Initiative:</label><input type='number' value='0' name='attr_class_initiative_bonus'/>
+                <label>Surprise:</label><input type='number' value='0' name='attr_class_surprise_bonus'/>
+                <label>Hench Morale:</label><input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
             </div>
         </div>
         <hr/>
@@ -368,18 +368,21 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{str_mod}[str]+(@{melee_bonus}[wpn])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+@{attk_is_dual}[dual]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Dmg:</label>
             <input class='smallWidth' type='text' name='attr_melee_damage'/>
-            <label>is long</label>
-            <input type='checkbox' name='attr_melee_long'/>
+            <label>long</label>
+            <input type='checkbox' name='attr_melee_is_long'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
-            <div class='details'>   
+            <div class='details'>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{str_mod}[str]+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Roll Dmg</button>
+                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' name='attr_melee_is_dual'/>
+                <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' name='attr_melee_is_finesse'/>
+                <label>2h</label><input type='checkbox' name='attr_melee_is_2h'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
@@ -388,7 +391,7 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+(@{missile_bonus}[wpn])+(?{Range|Short,0|Medium,-2|Long,-5}[range])+(@{class_accuracy_bonus}[class])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_has_str_bonus}*@{str_mod})[str]+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+(@{missile_bonus}[wpn])+(?{Range|Short,0|Medium,-2|Long,-5}[range])+(@{class_accuracy_bonus}[class])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_has_str_bonus}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Dmg:</label>
@@ -400,8 +403,8 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_has_str_bonus}*@{str_mod})[str]+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Roll Dmg</button>
                 <label>thrown</label><input type='checkbox' value='1' name='attr_missile_has_str_bonus'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
             </div>
@@ -690,7 +693,16 @@
 
         <label>Experience % Modifier</label>
             <input type='number' value='0' name='attr_xp_modifier'/>
-            <span></span><span></span>
+        <label>Damage Attribute</label>
+            <input type='hidden' value='@{str_mod}[str]' name='attr_damage_attr'/>
+            <select class='settingsSelect' name='attr_select_damage_attr'>
+                <option selected>str</option>
+                <option>int</option>
+                <option>wil</option>
+                <option>dex</option>
+                <option>con</option>
+                <option>cha</option>
+            </select>
             <span></span><span></span>
             <span></span><span></span>
 
@@ -732,6 +744,8 @@
 
 <script type='text/worker'>
 const ATTR_SCORE_DEFAULT = 10;
+const ATTR_MELEE_MOD_DEFAULT = '@{str_mod}[str]';
+const ATTR_MELEE_MOD_FINESSE = '@{dex_mod}[dex]';
 const COIN_WEIGHT = 0.001;
 const DIE_DELIMITER = 'd';
 const EMPTY_STRING = '';
@@ -1031,6 +1045,18 @@ function updateCurrencyXP() {
         setAttrs(output);
     });
 };
+
+/********** Damage Attribute **********/
+// Changes the attribute modifier added to damage rolls
+on('change:select_damage_attr', function(eventInfo) {
+    getAttrs(['select_damage_attr'], function(values) {
+        const theNewAttribute = values['select_damage_attr'];
+
+        const output = {};
+        output['damage_attr'] = '@{' + theNewAttribute + '_mod}[' + theNewAttribute + ']';
+        setAttrs(output);
+    });
+});
 
 /********** Encumbrance **********/
 on('change:currency_weight change:items_weight change:enc_capacity change:move_thresh1 change:enc_alert_toggle', function(eventInfo) {
@@ -1371,6 +1397,29 @@ function updateItemEncumbrance(
         });
     });
 };
+
+/************* Melee Attacks ****************/
+// Toggle the dual wield attack modifier
+on('change:repeating_melee:melee_is_dual', function(eventInfo) {
+    getAttrs(['repeating_melee_melee_is_dual'], function(values) {
+        const meleeIsDual = (values['repeating_melee_melee_is_dual'] == 'on' ? 1 : 0);
+
+        const output = {};
+        output['repeating_melee_attk_is_dual'] = meleeIsDual;
+        setAttrs(output);
+    });
+});
+
+// Toggle the Weapon Finesse attribute modifier
+on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
+    getAttrs(['repeating_melee_melee_is_finesse'], function(values) {
+        const isFinesse = (values['repeating_melee_melee_is_finesse'] == 'on' ? true : false);
+        
+        const output = {};
+        output['repeating_melee_melee_attk_attr'] = (isFinesse == true ? ATTR_MELEE_MOD_FINESSE : ATTR_MELEE_MOD_DEFAULT);
+        setAttrs(output); 
+    });
+});
 
 /********** Movement Speed **********/
 on('change:enc_capacity change:encumbrance change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3', function(eventInfo) {

@@ -274,6 +274,7 @@ input.henchmenText {
 input.skillScript {
     width: 200px;
 }
+input.damageAttr,
 input.spellRange,
 input.spellDuration,
 input.spellLevel {
@@ -374,7 +375,9 @@ input.xpdescription {
     font-weight: bold;
     margin: 0px 9px 9px 0px;
 }
-
+select.settingsSelect {
+    width: 60px;
+}
 select.shorter {
     width: 160px;
 }
