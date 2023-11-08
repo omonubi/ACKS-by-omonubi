@@ -368,8 +368,8 @@
     <div>
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
-            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+@{attk_is_dual}[dual]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+@{attk_is_dual}[dual]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Dmg:</label>
@@ -379,7 +379,7 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
                 <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' name='attr_melee_is_dual'/>
                 <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' name='attr_melee_is_finesse'/>
@@ -392,8 +392,8 @@
     <div>
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
-            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+(@{missile_bonus}[wpn])+(?{Range|Short,0|Medium,-2|Long,-5}[range])+(@{class_accuracy_bonus}[class])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+(@{missile_bonus}[wpn])+(?{Range|Short,0|Medium,-2|Long,-5}[range])+(@{class_accuracy_bonus}[class])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Dmg:</label>
@@ -405,7 +405,7 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
                 <label>thrown</label><input type='checkbox' value='1' name='attr_missile_is_thrown'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
