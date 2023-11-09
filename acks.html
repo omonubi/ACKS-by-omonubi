@@ -308,7 +308,7 @@
 
 <div class='combat'>
     <div class='grid1111-c'>
-        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **Initiative Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+(@{mod_initiative}[mod1])+(?{Modifier|0}[mod2])))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
+        <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **Initiative Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{fss_single}[fss]+(@{mod_initiative}[mod1])+(?{Modifier|0}[mod2])))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **Surprise Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+(@{mod_surprise}[mod1])+(?{Modifier|0}[mod2])]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **Reaction Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+(@{mod_reaction}[mod1])+(?{Modifier|0}[mod2])]]}} {{desc=2 or less: Hostile, attacks. 3-5: Unfriendly, may attack. 6-8: Neutral, uncertain. 9-11: Indifferent, uninterested. 12+: Friendly, helpful}}' name='roll_reaction'> Reaction</button>
         <button type='roll' class='combatbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} **Morale Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[2d6cs0cf0+(@{morale}[rating])+(?{Modifier|0}[mod])]]}} {{desc=2 or less: Frightened Retreat. 3-5: Morale Faltering. 6-8: Fight On. 9-11: Advance and Pursue. 12+: Victory or Death}}' name='roll_morale'> Morale</button>
@@ -349,7 +349,13 @@
                 <option value='4'>Two-Handed (+1 Dmg)</option>
                 <option value='5'>Wpn & Shield (+1 AC)</option>
             </select>
+            <input type='hidden' name='attr_fss_missile'/>
+            <input type='hidden' name='attr_fss_single'/>
+            <input type='hidden' name='attr_fss_dual'/>
+            <input type='hidden' name='attr_fss_two'/>
+            <input type='hidden' name='attr_fss_shield'/>
         </div>
+        <input type='hidden' name='attr_fss_missile'/>
     </div>
     <hr/>
     <div class='grid11'>
@@ -369,7 +375,7 @@
         <label class='spanheader'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+@{attk_is_dual}[dual]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(@{attk_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
             <label>Dmg:</label>
@@ -379,11 +385,11 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
                 <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' name='attr_melee_is_dual'/>
                 <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' name='attr_melee_is_finesse'/>
-                <label>2h</label><input type='checkbox' name='attr_melee_is_2h'/>
+                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' name='attr_melee_is_2h'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
@@ -393,7 +399,7 @@
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+(@{missile_bonus}[wpn])+(?{Range|Short,0|Medium,-2|Long,-5}[range])+(@{class_accuracy_bonus}[class])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Dmg:</label>
@@ -405,7 +411,7 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
+                <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_is_thrown}*@{damage_attr})+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
                 <label>thrown</label><input type='checkbox' value='1' name='attr_missile_is_thrown'/>
                 <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
@@ -834,20 +840,21 @@ on('clicked:toggleLockClass', function(eventInfo) {
 */
 
 /********** Armor Class **********/
-on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:isRetreating', function(eventInfo) {
+on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:fss_shield', function(eventInfo) {
     updateArmorClass();
 });
 
 function updateArmorClass() {
     /*console.log('updateArmorClass()');*/
-    getAttrs(['armor', 'armor_bonus', 'has_shield', 'class_ac_bonus', 'dex_mod'], function(values) {
+    getAttrs(['armor', 'armor_bonus', 'has_shield', 'class_ac_bonus', 'dex_mod', 'fss_shield'], function(values) {
         const theArmorIndex = Number(values['armor']) || 0; // base AC
         const theArmorBonus = Number(values['armor_bonus']) || 0; // magic bonus, if any
         const hasShield = Number(values['has_shield']) || 0; // shield (+1 AC)
         const classACBonus = Number(values['class_ac_bonus']) || 0; // class bonus, if any
         const theDexMod = Number(values['dex_mod']) || 0; // dex modifier
+        const theFSSMod = Number(values['fss_shield']) || 0; // FSS modifier, if any
 
-        const theAC = Math.max(0, theArmorIndex + theArmorBonus + hasShield + classACBonus + theDexMod);
+        const theAC = Math.max(0, theArmorIndex + theArmorBonus + hasShield + classACBonus + theDexMod + theFSSMod);
         
         const output = {};
         output['armor_class'] = theAC;
@@ -1408,6 +1415,32 @@ on('change:repeating_melee:melee_is_dual', function(eventInfo) {
 
         const output = {};
         output['repeating_melee_attk_is_dual'] = meleeIsDual;
+        setAttrs(output);
+    });
+});
+
+// Fighting Style Specialization changed
+on('change:fss', function(eventInfo) {
+    getAttrs(['fss'], function(values) {
+        const fssID = Number(values['fss']) || 0; // selected FSS option
+
+        const output = {};
+        output['fss_missile'] = (fssID == 1 ? 1 : 0);
+        output['fss_single'] = (fssID == 2 ? 1 : 0);
+        output['fss_dual'] = (fssID == 3 ? 2 : 1);
+        output['fss_two'] = (fssID == 4 ? 1 : 0);
+        output['fss_shield'] = (fssID == 5 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
+// Toggle the 2-handed modifier
+on('change:repeating_melee:melee_is_2h', function(eventInfo) {
+    getAttrs(['repeating_melee_melee_is_2h'], function(values) {
+        const meleeIs2h = (values['repeating_melee_melee_is_2h'] == 'on' ? 1 : 0);
+
+        const output = {};
+        output['repeating_melee_attk_is_2h'] = meleeIs2h;
         setAttrs(output);
     });
 });

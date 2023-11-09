@@ -237,7 +237,7 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Shield | *has_shield* | checkbox | Indicates whether the character is currently using a shield. |
 | Helm | *has_helm* | checkbox | Indicates whether the character is currently wearing a **heavy** helm. |
 | Armor Class | *armor_class* | Calculated | The character's current armor class. Calculated as (*armor* AC value) + (*armor* AC modifier) + (1, if shield) + (class AC bonus) + (*dex_mod*).
-| Fighting Style Specialization | *fss* | list | The character's current fighting style specialization, if any. Used purely for sheet reference - does not impact other fields or rolls. For more info, see the proficiency description. |
+| Fighting Style Specialization | *fss* | list | The character's current fighting style specialization, if any. Selection is applied to the appropriate sheet roll. |
 |||||
 | Attack Throw | *attack_throw* | number | The character's base attack throw. The minimum value is -9; maximum is 12; default is 10. |
 | Max Cleaves | *max_cleaves* | number | The character's number of maximum cleaves based on class and level. Other constraints are not include. The minimum value is 0; maximum is 14; default is 0. |
