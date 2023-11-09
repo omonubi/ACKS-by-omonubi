@@ -1410,13 +1410,16 @@ function updateItemEncumbrance(
 /************* Melee Attacks ****************/
 // Toggle the dual wield attack modifier
 on('change:repeating_melee:melee_is_dual', function(eventInfo) {
-    getAttrs(['repeating_melee_melee_is_dual'], function(values) {
-        const meleeIsDual = (values['repeating_melee_melee_is_dual'] == 'on' ? 1 : 0);
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_melee_melee_is_dual'], function(values) {
+            const meleeIsDual = (values['repeating_melee_melee_is_dual'] == 'on' ? 1 : 0);
 
-        const output = {};
-        output['repeating_melee_attk_is_dual'] = meleeIsDual;
-        setAttrs(output);
-    });
+            const output = {};
+            output['repeating_melee_attk_is_dual'] = meleeIsDual;
+            output['repeating_melee_melee_is_2h'] = 0;
+            setAttrs(output);
+        });
+    }
 });
 
 // Fighting Style Specialization changed
@@ -1436,13 +1439,16 @@ on('change:fss', function(eventInfo) {
 
 // Toggle the 2-handed modifier
 on('change:repeating_melee:melee_is_2h', function(eventInfo) {
-    getAttrs(['repeating_melee_melee_is_2h'], function(values) {
-        const meleeIs2h = (values['repeating_melee_melee_is_2h'] == 'on' ? 1 : 0);
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_melee_melee_is_2h'], function(values) {
+            const meleeIs2h = (values['repeating_melee_melee_is_2h'] == 'on' ? 1 : 0);
 
-        const output = {};
-        output['repeating_melee_attk_is_2h'] = meleeIs2h;
-        setAttrs(output);
-    });
+            const output = {};
+            output['repeating_melee_melee_is_dual'] = 0;
+            output['repeating_melee_attk_is_2h'] = meleeIs2h;
+            setAttrs(output);
+        });
+    }
 });
 
 // Toggle the Weapon Finesse attribute modifier
