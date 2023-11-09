@@ -271,12 +271,12 @@ input.missilerange {
 input.henchmenText {
     width: 140px;
 }
-input.skillScript {
+input.skillScript,
+input.spellDuration {
     width: 200px;
 }
 input.damageAttr,
 input.spellRange,
-input.spellDuration,
 input.spellLevel {
     width: 60px; 
 }
