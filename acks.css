@@ -147,6 +147,21 @@ button.actionbutton:hover {
     background-image: none;
     background-color: navajowhite;
 }
+button.missileAttackButton {
+    background-image: linear-gradient(white, navajowhite);
+    border: 1px solid saddlebrown;
+    border-radius: 4px;
+    font-size: 1.0em;
+    font-weight: bold;
+    height: 21px;
+    margin: 0px 3px 9px 3px;
+    padding: 2px 3px;
+}
+.ui-dialog .charsheet button.missileAttackButton[type=action]::before {
+    font-family: 'dicefontd20';
+    content: 't ';
+}
+
 /* Custom type="roll" buttons */
 /* !important needed to override r20 classes */
 button.combatbutton {

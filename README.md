@@ -75,7 +75,8 @@ Note that configuration of API scripts and macros is additional work not covered
     2. "Sword and Dagger", +1 bonus, 1d6 damage
     3. Etc.
 3. The Melee Attacks > Long checkbox and the Missile Attacks > Range field are optional but provide helpful context for the player.
-4. Note: Use the **!AddActions** custom API script to automagically include common attacks to both Melee and Missile Attack lists. These entires can then be customized as needed for both monsters and characters.
+4. Missile Attacks use an advanced Roll20 CRP sheet worker to both make the attack roll and automatically decrement the amount of ammo remaining by 1.
+5. Note: Use the **!AddActions** custom API script to automagically include common attacks to both Melee and Missile Attack lists. These entires can then be customized as needed for both monsters and characters.
 
 ### How to Work with Equipment and Money
 - Uncheck the Equipped checkbox to "warehouse" (not carry) inventory.
@@ -244,6 +245,7 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Number of Attacks | *num_attacks* | text | The character's attack routine, used purely for reference. The default is "*1 (weapon)*".
 |||||
 | **Melee Attacks** | *repeating_melee_attacks* | repeating | A list of the character's melee attacks. |
+| Review | *roll_review_melee* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
 | Attack | *roll_melee_attack* | button | When clicked, makes a 1d20 attack throw for the melee attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's STR modifier, the attack's melee attack modifier, fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *melee_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 sword attack and a d8 sword attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *melee_name* | text | The name of the melee attack. |
@@ -257,12 +259,13 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Effects | *melee_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
 |||||
 | **Missile Attacks** | *repeating_missile_attacks* | repeating | A list of the character's missile attacks. |
+| Review | *roll_review_missile* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
 | Attack | *roll_missile_attack* | button | When clicked, makes a 1d20 attack throw for the missile attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's DEX modifier, the attack's missile attack modifier, a range modifier (queried), a class accuracy bonus (if any), fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *missile_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 arrow attack and a d6+1 magic arrow attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *missile_name* | text | The name of the missile attack. |
 | Dmg | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
 | Rng | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
-| Ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. |
+| Ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. The sheet uses a R20 CRP to both roll the attack and reduce the weapon's remaining ammo count automatically. |
 | Damage | *roll_missile_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the character's STR modifier (if Thrown - see below), its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
 | Attk Bonus | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
 | Thrown | *missile_has_str_bonus* | checkbox | If checked, applies the character's STR modifier to the attack's damage roll. |

@@ -399,7 +399,7 @@
         <label class='spanheader'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
-            <button type='roll' class='rollbutton' value='@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+@{missile_bonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{missile_damage}+(@{missile_is_thrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{missile_effects}}}' name='roll_missile_attack'> Attack</button>
+            <button type='action' class='missileAttackButton' name='act_missile-attack'> Attack</button>
             <input type='checkbox' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
             <label>Dmg:</label>
@@ -1461,6 +1461,27 @@ on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
         setAttrs(output); 
     });
 });
+
+/************ Missile Attacks ****************/
+on('clicked:repeating_missile:missile-attack', () => {
+    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo'], function(values) {
+        const missileName = values['repeating_missile_missile_name'];
+        const missileBonus = values['repeating_missile_missile_bonus'];
+        const missileDamage = values['repeating_missile_missile_damage'];
+        const missileIsThrown = values['repeating_missile_missile_is_thrown'];
+        const missileEffects = values['repeating_missile_missile_effects'];
+        const missileAmmo = values['repeating_missile_missile_ammo'];
+
+        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Ammo Remaining=${missileAmmo - 1}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{${missileDamage}+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=${missileEffects}}}`, roll => {  
+          finishRoll(roll.rollId);
+        });
+
+        const output = {};
+        output['repeating_missile_missile_ammo'] = missileAmmo - 1;
+        setAttrs(output); 
+    });
+  });
+
 
 /********** Movement Speed **********/
 on('change:enc_capacity change:encumbrance change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3', function(eventInfo) {
