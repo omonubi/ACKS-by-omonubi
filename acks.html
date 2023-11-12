@@ -36,72 +36,74 @@
 <input type='hidden' class='tabstoggle' name='attr_sheetTab' value='overview'/>
 <!-- Character Sheet -->
 <div class='overview'>
-    <div class='grid1111'>
-        <label>Character Name</label><input type='text' name='attr_character_fullname' />
-        <label>Token Name</label><input type='text' name='attr_character_name' />
-        <label>Class</label><input type='text' name='attr_class'/>
-        <label>Gender</label><input type='text' name='attr_gender'/> 
-        <label>Title</label><input type='text' name='attr_character_title'/>              
-        <label>Height</label><input type='text' name='attr_height'/>
-        <label>Alignment</label><input type='text' name='attr_alignment'/>            
-        <label>Weight</label><input type='text' name='attr_weight'/>
-        <div><label class='xp'>Experience (+</label><span class='xpbonus' name='attr_xp_bonus'>0</span><label>%)</label></div>
-            <div>
-                <input class='xp' type='text' value='0' name='attr_xp' readonly/> / 
-                <input class='xp' type='text' value='0' name='attr_xp_next_level'/>
-            </div>
-        <label>Age</label><input type='number' name='attr_age' />
-        <label>Level</label>
-            <input type='number' min='0' max='14' value='1' name='attr_level' />
-            <input type='hidden' name='attr_max_level'/>
-        <label>Hit Dice</label>
-        <div>
-            <input class='smallWidth' type='text' name='attr_hit_dice' />
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
+    <div class='grid-2'>
+        <div class='grid-overview'>
+            <label>Character Name</label><input type='text' name='attr_character_fullname' />
+            <label>Class</label><input type='text' name='attr_class'/>
+            <label>Title</label><input type='text' name='attr_character_title'/> 
+            <label>Alignment</label><input type='text' name='attr_alignment'/> 
+            <div class='xplabel'><label class='xp'>Experience (+</label><span class='xpbonus' name='attr_xp_bonus'>0</span><label>%)</label></div>
+                <div>
+                    <input class='xp' type='text' value='0' name='attr_xp' readonly/> / 
+                    <input class='xp' type='text' value='0' name='attr_xp_next_level'/>
+                </div>
+            <label>Level</label>
+                <input type='number' min='0' max='14' value='1' name='attr_level' />
+                <input type='hidden' name='attr_max_level'/>
         </div>
-    </div>
-    <hr/>
-    <div class='grid11'>        
-        <div class='grid11111'>
-            <label class='spanheader'>Attribute Scores</label>
+        <div class='grid-overview'>
+            <label>Token Name</label><input type='text' name='attr_character_name' />
+            <label>Gender</label><input type='text' name='attr_gender'/>              
+            <label>Height</label><input type='text' name='attr_height'/>           
+            <label>Weight</label><input type='text' name='attr_weight'/>
+            <label>Age</label><input type='number' name='attr_age' />
+            <label>Hit Dice</label>
+            <div>
+                <input class='smallWidth' type='text' name='attr_hit_dice' />
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
+            </div>
+        </div>
+        <hr class='spangrid'/>
+        <div class='grid-attributes'>
+            <label class='span-header'>Attribute Scores</label>
             <label></label>
             <label>Current</label>
             <label>Nominal</label>
             <label>Mod</label>
             <label>Key Attr</label>
-            <label>Strength:</label>
+            <label class='attrname'>Strength:</label>
             <input type='number' value='10' min='0' max='20' name='attr_str' />
             <input type='number' value='10' name='attr_str_max'readonly/>
             <input type='number' value='0' name='attr_str_mod' readonly />
             <input type='checkbox' name='attr_str_pre'/>
-            <label>Intellect:</label>
+            <label class='attrname'>Intellect:</label>
             <input type='number' value='10' min='0' max='20' name='attr_int' />
             <input type='number' value='10' name='attr_int_max'readonly/>
             <input type='number' value='0' name='attr_int_mod' readonly />
             <input type='checkbox' name='attr_int_pre'/>
-            <label>Will:</label>
+            <label class='attrname'>Will:</label>
             <input type='number' value='10' min='0' max='20' name='attr_wil' />
             <input type='number' value='10' name='attr_wil_max'readonly/>
             <input type='number' value='0' name='attr_wil_mod' readonly />
             <input type='checkbox' name='attr_wil_pre'/>            
-            <label>Dexterity:</label>
+            <label class='attrname'>Dexterity:</label>
             <input type='number' value='10' min='0' max='20' name='attr_dex' />
             <input type='number' value='10' name='attr_dex_max'readonly/>
             <input type='number' value='0' name='attr_dex_mod' readonly />
             <input type='checkbox' name='attr_dex_pre'/>
-            <label>Constitution:</label>
+            <label class='attrname'>Constitution:</label>
             <input type='number' value='10' min='0' max='20' name='attr_con' />
             <input type='number' value='10' name='attr_con_max'readonly/>
             <input type='number' value='0' name='attr_con_mod' readonly />
             <input type='checkbox' name='attr_con_pre'/>
-            <label>Charisma:</label>
+            <label class='attrname'>Charisma:</label>
             <input type='number' value='10' min='0' max='20' name='attr_cha' />
             <input type='number' value='10' name='attr_cha_max'readonly/>
             <input type='number' value='0' name='attr_cha_mod' readonly />
             <input type='checkbox' name='attr_chr_pre'/>
         </div>
-        <div class='grid1111'>
-            <label class='spanheader'>Summary Stats</label>
+        <div class='grid-summary'>
+            <label class='span-header'>Summary Stats</label>
             <label>Hit Points</label>
                 <input type='hidden' class='hpcheck' name='attr_hp_is_below_one'/>
                 <input class='redhp' type='number' value='0' name='attr_hp'/> 
@@ -135,11 +137,9 @@
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='0.75' name='attr_miles_hour' readonly/>
         </div>
-    </div>
-    <hr/>
-    <div class='grid11'>
-        <div class='grid11'>
-            <label class='spanheader'>Saving Throws</label>
+        <hr class='spangrid'/>
+        <div class='grid-2'>
+            <label class='span-header'>Saving Throws</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
@@ -151,22 +151,22 @@
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
                 <input type='number' value='17' name='attr_save_5'/>
         </div>
-        <div class='grid1111'>
-            <label class='spanheader'>Monster-only Stats</label>
-            <label class='monster'>Alt Mode</label> 
+        <div class='grid-monster'>
+            <label class='span-header'>Monster Stats</label>
+            <label>Alt Mode</label> 
                 <input class='smallWidth' type='text' name='attr_alt_move_mode'/> 
-            <label class='monster'>Feet / Round</label> 
+            <label>Feet / Round</label> 
                 <input class='smallWidth' type='text' name='attr_alt_move'/>
-            <label class='monster'>Morale</label>
+            <label>Morale</label>
                 <input type='number' value='0' name='attr_morale'/>
-            <label class='monster'>XP Value</label>
+            <label>XP Value</label>
                 <input type='number' name='attr_xp_value' />
-            <label class='monster'>Save</label>
+            <label>Save</label>
                 <input class='smallWidth' type='text' maxlength='3' name='attr_monster_save'/>
-            <label class='monster'>Treasure Type</label>
+            <label>Treasure Type</label>
                 <input class='smallWidth' type='text' maxlength='3' name='attr_monster_treasuretype'/>
-            <label class='monster'>Size</label>
-                <select class='monster'name='attr_monster_size'>
+            <label>Size</label>
+                <select class='sizeSelect' name='attr_monster_size'>
                     <option>Small</option>
                     <option selected>Medium</option>
                     <option>Large</option>
@@ -182,132 +182,28 @@
 <div class='class'>
 
     <div>
-        <label class='spanheader'>Global Class Bonuses</label>
-        <div class='grid11'>
-            <div class='grid8'>
-                <label>Accuracy:</label><input type='number' value='0' name='attr_class_accuracy_bonus'/>
-                <label>Dmg, Melee:</label><input type='number' value='0' name='attr_class_damage_bonus'/>
-                <label>Dmg, Missile:</label><input type='number' value='0' name='attr_class_damage_bonus_missile'/>
-                <label>Dmg Reduction:</label><input type='number' value='0' name='attr_class_damage_reduction'/>
-                <label>Armor Class:</label><input type='number' value='0' name='attr_class_ac_bonus'/>
-                <label>Initiative:</label><input type='number' value='0' name='attr_class_initiative_bonus'/>
-                <label>Surprise:</label><input type='number' value='0' name='attr_class_surprise_bonus'/>
-                <label>Hench Morale:</label><input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
-            </div>
+        <label class='span-header'>Global Class Bonuses</label>
+        <div class='grid-classbonuses'>
+            <label>Accuracy:</label><input type='number' value='0' name='attr_class_accuracy_bonus'/>
+            <label>Dmg, Melee:</label><input type='number' value='0' name='attr_class_damage_bonus'/>
+            <label>Dmg, Missile:</label><input type='number' value='0' name='attr_class_damage_bonus_missile'/>
+            <label>Dmg Reduction:</label><input type='number' value='0' name='attr_class_damage_reduction'/>
+            <label>Armor Class:</label><input type='number' value='0' name='attr_class_ac_bonus'/>
+            <label>Initiative:</label><input type='number' value='0' name='attr_class_initiative_bonus'/>
+            <label>Surprise:</label><input type='number' value='0' name='attr_class_surprise_bonus'/>
+            <label>Hench Morale:</label><input type='number' value='0' name='attr_class_henchmen_morale_bonus'/>
         </div>
         <hr/>
     </div>   
     <div>
-        <label class='spanheader'>Class Description</label>
+        <label class='span-header'>Class Description</label>
         <textarea placeholder='Enter details from ACKS rules reference...' name='attr_class_abilities'></textarea>
         <hr/>
     </div>
 </div>
 
-<div class='spells'>
-    <div class='spellcasting'>
-        <div class='gridspellslots'>
-            <label class='spanheader'>Spellcasting Slots by Spell Level</label>
-            <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
-            <label>Slots</label>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_1_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_2_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_3_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_4_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_5_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_6_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_7_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_8_max' />
-            <input type='number' min='0' max='6' value='0' name='attr_spells_9_max' />
-            <span></span>
-            <label>Current</label>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_1'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_2'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_3'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_4'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_5'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_6'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_7'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_8'/>
-            <input type='number' min='0' max='6' value='0' name='attr_spells_9'/>
-            <button type='action' class='actionButton' name='act_reset_spells'>Reset</button>
-            <label>Caster Level</label>
-            <input type='number' min='0' max='14' value='0' name='attr_caster_level'/>
-        </div>
-        <hr/>
-        <div>
-            <label class='spanheader'>Available Spells / Invocations</label>
-            <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
-            <div class='details'>
-                <fieldset class='repeating_spellsarcane'>
-                    <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name} (@{spell_level})**}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
-                    <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name} (@{spell_level})**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Cast}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
-                    <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
-                    <label>Level:</label><input class='spellLevel' type='text' name='attr_spell_level'/>
-                    <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
-                    <label>more...</label>
-                    <input type='checkbox' class='toggle-show'/><br/>
-                    <div class='details'>
-                        <label>Type:</label><input type='text' name='attr_spell_type'/>
-                        <label>Range:</label><input class='spellRange' type='text' name='attr_spell_range'/>
-                        <label>Duration:</label><input class='spellDuration' type='text' name='attr_spell_duration'/>
-                        <textarea placeholder='Spell description...' name='attr_spell_details'></textarea>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-        <hr/>
-    </div>
-</div>
-
-<div class='skills'>
-    <div class='grid1'>
-        <label class='spanheader'>Proficiencies</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_skills'>
-                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{skill_name}**}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_review_skill'> Review</button>
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
-                <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
-                <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
-                <label>Type:</label>
-                    <select class='shorter' name='attr_skill_type'>
-                        <option>Bonus</option>
-                        <option>Class</option>
-                        <option>Class Power</option>
-                        <option selected>General</option>
-                    </select>
-                <label>more...</label>
-                    <input type='checkbox' class='toggle-show'/><br/>
-                    <div class='details'>
-                        <label class='detailslabel'>Target:</label>
-                        <input class='skillScript' type='text' name='attr_skill_target'/><br/>
-                        <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
-                    </div>
-            </fieldset>
-        </div>
-    </div>
-    <hr/>
-    <div class='grid1'>
-        <label class='spanheader'>Abilities</label>
-        <div class='spanrepeater'>
-            <fieldset class='repeating_abilities'>
-                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{ability_name}**}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_review_ability'> Review</button>
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **Ability Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
-                <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
-                <label>Source: </label><input type='text' name='attr_ability_source'/>
-                <label>more...</label>
-                <input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'>
-                    <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
-                    <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-</div>
-
 <div class='combat'>
-    <div class='grid1111-c'>
+    <div class='grid-encounter-buttons'>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **Initiative Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{fss_single}[fss]+(@{mod_initiative}[mod1])+(?{Modifier|0}[mod2])))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **Surprise Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+(@{mod_surprise}[mod1])+(?{Modifier|0}[mod2])]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **Reaction Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+(@{mod_reaction}[mod1])+(?{Modifier|0}[mod2])]]}} {{desc=2 or less: Hostile, attacks. 3-5: Unfriendly, may attack. 6-8: Neutral, uncertain. 9-11: Indifferent, uninterested. 12+: Friendly, helpful}}' name='roll_reaction'> Reaction</button>
@@ -318,61 +214,53 @@
         <input type='number' value='0' name='attr_mod_morale'/>
     </div>
     <hr/>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Armor</label>
-            <label>Bonus</label>
-            <label>Shield</label>
-            <label>Helm</label>
-            <select name='attr_armor'>
-                <option value='0' selected>AC 0 - Clothing Only</option>
-                <option value='1'>AC 1 - Hide, Fur, Padded</option>
-                <option value='2'>AC 2 - Leather, Arena</option>
-                <option value='3'>AC 3 - Ring, Scale</option>
-                <option value='4'>AC 4 - Chain, Laminated, Arena</option>
-                <option value='5'>AC 5 - Banded, Lamellar</option>
-                <option value='6'>AC 6 - Plate</option>
-            </select>
-            <input type='number' value='0' name='attr_armor_bonus'/>
-            <input type='checkbox' value='1' name='attr_has_shield'/>
-            <input type='checkbox' value='1' name='attr_has_helm'/>
-        </div>
-        <div class='grid11'>            
-            <label>Armor Class</label>
-            <label>Fighting Style Specialization</label>
-            <input type='number' value='0' name='attr_armor_class' readonly/>
-            <select name='attr_fss'>
-                <option value='0' selected>None</option>
-                <option value='1'>Missile Weapon (+1 Atk)</option>
-                <option value='2'>Single Weapon (+1 Init)</option>
-                <option value='3'>Dual Weapons (+1 Atk)</option>
-                <option value='4'>Two-Handed (+1 Dmg)</option>
-                <option value='5'>Wpn & Shield (+1 AC)</option>
-            </select>
-            <input type='hidden' value='0' name='attr_fss_missile'/>
-            <input type='hidden' value='0' name='attr_fss_single'/>
-            <input type='hidden' value='1' name='attr_fss_dual'/>
-            <input type='hidden' value='0' name='attr_fss_two'/>
-            <input type='hidden' value='0' name='attr_fss_shield'/>
-        </div>
-        <input type='hidden' name='attr_fss_missile'/>
+    <div class='grid-armor'>
+        <label>Armor</label>
+        <label>Bonus</label>
+        <label>Shield</label>
+        <label>Helm</label>         
+        <label>Armor Class</label>
+        <label>Fighting Style Specialization</label>
+        <select name='attr_armor'>
+            <option value='0' selected>AC 0 - Clothing Only</option>
+            <option value='1'>AC 1 - Hide, Fur, Padded</option>
+            <option value='2'>AC 2 - Leather, Arena</option>
+            <option value='3'>AC 3 - Ring, Scale</option>
+            <option value='4'>AC 4 - Chain, Laminated, Arena</option>
+            <option value='5'>AC 5 - Banded, Lamellar</option>
+            <option value='6'>AC 6 - Plate</option>
+        </select>
+        <input type='number' value='0' name='attr_armor_bonus'/>
+        <input type='checkbox' value='1' name='attr_has_shield'/>
+        <input type='checkbox' value='1' name='attr_has_helm'/>  
+        <input type='number' value='0' name='attr_armor_class' readonly/>
+        <select name='attr_fss'>
+            <option value='0' selected>None</option>
+            <option value='1'>Missile Weapon (+1 Atk)</option>
+            <option value='2'>Single Weapon (+1 Init)</option>
+            <option value='3'>Dual Weapons (+1 Atk)</option>
+            <option value='4'>Two-Handed (+1 Dmg)</option>
+            <option value='5'>Wpn & Shield (+1 AC)</option>
+        </select>
+        <input type='hidden' value='0' name='attr_fss_missile'/>
+        <input type='hidden' value='0' name='attr_fss_single'/>
+        <input type='hidden' value='1' name='attr_fss_dual'/>
+        <input type='hidden' value='0' name='attr_fss_two'/>
+        <input type='hidden' value='0' name='attr_fss_shield'/>
     </div>
+    <input type='hidden' name='attr_fss_missile'/>
     <hr/>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Attack Throw</label>
-                <input type='number' min='-9' max='12' value='10' name='attr_attack_throw'/>
-            <label>Max Cleaves</label>
-                <input type='number' min='0' max='14' value='0' name='attr_max_cleaves'/>
-        </div>
-        <div class='grid11'> 
-            <label>Number of Attacks: </label>
-                <input type='text' value='1 (weapon)' name='attr_num_attacks'/>
-        </div>
+    <div class='grid-attacks'>
+        <label>Attack Throw:</label>
+            <input type='number' min='-9' max='12' value='10' name='attr_attack_throw'/>
+        <label>Max Cleaves:</label>
+            <input type='number' min='0' max='14' value='0' name='attr_max_cleaves'/>
+        <label>Number of Attacks: </label>
+            <input type='text' value='1 (weapon)' name='attr_num_attacks'/>
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Melee Attacks</label>
+        <label class='span-header'>Melee Attacks</label>
         <fieldset class='repeating_melee'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(@{attk_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
@@ -396,7 +284,7 @@
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Missile Attacks</label>
+        <label class='span-header'>Missile Attacks</label>
         <fieldset class='repeating_missile'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
             <button type='action' class='missileButton' name='act_missile-attack'> Attack</button>
@@ -421,26 +309,119 @@
     <hr/>
 </div>
 
-<div class='equipment'>
-    <div class='grid11'>
-        <div class='grid1111'>
-            <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/>
-            <label>Encumbrance</label> 
-            <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
-            <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
-        </div>
-        <div class='grid1111'> 
-            <label class='redtext'>Feet / Turn</label> 
-                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
-            <label class='redtext'>Feet / Round</label> 
-                <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
-        </div>
+<div class='spells'>
+    <div class='grid-spellslots'>
+        <label class='span-header'>Spellcasting Slots by Spell Level</label>
+        <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
+        <label>Slots</label>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_1_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_2_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_3_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_4_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_5_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_6_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_7_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_8_max' />
+        <input type='number' min='0' max='6' value='0' name='attr_spells_9_max' />
+        <span></span>
+        <label>Current</label>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_1'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_2'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_3'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_4'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_5'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_6'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_7'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_8'/>
+        <input type='number' min='0' max='6' value='0' name='attr_spells_9'/>
+        <button type='action' class='actionButton' name='act_reset_spells'>Reset</button>
+        <label>Caster Level</label>
+        <input type='number' min='0' max='14' value='0' name='attr_caster_level'/>
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Equipment</label>
+        <label class='span-header'>Available Spells / Invocations</label>
+        <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
+        <div class='details'>
+            <fieldset class='repeating_spellsarcane'>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name} (@{spell_level})**}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name} (@{spell_level})**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Cast}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
+                <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
+                <label>Level:</label><input class='spellLevel' type='text' name='attr_spell_level'/>
+                <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
+                <label>more...</label>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label>Type:</label><input type='text' name='attr_spell_type'/>
+                    <label>Range:</label><input class='spellRange' type='text' name='attr_spell_range'/>
+                    <label>Duration:</label><input class='spellDuration' type='text' name='attr_spell_duration'/>
+                    <textarea placeholder='Spell description...' name='attr_spell_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <hr/>
+</div>
+
+<div class='skills'>
+    <div>
+        <label class='span-header'>Proficiencies</label>
+        <fieldset class='repeating_skills'>
+            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{skill_name}**}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_review_skill'> Review</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
+            <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
+            <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
+            <label>Type:</label>
+                <select class='shorter' name='attr_skill_type'>
+                    <option>Bonus</option>
+                    <option>Class</option>
+                    <option>Class Power</option>
+                    <option selected>General</option>
+                </select>
+            <label>more...</label>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label class='detailslabel'>Target:</label>
+                    <input class='skillScript' type='text' name='attr_skill_target'/><br/>
+                    <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
+                </div>
+        </fieldset>
+    </div>
+    <hr/>
+    <div>
+        <label class='span-header'>Abilities</label>
+        <fieldset class='repeating_abilities'>
+            <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{ability_name}**}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_review_ability'> Review</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **Ability Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
+            <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
+            <label>Source: </label><input type='text' name='attr_ability_source'/>
+            <label>more...</label>
+            <input type='checkbox' class='toggle-show'/><br/>
+            <div class='details'>
+                <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
+                <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
+            </div>
+        </fieldset>
+    </div>
+    <hr/>
+</div>
+
+<div class='equipment'>
+    <div class='grid-encumbrance'>
+        <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/>
+        <label>Encumbrance</label> 
+        <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
+        <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
+        <label class='redtext'>Feet / Turn</label> 
+            <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+            <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
+        <label class='redtext'>Feet / Round</label> 
+            <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
+            <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+    </div>
+    <hr/>
+    <div>
+        <label class='span-header'>Equipment</label>
         <input class='toggle-show' type='checkbox' name='attr_show_equipment' checked/> show/hide
         <div class='details'>
             <fieldset class='repeating_items'>
@@ -459,10 +440,10 @@
 </div>
 
 <div class='wealth'>
-    <div class='grid11'>
-        <div class='gridcurrency'>
+    <div class='grid-2'>
+        <div class='grid-currency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
-            <label class='spanheader'>Currency</label>
+            <label class='span-header'>Currency</label>
             <label></label><label>On Hand</label><label>Banked</label><label>New</label>  
             <label>PP</label>
                 <input class='currency' type='number' value='0' min='0' name='attr_platinum'/>
@@ -491,8 +472,8 @@
             <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
             <span></span>
         </div>
-        <div class='grid11'>
-            <label class='spanheader'>Monthly Budget</label>
+        <div class='grid-2'>
+            <label class='span-header'>Monthly Budget</label>
             <label>Living Standard</label>
                 <select name='attr_living_standard'>
                     <option value='1'>Wretched</option>
@@ -516,7 +497,7 @@
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Passive Investments</label>
+        <label class='span-header'>Passive Investments</label>
         <input class='toggle-show' type='checkbox' name='attr_show_investments' checked/> show/hide
         <div class='details'>
             <fieldset class='repeating_investments'>
@@ -540,24 +521,25 @@
             </fieldset>
         </div>
     </div>
+    <hr/>
 </div>
 
 <div class='hirelings'>
-    <div class='grid11'>
-        <div class='grid1111'>
+    <div class='grid-2'>
+        <div class='grid-4'>
             <label>Henchmen Limit:</label> 
                 <input type='hidden' class='henchmenCheck' name='attr_henchmen_count'/>
                 <input class='limitExceeded' type='number' value='4' name='attr_henchmen_limit' readonly/> 
             <label></label><label></label>
         </div>
-        <div class='grid1111'>
+        <div class='grid-4'>
             <label>Hireling Fees:</label><input type='number' value='0' name='attr_hireling_fees' readonly/>
             <label></label><label></label>
         </div>
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Henchmen</label>
+        <label class='span-header'>Henchmen</label>
         <fieldset class='repeating_henchmen'>
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_henchman_name'/>
@@ -583,7 +565,7 @@
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Mercenaries</label>
+        <label class='span-header'>Mercenaries</label>
         <fieldset class='repeating_mercenaries'>
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_merc_name'/>
@@ -611,7 +593,7 @@
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Specialists</label>
+        <label class='span-header'>Specialists</label>
         <fieldset class='repeating_specialists'>
             <label>Name:</label>
                 <input type='text' class='hirelingtext' name='attr_spec_name'/>
@@ -638,29 +620,29 @@
 
 <div class='journal'>
     <div>
-        <label class='spanheader'>Character Background</label>
+        <label class='span-header'>Character Background</label>
         <textarea class='background' placeholder='Enter details...' name='attr_background'></textarea>
     </div>
-    <div class='grid1111'>
+    <div class='grid-4'>
         <div class='journalbox'>
-            <label class='spanheader'>Appearance</label>
+            <label class='span-header'>Appearance</label>
             <textarea class='journalnotes' placeholder='Enter details...' name='attr_appearance'></textarea>
         </div>
         <div class='journalbox'>
-            <label class='spanheader'>Languages</label>
+            <label class='span-header'>Languages</label>
             <textarea class='journalnotes' placeholder='Enter details...' name='attr_languages'>Common</textarea>
         </div>
         <div class='journalbox'>
-            <label class='spanheader'>Injuries</label>
+            <label class='span-header'>Injuries</label>
             <textarea class='journalnotes' placeholder='Enter details...' name='attr_injuries'></textarea>
         </div>
         <div class='journalbox'>
-            <label class='spanheader'>Property & Debts</label>
+            <label class='span-header'>Property & Debts</label>
             <textarea class='journalnotes' placeholder='Enter details...' name='attr_property'></textarea>
         </div>
     </div>
     <div>
-        <label class='spanheader'>Adventuring Notes</label>
+        <label class='span-header'>Adventuring Notes</label>
         <fieldset class='repeating_journal'>
             <label>Title: </label><input type='text' name='attr_journal_title'/>
             <label>Show Entry: </label><input type='checkbox' class='toggle-show' />
@@ -669,7 +651,7 @@
     </div>
     <hr/>
     <div>
-        <label class='spanheader'>Experience Log</label>
+        <label class='span-header'>Experience Log</label>
         <fieldset class='repeating_experience'>            
             <label>Date: </label><input class='xpdate' type='text' name='attr_xp_date'/>
             <label>XP: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
@@ -681,26 +663,29 @@
 </div>
 
 <div class='settings'>
-    <div class='grid8'>
-        <label class='spanheader'>Sheet Settings (GM Only)</label>
+    <div class='grid-settings'>
+        <label class='span-header'>Sheet Settings (GM Only)</label>
         <label>Enc Threshold 1</label>
             <input type='number' min='0' value='5' name='attr_move_thresh1'/>
+            <span>Sets the character's first encumbrance threshold.</span>
         <label>Enc Threshold 2</label>
             <input type='number' min='0' value='7' name='attr_move_thresh2'/>
+            <span>Sets the character's second encumbrance threshold.</span>
         <label>Enc Threshold 3</label>
             <input type='number' min='0' value='10' name='attr_move_thresh3'/>
-        <span></span><span></span>
-
+            <span>Sets the character's third encumbrance threshold.</span>
         <label>Max Encumbrance</label>
             <input type='number' min='0' value='20' name='attr_base_enc'/>
+            <span>Sets the character's maximum encumbrance threshold.</span>
         <label>Max Movement</label>
             <input type='number' min='0' value='120' name='attr_base_movement'/>
+            <span>Sets the character's maximum base land movement speed.</span>
         <label>Encumbrance Alert</label>
             <input type='checkbox' name='attr_enc_alert_toggle'/>
-        <span></span><span></span>
-
+            <span>Highlights the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
         <label>Experience % Modifier</label>
-            <input type='number' value='0' name='attr_xp_modifier'/>
+            <input type='number' value='0' name='attr_xp_modifier'/>            
+            <span>Modifies the character's XP modifier from key attributes.</span>
         <label>Damage Attribute</label>
             <input type='hidden' value='@{str_mod}[str]' name='attr_damage_attr'/>
             <select class='settingsSelect' name='attr_select_damage_attr'>
@@ -711,15 +696,13 @@
                 <option>con</option>
                 <option>cha</option>
             </select>
-            <span></span><span></span>
-            <span></span><span></span>
-
+            <span>Sets the attribute modifier to apply to melee/thrown damage rolls.</span>
         <label>Hide Spells Tab</label>
             <input type='checkbox' value='1' name='attr_toggle_spells'/>
+            <span>Hides the Spells tab on the character sheet.</span>
         <label>Nominal Attributes</label>
             <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
-            <span></span><span></span>
-            <span></span><span></span>
+            <span>Copies the character's attribute values into the Overview tab's Nominal column.</span>
     </div>
     <hr/>
 </div>
@@ -870,6 +853,7 @@ on('clicked:save_attrs', function(eventInfo) {
 
         const output = {};
         theAttrs.forEach((element) => {
+            console.log('value: ' + values[element]);
             output[element + '_max'] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
         });
         setAttrs(output);

@@ -1,124 +1,150 @@
-.charsheet * {
-    color: saddlebrown !important;
-    font-family: 'Papyrus', sans-serif !important;
+.ui-dialog .charsheet * {
+    color: saddlebrown;
+    font-family: 'Papyrus', sans-serif;
     font-size: 100%; 
     font-size-adjust: 0.46;
 }
-.charsheet {
+.ui-dialog .charsheet {
     background-color: tan;
 }
-.charsheet {
+.ui-dialog .charsheet {
     /*
     background-image: url(https://files.d20.io/images/365081732/2hRPt1mnt7SE9nm72rf1fg/original.png?16984356135);
     */
 }
-.charsheet label.spanheader {
+.ui-dialog .charsheet label.span-header {
     /*
     background-image: url(https://files.d20.io/images/365081732/2hRPt1mnt7SE9nm72rf1fg/original.png?16984356135);
     */
 }
 
 /**************** Grid Layouts ****************/
-.grid1 {
-    align-items: center;
-    display: grid;
-    grid-template-columns:  [first] 1fr [last];
-    row-gap: 5px;
-}
-.grid11 {
+.ui-dialog .charsheet .grid-2 {
     align-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns:  [first] repeat(2, 1fr) [last];
+    justify-content: start;
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
-.grid111 {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns:  [first] repeat(3, 1fr) [last];
-    row-gap: 5px;
-    width: 100%
-}
-.grid1111 {
+.ui-dialog .charsheet .grid-4 {
     align-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(4, 1fr) [last];
-    row-gap: 5px;
-    width: 100%
-}
-.grid1111-c {
-    align-items: center;
     justify-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
-.grid1111-table {
-    align-items: left;
+.ui-dialog .charsheet .grid-armor,
+.ui-dialog .charsheet .grid-attacks {
+    align-items: center;
     display: grid;
     column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
-    width: 100%
+    grid-template-columns: [first] repeat(6, 1fr) [last];
+    justify-items: center;
+    width: 100%;
 }
-.grid11111 {
+.ui-dialog .charsheet .grid-attacks input {
+    justify-self: start;
+}
+.ui-dialog .charsheet .grid-attributes {
     align-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(5, 1fr) [last];
+    justify-items: center;
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
-.grid8 {
+.ui-dialog .charsheet .grid-attributes label.attrname {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-classbonuses {
     align-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(8, 1fr) [last];
+    justify-items: start;
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
-.gridthievesskills {
+.ui-dialog .charsheet .grid-classbonuses label {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-currency,
+.ui-dialog .charsheet .grid-encounter-buttons {
     align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(8, 1fr) [last];
-    row-gap: 5px;
-    width: 100%
-}
-.gridcurrency {
     display: grid;
     column-gap: 10px;
     grid-template-columns: [first] repeat(4, 1fr) [last];
     justify-items: center;
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
-.gridcurrency > .charsheet label {
-    font-size: 0.9em;
-    margin-bottom: 0px;
+.ui-dialog .charsheet .grid-encumbrance {
+    align-items: center;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(8, 1fr) [last];
+    justify-items: center;
+    width: 100%;
 }
-.gridcurrency > .charsheet label.spanheader {
-    font-size: 1.1em;
+.ui-dialog .charsheet .grid-overview {
+    align-items: center;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns:  [first] repeat(2, 1fr) [last];
+    justify-items: start;
+    row-gap: 5px;
+    width: 100%;
+}
+.ui-dialog .charsheet .grid-overview label {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-overview div.xplabel {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-settings {
+    align-items: center;
+    display: grid;
+    column-gap: 10px;
+    justify-items: center;
+    grid-template-columns: [first] 25% [second] 10% [third] auto [last];
+    row-gap: 5px;
+    width: 100%;
+}
+.ui-dialog .charsheet .grid-settings label {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-settings span {
+    justify-self: start;
 }
 
-.gridspellslots {
+.ui-dialog .charsheet .grid-spellslots {
+    align-items: center;
     column-gap: 5px;
     display: grid;
     grid-template-columns: [first] repeat(11, 1fr) [last];
     justify-items: center;
     row-gap: 5px;
-    width: 100%
+    width: 100%;
 }
 
-.spanrepeater {
-    grid-column: first / last;
-    justify-self: start;
-    padding: 2px 0px 2px 5px;
+.ui-dialog .charsheet .grid-monster,
+.ui-dialog .charsheet .grid-summary {
+    align-items: center;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(4, 1fr) [last];
+    justify-items: start;
+    row-gap: 5px;
     width: 100%;
+}
+.ui-dialog .charsheet .grid-monster label,
+.ui-dialog .charsheet .grid-summary label {
+    justify-self: end;
 }
 
 /**************** Element Styles ****************/
@@ -126,6 +152,7 @@
 .ui-dialog .charsheet button {
     background-image: linear-gradient(white, navajowhite);
     border-color: saddlebrown;
+    color: saddlebrown;
     font-weight: bold;
 }
 .ui-dialog .charsheet button:hover {
@@ -173,44 +200,42 @@
     content: 't';
 }
 
-.charsheet div {
+.ui-dialog .charsheet div {
     align-self: start;
     justify-self: start;
 }
-div.encumbrance {
+.ui-dialog .charsheet div.encumbrance {
     justify-self: center;
 }
-div.journalbox {
+.ui-dialog .charsheet div.journalbox {
     width: 95%;
 }
-div.whispertoggle {
+.ui-dialog .charsheet div.whispertoggle {
     display: inline-block;
     font-size: 0.9em;
     margin-left: 10px;
 }
-div.whispertoggle > .charsheet label {
-    display: inline;   
-}
 
-.charsheet h1 {
+.ui-dialog .charsheet h1 {
     font-size: 2.0em;
 }
 
-div.page-title {
+.ui-dialog .charsheet div.page-title {
     margin-bottom: 10px;
 }
 
-.charsheet hr {
+.ui-dialog .charsheet hr {
     border-top: 1px solid saddlebrown;
+    margin: 10px 0px 20px 0px;
 }
-hr.spangrid {
+.ui-dialog .charsheet hr.spangrid {
     grid-column: first / last;
     justify-self: start;
-    margin: 5px;
-    width: 100%;
+    margin: 5px 0px 15px 0px;
+    width: 99%;
 }
 
-.charsheet input {
+.ui-dialog .charsheet input {
     background-color: transparent;
     border-color: saddlebrown;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
@@ -218,12 +243,12 @@ hr.spangrid {
     border-width: 2px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
-    color: #41403e;
+    color: saddlebrown;
     display: inline-block;
     font-size: 1.1em;
     font-weight: bold;
     line-height: 23px;
-    margin-bottom: 9px !important;
+    margin-bottom: 9px;
     outline: none;
     padding: 2px 5px 0px 5px;
     text-decoration: none;
@@ -232,133 +257,118 @@ hr.spangrid {
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
 }
-.charsheet input:read-only {
+.ui-dialog .charsheet  input:read-only {
     background-color: transparent;
     border: none;
 }
-.charsheet input[type=number] {
-    text-align: center;
-    width: 60px !important;
-}
-input[type=number].currency {
-    width: 80px !important;
-}
-input[type=number].currency::-webkit-outer-spin-button,
-input[type=number].currency::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number].currency {
-  -moz-appearance: textfield;
-}
-input.attackname {
-    width: 150px;
-}
-input.hirelingtext {
-    width: 100px;
-}
-input[type=number].itemValue::-webkit-outer-spin-button,
-input[type=number].itemValue::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number].itemValue {
-  -moz-appearance: textfield;
-}
-input[type=number].itemWeight::-webkit-outer-spin-button,
-input[type=number].itemWeight::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number].itemWeight {
-  -moz-appearance: textfield;
-}
-input.missilerange {
-    width: 100px;
-}
-input.henchmenText {
-    width: 140px;
-}
-input.skillScript,
-input.spellDuration {
-    width: 200px;
-}
-input.damageAttr,
-input.spellRange,
-input.spellLevel {
-    width: 60px; 
-}
-input.smallWidth {
+.ui-dialog .charsheet input[type=number] {
     text-align: center;
     width: 60px;
 }
-input.xp {
-    text-align: right;
-    width: 90px;
+.ui-dialog .charsheet input[type=number].currency {
+    width: 80px;
 }
-input.xpamount,
-input.xpdate {
+.ui-dialog .charsheet input.attackname {
+    width: 150px;
+}
+.ui-dialog .charsheet input.hirelingtext {
     width: 100px;
 }
-input[type=number].xpamount::-webkit-outer-spin-button,
-input[type=number].xpamount::-webkit-inner-spin-button {
+.ui-dialog .charsheet input[type=number].itemValue::-webkit-outer-spin-button,
+.ui-dialog .charsheet input[type=number].itemValue::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number].xpamount {
+.ui-dialog .charsheet input[type=number].itemValue {
   -moz-appearance: textfield;
 }
-input.xpdescription {
+.ui-dialog .charsheet input[type=number].itemWeight::-webkit-outer-spin-button,
+.ui-dialog .charsheet input[type=number].itemWeight::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ui-dialog .charsheet input[type=number].itemWeight {
+  -moz-appearance: textfield;
+}
+.ui-dialog .charsheet input.missilerange {
+    width: 100px;
+}
+.ui-dialog .charsheet input.henchmenText {
+    width: 140px;
+}
+.ui-dialog .charsheet input.skillScript,
+.ui-dialog .charsheet input.spellDuration {
+    width: 200px;
+}
+.ui-dialog .charsheet input.damageAttr,
+.ui-dialog .charsheet input.spellRange,
+.ui-dialog .charsheet input.spellLevel {
+    width: 60px; 
+}
+.ui-dialog .charsheet input.smallWidth {
+    text-align: center;
+    width: 60px;
+}
+.ui-dialog .charsheet input.xp {
+    text-align: right;
+    width: 90px;
+}
+.ui-dialog .charsheet input.xpamount,
+.ui-dialog .charsheet input.xpdate {
+    width: 100px;
+}
+.ui-dialog .charsheet input[type=number].xpamount::-webkit-outer-spin-button,
+.ui-dialog .charsheet input[type=number].xpamount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ui-dialog .charsheet input[type=number].xpamount {
+  -moz-appearance: textfield;
+}
+.ui-dialog .charsheet input.xpdescription {
     width: 40%;
 }
 
-.charsheet label {
+.ui-dialog .charsheet  label {
     align-self: start;
     display: inline-block;
-    font-size: 1.3em;
+    font-size: 1.1em;
     padding-top: 7px;
     white-space: nowrap;
     width: auto;
 }
-.repitem .charsheet label {
-    font-size: 0.9em;
-    padding-left: 15px;
-}
-.charsheet label.emphasis {
+.ui-dialog .charsheet label.emphasis {
     font-size: 1.1em;
 }
-.charsheet label.item_count {
+.ui-dialog .charsheet label.item_count {
     width: 152px;
 }
-.charsheet label.item_lbs {
+.ui-dialog .charsheet label.item_lbs {
     width: 40px;
 }
-.charsheet label.item_name {
+.ui-dialog .charsheet label.item_name {
     font-size: 0.9em;
     width: 214px;
 }
-.charsheet label.light {
+.ui-dialog .charsheet label.light {
     font-weight: normal;
 }
-.charsheet label.meleeattack {
+.ui-dialog .charsheet label.meleeattack {
     width: 206px;
 }
-.charsheet label.meleemod {
+.ui-dialog .charsheet label.meleemod {
     width: 30px;
 }
-.charsheet label.missileattack {
+.ui-dialog .charsheet label.missileattack {
     width: 206px;
 }
-.charsheet label.missilemod {
+.ui-dialog .charsheet label.missilemod {
     width: 30px;
 }
-.charsheet label.missileeffects {
+.ui-dialog .charsheet label.missileeffects {
     width: 266px;
 }
-.charsheet label.monster {
-    color: lightgray;
-}
-.charsheet label.spanheader {
+.ui-dialog .charsheet label.span-header {
     background-color: navajowhite;
     border-radius: 4px;
     font-size: 1.2em;
@@ -367,53 +377,56 @@ input.xpdescription {
     padding: 5px 0px 2px 5px;
     width: 100%;
 }
-.charsheet label.spelllevel {
+.ui-dialog .charsheet label.spelllevel {
     width: 40px; 
 }
-.charsheet label.spellname {
+.ui-dialog .charsheet label.spellname {
     width: 200px; 
 }
-.charsheet label.xp {
+.ui-dialog .charsheet label.xp {
     padding-right: 0px;
 }
 
-.charsheet select {
+.ui-dialog .charsheet select {
     background-color: navajowhite;
     border-color: saddlebrown;
     font-weight: bold;
     margin: 0px 9px 9px 0px;
 }
-select.settingsSelect {
+.ui-dialog .charsheet select.settingsSelect {
     width: 60px;
 }
-select.shorter {
+.ui-dialog .charsheet select.sizeSelect {
+    width: 100px;
+}
+.ui-dialog .charsheet select.shorter {
     width: 160px;
 }
 
-.charsheet span {
+.ui-dialog .charsheet span {
     line-height: 26px;
     padding-top: 0px;
 }
-span.info {
+.ui-dialog .charsheet span.info {
     line-height: 1;
 }
-span.xpbonus {
+.ui-dialog .charsheet span.xpbonus {
     font-weight: bold;
 }
 
-.charsheet textarea {
+.ui-dialog .charsheet textarea {
     background-color: transparent;
     border-color: saddlebrown;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style: solid;
     border-width: 2px;
     box-sizing: border-box;
-    color: #41403e;
+    color: saddlebrown;
     display: inline-block;
     font-size: 1.03em;
     font-weight: bold;
     line-height: 23px;
-    margin-bottom: 9px !important;
+    margin-bottom: 9px;
     outline: none;
     padding: 2px 5px 0px 5px;
     text-decoration: none;
@@ -423,69 +436,69 @@ span.xpbonus {
     border-top-right-radius: 15px 225px;
     width: 98%;
 }
-textarea::placeholder {
+.ui-dialog .charsheet textarea::placeholder {
     color: #8a795d;
 }
-textarea.background {
+.ui-dialog .charsheet textarea.background {
     width: 99%;
 }
-textarea.journalnotes {
+.ui-dialog .charsheet textarea.journalnotes {
     height: 120px;
     width: 100%;
 }
-textarea.property {
+.ui-dialog .charsheet textarea.property {
     height: 220px;
     width: 400px;
 }
 
 /**************** Panel Buttons ****************/
-.button-panel {
+.ui-dialog .charsheet .button-panel {
     padding-bottom: 15px;
 }
-.overview,
-.class,
-.spells,
-.skills,
-.combat,
-.equipment,
-.wealth,
-.hirelings,
-.journal,
-.settings {
+.ui-dialog .charsheet .overview,
+.ui-dialog .charsheet .class,
+.ui-dialog .charsheet .spells,
+.ui-dialog .charsheet .skills,
+.ui-dialog .charsheet .combat,
+.ui-dialog .charsheet .equipment,
+.ui-dialog .charsheet .wealth,
+.ui-dialog .charsheet .hirelings,
+.ui-dialog .charsheet .journal,
+.ui-dialog .charsheet .settings {
 	display: none;
 }
-.tabstoggle[value='overview'] ~ div.overview,
-.tabstoggle[value='class'] ~ div.class,
-.tabstoggle[value='spells'] ~ div.spells,
-.tabstoggle[value='skills'] ~ div.skills,
-.tabstoggle[value='combat'] ~ div.combat,
-.tabstoggle[value='equipment'] ~ div.equipment,
-.tabstoggle[value='wealth'] ~ div.wealth,
-.tabstoggle[value='hirelings'] ~ div.hirelings,
-.tabstoggle[value='settings'] ~ div.settings,
-.tabstoggle[value='journal'] ~ div.journal {
+.ui-dialog .charsheet .tabstoggle[value='overview'] ~ div.overview,
+.ui-dialog .charsheet .tabstoggle[value='class'] ~ div.class,
+.ui-dialog .charsheet .tabstoggle[value='spells'] ~ div.spells,
+.ui-dialog .charsheet .tabstoggle[value='skills'] ~ div.skills,
+.ui-dialog .charsheet .tabstoggle[value='combat'] ~ div.combat,
+.ui-dialog .charsheet .tabstoggle[value='equipment'] ~ div.equipment,
+.ui-dialog .charsheet .tabstoggle[value='wealth'] ~ div.wealth,
+.ui-dialog .charsheet .tabstoggle[value='hirelings'] ~ div.hirelings,
+.ui-dialog .charsheet .tabstoggle[value='settings'] ~ div.settings,
+.ui-dialog .charsheet .tabstoggle[value='journal'] ~ div.journal {
 	display: block;
 }
-.btnOverview,
-.btnClass,
-.btnSpells,
-.btnSkills,
-.btnCombat,
-.btnEquipment,
-.btnWealth,
-.btnHirelings,
-.btnJournal,
-.btnSettings {
+.ui-dialog .charsheet .btnOverview,
+.ui-dialog .charsheet .btnClass,
+.ui-dialog .charsheet .btnSpells,
+.ui-dialog .charsheet .btnSkills,
+.ui-dialog .charsheet .btnCombat,
+.ui-dialog .charsheet .btnEquipment,
+.ui-dialog .charsheet .btnWealth,
+.ui-dialog .charsheet .btnHirelings,
+.ui-dialog .charsheet .btnJournal,
+.ui-dialog .charsheet .btnSettings {
     align-self: center;
     background-color: navajowhite;
-    background-image: none !important;
+    background-image: none;
     border-color: saddlebrown;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style: solid;
     border-width: 2px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
-    color: #41403e;
+    color: saddlebrown;
     cursor: pointer;
     display: inline-block;
     line-height: 23px;
@@ -500,80 +513,81 @@ textarea.property {
     -webkit-user-select: none;
     touch-action: manipulation;
   }  
-  .btnOverview:hover,
-  .btnClass:hover,
-  .btnSpells:hover,
-  .btnSkills:hover,
-  .btnCombat:hover,
-  .btnEquipment:hover,
-  .btnWealth:hover,
-  .btnHirelings:hover,
-  .btnJournal:hover,
-  .btnSettings:hover {
+  .ui-dialog .charsheet .btnOverview:hover,
+  .ui-dialog .charsheet .btnClass:hover,
+  .ui-dialog .charsheet .btnSpells:hover,
+  .ui-dialog .charsheet .btnSkills:hover,
+  .ui-dialog .charsheet .btnCombat:hover,
+  .ui-dialog .charsheet .btnEquipment:hover,
+  .ui-dialog .charsheet .btnWealth:hover,
+  .ui-dialog .charsheet .btnHirelings:hover,
+  .ui-dialog .charsheet .btnJournal:hover,
+  .ui-dialog .charsheet .btnSettings:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
   }
-  .btnOverview:focus,
-  .btnClass:focus,
-  .btnSpells:focus,
-  .btnSkills:focus,
-  .btnCombat:focus,
-  .btnEquipment:focus,
-  .btnWealth:focus,
-  .btnHirelings:focus,
-  .btnJournal:focus,
-  .btnSettings:focus {
+  .ui-dialog .charsheet .btnOverview:focus,
+  .ui-dialog .charsheet .btnClass:focus,
+  .ui-dialog .charsheet .btnSpells:focus,
+  .ui-dialog .charsheet .btnSkills:focus,
+  .ui-dialog .charsheet .btnCombat:focus,
+  .ui-dialog .charsheet .btnEquipment:focus,
+  .ui-dialog .charsheet .btnWealth:focus,
+  .ui-dialog .charsheet .btnHirelings:focus,
+  .ui-dialog .charsheet .btnJournal:focus,
+  .ui-dialog .charsheet .btnSettings:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
-.buttonstoggle[value='overview'] ~ button.btnOverview,
-.buttonstoggle[value='class'] ~ button.btnClass,
-.buttonstoggle[value='spells'] ~ button.btnSpells,
-.buttonstoggle[value='skills'] ~ button.btnSkills,
-.buttonstoggle[value='combat'] ~ button.btnCombat,
-.buttonstoggle[value='equipment'] ~ button.btnEquipment,
-.buttonstoggle[value='wealth'] ~ button.btnWealth,
-.buttonstoggle[value='hirelings'] ~ button.btnHirelings,
-.buttonstoggle[value='journal'] ~ button.btnJournal,
-.buttonstoggle[value='settings'] ~ button.btnSettings {
+.ui-dialog .charsheet .buttonstoggle[value='overview'] ~ button.btnOverview,
+.ui-dialog .charsheet .buttonstoggle[value='class'] ~ button.btnClass,
+.ui-dialog .charsheet .buttonstoggle[value='spells'] ~ button.btnSpells,
+.ui-dialog .charsheet .buttonstoggle[value='skills'] ~ button.btnSkills,
+.ui-dialog .charsheet .buttonstoggle[value='combat'] ~ button.btnCombat,
+.ui-dialog .charsheet .buttonstoggle[value='equipment'] ~ button.btnEquipment,
+.ui-dialog .charsheet .buttonstoggle[value='wealth'] ~ button.btnWealth,
+.ui-dialog .charsheet .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
+.ui-dialog .charsheet .buttonstoggle[value='journal'] ~ button.btnJournal,
+.ui-dialog .charsheet .buttonstoggle[value='settings'] ~ button.btnSettings {
     background-color: white;
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
     font-weight: bold;
     transform: translate3d(0, 2px, 0);
 }
 /* Hide Spells tab button on Settings toggle */
-input.hideSpells[value='1'] ~ button.btnSpells {
+.ui-dialog .charsheet input.hideSpells[value='1'] ~ button.btnSpells {
     display: none;
 }
 
 /**************** Alert Styles ****************/
-span.orangeEnc,
-span.redbedrest,
-span.redfatigue,
-span.redhp,
-span.redmove,
-.limitExceeded {
+.ui-dialog .charsheet span.orangeEnc,
+.ui-dialog .charsheet span.redbedrest,
+.ui-dialog .charsheet span.redfatigue,
+.ui-dialog .charsheet span.redhp,
+.ui-dialog .charsheet span.redmove,
+.ui-dialog .charsheet .limitExceeded {
     color: black;
 }
-input.bedrestcheck[value='1'] ~ .redbedrest,
-input.fatiguecheck[value='1'] ~ .redfatigue,
-input.hpcheck[value='1'] ~ .redhp,
-input.movecheck[value='1'] ~ .redmove,
-input.henchmenCheck[value='1'] ~ .limitExceeded {
+.ui-dialog .charsheet input.bedrestcheck[value='1'] ~ .redbedrest,
+.ui-dialog .charsheet input.fatiguecheck[value='1'] ~ .redfatigue,
+.ui-dialog .charsheet input.hpcheck[value='1'] ~ .redhp,
+.ui-dialog .charsheet input.movecheck[value='1'] ~ .redmove,
+.ui-dialog .charsheet input.henchmenCheck[value='1'] ~ .limitExceeded {
     background-color: lightpink; 
     border-color: red;
     color: red;
     font-weight: bold;
 }
-input.encOverFive[value='1'] ~ .orangeEnc {
+.ui-dialog .charsheet input.encOverFive[value='1'] ~ .orangeEnc {
     background-color: orange; 
     font-weight: bold;
 }
 
 /**************** Details section toggle ****************/
-div.body {
+.ui-dialog .charsheet div.body {
     display: block;
 }
 
+.ui-dialog .charsheet 
 input.toggle-show:not(:checked) ~ div.details {
     display: none;
 }
@@ -589,11 +603,11 @@ input.toggle-show:not(:checked) ~ div.details {
 }
 .repitem > input[type=number].itemCount {
     text-align: right;
-    width: 45px !important;
+    width: 45px;
 }
 .repitem > input[type=number].itemValue {
     text-align: right;
-    width: 80px !important;
+    width: 80px;
 }
 .repitem > input[type=number].itemWeight {
     text-align: right;
@@ -795,20 +809,3 @@ input.toggle-show:not(:checked) ~ div.details {
 .sheet-rolltemplate-custom .sheet-desc {
     text-align: left;
 }
-
-
-/**************** Technical Styles ****************/
-/* Remove spinners on Chrome, Safari, Edge, Opera */
-/*
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-*/
-/* Remove spinners on Firefox */
-/*
-input[type=number] {
-  -moz-appearance: textfield;
-}
-*/
