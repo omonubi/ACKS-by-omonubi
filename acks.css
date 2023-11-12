@@ -3,7 +3,6 @@
     font-family: 'Papyrus', sans-serif !important;
     font-size: 100%; 
     font-size-adjust: 0.46;
-    padding-top: 2px;
 }
 .charsheet {
     background-color: tan;
@@ -123,31 +122,31 @@
 }
 
 /**************** Element Styles ****************/
-/* Roll20 button styles */
-button.btn {
+/* Roll20 type='roll' button styles */
+.ui-dialog .charsheet button {
     background-image: linear-gradient(white, navajowhite);
     border-color: saddlebrown;
     font-weight: bold;
 }
-button.btn:hover {
+.ui-dialog .charsheet button:hover {
     background-image: none;
     background-color: navajowhite;
 }
-/* Custom type="action" buttons */
-button.actionbutton {
-    background-image: linear-gradient(white, navajowhite);
-    border: 1px solid saddlebrown;
-    border-radius: 4px;
+.ui-dialog .charsheet button.reviewButton,
+.ui-dialog .charsheet button.rollButton {
     font-size: 1.0em;
-    font-weight: bold;
-    height: 18px;
-    padding: 4px 10px;
+    margin-bottom: 9px;
 }
-button.actionbutton:hover {
-    background-image: none;
-    background-color: navajowhite;
+.ui-dialog .charsheet button.reviewButton::before {
+    content: "";
 }
-button.missileAttackButton {
+.ui-dialog .charsheet button.wideButton {
+    font-size: 1.0em; 
+    width: 90%;
+}
+/* Roll20 type='action' button styles */
+.ui-dialog .charsheet button.actionButton,
+.ui-dialog .charsheet button.missileButton {
     background-image: linear-gradient(white, navajowhite);
     border: 1px solid saddlebrown;
     border-radius: 4px;
@@ -157,27 +156,21 @@ button.missileAttackButton {
     margin: 0px 3px 9px 3px;
     padding: 2px 3px;
 }
-.ui-dialog .charsheet button.missileAttackButton[type=action]::before {
+.ui-dialog .charsheet button.missileButton {
+}
+.ui-dialog .charsheet button.actionButton:hover,
+.ui-dialog .charsheet button.missileButton:hover {
+    background-image: none;
+    background-color: navajowhite;
+}
+.ui-dialog .charsheet button.actionButton:active,
+.ui-dialog .charsheet button.missileButton:active {
+    background-image: linear-gradient(burlywood 10%, 30%, navajowhite 90%);
+    background-color: transparent;
+}
+.ui-dialog .charsheet button.missileButton::before {
     font-family: 'dicefontd20';
-    content: 't ';
-}
-
-/* Custom type="roll" buttons */
-/* !important needed to override r20 classes */
-button.combatbutton {
-    font-size: 1.0em !important; 
-    width: 90%;
-}
-button.reviewButton {
-    font-size: 1.0em !important;
-    margin-bottom: 9px !important;
-}
-.ui-dialog .charsheet button[type=roll].reviewButton::before {
-    content: "";
-}
-button.rollbutton {
-    font-size: 1.0em !important;
-    margin-bottom: 9px !important;
+    content: 't';
 }
 
 .charsheet div {
@@ -485,10 +478,7 @@ textarea.property {
 .btnSettings {
     align-self: center;
     background-color: navajowhite;
-    background-image: none;
-    background-position: 0 90%;
-    background-repeat: repeat no-repeat;
-    background-size: 4px 3px;
+    background-image: none !important;
     border-color: saddlebrown;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style: solid;
@@ -546,6 +536,7 @@ textarea.property {
 .buttonstoggle[value='journal'] ~ button.btnJournal,
 .buttonstoggle[value='settings'] ~ button.btnSettings {
     background-color: white;
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
     font-weight: bold;
     transform: translate3d(0, 2px, 0);
 }
@@ -588,6 +579,9 @@ input.toggle-show:not(:checked) ~ div.details {
 }
 
 /**************** Repeating Styles  ****************/
+.repitem > button {
+    vertical-align: top;
+}
 .repitem > input,
 .repitem > div > input
 {
