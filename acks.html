@@ -716,7 +716,8 @@
 
         <label>Hide Spells Tab</label>
             <input type='checkbox' value='1' name='attr_toggle_spells'/>
-            <span></span><span></span>
+        <label>Nominal Attributes</label>
+            <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
             <span></span><span></span>
             <span></span><span></span>
     </div>
@@ -864,16 +865,13 @@ on('change:str change:int change:wil change:dex change:con change:cha', function
 
 // Copy all current attribute values to Nominal (max) column
 on('clicked:save_attrs', function(eventInfo) {
-    console.log('here');
     const theAttrs = ['str', 'int', 'wil', 'dex', 'con', 'cha'];
     getAttrs(theAttrs, function(values) {
 
         const output = {};
         theAttrs.forEach((element) => {
-            console.log('value: ' + values[element]);
-            //output[element + '_max'] = theAttrs
+            output[element + '_max'] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
         });
-        //output[theAttr + '_mod'] = attrBonus;
         setAttrs(output);
     });
 });

@@ -393,6 +393,7 @@ This tab contains base values used in some sheet worker calculations; mainly whe
 | Experience % Modifier | *xp_modifier* | number | Used to change the character's displayed XP bonus from its prime requisite attribute score(s). Typically used if the character has suffered an organic impediment or injury that nagtively impacts its intellectual / reasoning capability. |
 | Damage Attribute | *damage_attr* | list | Used to change the attribute modifier applied to all strength-based (the default) damage rolls. For example, a bladedancer's Strength of Faith class power. |
 | Hide Spells Tab | *toggle_spells* | checkbox | If checked, hides the Spells tab. |
+| Nominal Attributes | *save_attrs* | button | Saves the character's current attributes to the Nominal (*max*) column. |
 
 ---
 
