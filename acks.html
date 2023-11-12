@@ -715,7 +715,7 @@
             <span></span><span></span>
 
         <label>Hide Spells Tab</label>
-            <input type='checkbox' name='attr_toggle_spells'/>
+            <input type='checkbox' value='1' name='attr_toggle_spells'/>
             <span></span><span></span>
             <span></span><span></span>
             <span></span><span></span>
@@ -774,7 +774,8 @@ on('sheet:opened',function(){
 
         // Forces the creation of sheet attributes that can be bound to 
         // immediately by token bars (w/o having to change attributes manually).
-        // Ignores sheets w. a pre-existing 'alignment' value.
+        // Ignores sheets w. a pre-existing 'alignment' value (i.e., 
+        // pre-existing sheets).
         if (alignment == '' && upgradeVersion == -1)
         {
             output['upgradeVersion'] = UPGRADE_VERSION;
@@ -797,6 +798,7 @@ function getID(repeatingItemName) {
 };
 
 /*************** tab controls ******************/
+// Select/deselect buttons
 const buttonlist = ['overview','class','spells','skills','combat','equipment','wealth','hirelings','journal','settings'];
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function() {
@@ -809,9 +811,9 @@ buttonlist.forEach(button => {
 
 // Show/hide the Spells tab
 on('change:toggle_spells', function(eventInfo) {
+
     const output = {};
-    output['show_spells'] = (eventInfo.newValue == 'on' ? 1 : 0);
-    console.log('output = ' + output['show_spells']);
+    output['show_spells'] = eventInfo.newValue;
     setAttrs(output);
 });
 
@@ -844,6 +846,7 @@ on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus chan
 });
 
 /********** Attributes **********/
+// Calculate and set an attribute modifier
 on('change:str change:int change:wis change:dex change:con change:cha', function(eventInfo) {
     const theAttr = eventInfo.sourceAttribute;
     getAttrs([theAttr], function(values) {
