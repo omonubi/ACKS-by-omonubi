@@ -1446,7 +1446,7 @@ on('clicked:repeating_missile:missile-attack', () => {
         const missileName = values.repeating_missile_missile_name;
         const missileBonus = parseInt(values.repeating_missile_missile_bonus) || 0;
         const missileDamage = values.repeating_missile_missile_damage;
-        const missileIsThrown = (values.repeating_missile_missile_is_thrown == 'on' ? 1 : 0);
+        const missileIsThrown = parseInt(values.repeating_missile_missile_is_thrown) || 0;
         const missileEffects = values.repeating_missile_missile_effects;
         const missileAmmo = parseInt(values.repeating_missile_missile_ammo) || 0;
 
