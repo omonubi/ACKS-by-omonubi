@@ -66,32 +66,32 @@
             <label>Nominal</label>
             <label>Mod</label>
             <label>Key Attr</label>
-            <label class='attrname'>Strength:</label>
+            <label class='attrname'>Strength</label>
             <input type='number' value='10' min='0' max='20' name='attr_str' />
             <input type='number' value='10' name='attr_str_max'readonly/>
             <input type='number' value='0' name='attr_str_mod' readonly />
             <input type='checkbox' value='1' name='attr_str_pre'/>
-            <label class='attrname'>Intellect:</label>
+            <label class='attrname'>Intellect</label>
             <input type='number' value='10' min='0' max='20' name='attr_int' />
             <input type='number' value='10' name='attr_int_max'readonly/>
             <input type='number' value='0' name='attr_int_mod' readonly />
             <input type='checkbox' value='1' name='attr_int_pre'/>
-            <label class='attrname'>Will:</label>
+            <label class='attrname'>Will</label>
             <input type='number' value='10' min='0' max='20' name='attr_wil' />
             <input type='number' value='10' name='attr_wil_max'readonly/>
             <input type='number' value='0' name='attr_wil_mod' readonly />
             <input type='checkbox' value='1' name='attr_wil_pre'/>            
-            <label class='attrname'>Dexterity:</label>
+            <label class='attrname'>Dexterity</label>
             <input type='number' value='10' min='0' max='20' name='attr_dex' />
             <input type='number' value='10' name='attr_dex_max'readonly/>
             <input type='number' value='0' name='attr_dex_mod' readonly />
             <input type='checkbox' value='1' name='attr_dex_pre'/>
-            <label class='attrname'>Constitution:</label>
+            <label class='attrname'>Constitution</label>
             <input type='number' value='10' min='0' max='20' name='attr_con' />
             <input type='number' value='10' name='attr_con_max'readonly/>
             <input type='number' value='0' name='attr_con_mod' readonly />
             <input type='checkbox' value='1' name='attr_con_pre'/>
-            <label class='attrname'>Charisma:</label>
+            <label class='attrname'>Charisma</label>
             <input type='number' value='10' min='0' max='20' name='attr_cha' />
             <input type='number' value='10' name='attr_cha_max'readonly/>
             <input type='number' value='0' name='attr_cha_mod' readonly />
@@ -1087,6 +1087,7 @@ on('change:fss', function(eventInfo) {
 // Missile Attack
 // Roll the character's missile attack.
 // Subtract 1 from the attack's ammunition field.
+// Note: Required to both roll the attack and auto-deduct the ammo.
 on('clicked:repeating_missile:missile-attack', () => {
     getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo'], function(values) {
         const missileName = values.repeating_missile_missile_name;
