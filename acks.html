@@ -29,7 +29,7 @@
 
 <input type='hidden' class='tabstoggle' name='attr_sheetTab' value='overview'/>
 <!-- Character Sheet -->
-<div class='overview'>
+<section class='overview'>
     <div class='grid-2column'>
         <div class='grid-overview'>
             <label>Character Name</label><input type='text' name='attr_character_fullname' />
@@ -172,9 +172,9 @@
         </div>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='class'>
+<section class='class'>
 
     <div>
         <label class='span-header'>Global Class Bonuses</label>
@@ -195,9 +195,9 @@
         <textarea placeholder='Enter details from ACKS rules reference...' name='attr_class_abilities'></textarea>
         <hr/>
     </div>
-</div>
+</section>
 
-<div class='combat'>
+<section class='combat'>
     <div class='grid-encounter-buttons'>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_init} **Initiative Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[((1d6cs0cf0+@{dex_mod}[dex]+@{class_initiative_bonus}[class]+@{fss_single}[fss]+(@{mod_initiative}[mod1])+(?{Modifier|0}[mod2])))&{tracker}]]}}' name='roll_initiative'> Initiative</button>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **Surprise Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+(@{mod_surprise}[mod1])+(?{Modifier|0}[mod2])]]}}' name='roll_surprise'> Surprise</button>
@@ -302,9 +302,9 @@
         </fieldset>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='spells'>
+<section class='spells'>
     <div class='grid-spellslots'>
         <label class='span-header'>Spellcasting Slots by Spell Level</label>
         <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
@@ -356,9 +356,9 @@
         </div>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='skills'>
+<section class='skills'>
     <div>
         <label class='span-header'>Proficiencies</label>
         <fieldset class='repeating_skills'>
@@ -399,9 +399,9 @@
         </fieldset>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='equipment'>
+<section class='equipment'>
     <div class='grid-encumbrance'>
         <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/>
         <label>Encumbrance</label> 
@@ -432,9 +432,9 @@
         </div>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='wealth'>
+<section class='wealth'>
     <div class='grid-2column'>
         <div class='grid-currency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
@@ -517,9 +517,9 @@
         </div>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='hirelings'>
+<section class='hirelings'>
     <div class='grid-2column'>
         <div class='grid-hirelings'>
             <label>Henchmen Limit:</label> 
@@ -611,9 +611,9 @@
         <input type='hidden' name='attr_specialist_fees'/>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='journal'>
+<section class='journal'>
     <div>
         <label class='span-header'>Character Background</label>
         <textarea class='background' placeholder='Enter details...' name='attr_background'></textarea>
@@ -655,9 +655,9 @@
         </fieldset>
     </div>
     <hr/>
-</div>
+</section>
 
-<div class='settings'>
+<section class='settings'>
     <div class='grid-settings'>
         <label class='span-header'>Sheet Settings (GM Only)</label>
         <label>Enc Threshold 1</label>
@@ -700,7 +700,7 @@
             <span>Copies the character's attribute values into the Overview tab's Nominal column.</span>
     </div>
     <hr/>
-</div>
+</section>
 
 <div>
     <p>Designed for use with the Adventurer Conqueror King System, Imperial Imprint and published under the ACKS SRD/OGL, https://github.com/capheind/ACKS_SRD.</p>

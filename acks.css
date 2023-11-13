@@ -460,16 +460,16 @@
 .ui-dialog .charsheet .settings {
 	display: none;
 }
-.ui-dialog .charsheet .tabstoggle[value='overview'] ~ div.overview,
-.ui-dialog .charsheet .tabstoggle[value='class'] ~ div.class,
-.ui-dialog .charsheet .tabstoggle[value='spells'] ~ div.spells,
-.ui-dialog .charsheet .tabstoggle[value='skills'] ~ div.skills,
-.ui-dialog .charsheet .tabstoggle[value='combat'] ~ div.combat,
-.ui-dialog .charsheet .tabstoggle[value='equipment'] ~ div.equipment,
-.ui-dialog .charsheet .tabstoggle[value='wealth'] ~ div.wealth,
-.ui-dialog .charsheet .tabstoggle[value='hirelings'] ~ div.hirelings,
-.ui-dialog .charsheet .tabstoggle[value='settings'] ~ div.settings,
-.ui-dialog .charsheet .tabstoggle[value='journal'] ~ div.journal {
+.ui-dialog .charsheet .tabstoggle[value='overview'] ~ section.overview,
+.ui-dialog .charsheet .tabstoggle[value='class'] ~ section.class,
+.ui-dialog .charsheet .tabstoggle[value='spells'] ~ section.spells,
+.ui-dialog .charsheet .tabstoggle[value='skills'] ~ section.skills,
+.ui-dialog .charsheet .tabstoggle[value='combat'] ~ section.combat,
+.ui-dialog .charsheet .tabstoggle[value='equipment'] ~ section.equipment,
+.ui-dialog .charsheet .tabstoggle[value='wealth'] ~ section.wealth,
+.ui-dialog .charsheet .tabstoggle[value='hirelings'] ~ section.hirelings,
+.ui-dialog .charsheet .tabstoggle[value='settings'] ~ section.settings,
+.ui-dialog .charsheet .tabstoggle[value='journal'] ~ section.journal {
 	display: block;
 }
 .ui-dialog .charsheet .btnOverview,
