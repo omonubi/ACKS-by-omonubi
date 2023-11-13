@@ -32,141 +32,141 @@
 <section class='overview'>
     <div class='grid-2column'>
         <div class='grid-overview'>
-            <label>Character Name</label><input type='text' name='attr_character_fullname' />
-            <label>Class</label><input type='text' name='attr_class'/>
-            <label>Title</label><input type='text' name='attr_character_title'/> 
+            <label>Character Name</label><input type='text' title='@{character_fullname}' name='attr_character_fullname' />
+            <label title='Select from the list or enter a custom value.'>Class</label><input type='text' title='@{class}' name='attr_class'/>
+            <label title="The character's title, if any. Appears in all roll outputs.">Title</label><input type='text' title='@{character_title}' name='attr_character_title'/> 
+            <label title='Select from the list or enter a custom value.'>Alignment</label><input type='text' title='@{alignment}' name='attr_alignment' list='alignments'/> 
             <datalist id='alignments'>
                 <option>Lawful</option>
                 <option>Neutral</option>
                 <option>Chaotic</option>
             </datalist>
-            <label>Alignment</label><input type='text' name='attr_alignment' list='alignments'/> 
-            <div class='xplabel'><label class='xp'>Experience (+</label><span class='xpbonus' name='attr_xp_bonus'>0</span><label>%)</label></div>
+            <div class='xplabel'><label class='xp' title='Current (computed) XP / XP neeeded for next level. The bonus is computed based on Key Attributes, below.'>Experience (+</label><span class='xpbonus' title='@{xp_bonus}' name='attr_xp_bonus'>0</span><label>%)</label></div>
                 <div>
-                    <input class='xp' type='text' value='0' name='attr_xp' readonly/> / 
-                    <input class='xp' type='text' value='0' name='attr_xp_next_level'/>
+                    <input class='xp' type='text' value='0' title='@{xp}' name='attr_xp' readonly/> / 
+                    <input class='xp' type='text' value='0' title='@{xp_next_level}' name='attr_xp_next_level'/>
                 </div>
             <label>Level</label>
-                <input type='number' min='0' max='14' value='1' name='attr_level' />
+                <input type='number' min='0' max='14' value='1' title='@{level}' name='attr_level' />
                 <input type='hidden' name='attr_max_level'/>
         </div>
         <div class='grid-overview'>
-            <label>Token Name</label><input type='text' name='attr_character_name' />
-            <label>Gender</label><input type='text' name='attr_gender'/>              
-            <label>Height</label><input type='text' name='attr_height'/>           
-            <label>Weight</label><input type='text' name='attr_weight'/>
-            <label>Age</label><input type='number' name='attr_age' />
-            <label>Hit Dice</label>
+            <label>Token Name</label><input type='text' title='@{character_name}' name='attr_character_name' />
+            <label>Gender</label><input type='text' title='@{gender}' name='attr_gender'/>              
+            <label>Height</label><input type='text' title='@{height}' name='attr_height'/>           
+            <label>Weight</label><input type='text' title='@{weight}' name='attr_weight'/>
+            <label>Age</label><input type='number' title='@{age}' name='attr_age' />
+            <label title='Must be a valid hit dice formula.'>Hit Dice</label>
             <div>
                 <input type='hidden' class='hdcheck' name='attr_isBadHDFormula'/>
-                <input class='redhd' type='text' name='attr_hit_dice' />
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
+                <input class='redhd' type='text' title='@{hit_dice}' name='attr_hit_dice' />
+                <button type='roll' class='rollButton' title='Click to roll hit points in Chat.' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
             </div>
         </div>
         <hr class='spangrid'/>
         <div class='grid-attributes'>
             <label class='span-header'>Attribute Scores</label>
             <label></label>
-            <label>Current</label>
-            <label>Nominal</label>
-            <label>Mod</label>
-            <label>Key Attr</label>
-            <label class='attrname'>Strength</label>
-            <input type='number' value='10' min='0' max='20' name='attr_str' />
-            <input type='number' value='10' name='attr_str_max'readonly/>
-            <input type='number' value='0' name='attr_str_mod' readonly />
-            <input type='checkbox' value='1' name='attr_str_pre'/>
-            <label class='attrname'>Intellect</label>
-            <input type='number' value='10' min='0' max='20' name='attr_int' />
-            <input type='number' value='10' name='attr_int_max'readonly/>
-            <input type='number' value='0' name='attr_int_mod' readonly />
-            <input type='checkbox' value='1' name='attr_int_pre'/>
-            <label class='attrname'>Will</label>
-            <input type='number' value='10' min='0' max='20' name='attr_wil' />
-            <input type='number' value='10' name='attr_wil_max'readonly/>
-            <input type='number' value='0' name='attr_wil_mod' readonly />
-            <input type='checkbox' value='1' name='attr_wil_pre'/>            
-            <label class='attrname'>Dexterity</label>
-            <input type='number' value='10' min='0' max='20' name='attr_dex' />
-            <input type='number' value='10' name='attr_dex_max'readonly/>
-            <input type='number' value='0' name='attr_dex_mod' readonly />
-            <input type='checkbox' value='1' name='attr_dex_pre'/>
-            <label class='attrname'>Constitution</label>
-            <input type='number' value='10' min='0' max='20' name='attr_con' />
-            <input type='number' value='10' name='attr_con_max'readonly/>
-            <input type='number' value='0' name='attr_con_mod' readonly />
-            <input type='checkbox' value='1' name='attr_con_pre'/>
-            <label class='attrname'>Charisma</label>
-            <input type='number' value='10' min='0' max='20' name='attr_cha' />
-            <input type='number' value='10' name='attr_cha_max'readonly/>
-            <input type='number' value='0' name='attr_cha_mod' readonly />
-            <input type='checkbox' value='1' name='attr_chr_pre'/>
+            <label title='Tracks current attribute scores.'>Current</label>
+            <label title='Tracks unmodified, baseline attribute scores. Can be set by GM in Settings.'>Nominal</label>
+            <label title='Computer attribute modifier.'>Mod</label>
+            <label title='The Class key attribute(s) used to determine XP bonus.'>Key Attr</label>
+            <label class='attrname' title='Applies to melee/thrown attack throws, damage rolls, and Dungeonbashing.'>Strength</label>
+            <input type='number' value='10' min='0' max='20' title='@{str}' name='attr_str' />
+            <input type='number' value='10' title='@{str_max}' name='attr_str_max' readonly/>
+            <input type='number' value='0' title='@{str_mod}' name='attr_str_mod' readonly />
+            <input type='checkbox' value='1' title='@{str_pre}' name='attr_str_pre'/>
+            <label class='attrname' title='Increases number of general proficiencies, languages spoken, and spell slots.'>Intellect</label>
+            <input type='number' value='10' min='0' max='20' title='@{int}' name='attr_int' />
+            <input type='number' value='10' title='@{int_max}' name='attr_int_max' readonly/>
+            <input type='number' value='0' title='@{int_mod}' name='attr_int_mod' readonly />
+            <input type='checkbox' value='1' title='@{int_pre}' name='attr_int_pre'/>
+            <label class='attrname' title='Applies to all saving throws.'>Will</label>
+            <input type='number' value='10' min='0' max='20' title='@{wil}' name='attr_wil' />
+            <input type='number' value='10' title='@{wil_max}' name='attr_wil_max' readonly/>
+            <input type='number' value='0' title='@{wil_mod}' name='attr_wil_mod' readonly />
+            <input type='checkbox' value='1' title='@{wil_pre}' name='attr_wil_pre'/>            
+            <label class='attrname' title='Applies to all missile attack throws, AC, and initiative rolls.'>Dexterity</label>
+            <input type='number' value='10' min='0' max='20' title='@{dex}' name='attr_dex' />
+            <input type='number' value='10' title='@{dex_max}' name='attr_dex_max' readonly/>
+            <input type='number' value='0' title='@{dex_mod}' name='attr_dex_mod' readonly />
+            <input type='checkbox' value='1' title='@{dex_pre}' name='attr_dex_pre'/>
+            <label class='attrname' title='Applies to each hit die rolled to generate hit points.'>Constitution</label>
+            <input type='number' value='10' min='0' max='20' title='@{con}' name='attr_con' />
+            <input type='number' value='10' title='@{con_max}' name='attr_con_max' readonly/>
+            <input type='number' value='0' title='@{con_mod}' name='attr_con_mod' readonly />
+            <input type='checkbox' value='1' title='@{con_pre}' name='attr_con_pre'/>
+            <label class='attrname' title='Applies to reaction rolls, henchmen limit, and henchmen rolls.'>Charisma</label>
+            <input type='number' value='10' min='0' max='20' title='@{cha}' name='attr_cha' />
+            <input type='number' value='10' title='@{cha_max}' name='attr_cha_max' readonly/>
+            <input type='number' value='0' title='@{cha_mod}' name='attr_cha_mod' readonly />
+            <input type='checkbox' value='1' title='@{cha_pre}' name='attr_cha_pre'/>
         </div>
         <div class='grid-summary'>
             <label class='span-header'>Summary Stats</label>
             <label>Hit Points</label>
                 <input type='hidden' class='hpcheck' name='attr_hp_is_below_one'/>
-                <input class='redhp' type='number' value='0' name='attr_hp'/> 
+                <input class='redhp' type='number' value='0' title='@{hp}' name='attr_hp'/> 
             <label>HP Max</label>
-                <input type='number' value='0' name='attr_hp_max'/>
+                <input type='number' value='0' title='@{hp_max}' name='attr_hp_max'/>
             <label>Fatigue Level</label>
                 <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
-                <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
+                <input class='redfatigue' type='number' value='0' min='0' title='@{fatigue}' name='attr_fatigue'/>
             <label>Bedrest Needed</label>
                 <input type='hidden' class='bedrestcheck' name='attr_is_bedrest'/>
-                <input class='redbedrest' type='number' value='0' min='0' name='attr_bedrest'/>
+                <input class='redbedrest' type='number' value='0' min='0' title='@{bedrest}' name='attr_bedrest'/>
             <label>Armor Class</label>
-                <input type='number' value='0' name='attr_armor_class' readonly/>
+                <input type='number' value='0' title='@{armor_class}' name='attr_armor_class' readonly/>
             <label>Attack Throw</label>
-                <input type='number' value='10' name='attr_attack_throw' readonly/>
+                <input type='number' value='10' title='@{attack throw}' name='attr_attack_throw' readonly/>
             <label>Encumbrance</label>
                 <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
-                <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
+                <input class='orangeEnc' type='number' value='0' title='@{encumbrance}' name='attr_encumbrance' readonly />
             <label>Capacity, Max</label>
-                <input type='number' value='20' name='attr_enc_capacity' readonly/>
+                <input type='number' value='20' title='@{enc_capacity}' name='attr_enc_capacity' readonly/>
             <label>Feet / Turn</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
+                <input class='redmove' type='number' value='120' title='@{move_turn}' name='attr_move_turn' readonly/> 
             <label>Feet / Round</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+                <input class='redmove' type='number' value='40' title='@{move_round}' name='attr_move_round' readonly/>
             <label>Miles / Day</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='24' name='attr_miles_day' readonly/>
+                <input class='redmove' type='number' value='24' title='@{miles_day}' name='attr_miles_day' readonly/>
             <label>Miles / Hour</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-                <input class='redmove' type='number' value='0.75' name='attr_miles_hour' readonly/>
+                <input class='redmove' type='number' value='0.75' title='@{miles_hour}' name='attr_miles_hour' readonly/>
         </div>
         <hr class='spangrid'/>
         <div class='grid-2column'>
             <label class='span-header'>Saving Throws</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
-                <input type='number' value='13' name='attr_save_1'/>
+                <input type='number' value='13' title='@{save_1}' name='attr_save_1'/>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
-                <input type='number' value='14' name='attr_save_2'/>
+                <input type='number' value='14' title='@{save_2}' name='attr_save_2'/>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **Saving Throw (Blast)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blast</button>
-                <input type='number' value='15' name='attr_save_3'/>
+                <input type='number' value='15' title='@{save_3}' name='attr_save_3'/>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **Saving Throw (Implements)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
-                <input type='number' value='16' name='attr_save_4'/>
+                <input type='number' value='16' title='@{save_4}' name='attr_save_4'/>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
-                <input type='number' value='17' name='attr_save_5'/>
+                <input type='number' value='17' title='@{save_5}' name='attr_save_5'/>
         </div>
         <div class='grid-monster'>
-            <label class='span-header'>Monster Stats</label>
-            <label>Alt Mode</label> 
-                <input class='smallWidth' type='text' name='attr_alt_move_mode'/> 
+            <label class='span-header' title='Mainly used for monster-only stats.'>Monster Stats</label>
+            <label title='Use to track an alternate form of movement.'>Alt Mode</label> 
+                <input class='smallWidth' type='text' title='@{alt_move_mode}' name='attr_alt_move_mode'/> 
             <label>Feet / Round</label> 
-                <input class='smallWidth' type='text' name='attr_alt_move'/>
+                <input class='smallWidth' type='text' title='@{alt_move}' name='attr_alt_move'/>
             <label>Morale</label>
-                <input type='number' value='0' name='attr_morale'/>
+                <input type='number' value='0' title='@{morale}' name='attr_morale'/>
             <label>XP Value</label>
-                <input type='number' name='attr_xp_value' />
-            <label>Save</label>
-                <input class='smallWidth' type='text' maxlength='3' name='attr_monster_save'/>
+                <input type='number' title='@{xp_value}' name='attr_xp_value' />
+            <label title='Sets the monster save targets. Enter as [letter][number] E.G. F1, C3, D7. Can be used to quickly set non-monster save targets as well.'>Save</label>
+                <input class='smallWidth' type='text' maxlength='3' title='@{monster_save}' name='attr_monster_save'/>
             <label>Treasure Type</label>
-                <input class='smallWidth' type='text' maxlength='3' name='attr_monster_treasuretype'/>
+                <input class='smallWidth' type='text' maxlength='3' title='@{monster_treasuretype}' name='attr_monster_treasuretype'/>
             <label>Size</label>
-                <select class='sizeSelect' name='attr_monster_size'>
+                <select class='sizeSelect' title='@{monster_size}' name='attr_monster_size'>
                     <option>Small</option>
                     <option selected>Medium</option>
                     <option>Large</option>
