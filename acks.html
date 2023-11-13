@@ -19,7 +19,7 @@
     <button type='action' class='btnSettings' name='act_settings' >Settings</button>
     <div class='whispertoggle'>
         <label>whisper</label>
-        <input type='checkbox' name='attr_toggle_whisper' />
+        <input type='checkbox' title='Check to whisper all outputs to R20 Chat.' name='attr_toggle_whisper' />
         <input type='hidden' name='attr_whispertoggle'/>
     </div>
 </div>
@@ -33,7 +33,30 @@
     <div class='grid-2column'>
         <div class='grid-overview'>
             <label>Character Name</label><input type='text' title='@{character_fullname}' name='attr_character_fullname' />
-            <label>Class <span title='Select from the list or enter a custom value.'>(?)</span></label><input type='text' title='@{class}' name='attr_class'/>
+            <label>Class <span title='Select from the list or enter a custom value.'>(?)</span></label><input type='text' list='classes' title='@{class}' name='attr_class'/>
+            <datalist id='classes'>
+                <option>Assassin</option>
+                <option>Barbarian</option>
+                <option>Bard</option>
+                <option>Bladedancer</option>
+                <option>Crusader</option>
+                <option>Dwarven Craftpriest</option>
+                <option>Dwarven Vaultguard</option>
+                <option>Elven Nightblade</option>
+                <option>Elven Spellsword</option>
+                <option>Explorer</option>
+                <option>Fighter</option>
+                <option>Mage</option>
+                <option>Nobiran Wonderworker/option>
+                <option>Paladin</option>
+                <option>Priestess</option>
+                <option>Shaman</option>
+                <option>Thief</option>
+                <option>Venturer</option>
+                <option>Warlock</option>
+                <option>Witch</option>
+                <option>Zaharan Ruinguard</option>
+            </datalist>
             <label>Title <span title="The character's title, if any. Appears in all roll outputs.">(?)</span></label><input type='text' title='@{character_title}' name='attr_character_title'/> 
             <label>Alignment <span title='Select from the list or enter a custom value.'>(?)</span></label><input type='text' title='@{alignment}' name='attr_alignment' list='alignments'/> 
             <datalist id='alignments'>
@@ -68,9 +91,9 @@
             <label class='span-header'>Attribute Scores</label>
             <label></label>
             <label>Current <span title='Tracks current attribute scores.'>(?)</span></label>
-            <label>Nominal <span title='Tracks unmodified, baseline attribute scores via Settings tab.'>(?)</span></label>
+            <label>Max <span title='Tracks unmodified, baseline attribute scores via Settings tab.'>(?)</span></label>
             <label>Mod <span title='Computer attribute modifier.'>(?)</span></label>
-            <label>Key Attr <span title='The Class key attribute(s) used to determine XP bonus.'>(?)</span></label>
+            <label>Key <span title='The Class key attribute(s) used to determine XP bonus.'>(?)</span></label>
             <label class='attrname'>Strength <span title='Affects melee/thrown attack throws, damage rolls, and Dungeonbashing.'>(?)</span></label>
             <input type='number' value='10' min='0' max='20' title='@{str}' name='attr_str' />
             <input type='number' value='10' title='@{str_max}' name='attr_str_max' readonly/>
@@ -81,22 +104,22 @@
             <input type='number' value='10' title='@{int_max}' name='attr_int_max' readonly/>
             <input type='number' value='0' title='@{int_mod}' name='attr_int_mod' readonly />
             <input type='checkbox' value='1' title='@{int_pre}' name='attr_int_pre'/>
-            <label class='attrname'>Will <span title='Applies to all saving throws.'>(?)</span></label>
+            <label class='attrname'>Will <span title='Affects all saving throws.'>(?)</span></label>
             <input type='number' value='10' min='0' max='20' title='@{wil}' name='attr_wil' />
             <input type='number' value='10' title='@{wil_max}' name='attr_wil_max' readonly/>
             <input type='number' value='0' title='@{wil_mod}' name='attr_wil_mod' readonly />
             <input type='checkbox' value='1' title='@{wil_pre}' name='attr_wil_pre'/>            
-            <label class='attrname'>Dexterity <span title='Applies to all missile attack throws, AC, and initiative rolls.'>(?)</span></label>
+            <label class='attrname'>Dexterity <span title='Affects all missile attack throws, AC, and initiative rolls.'>(?)</span></label>
             <input type='number' value='10' min='0' max='20' title='@{dex}' name='attr_dex' />
             <input type='number' value='10' title='@{dex_max}' name='attr_dex_max' readonly/>
             <input type='number' value='0' title='@{dex_mod}' name='attr_dex_mod' readonly />
             <input type='checkbox' value='1' title='@{dex_pre}' name='attr_dex_pre'/>
-            <label class='attrname'>Constitution <span title='Applies to each hit die rolled to generate hit points.'>(?)</span></label>
+            <label class='attrname'>Constitution <span title='Affectseach hit die rolled to generate hit points.'>(?)</span></label>
             <input type='number' value='10' min='0' max='20' title='@{con}' name='attr_con' />
             <input type='number' value='10' title='@{con_max}' name='attr_con_max' readonly/>
             <input type='number' value='0' title='@{con_mod}' name='attr_con_mod' readonly />
             <input type='checkbox' value='1' title='@{con_pre}' name='attr_con_pre'/>
-            <label class='attrname'>Charisma <span title='Applies to reaction rolls, henchmen limit, and henchmen rolls.'>(?)</span></label>
+            <label class='attrname'>Charisma <span title='Affects reaction rolls, henchmen limit, and henchmen rolls.'>(?)</span></label>
             <input type='number' value='10' min='0' max='20' title='@{cha}' name='attr_cha' />
             <input type='number' value='10' title='@{cha_max}' name='attr_cha_max' readonly/>
             <input type='number' value='0' title='@{cha_mod}' name='attr_cha_mod' readonly />
@@ -700,7 +723,7 @@
         <label>Hide Spells Tab</label>
             <input type='checkbox' value='1' name='attr_toggle_spells'/>
             <span>Hides the Spells tab on the character sheet.</span>
-        <label>Nominal Attributes</label>
+        <label>Max Attributes</label>
             <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
             <span>Copies the character's attribute values into the Overview tab's Nominal column.</span>
     </div>
