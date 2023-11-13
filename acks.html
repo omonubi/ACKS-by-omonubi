@@ -254,9 +254,9 @@
             <option value='6'>AC 6 - Plate</option>
         </select>
         <input type='number' value='0' title='@{armor_bonus}' name='attr_armor_bonus'/>
-        <input type='checkbox' value='1' title='@{_has_shield}' name='attr_has_shield'/>
-        <input type='checkbox' value='1' title='@{_has_helm}' name='attr_has_helm'/>  
-        <input type='number' value='0' title='@{_armor_class}' name='attr_armor_class' readonly/>
+        <input type='checkbox' value='1' title='@{has_shield}' name='attr_has_shield'/>
+        <input type='checkbox' value='1' title='@{has_helm}' name='attr_has_helm'/>  
+        <input type='number' value='0' title='@{armor_class}' name='attr_armor_class' readonly/>
         <select title='@{fss}' name='attr_fss'>
             <option value='0' selected>None</option>
             <option value='1'>Missile Weapon (+1 Atk)</option>
@@ -337,48 +337,48 @@
         <label class='span-header'>Spellcasting Slots by Spell Level</label>
         <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
         <label>Slots</label>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_1_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_2_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_3_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_4_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_5_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_6_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_7_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_8_max' />
-        <input type='number' min='0' max='6' value='0' name='attr_spells_9_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_1_max}' name='attr_spells_1_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_2_max}' name='attr_spells_2_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_3_max}' name='attr_spells_3_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_4_max}' name='attr_spells_4_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_5_max}' name='attr_spells_5_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_6_max}' name='attr_spells_6_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_7_max}' name='attr_spells_7_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_8_max}' name='attr_spells_8_max' />
+        <input type='number' min='0' max='6' value='0' title='@{spells_9_max}' name='attr_spells_9_max' />
         <span></span>
         <label>Current</label>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_1'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_2'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_3'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_4'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_5'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_6'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_7'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_8'/>
-        <input type='number' min='0' max='6' value='0' name='attr_spells_9'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_1}' name='attr_spells_1'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_2}' name='attr_spells_2'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_3}' name='attr_spells_3'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_4}' name='attr_spells_4'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_5}' name='attr_spells_5'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_6}' name='attr_spells_6'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_7}' name='attr_spells_7'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_8}' name='attr_spells_8'/>
+        <input type='number' min='0' max='6' value='0' title='@{spells_9}' name='attr_spells_9'/>
         <button type='action' class='actionButton' name='act_reset_spells'>Reset</button>
         <label>Caster Level</label>
-        <input type='number' min='0' max='14' value='0' name='attr_caster_level'/>
+        <input type='number' min='0' max='14' value='0' title='@{caster_level}' name='attr_caster_level'/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Available Spells / Invocations</label>
+        <label class='span-header'>Available Spells / Invocations <span title='@{repeating_spellsarcane}'>(?)</span></label>
         <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
         <div class='details'>
             <fieldset class='repeating_spellsarcane'>
                 <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name} (@{spell_level})**}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
                 <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name} (@{spell_level})**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Cast}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
-                <input type='text' placeholder='Spell name...' name='attr_spell_name'/>
-                <label>Level:</label><input class='spellLevel' type='text' name='attr_spell_level'/>
-                <label>prepared</label><input type='checkbox' name='attr_spell_prepared'/>
+                <input type='text' placeholder='Spell name...' title='@{spell_name}' name='attr_spell_name'/>
+                <label>Level:</label><input class='spellLevel' type='text' title='@{spell_level}' name='attr_spell_level'/>
+                <label>prepared</label><input type='checkbox' title='@{spell_prepared}' name='attr_spell_prepared'/>
                 <label>more...</label>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
-                    <label>Type:</label><input type='text' name='attr_spell_type'/>
-                    <label>Range:</label><input class='spellRange' type='text' name='attr_spell_range'/>
-                    <label>Duration:</label><input class='spellDuration' type='text' name='attr_spell_duration'/>
-                    <textarea placeholder='Spell description...' name='attr_spell_details'></textarea>
+                    <label>Type:</label><input type='text' title='@{spell_type}' name='attr_spell_type'/>
+                    <label>Range:</label><input class='spellRange' type='text' title='@{spell_range}' name='attr_spell_range'/>
+                    <label>Duration:</label><input class='spellDuration' type='text' title='@{spell_duration}' name='attr_spell_duration'/>
+                    <textarea placeholder='Spell description...' title='@{spell_details}' name='attr_spell_details'></textarea>
                 </div>
             </fieldset>
         </div>
