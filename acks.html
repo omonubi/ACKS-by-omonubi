@@ -231,20 +231,20 @@
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_surprise} **Surprise Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Surprise=[[1d6cs0cf0+@{class_surprise_bonus}[class]-@{has_helm}[helm]+(@{mod_surprise}[mod1])+(?{Modifier|0}[mod2])]]}}' name='roll_surprise'> Surprise</button>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_reaction} **Reaction Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[2d6cs0cf0+@{cha_mod}[cha]+(@{mod_reaction}[mod1])+(?{Modifier|0}[mod2])]]}} {{desc=2 or less: Hostile, attacks. 3-5: Unfriendly, may attack. 6-8: Neutral, uncertain. 9-11: Indifferent, uninterested. 12+: Friendly, helpful}}' name='roll_reaction'> Reaction</button>
         <button type='roll' class='wideButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_morale} **Morale Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Roll=[[2d6cs0cf0+(@{morale}[rating])+(?{Modifier|0}[mod])]]}} {{desc=2 or less: Frightened Retreat. 3-5: Morale Faltering. 6-8: Fight On. 9-11: Advance and Pursue. 12+: Victory or Death}}' name='roll_morale'> Morale</button>
-        <input type='number' value='0' name='attr_mod_initiative'/>
-        <input type='number' value='0' name='attr_mod_surprise'/>
-        <input type='number' value='0' name='attr_mod_reaction'/>
-        <input type='number' value='0' name='attr_mod_morale'/>
+        <input type='number' value='0' title='@{mod_initiative}' name='attr_mod_initiative'/>
+        <input type='number' value='0' title='@{mod_surprise}' name='attr_mod_surprise'/>
+        <input type='number' value='0' title='@{mod_reaction}' name='attr_mod_reaction'/>
+        <input type='number' value='0' title='@{mod_morale}' name='attr_mod_morale'/>
     </div>
     <hr/>
     <div class='grid-armor'>
-        <label>Armor</label>
+        <label>Armor <span title='The armor currently being worn.'>(?)</span></label>
         <label>Bonus</label>
         <label>Shield</label>
-        <label>Helm</label>         
+        <label>Helm <span title='Check only if heavy helm.'>(?)</span></label>         
         <label>Armor Class</label>
         <label>Fighting Style Specialization</label>
-        <select name='attr_armor'>
+        <select title='@{armor}' name='attr_armor'>
             <option value='0' selected>AC 0 - Clothing Only</option>
             <option value='1'>AC 1 - Hide, Fur, Padded</option>
             <option value='2'>AC 2 - Leather, Arena</option>
@@ -253,11 +253,11 @@
             <option value='5'>AC 5 - Banded, Lamellar</option>
             <option value='6'>AC 6 - Plate</option>
         </select>
-        <input type='number' value='0' name='attr_armor_bonus'/>
-        <input type='checkbox' value='1' name='attr_has_shield'/>
-        <input type='checkbox' value='1' name='attr_has_helm'/>  
-        <input type='number' value='0' name='attr_armor_class' readonly/>
-        <select name='attr_fss'>
+        <input type='number' value='0' title='@{armor_bonus}' name='attr_armor_bonus'/>
+        <input type='checkbox' value='1' title='@{_has_shield}' name='attr_has_shield'/>
+        <input type='checkbox' value='1' title='@{_has_helm}' name='attr_has_helm'/>  
+        <input type='number' value='0' title='@{_armor_class}' name='attr_armor_class' readonly/>
+        <select title='@{fss}' name='attr_fss'>
             <option value='0' selected>None</option>
             <option value='1'>Missile Weapon (+1 Atk)</option>
             <option value='2'>Single Weapon (+1 Init)</option>
@@ -275,57 +275,57 @@
     <hr/>
     <div class='grid-attacks'>
         <label>Attack Throw:</label>
-            <input type='number' min='-9' max='12' value='10' name='attr_attack_throw'/>
+            <input type='number' min='-9' max='12' value='10' title='@{attack_throw}' name='attr_attack_throw'/>
         <label>Max Cleaves:</label>
-            <input type='number' min='0' max='14' value='0' name='attr_max_cleaves'/>
-        <label>Number of Attacks: </label>
-            <input type='text' value='1 (weapon)' name='attr_num_attacks'/>
+            <input type='number' min='0' max='14' value='0' title='@{max_cleaves}' name='attr_max_cleaves'/>
+        <label>Attack Routine: </label>
+            <input type='text' value='1 (weapon)' title='@{num_attacks}' name='attr_num_attacks'/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Melee Attacks</label>
+        <label class='span-header'>Melee Attacks <span title='@{repeating_melee}'>(?)</span></label>
         <fieldset class='repeating_melee'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(@{attk_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
-            <input type='checkbox' name='attr_melee_equip'/>
-            <input type='text' class='attackname' placeholder='Attack name...' name='attr_melee_name'/>
+            <input type='checkbox' title='@{melee_equip}' name='attr_melee_equip'/>
+            <input type='text' class='attackname' placeholder='Attack name...' title='@{melee_name}' name='attr_melee_name'/>
             <label>Dmg:</label>
-            <input class='smallWidth' type='text' name='attr_melee_damage'/>
+            <input class='smallWidth' type='text' title='@{melee_damage}' name='attr_melee_damage'/>
             <label>long</label>
-            <input type='checkbox' name='attr_melee_is_long'/>
+            <input type='checkbox' title='@{melee_is_long}' name='attr_melee_is_long'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <button type='roll' class='rollButton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
-                <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
-                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' value='1' name='attr_melee_is_dual'/>
-                <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' value='1' name='attr_melee_is_finesse'/>
-                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' value='1' name='attr_melee_is_2h'/>
-                <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
+                <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' title='@{melee_bonus}' name='attr_melee_bonus'/>
+                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' value='1' title='@{melee_is_dual}' name='attr_melee_is_dual'/>
+                <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' value='1' title='@{melee_is_finesse}' name='attr_melee_is_finesse'/>
+                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' value='1' title='@{melee_is_2h}' name='attr_melee_is_2h'/>
+                <textarea placeholder='Optional Effects description...' title='@{melee_effects}' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Missile Attacks</label>
+        <label class='span-header'>Missile Attacks <span title='@{repeating_missile}'>(?)</span></label>
         <fieldset class='repeating_missile'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
             <button type='action' class='missileButton' name='act_missile-attack'> Attack</button>
-            <input type='checkbox' name='attr_missile_equip'/>
-            <input type='text' class='attackname' placeholder='Attack name...' name='attr_missile_name'/>
+            <input type='checkbox' title='@{missile_equip}' name='attr_missile_equip'/>
+            <input type='text' class='attackname' placeholder='Attack name...' title='@{missile_name}' name='attr_missile_name'/>
             <label>Dmg:</label>
-            <input class='smallWidth' type='text' name='attr_missile_damage'/>
+            <input class='smallWidth' type='text' title='@{missile_damage}' name='attr_missile_damage'/>
             <label>Rng:</label>
-            <input class='missilerange' type='text' name='attr_missile_range'/>
+            <input class='missilerange' type='text' title='@{missile_range}' name='attr_missile_range'/>
             <label>Ammo:</label>
-            <input class='smallWidth' type='number' name='attr_missile_ammo'/>
+            <input class='smallWidth' type='number' title='@{missile_ammo}' name='attr_missile_ammo'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
                 <button type='roll' class='rollButton' value='@{whispertoggle} &{template:menu} {{title=@{banner_missiledamage} **Missile Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{missile_name}}} {{damage=[[{@{missile_damage}[wpn]+(@{missile_is_thrown}*@{damage_attr})+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_missile_damage'> Damage</button>
-                <label>Attk Bonus:</label><input type='number' value='0' name='attr_missile_bonus'/>
-                <label>thrown</label><input type='checkbox' value='1' name='attr_missile_is_thrown'/>
-                <textarea placeholder='Optional Effects description...' name='attr_missile_effects'></textarea>
+                <label>Attk Bonus:</label><input type='number' value='0' title='@{missile_bonus}' name='attr_missile_bonus'/>
+                <label>thrown</label><input type='checkbox' value='1' title='@{missile_is_thrown}' name='attr_missile_is_thrown'/>
+                <textarea placeholder='Optional Effects description...' title='@{missile_effects}' name='attr_missile_effects'></textarea>
             </div>
         </fieldset>
     </div>

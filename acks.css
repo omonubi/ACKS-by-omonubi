@@ -396,10 +396,6 @@
     width: 160px;
 }
 
-.ui-dialog .charsheet span {
-    line-height: 26px;
-    padding-top: 0px;
-}
 .ui-dialog .charsheet span.info {
     line-height: 1;
 }
