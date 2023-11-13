@@ -388,14 +388,14 @@
 
 <section class='skills'>
     <div>
-        <label class='span-header'>Proficiencies</label>
+        <label class='span-header'>Proficiencies <span title='@{repeating_skills}'>(?)</span></label>
         <fieldset class='repeating_skills'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{skill_name}**}} {{Rank=@{skill_rank}}} {{Type=@{skill_type}}} {{desc=@{skill_details}}}' name='roll_review_skill'> Review</button>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_profthrow} **Proficiency Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{skill_name}}} {{Target=[[@{skill_target}-((@{skill_rank}-1)*4)[rank]]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_skill_check'> Throw</button>
-            <input type='text' placeholder='Proficiency name...' name='attr_skill_name'/>
-            <label>Rank:</label><input type='number' min='0' max='4' value='1' name='attr_skill_rank'/>
+            <input type='text' placeholder='Proficiency name...' title='@{skill_name}' name='attr_skill_name'/>
+            <label>Rank:</label><input type='number' min='0' max='4' value='1' title='@{skill_rank}' name='attr_skill_rank'/>
             <label>Type:</label>
-                <select class='shorter' name='attr_skill_type'>
+                <select class='shorter' title='@{skill_type}' name='attr_skill_type'>
                     <option>Bonus</option>
                     <option>Class</option>
                     <option>Class Power</option>
@@ -405,24 +405,24 @@
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
                     <label class='detailslabel'>Target:</label>
-                    <input class='skillScript' type='text' name='attr_skill_target'/><br/>
-                    <textarea placeholder='Optional description...' name='attr_skill_details'></textarea>
+                    <input class='skillScript' type='text' title='@{skill_target}' name='attr_skill_target'/><br/>
+                    <textarea placeholder='Optional description...' title='@{skill_details}' name='attr_skill_details'></textarea>
                 </div>
         </fieldset>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Abilities</label>
+        <label class='span-header'>Abilities <span title='@{repeating_abilities}'>(?)</span></label>
         <fieldset class='repeating_abilities'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review @{ability_name}**}} {{Source=@{ability_source}}} {{desc=@{ability_details}}}' name='roll_review_ability'> Review</button>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_abilitythrow} **Ability Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=brown}} {{Using=@{ability_name}}} {{Target=[[@{ability_target}]]}} {{Roll=[[1d20[die]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_ability_check'> Throw</button>
-            <input type='text' placeholder='Skill name...' name='attr_ability_name'/>
-            <label>Source: </label><input type='text' name='attr_ability_source'/>
+            <input type='text' placeholder='Skill name...' title='@{ability_name}' name='attr_ability_name'/>
+            <label>Source: </label><input type='text' title='@{ability_source}' name='attr_ability_source'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <label class='detailslabel'>Target:</label><input class='skillScript' type='text' name='attr_ability_target'/><br/>
-                <textarea placeholder='Optional description...' name='attr_ability_details'></textarea>
+                <label class='detailslabel'>Target:</label><input class='skillScript' type='text' title='@{ability_target}' name='attr_ability_target'/><br/>
+                <textarea placeholder='Optional description...' title='@{ability_details}' name='attr_ability_details'></textarea>
             </div>
         </fieldset>
     </div>
