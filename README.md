@@ -124,7 +124,7 @@ This tab contains all the general information for the character, including a sum
 | Experience | *xp_next_level* | text | The amount of experience points needed by the character for next level. |
 | Age | *age* | number | The character's current age. |
 | Level | *level* | number | The character's current level. The minimum allowed is 0; the maximum is 14. Note: The sheet doesn't limit level based on class. |
-| Hit Dice | *hit_dice* | text | The character's current number of hit dice, in Roll20 /roll format. **Required** for rolling hit points. |
+| Hit Dice | *hit_dice* | text | The character's current number of hit dice, in Roll20 /roll format. Validated for proper formatting; if not, the field is cleared and highlighted. **Required** for rolling hit points. |
 | Hit Points | *roll_hit_dice* | button | Rolls the Hit Dice formula above in the Roll20 Chat window. |
 |||||
 | Attributes, Current | *str*, *int*, *wis*, *dex*, *con*, *chr*  | number | Minimum value for each is 0; maximum is 20. |

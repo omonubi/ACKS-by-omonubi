@@ -1,11 +1,5 @@
 <div class='pc'>
-<!-- RegEx for debugging
-    /\*(.*\)\1;)\*/
-    /**/$1
-    -----
-    /\*\*/(.*\)\1;)
-    /*$1*/
--->
+
 <!-- Tab Controls -->
 <div class='page-title'>
     <h1><img src='https://files.d20.io/images/365102791/eyJcpNMeNGuh5AxYBLtf1Q/original.png?16984447805'/> Adventurer Conqueror King System</h1>
@@ -36,7 +30,7 @@
 <input type='hidden' class='tabstoggle' name='attr_sheetTab' value='overview'/>
 <!-- Character Sheet -->
 <div class='overview'>
-    <div class='grid-2'>
+    <div class='grid-2column'>
         <div class='grid-overview'>
             <label>Character Name</label><input type='text' name='attr_character_fullname' />
             <label>Class</label><input type='text' name='attr_class'/>
@@ -59,7 +53,8 @@
             <label>Age</label><input type='number' name='attr_age' />
             <label>Hit Dice</label>
             <div>
-                <input class='smallWidth' type='text' name='attr_hit_dice' />
+                <input type='hidden' class='hdcheck' name='attr_isBadHDFormula'/>
+                <input class='redhd' type='text' name='attr_hit_dice' />
                 <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
             </div>
         </div>
@@ -75,32 +70,32 @@
             <input type='number' value='10' min='0' max='20' name='attr_str' />
             <input type='number' value='10' name='attr_str_max'readonly/>
             <input type='number' value='0' name='attr_str_mod' readonly />
-            <input type='checkbox' name='attr_str_pre'/>
+            <input type='checkbox' value='1' name='attr_str_pre'/>
             <label class='attrname'>Intellect:</label>
             <input type='number' value='10' min='0' max='20' name='attr_int' />
             <input type='number' value='10' name='attr_int_max'readonly/>
             <input type='number' value='0' name='attr_int_mod' readonly />
-            <input type='checkbox' name='attr_int_pre'/>
+            <input type='checkbox' value='1' name='attr_int_pre'/>
             <label class='attrname'>Will:</label>
             <input type='number' value='10' min='0' max='20' name='attr_wil' />
             <input type='number' value='10' name='attr_wil_max'readonly/>
             <input type='number' value='0' name='attr_wil_mod' readonly />
-            <input type='checkbox' name='attr_wil_pre'/>            
+            <input type='checkbox' value='1' name='attr_wil_pre'/>            
             <label class='attrname'>Dexterity:</label>
             <input type='number' value='10' min='0' max='20' name='attr_dex' />
             <input type='number' value='10' name='attr_dex_max'readonly/>
             <input type='number' value='0' name='attr_dex_mod' readonly />
-            <input type='checkbox' name='attr_dex_pre'/>
+            <input type='checkbox' value='1' name='attr_dex_pre'/>
             <label class='attrname'>Constitution:</label>
             <input type='number' value='10' min='0' max='20' name='attr_con' />
             <input type='number' value='10' name='attr_con_max'readonly/>
             <input type='number' value='0' name='attr_con_mod' readonly />
-            <input type='checkbox' name='attr_con_pre'/>
+            <input type='checkbox' value='1' name='attr_con_pre'/>
             <label class='attrname'>Charisma:</label>
             <input type='number' value='10' min='0' max='20' name='attr_cha' />
             <input type='number' value='10' name='attr_cha_max'readonly/>
             <input type='number' value='0' name='attr_cha_mod' readonly />
-            <input type='checkbox' name='attr_chr_pre'/>
+            <input type='checkbox' value='1' name='attr_chr_pre'/>
         </div>
         <div class='grid-summary'>
             <label class='span-header'>Summary Stats</label>
@@ -109,10 +104,10 @@
                 <input class='redhp' type='number' value='0' name='attr_hp'/> 
             <label>HP Max</label>
                 <input type='number' value='0' name='attr_hp_max'/>
-            <label class='redtext'>Fatigue Level</label>
+            <label>Fatigue Level</label>
                 <input type='hidden' class='fatiguecheck' name='attr_is_fatigued'/>
                 <input class='redfatigue' type='number' value='0' min='0' name='attr_fatigue'/>
-            <label class='redtext'>Bedrest Needed</label>
+            <label>Bedrest Needed</label>
                 <input type='hidden' class='bedrestcheck' name='attr_is_bedrest'/>
                 <input class='redbedrest' type='number' value='0' min='0' name='attr_bedrest'/>
             <label>Armor Class</label>
@@ -124,21 +119,21 @@
                 <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
             <label>Capacity, Max</label>
                 <input type='number' value='20' name='attr_enc_capacity' readonly/>
-            <label class='redtext'>Feet / Turn</label> 
+            <label>Feet / Turn</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
-            <label class='redtext'>Feet / Round</label> 
+            <label>Feet / Round</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
-            <label class='redtext'>Miles / Day</label> 
+            <label>Miles / Day</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='24' name='attr_miles_day' readonly/>
-            <label class='redtext'>Miles / Hour</label> 
+            <label>Miles / Hour</label> 
                 <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
                 <input class='redmove' type='number' value='0.75' name='attr_miles_hour' readonly/>
         </div>
         <hr class='spangrid'/>
-        <div class='grid-2'>
+        <div class='grid-2column'>
             <label class='span-header'>Saving Throws</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' name='attr_save_1'/>
@@ -275,9 +270,9 @@
             <div class='details'>
                 <button type='roll' class='rollButton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' name='attr_melee_bonus'/>
-                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' name='attr_melee_is_dual'/>
-                <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' name='attr_melee_is_finesse'/>
-                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' name='attr_melee_is_2h'/>
+                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' value='1' name='attr_melee_is_dual'/>
+                <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' value='1' name='attr_melee_is_finesse'/>
+                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' value='1' name='attr_melee_is_2h'/>
                 <textarea placeholder='Optional Effects description...' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
@@ -412,10 +407,10 @@
         <label>Encumbrance</label> 
         <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
         <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
-        <label class='redtext'>Feet / Turn</label> 
+        <label>Feet / Turn</label> 
             <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
             <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
-        <label class='redtext'>Feet / Round</label> 
+        <label>Feet / Round</label> 
             <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
             <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
     </div>
@@ -440,7 +435,7 @@
 </div>
 
 <div class='wealth'>
-    <div class='grid-2'>
+    <div class='grid-2column'>
         <div class='grid-currency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
             <label class='span-header'>Currency</label>
@@ -472,7 +467,7 @@
             <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
             <span></span>
         </div>
-        <div class='grid-2'>
+        <div class='grid-2column'>
             <label class='span-header'>Monthly Budget</label>
             <label>Living Standard</label>
                 <select name='attr_living_standard'>
@@ -492,7 +487,7 @@
                 <div><input type='number' value='0' name='attr_professional_income'/> gp</div>
             <hr class='spangrid'/>
             <label class='emphasis'>Monthly Balance</label>
-                <div><input type='number' value='12' name='attr_monthly_balance' readonly/> gp</div>
+                <div><input type='number' value='-12' name='attr_monthly_balance' readonly/> gp</div>
         </div>
     </div>
     <hr/>
@@ -525,14 +520,14 @@
 </div>
 
 <div class='hirelings'>
-    <div class='grid-2'>
-        <div class='grid-4'>
+    <div class='grid-2column'>
+        <div class='grid-hirelings'>
             <label>Henchmen Limit:</label> 
                 <input type='hidden' class='henchmenCheck' name='attr_henchmen_count'/>
                 <input class='limitExceeded' type='number' value='4' name='attr_henchmen_limit' readonly/> 
             <label></label><label></label>
         </div>
-        <div class='grid-4'>
+        <div class='grid-hirelings'>
             <label>Hireling Fees:</label><input type='number' value='0' name='attr_hireling_fees' readonly/>
             <label></label><label></label>
         </div>
@@ -556,7 +551,7 @@
                     <input type='text' class='hirelingtext' name='attr_henchman_class'/>
                 <label>Level:</label>
                     <input type='number' min='0' max='14' value='0' name='attr_henchman_level'/>
-                <label class='detailslabel'>Wage:</label>
+                <label class='detailslabel'>Wage (gp):</label>
                     <input class='currency' type='number' value='0' name='attr_henchman_fee' readonly/>
                 <textarea placeholder='Enter notes here...' name='attr_henchman_details'></textarea>
             </div>
@@ -584,7 +579,7 @@
                     <input type='text' class='hirelingtext' name='attr_merc_race'/>
                 <label>Quantity:</label>
                      <input type='number' min='0' value='0' name='attr_merc_number'/>
-                <label>Wage (per troop):</label>
+                <label>Wage (gp per troop):</label>
                     <input type='number' value='0' name='attr_merc_fee'/>
                 <textarea placeholder='Enter notes here...' name='attr_merc_details'></textarea>
             </div>
@@ -608,7 +603,7 @@
             <div class='details'>
                 <label>Type: </label>
                     <input type='text' class='hirelingtext' name='attr_spec_occupation'/>
-                <label>Wage:</label>
+                <label>Wage (gp):</label>
                     <input type='number' value='0' name='attr_spec_fee'/>
                 <textarea placeholder='Enter notes here...' name='attr_spec_details'></textarea>
             </div>
@@ -623,7 +618,7 @@
         <label class='span-header'>Character Background</label>
         <textarea class='background' placeholder='Enter details...' name='attr_background'></textarea>
     </div>
-    <div class='grid-4'>
+    <div class='grid-journal'>
         <div class='journalbox'>
             <label class='span-header'>Appearance</label>
             <textarea class='journalnotes' placeholder='Enter details...' name='attr_appearance'></textarea>
@@ -681,7 +676,7 @@
             <input type='number' min='0' value='120' name='attr_base_movement'/>
             <span>Sets the character's maximum base land movement speed.</span>
         <label>Encumbrance Alert</label>
-            <input type='checkbox' name='attr_enc_alert_toggle'/>
+            <input type='checkbox' value='1' name='attr_enc_alert_toggle'/>
             <span>Highlights the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
         <label>Experience % Modifier</label>
             <input type='number' value='0' name='attr_xp_modifier'/>            
@@ -735,6 +730,9 @@
 <input type='hidden' name='attr_banner_surprise' value=''/>
 
 <script type='text/worker'>
+/**************************************************
+** Global Constants
+***************************************************/
 const ATTR_SCORE_DEFAULT = 10;
 const ATTR_MELEE_MOD_DEFAULT = '@{str_mod}[str]';
 const ATTR_MELEE_MOD_FINESSE = '@{dex_mod}[dex]';
@@ -748,10 +746,13 @@ const INIT_AC = 0;
 const UPGRADE_VERSION = 1;
 const XP_BONUS_MAX = 10;
 
-/**************** sheet initialization ****************/
+/**************************************************
+** On Sheet Initialization / Opening
+***************************************************/
 on('sheet:opened',function(){
-    getAttrs(['alignment', 'upgradeVersion'], function(values) {
+    getAttrs(['alignment', 'hit_dice', 'upgradeVersion'], function(values) {
         const alignment = values.alignment;
+        const hitDice = values.hit_dice;
         const upgradeVersion = Number(values['upgradeVersion']) || -1;
         
         const output = {};
@@ -768,11 +769,16 @@ on('sheet:opened',function(){
             output['armor_class'] = INIT_AC;
         }
 
+        // Initialize the hit dice field (to ensure flagging on a new sheet)
+        output['isBadHDFormula'] = (hitDice == EMPTY_STRING) ? 1 : 0;
+
         setAttrs(output);
     });
 });
 
-/**************** helper functions ********************/
+/**************************************************
+** Sheet Helper Functions
+***************************************************/
 // global helper to retrieve repeating section item ids
 function getID(repeatingItemName) {
     const idStartPosition = repeatingItemName.indexOf('_',10) + 1;
@@ -781,7 +787,9 @@ function getID(repeatingItemName) {
     return theID;
 };
 
-/*************** tab controls ******************/
+/**************************************************
+** Tab Controls / Header
+***************************************************/
 // Select/deselect buttons
 const buttonlist = ['overview','class','spells','skills','combat','equipment','wealth','hirelings','journal','settings'];
 buttonlist.forEach(button => {
@@ -801,7 +809,6 @@ on('change:toggle_spells', function(eventInfo) {
     setAttrs(output);
 });
 
-/*************** toggle controls ****************/
 // Whisper toggle
 on('change:toggle_whisper', function(eventInfo) {
     const toggleValue = eventInfo.newValue.toString();
@@ -811,7 +818,212 @@ on('change:toggle_whisper', function(eventInfo) {
     setAttrs(output);
 });
 
-/********** Armor Class **********/
+/**************************************************
+** Overview Tab
+***************************************************/
+// Attribute Modifiers
+// Update the character's attribute modifer, by attribute.
+on('change:str change:int change:wil change:dex change:con change:cha', function(eventInfo) {
+    const theAttr = eventInfo.sourceAttribute;
+    getAttrs([theAttr], function(values) {
+        const attrValue = parseInt(values[theAttr]) || ATTR_SCORE_DEFAULT;
+        
+        const attrModifiers = [-5,-4,-3,-2,-2,-1,-1,-1,0,0,0,0,1,1,1,2,2,3,4,5]; //ACKS modifiers
+
+        const attrBonus = attrModifiers[attrValue - 1];
+
+        const output = {};
+        output[theAttr + '_mod'] = attrBonus;
+        setAttrs(output);
+    });
+});
+
+// Attribute Nominal Values
+// Copy the character's current attribute values to the Nominal (max) column.
+on('clicked:save_attrs', function(eventInfo) {
+    const theAttrs = ['str', 'int', 'wil', 'dex', 'con', 'cha'];
+    getAttrs(theAttrs, function(values) {
+
+        const output = {};
+        theAttrs.forEach((element) => {
+            console.log('value: ' + values[element]);
+            output[element + '_max'] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
+        });
+        setAttrs(output);
+    });
+});
+
+// Bedrest
+// If the character requires bedrest, highlight the field.
+on('change:bedrest', function(eventInfo) {
+    getAttrs(['bedrest'], function (values) {
+        const bedrestDays = parseInt(values.bedrest) || 0;
+
+        const output = {};
+        output['is_bedrest'] = (bedrestDays > 0 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
+// Experience Points
+// Update the character's total XP earned to-date
+on('change:repeating_experience:xp_amount change:repeating_experience:xp_bonus remove:repeating_experience', function(eventInfo) {
+    getSectionIDs('repeating_experience', function (ids) {
+        const XPFieldnames = [];
+        ids.forEach(id => {
+            XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
+            XPFieldnames.push('repeating_experience_' + id + '_xp_bonus');
+        });
+        
+        getAttrs([...XPFieldnames], function (values) {
+            let totalXP = 0;
+            const output = {};
+            ids.forEach(id => {
+                const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount']) || 0;
+                const xpBonus = parseFloat(values['repeating_experience_' + id + '_xp_bonus']) || 0;
+                totalXP += Math.floor(itemXP + (itemXP * (xpBonus / 100)));
+            });
+            output['xp'] = totalXP;
+            setAttrs(output);
+        });
+    });
+});
+
+// Experience Point Bonus
+// Calculate the character's XP bonus, based on their key attribute selection(s).
+on('change:str change:int change:wil change:dex change:con change:cha change:str_pre change:int_pre change:wil_pre change:dex_pre change:con_pre change:cha_pre change:xp_modifier', function(eventInfo) {
+    getAttrs(['str', 'int', 'wil', 'dex', 'con', 'cha', 'str_pre', 'int_pre', 'wil_pre', 'dex_pre', 'con_pre', 'cha_pre', 'xp_modifier'], function(values) {
+        const attributeValues = [parseInt(values.str) || 0,parseInt(values.int) || 0,parseInt(values.wil) || 0,parseInt(values.dex) || 0,parseInt(values.con) || 0,parseInt(values.cha) || 0];
+        const keyAttributes = [parseInt(values.str_pre) || 0,parseInt(values.int_pre) || 0,parseInt(values.wil_pre) || 0,parseInt(values.dex_pre) || 0,parseInt(values.con_pre) || 0,parseInt(values.cha_pre) || 0];
+        const theXPModifier = parseInt(values.xp_modifier) || 0;
+        
+        const output = {};
+        let theXPBonus = XP_BONUS_MAX;
+        let noKeyAttribute = 1;
+        for (var i = 0; i < 6; i++) {
+            if (keyAttributes[i] == 1) {
+                theXPBonus = Math.min(theXPBonus,(attributeValues[i] > 15 ? 10 : (attributeValues[i] > 12 ? 5 : 0)));
+                noKeyAttribute = 0;
+            }
+        }
+        output['xp_bonus'] = (noKeyAttribute == 1 ? 0 : (theXPBonus + theXPModifier));
+        setAttrs(output); 
+    });
+});
+
+// Fatigue
+// If the character is fatigued, highlight the field.
+on('change:fatigue', function(eventInfo) {
+    getAttrs(['fatigue'], function (values) {
+        const fatigueLevel = Number(values['fatigue']) || 0;
+
+        const output = {};
+        output['is_fatigued'] = (fatigueLevel > 0 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
+// Hit Dice
+// Validate a character's hit dice formula.
+// If invalid, highlight the field.
+on('change:hit_dice', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['hit_dice'], function(values) {
+            const validatedFormula = validateHitDice(values.hit_dice);
+
+            const output = {};
+            output['hit_dice'] = validatedFormula;        
+            output['isBadHDFormula'] = (validatedFormula == EMPTY_STRING ? 1 : 0);
+            setAttrs(output);
+        });
+    }
+});
+
+// Helper function to validate hit dice formula.
+// If invalid, return an empty string.
+function validateHitDice(theHDFormula) {
+    const theDelimiter = theHDFormula.toLowerCase().indexOf(DIE_DELIMITER);
+    if (theDelimiter == -1) return EMPTY_STRING; // bad string    
+    const numberOfHitDice = theHDFormula.substr(0,theDelimiter);
+    if (isNaN(numberOfHitDice)) return EMPTY_STRING; // bad string
+    const restOfString = theHDFormula.substr(theDelimiter + 1);
+    const theOperator = restOfString.indexOf('+') > -1 ? restOfString.indexOf('+') : restOfString.indexOf('-') > -1 ? restOfString.indexOf('-') : -1;
+    const numSides = theOperator != -1 ? restOfString.substr(0,theOperator) : restOfString;
+    if (isNaN(numSides)) return EMPTY_STRING; // bad string
+    const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
+    if (isNaN(modValue)) return EMPTY_STRING; // bad string  
+    
+    // All tests passed = set hit die and temp HD
+    const output = {};
+    output['hit_die'] = DIE_DELIMITER + numSides; 
+    output['temp_hd'] = numberOfHitDice; 
+    setAttrs(output);
+
+    return theHDFormula;
+};
+
+// Hit Points
+// SIf the character's hit points are below 1, highlight the field.
+on('change:hp', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['hp', 'hp_max'], function(values) {
+            const theHP = parseInt(values['hp']) || 0;
+            const theHPMax = parseInt(values['hp_max']) || 0;
+
+            const validatedHP = theHP > theHPMax ? theHPMax : theHP;
+
+            const output = {};
+            output['hp_is_below_one'] = (validatedHP < 1 ? 1 : 0);
+            setAttrs(output);
+        });
+    }
+});
+
+// Saving Throws
+// Update the character's saving throws based on ACKS II
+//  save progressions and a shorthand value
+//  provided by the player
+on('change:monster_save', function(eventInfo) {
+    getAttrs(['monster_save'], function(values) {
+        const saveString = values['monster_save'];
+        
+        // ACKS II saving throw schedules, by level (incl. level 0)
+        const clericSaves = [14,15,16,17,18,13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9,6,3,9,6,8,6,3,9,6,8,5,2,8,5,7,5,2,8,5,7,4,1,7,4,6,4,1,7,4,6];
+        const dwarvenvaultguardSaves = [14,15,16,17,18,9,10,12,12,13,8,9,11,11,12,8,9,11,11,12,7,8,10,10,11,6,7,9,9,10,6,7,9,9,10,5,6,8,8,9,4,5,7,7,8,4,5,7,7,8,3,4,6,6,7,2,3,5,5,6,2,3,5,5,6,1,2,4,4,5,0,1,3,3,4,0,1,3,3,4,-1,0,2,2,3,-2,-1,1,1,2,-2,-1,1,1,2,-3,-2,0,0,1,-4,-3,-1,-1,0];
+        const elvenspellsword = [14,15,16,17,18,12,14,15,16,16,11,13,14,15,15,11,13,14,15,15,10,12,13,14,14,9,11,12,13,13,9,11,12,13,13,8,10,11,12,12,7,9,10,11,11,7,9,10,11,11,6,8,9,10,10,5,7,8,9,9,5,7,8,9,9,4,6,7,8,8,3,5,6,7,7,3,5,6,7,7,2,4,5,6,6,1,3,4,5,5,1,3,4,5,5,0,2,3,4,4,-1,1,2,3,3];
+        const fighterSaves = [14,15,16,17,18,13,14,15,16,17,12,13,14,15,16,12,13,14,15,16,11,12,13,14,15,10,11,12,13,14,10,11,12,13,14,9,10,11,12,13,8,9,10,11,12,8,9,10,11,12,7,8,9,10,11,6,7,8,9,10,6,7,8,9,10,5,6,7,8,9,4,5,6,7,8,4,5,6,7,8,3,4,5,6,7,2,3,4,5,6,2,3,4,5,6,1,2,3,4,5,0,1,2,3,4];
+        const mageSaves = [14,15,16,17,18,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8,9,9,11,7,8,8,8,10,6,7,8,8,10,6,7,8,8,10,6,7,7,7,9,5,6,7,7,9,5,6];
+        const thiefSaves = [14,15,16,17,18,13,13,13,14,15,13,13,13,14,15,12,12,12,13,14,12,12,12,13,14,11,11,11,12,13,11,11,11,12,13,10,10,10,11,12,10,10,10,11,12,9,9,9,10,11,9,9,9,10,11,8,8,8,9,10,8,8,8,9,10,7,7,7,8,9,7,7,7,8,9,6,6,6,7,8,6,6,6,7,8,5,5,5,6,7,5,5,5,6,7,4,4,4,5,6,4,4,4,5,6];
+
+        const saveClass = saveString.substr(0,1);
+        const saveLevel = Math.max(Math.min(Number(saveString.substr(1,2)) || 0,20),0);
+
+        let appliedSaves = [];
+        switch (saveClass) { 
+            case 'C': appliedSaves = clericSaves; break;
+            case 'D': appliedSaves = dwarvenvaultguardSaves; break;
+            case 'E': appliedSaves = elvenspellsword; break;
+            case 'F': appliedSaves = fighterSaves; break;
+            case 'M': appliedSaves = mageSaves; break;
+            case 'T': appliedSaves = thiefSaves; break;
+            default: return;
+        }
+        
+        const output = {};
+        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1)] = appliedSaves[(saveLevel) * 5 + i]};
+        setAttrs(output);
+    });
+});
+
+/**************************************************
+** Class Tab
+***************************************************/
+
+/**************************************************
+** Combat Tab
+***************************************************/
+// Armor Class
+// Update the character's armor class.
 on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus change:dex_mod change:fss_shield', function(eventInfo) {
     getAttrs(['armor', 'armor_bonus', 'has_shield', 'class_ac_bonus', 'dex_mod', 'fss_shield'], function(values) {
         const theArmorIndex = parseInt(values.armor) || 0; // base AC
@@ -829,212 +1041,8 @@ on('change:armor change:armor_bonus change:has_shield change:class_ac_bonus chan
     });
 });
 
-/********** Attributes **********/
-// Calculate and set an attribute modifier
-on('change:str change:int change:wil change:dex change:con change:cha', function(eventInfo) {
-    const theAttr = eventInfo.sourceAttribute;
-    getAttrs([theAttr], function(values) {
-        const attrValue = parseInt(values[theAttr]) || ATTR_SCORE_DEFAULT;
-        
-        const attrModifiers = [-5,-4,-3,-2,-2,-1,-1,-1,0,0,0,0,1,1,1,2,2,3,4,5]; //ACKS modifiers
-
-        const attrBonus = attrModifiers[attrValue - 1];
-
-        const output = {};
-        output[theAttr + '_mod'] = attrBonus;
-        setAttrs(output);
-    });
-});
-
-// Copy all current attribute values to Nominal (max) column
-on('clicked:save_attrs', function(eventInfo) {
-    const theAttrs = ['str', 'int', 'wil', 'dex', 'con', 'cha'];
-    getAttrs(theAttrs, function(values) {
-
-        const output = {};
-        theAttrs.forEach((element) => {
-            console.log('value: ' + values[element]);
-            output[element + '_max'] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
-        });
-        setAttrs(output);
-    });
-});
-
-/************* Bedrest *****************/
-on('change:bedrest', function(eventInfo) {
-    updateBedrest();
-});
-
-function updateBedrest() {
-    /*console.log('updateBedrest()');*/
-
-    getAttrs(['bedrest'], function (values) {
-        const bedrestDays = Number(values['bedrest']) || 0;
-
-        const output = {};
-        output['is_bedrest'] = (bedrestDays > 0 ? 1 : 0);
-        setAttrs(output);
-    });
-}
-
-/********** Cost of Living ****************/
-on('change:living_standard change:hireling_fees change:professional_income', function(eventInfo) {
-    updateCostOfLiving();
-});
-
-function updateCostOfLiving() {
-    /*console.log('updateCostOfLiving()');*/
-    getAttrs(['living_standard', 'hireling_fees', 'professional_income'], function(values) {
-        const theLivingStandard = Number(values['living_standard']) || 0;
-        const theHirelingFees = Number(values['hireling_fees']) || 0;
-        const theProIncome = Number(values['professional_income']) || 0;
-        
-        const totalMonthlyFees = 0 - (theLivingStandard + theHirelingFees) + theProIncome;
-
-        const output = {};
-        output['monthly_balance'] = totalMonthlyFees;
-        setAttrs(output);
-    });
-};
-
-/********** Currency Claim **********/
-on('clicked:claim_currency', function(eventInfo) {
-    claimCurrency();
-});
-
-function claimCurrency() {
-    /*console.log('claimCurrency()');*/
-    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
-        const coinsGold = Number(values['gold']) || 0;
-        const coinsSilver = Number(values['silver']) || 0;
-        const coinsCopper = Number(values['copper']) || 0;
-        const coinsElectrum = Number(values['electrum']) || 0;
-        const coinsPlatinum = Number(values['platinum']) || 0;
-        const coinsGoldFound = Number(values['gold_found']) || 0;
-        const coinsSilverFound = Number(values['silver_found']) || 0;
-        const coinsCopperFound = Number(values['copper_found']) || 0;
-        const coinsElectrumFound = Number(values['electrum_found']) || 0;
-        const coinsPlatinumFound = Number(values['platinum_found']) || 0;
-
-        const output = {};
-        output['gold'] = coinsGold + coinsGoldFound;
-        output['silver'] = coinsSilver + coinsSilverFound;
-        output['copper'] = coinsCopper + coinsCopperFound;
-        output['electrum'] = coinsElectrum + coinsElectrumFound;
-        output['platinum'] = coinsPlatinum + coinsPlatinumFound;
-        output['gold_found'] = output['silver_found'] = output['copper_found'] = output['electrum_found'] = output['platinum_found'] = 0;
-        setAttrs(output);
-    });
-};
-
-/********** Currency Wealth **********/
-on('change:gold change:silver change:copper change:electrum change:platinum change:gold_bank change:silver_bank change:copper_bank change:electrum_bank change:platinum_bank', function(eventInfo) {
-    updateCurrencyWealth();
-});
-
-function updateCurrencyWealth() {
-    /*console.log('updateCurrencyWealth()');*/
-    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_bank', 'silver_bank', 'copper_bank', 'electrum_bank', 'platinum_bank'], function(values) {
-        const coinsGold = Number(values['gold']) || 0;
-        const coinsSilver = Number(values['silver']) || 0;
-        const coinsCopper = Number(values['copper']) || 0;
-        const coinsElectrum = Number(values['electrum']) || 0;
-        const coinsPlatinum = Number(values['platinum']) || 0;
-        const coinsGoldBank = Number(values['gold_bank']) || 0;
-        const coinsSilverBank = Number(values['silver_bank']) || 0;
-        const coinsCopperBank = Number(values['copper_bank']) || 0;
-        const coinsElectrumBank = Number(values['electrum_bank']) || 0;
-        const coinsPlatinumBank = Number(values['platinum_bank']) || 0;
-        
-        const totalWealth = 
-            Math.floor((
-            coinsGold*100 +  
-            coinsSilver*10 + 
-            coinsCopper +
-            coinsElectrum*50 +
-            coinsPlatinum*500 +
-            coinsGoldBank*100 + 
-            coinsSilverBank*10 + 
-            coinsCopperBank +
-            coinsElectrumBank*50 +
-            coinsPlatinumBank*500
-            )/100); // Convert all to copper, then back to gold
-
-        const output = {};
-        output['currency_wealth'] = totalWealth;
-        setAttrs(output);
-    });
-};
-
-/********** Currency Weight **********/
-on('change:gold change:silver change:copper change:electrum change:platinum change:gold_found change:silver_found change:copper_found change:electrum_found change:platinum_found', function(eventInfo) {
-    updateCurrencyWeight();
-});
-
-function updateCurrencyWeight() {
-    /*console.log('updateCurrencyWeight()');*/
-    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
-        const coinsGold = Number(values['gold']) || 0;
-        const coinsSilver = Number(values['silver']) || 0;
-        const coinsCopper = Number(values['copper']) || 0;
-        const coinsElectrum = Number(values['electrum']) || 0;
-        const coinsPlatinum = Number(values['platinum']) || 0;
-        const coinsGoldFound = Number(values['gold_found']) || 0;
-        const coinsSilverFound = Number(values['silver_found']) || 0;
-        const coinsCopperFound = Number(values['copper_found']) || 0;
-        const coinsElectrumFound = Number(values['electrum_found']) || 0;
-        const coinsPlatinumFound = Number(values['platinum_found']) || 0;
-        
-        const totalCoins = 
-            coinsGold + 
-            coinsSilver + 
-            coinsCopper + 
-            coinsElectrum + 
-            coinsPlatinum +
-            coinsGoldFound + 
-            coinsSilverFound + 
-            coinsCopperFound + 
-            coinsElectrumFound + 
-            coinsPlatinumFound;
-        const totalWeight = totalCoins * COIN_WEIGHT;
-
-        const output = {};
-        output['currency_weight'] = totalWeight;
-        setAttrs(output);
-    });
-};
-
-/********** Currency, Found XP **********/
-on('change:gold_found change:silver_found change:copper_found change:electrum_found change:platinum_found', function(eventInfo) {
-    updateCurrencyXP();
-});
-
-function updateCurrencyXP() {
-    /*console.log('updateCurrencyXP()');*/
-    getAttrs(['gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
-        const coinsGoldFound = Number(values['gold_found']) || 0;
-        const coinsSilverFound = Number(values['silver_found']) || 0;
-        const coinsCopperFound = Number(values['copper_found']) || 0;
-        const coinsElectrumFound = Number(values['electrum_found']) || 0;
-        const coinsPlatinumFound = Number(values['platinum_found']) || 0;
-        
-        const totalXP = 
-            Math.floor((
-            coinsGoldFound*100 +
-            coinsSilverFound*10 + 
-            coinsCopperFound +
-            coinsElectrumFound*50 +
-            coinsPlatinumFound*500
-            )/100); // Convert all to copper, then back to gold
-
-        const output = {};
-        output['currency_xp'] = totalXP;
-        setAttrs(output);
-    });
-};
-
-/********** Damage Attribute **********/
-// Changes the attribute modifier added to damage rolls
+// Damage Attribute
+// Changes the character's attribute modifier applied to their damage rolls.
 on('change:select_damage_attr', function(eventInfo) {
     getAttrs(['select_damage_attr'], function(values) {
         const theNewAttribute = values['select_damage_attr'];
@@ -1045,19 +1053,135 @@ on('change:select_damage_attr', function(eventInfo) {
     });
 });
 
-/********** Encumbrance **********/
-on('change:currency_weight change:items_weight change:enc_capacity change:move_thresh1 change:enc_alert_toggle', function(eventInfo) {
-    updateEncumbrance();
+// Dual Wield
+// Toggle the character's attack's dual wield attack modifier.
+on('change:repeating_melee:melee_is_dual', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_melee_melee_is_dual'], function(values) {
+            const meleeIsDual = parseInt(values.repeating_melee_melee_is_dual) || 0;
+
+            const output = {};
+            output['repeating_melee_attk_is_dual'] = meleeIsDual;
+            output['repeating_melee_melee_is_2h'] = 0;
+            setAttrs(output);
+        });
+    }
 });
 
-function updateEncumbrance() {
-    /*console.log('updateEncumbrance()');*/
+// Fighting Style Specialization
+// Update the character's ACKS FSS state.
+on('change:fss', function(eventInfo) {
+    getAttrs(['fss'], function(values) {
+        const fssID = parseInt(values.fss) || 0; // selected FSS option
+
+        const output = {};
+        output['fss_missile'] = (fssID == 1 ? 1 : 0);
+        output['fss_single'] = (fssID == 2 ? 1 : 0);
+        output['fss_dual'] = (fssID == 3 ? 2 : 1);
+        output['fss_two'] = (fssID == 4 ? 1 : 0);
+        output['fss_shield'] = (fssID == 5 ? 1 : 0);
+        setAttrs(output);
+    });
+});
+
+// Missile Attack
+// Roll the character's missile attack.
+// Subtract 1 from the attack's ammunition field.
+on('clicked:repeating_missile:missile-attack', () => {
+    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo'], function(values) {
+        const missileName = values.repeating_missile_missile_name;
+        const missileBonus = parseInt(values.repeating_missile_missile_bonus) || 0;
+        const missileDamage = values.repeating_missile_missile_damage;
+        const missileIsThrown = parseInt(values.repeating_missile_missile_is_thrown) || 0;
+        const missileEffects = values.repeating_missile_missile_effects;
+        const missileAmmo = parseInt(values.repeating_missile_missile_ammo) || 0;
+
+        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Ammo Remaining=${missileAmmo - 1}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{${missileDamage}+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=${missileEffects}}}`, roll => {  
+          finishRoll(roll.rollId);
+        });
+
+        const output = {};
+        output['repeating_missile_missile_ammo'] = missileAmmo - 1;
+        setAttrs(output); 
+    });
+});
+
+// Two-handed Wield
+// Toggle the character's attack's two-handed wield damage modifier, if any.
+on('change:repeating_melee:melee_is_2h', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_melee_melee_is_2h'], function(values) {
+            const meleeIs2h = parseInt(values.repeating_melee_melee_is_2h) || 0;
+
+            const output = {};
+            output['repeating_melee_melee_is_dual'] = 0;
+            output['repeating_melee_attk_is_2h'] = meleeIs2h;
+            setAttrs(output);
+        });
+    }
+});
+
+// Weapon Finesse
+// Toggle the character's Weapon Finesse attribute modifier.
+on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
+    getAttrs(['repeating_melee_melee_is_finesse'], function(values) {
+        const isFinesse = parseInt(values.repeating_melee_melee_is_finesse) || 0;
+        
+        const output = {};
+        output['repeating_melee_melee_attk_attr'] = (isFinesse == true ? ATTR_MELEE_MOD_FINESSE : ATTR_MELEE_MOD_DEFAULT);
+        setAttrs(output); 
+    });
+});
+
+/**************************************************
+** Spells Tab
+***************************************************/
+// Spell Slots, Reset
+// Reset the character's daily casting slots remaining.
+on('clicked:reset_spells', function(eventInfo) {
+    getAttrs(['spells_1_max', 'spells_2_max', 'spells_3_max', 'spells_4_max', 'spells_5_max', 'spells_6_max', 'spells_7_max', 'spells_8_max', 'spells_9_max'], function(values) {
+        const spells1 = parseInt(values.spells_1_max) || 0;
+        const spells2 = parseInt(values.spells_2_max) || 0;
+        const spells3 = parseInt(values.spells_3_max) || 0;
+        const spells4 = parseInt(values.spells_4_max) || 0;
+        const spells5 = parseInt(values.spells_5_max) || 0;
+        const spells6 = parseInt(values.spells_6_max) || 0;
+        const spells7 = parseInt(values.spells_7_max) || 0;
+        const spells8 = parseInt(values.spells_8_max) || 0;
+        const spells9 = parseInt(values.spells_9_max) || 0;
+
+        const output = {};
+        output['spells_1'] = spells1;
+        output['spells_2'] = spells2;
+        output['spells_3'] = spells3;
+        output['spells_4'] = spells4;
+        output['spells_5'] = spells5;
+        output['spells_6'] = spells6;
+        output['spells_7'] = spells7;
+        output['spells_8'] = spells8;
+        output['spells_9'] = spells9;
+        setAttrs(output);
+    });
+});
+
+/**************************************************
+** Skills Tab
+***************************************************/
+
+/**************************************************
+** Equip Tab
+***************************************************/
+// Encumbrance
+// Update the character's total encumbrance.
+// Highlight field if total exceeds min. threshold and setting is on.
+// Update the character's currency capacity remaining.
+on('change:currency_weight change:items_weight change:enc_capacity change:move_thresh1 change:enc_alert_toggle', function(eventInfo) {
     getAttrs(['currency_weight', 'items_weight', 'enc_capacity', 'move_thresh1', 'enc_alert_toggle'], function(values) {
-        const theCurrencyWeight = Number(values['currency_weight']) || 0; // Currency weight
-        const theItemWeight = Number(values['items_weight']) || 0; // Items weight
-        const theMaxCapacity = Number(values['enc_capacity']) || 0; // Used to determine alert status
-        const theThresholdLimit = Number(values['move_thresh1']) || 0; // Used to determine alert status
-        const encAlertToggle = (values['enc_alert_toggle'] == 'on' ? true : false); // Used to determine alert status
+        const theCurrencyWeight = parseFloat(values.currency_weight) || 0;
+        const theItemWeight = parseFloat(values.items_weight) || 0;
+        const theMaxCapacity = parseInt(values.enc_capacity) || 0;
+        const theThresholdLimit = parseInt(values.move_thresh1) || 0;
+        const encAlertToggle = parseInt(values.enc_alert_toggle) || 0;
         
         const theEncumbrance = theCurrencyWeight + theItemWeight;
         const theCurrencyCapacity = (theMaxCapacity - theEncumbrance) / COIN_WEIGHT;
@@ -1068,280 +1192,27 @@ function updateEncumbrance() {
         output['currency_capacity'] = Math.ceil(theCurrencyCapacity);
         setAttrs(output);
     });
-};
-
-/********** Encumbrance Capacity **********/
-on('change:str_mod change:base_enc', function(eventInfo) {
-    updateEncumbranceCapacity();
 });
 
-function updateEncumbranceCapacity() {
-    /*console.log('updateEncumbranceCapacity()');*/
+// Encumbrance Capacity
+// Update the character's encumbrance capacity.
+on('change:str_mod change:base_enc', function(eventInfo) {
     getAttrs(['str_mod', 'base_enc'], function(values) {
-        const strMod = Number(values['str_mod']) || 0;
-        const baseEnc = Number(values['base_enc']) || 0;
+        const strMod = parseInt(values.str_mod) || 0;
+        const baseEnc = parseInt(values.base_enc) || 0;
 
-        let encCapacity = baseEnc + strMod;
+        const encCapacity = baseEnc + strMod;
 
         const output = {};
         output['enc_capacity'] = encCapacity;
         setAttrs(output);
     });
-};
-
-/********** Experience Points **********/
-on('change:repeating_experience:xp_amount change:repeating_experience:xp_bonus remove:repeating_experience', function(eventInfo) {
-    updateTotalExperience();
 });
 
-function updateTotalExperience() {
-    /*console.log('updateTotalExperience()');*/
-
-    getSectionIDs('repeating_experience', function (ids) {
-        const XPFieldnames = [];
-        ids.forEach(id => {
-            XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
-            XPFieldnames.push('repeating_experience_' + id + '_xp_bonus');
-        });
-        
-        getAttrs([...XPFieldnames], function (values) {
-            let totalXP = 0;
-            const output = {};
-            ids.forEach(id => {
-                const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount'])||0;
-                const xpBonus = parseFloat(values['repeating_experience_' + id + '_xp_bonus'])||0;
-                totalXP += Math.floor(itemXP + (itemXP * (xpBonus / 100)));
-            });
-            output['xp'] = totalXP;
-            setAttrs(output);
-        });
-    });
-};
-
-/************* Fatigue *****************/
-on('change:fatigue', function(eventInfo) {
-    updateFatigue();
-});
-
-function updateFatigue() {
-    /*console.log('updateFatigue()');*/
-
-    getAttrs(['fatigue'], function (values) {
-        const fatigueLevel = Number(values['fatigue']) || 0;
-
-        const output = {};
-        output['is_fatigued'] = (fatigueLevel > 0 ? 1 : 0);
-        setAttrs(output);
-    });
-}
-
-
-/********** Fees **********/
-on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(eventInfo) {
-    updateHenchmenFees();
-});
-
-function updateHenchmenFees() {
-    /*console.log('updateHenchmenFees()');*/
-
-    getSectionIDs('repeating_henchmen', function (ids) {
-        const feeHenchFieldnames = [];
-        ids.forEach(id => {
-            feeHenchFieldnames.push('repeating_henchmen_' + id + '_henchman_fee');
-        });
-        
-        getAttrs([...feeHenchFieldnames], function (values) {
-            let totalFees = 0;
-            const output = {};
-            ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_henchmen_' + id + '_henchman_fee'])||0;
-                totalFees += itemFee;
-            });
-            output['henchmen_fees'] = totalFees;
-            setAttrs(output);
-        });
-    });
-};
-
-on('change:repeating_mercenaries:merc_fee change:repeating_mercenaries:merc_number remove:repeating_mercenaries', function(eventInfo) {
-    updateMercenaryFees();
-});
-
-function updateMercenaryFees() {
-    /*console.log('updateMercenaryFees()');*/
-
-    getSectionIDs('repeating_mercenaries', function (ids) {
-        const feeMercFieldnames = [];
-        const numMercFieldnames = [];
-        ids.forEach(id => {
-            feeMercFieldnames.push('repeating_mercenaries' + id + '_merc_fee');
-            numMercFieldnames.push('repeating_mercenaries' + id + '_merc_number');
-        });
-        
-        getAttrs([...feeMercFieldnames, ...numMercFieldnames], function (values) {
-            let totalFees = 0;
-            const output = {};
-            ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_mercenaries' + id + '_merc_fee'])||0;
-                const itemNum = parseFloat(values['repeating_mercenaries' + id + '_merc_number'])||0;                
-                totalFees += itemFee * itemNum;
-            });
-            output['mercenary_fees'] = totalFees;
-            setAttrs(output);
-        });
-    });
-};
-
-on('change:repeating_specialists:spec_fee remove:repeating_specialists', function(eventInfo) {
-    updateSpecialistFees();
-});
-
-function updateSpecialistFees() {
-    /*console.log('updateSpecialistFees()');*/
-
-    getSectionIDs('repeating_specialists', function (ids) {
-        const feeSpecFieldnames = [];
-        ids.forEach(id => {
-            feeSpecFieldnames.push('repeating_specialists' + id + '_spec_fee');
-        });
-        
-        getAttrs([...feeSpecFieldnames], function (values) {
-            let totalFees = 0;
-            const output = {};
-            ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_specialists' + id + '_spec_fee'])||0;
-                totalFees += itemFee;
-            });
-            output['specialist_fees'] = totalFees;
-            setAttrs(output);
-        });
-    });
-};
-
-on('change:henchmen_fees change:mercenary_fees change:specialist_fees', function(eventInfo) {
-    updateHirelingFees();
-});
-
-function updateHirelingFees() {
-    /*console.log('updateHirelingFees()');*/
-        
-    getAttrs(['henchmen_fees', 'mercenary_fees', 'specialist_fees'], function (values) {
-        const theHenchmenFees = Number(values['henchmen_fees']) || 0;
-        const theMercenaryFees = Number(values['mercenary_fees']) || 0;
-        const theSpecialistFees = Number(values['specialist_fees']) || 0;
-
-        const output = {};
-        output['hireling_fees'] = theHenchmenFees + theMercenaryFees + theSpecialistFees;
-        setAttrs(output);
-    });
-};
-
-/********** Henchmen Limit **********/
-on('change:cha_mod', function(eventInfo) {
-    updateHenchmenLimit();
-});
-
-function updateHenchmenLimit() {
-    /*console.log('updateHenchmenLimit()');*/
-    getAttrs(['cha_mod'], function(values) {
-        const chaMod = Number(values['cha_mod']) || 0;
-        
-        const output = {};
-        output['henchmen_limit'] = HENCHMEN_LIMIT + chaMod;
-        setAttrs(output);
-    });
-};
-
-/********** Henchmen Limit Check **********/
-on('change:repeating_henchmen:henchman_name remove:repeating_henchmen change:henchmen_limit', function(eventInfo) {
-    countHenchmen();
-});
-
-function countHenchmen() {
-    /*console.log('countHenchmen()');*/
-    getAttrs(['henchmen_limit'], function(values) {
-        const henchmenLimit = Number(values['henchmen_limit']) || HENCHMEN_LIMIT;
-
-        getSectionIDs('repeating_henchmen', function (ids) {
-            const numHenchmen = ids.length;
-            
-            const output = {};
-            output['henchmen_count'] = (numHenchmen > henchmenLimit ? 1: 0);
-            setAttrs(output);
-        });
-    });
-};
-
-/********** Henchman Fee **************/
-on('change:repeating_henchmen:henchman_level', function(eventInfo) {
-    updateHenchmanFee(getID(eventInfo.sourceAttribute), eventInfo.newValue);
-});
-
-function updateHenchmanFee(theRowId, theLevel) {
-    /*console.log('updateHenchmanFee(' + theRowId + ',' + theLevel + ')');*/
-
-    const henchmenFees = [12,25,50,100,200,400,800,1600,3000,7250,12000,32000,50000,135000,350000];
-    
-    const output = {};
-    output['repeating_henchmen_' + theRowId + '_henchman_fee'] = henchmenFees[theLevel];
-    setAttrs(output);
-};
-
-/********** Hit Die, Set **********/
-on('change:hit_dice', function(eventInfo) {
-    if (eventInfo.sourceType == "player") {
-        getAttrs(['hit_dice'], function(values) {
-            const output = {};
-            output['hit_dice'] = validateHitDice(values['hit_dice']); 
-            setAttrs(output);
-        });
-    }
-});
-
-function validateHitDice(theHitDice) {
-    /*console.log('validateHitDice(' + theHitDice + ')');*/
-
-    const theDelimiter = theHitDice.toLowerCase().indexOf(DIE_DELIMITER);
-    if (theDelimiter == -1) return EMPTY_STRING; // bad string    
-    const numberOfHitDice = theHitDice.substr(0,theDelimiter);
-    if (isNaN(numberOfHitDice)) return EMPTY_STRING; // bad string
-    const restOfString = theHitDice.substr(theDelimiter + 1);
-    const theOperator = restOfString.indexOf('+') > -1 ? restOfString.indexOf('+') : restOfString.indexOf('-') > -1 ? restOfString.indexOf('-') : -1;
-    const numSides = theOperator != -1 ? restOfString.substr(0,theOperator) : restOfString;
-    if (isNaN(numSides)) return EMPTY_STRING; // bad string
-    const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
-    if (isNaN(modValue)) return EMPTY_STRING; // bad string  
-    
-    // All tests passed = set hit die and temp HD
-    const output = {};
-    output['hit_die'] = DIE_DELIMITER + numSides; 
-    output['temp_hd'] = numberOfHitDice; 
-    setAttrs(output);
-
-    return theHitDice;
-};
-
-/********** Hit Point Check/Validation **********/
-on('change:hp', function(eventInfo) {
-    if (eventInfo.sourceType == "player") validateHitPoints(); 
-});
-
-function validateHitPoints() {
-    /*console.log('validateHitPoints()');*/
-    getAttrs(['hp', 'hp_max'], function(values) {
-        const theHP = parseInt(values['hp']) || 0;
-        const theHPMax = parseInt(values['hp_max']) || 0;
-
-        const validatedHP = theHP > theHPMax ? theHPMax : theHP;
-
-        const output = {};
-        //output['hp'] = validatedHP;
-        output['hp_is_below_one'] = (validatedHP < 1 ? 1 : 0);
-        setAttrs(output);
-    });
-};
-
-/********** Items **********/
+// Encumbrance, Items
+// Update the character's item encumbrance whenever an item is...
+//  added, removed, equipped, unequipped,
+//  the count is changed, or its unit weight has changed
 on('change:repeating_items:item_name change:repeating_items:item_weight change:repeating_items:item_count change:repeating_items:item_equipped remove:repeating_items', function(eventInfo) {
     if (eventInfo.sourceType == "player") updateItemEncumbrance(
         'repeating_items', 
@@ -1352,13 +1223,13 @@ on('change:repeating_items:item_name change:repeating_items:item_weight change:r
         );
 });
 
+// Helper function to compute item encumbrance weight.
 function updateItemEncumbrance(
     repeatingName, 
     encPropName,
     countPropName,
     equippedPropName,
     outputName) {
-    /*console.log('updateItemEncumbrance(' + repeatingName + ', ' + encPropName + ', ' + countPropName + ', ' + outputName + ')');*/
     getSectionIDs(repeatingName, function (ids) {
         const encFieldnames = [];
         const countFieldnames = [];
@@ -1385,96 +1256,16 @@ function updateItemEncumbrance(
     });
 };
 
-/************* Melee Attacks ****************/
-// Toggle the dual wield attack modifier
-on('change:repeating_melee:melee_is_dual', function(eventInfo) {
-    if (eventInfo.sourceType == "player") {
-        getAttrs(['repeating_melee_melee_is_dual'], function(values) {
-            const meleeIsDual = (values['repeating_melee_melee_is_dual'] == 'on' ? 1 : 0);
-
-            const output = {};
-            output['repeating_melee_attk_is_dual'] = meleeIsDual;
-            output['repeating_melee_melee_is_2h'] = 0;
-            setAttrs(output);
-        });
-    }
-});
-
-// Fighting Style Specialization changed
-on('change:fss', function(eventInfo) {
-    getAttrs(['fss'], function(values) {
-        const fssID = Number(values['fss']) || 0; // selected FSS option
-
-        const output = {};
-        output['fss_missile'] = (fssID == 1 ? 1 : 0);
-        output['fss_single'] = (fssID == 2 ? 1 : 0);
-        output['fss_dual'] = (fssID == 3 ? 2 : 1);
-        output['fss_two'] = (fssID == 4 ? 1 : 0);
-        output['fss_shield'] = (fssID == 5 ? 1 : 0);
-        setAttrs(output);
-    });
-});
-
-// Toggle the 2-handed modifier
-on('change:repeating_melee:melee_is_2h', function(eventInfo) {
-    if (eventInfo.sourceType == "player") {
-        getAttrs(['repeating_melee_melee_is_2h'], function(values) {
-            const meleeIs2h = (values['repeating_melee_melee_is_2h'] == 'on' ? 1 : 0);
-
-            const output = {};
-            output['repeating_melee_melee_is_dual'] = 0;
-            output['repeating_melee_attk_is_2h'] = meleeIs2h;
-            setAttrs(output);
-        });
-    }
-});
-
-// Toggle the Weapon Finesse attribute modifier
-on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
-    getAttrs(['repeating_melee_melee_is_finesse'], function(values) {
-        const isFinesse = (values['repeating_melee_melee_is_finesse'] == 'on' ? true : false);
-        
-        const output = {};
-        output['repeating_melee_melee_attk_attr'] = (isFinesse == true ? ATTR_MELEE_MOD_FINESSE : ATTR_MELEE_MOD_DEFAULT);
-        setAttrs(output); 
-    });
-});
-
-/************ Missile Attacks ****************/
-on('clicked:repeating_missile:missile-attack', () => {
-    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo'], function(values) {
-        const missileName = values.repeating_missile_missile_name;
-        const missileBonus = parseInt(values.repeating_missile_missile_bonus) || 0;
-        const missileDamage = values.repeating_missile_missile_damage;
-        const missileIsThrown = parseInt(values.repeating_missile_missile_is_thrown) || 0;
-        const missileEffects = values.repeating_missile_missile_effects;
-        const missileAmmo = parseInt(values.repeating_missile_missile_ammo) || 0;
-
-        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Ammo Remaining=${missileAmmo - 1}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{${missileDamage}+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=${missileEffects}}}`, roll => {  
-          finishRoll(roll.rollId);
-        });
-
-        const output = {};
-        output['repeating_missile_missile_ammo'] = missileAmmo - 1;
-        setAttrs(output); 
-    });
-  });
-
-
-/********** Movement Speed **********/
+// Movement Speed
+// Update the character's movement speed and related stats.
 on('change:enc_capacity change:encumbrance change:base_movement change:move_thresh1 change:move_thresh2 change:move_thresh3', function(eventInfo) {
-    updateMovementSpeed();
-});
-
-function updateMovementSpeed() {
-    /*console.log('updateMovementSpeed()');*/
     getAttrs(['enc_capacity', 'encumbrance', 'base_movement', 'move_thresh1', 'move_thresh2', 'move_thresh3'], function(values) {
-        const encCapacity = Number(values['enc_capacity']) || 0; // how much can be carried?
-        const theEncumbrance = Number(values['encumbrance']) || 0; // how much is being carried?
-        const movementBase = Number(values['base_movement']) || 0; // base movement
-        const moveThresh1 = Number(values['move_thresh1']) || 0; // movement threshold
-        const moveThresh2 = Number(values['move_thresh2']) || 0; // movement threshold
-        const moveThresh3 = Number(values['move_thresh3']) || 0; // movement threshold
+        const encCapacity = parseInt(values.enc_capacity) || 0;
+        const theEncumbrance = parseInt(values.encumbrance) || 0;
+        const movementBase = parseInt(values.base_movement) || 0;
+        const moveThresh1 = parseInt(values.move_thresh1) || 0;
+        const moveThresh2 = parseInt(values.move_thresh2) || 0;
+        const moveThresh3 = parseInt(values.move_thresh3) || 0;
 
         const moveThresholds = [(moveThresh1 + .01),(moveThresh2 + .01),(moveThresh3 + .01),encCapacity+.01,999];
         const moveThresholdIndex = moveThresholds.findIndex(element => theEncumbrance < element);
@@ -1491,103 +1282,255 @@ function updateMovementSpeed() {
         output['move_is_zero'] = isMovementZero;
         setAttrs(output);
     });
-};
-
-/********** Saving Throws (Monsters) **********/
-on('change:monster_save', function(eventInfo) {
-    updateMonsterSaves();
 });
 
-function updateMonsterSaves() {
-    console.log('updateMonsterSaves()');
-    getAttrs(['monster_save'], function(values) {
-        const saveString = values['monster_save'];
+/**************************************************
+** Wealth Tab
+***************************************************/
+// Cost of Living
+// Update the character's total monthly cost of living.
+on('change:living_standard change:hireling_fees change:professional_income', function(eventInfo) {
+    getAttrs(['living_standard', 'hireling_fees', 'professional_income'], function(values) {
+        const theLivingStandard = parseInt(values.living_standard) || 0;
+        const theHirelingFees = parseInt(values.hireling_fees) || 0;
+        const theProIncome = parseInt(values.professional_income) || 0;
         
-        const clericSaves = [14,15,16,17,18,13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9,6,3,9,6,8,6,3,9,6,8,5,2,8,5,7,5,2,8,5,7,4,1,7,4,6,4,1,7,4,6];
-        const dwarvenvaultguardSaves = [14,15,16,17,18,9,10,12,12,13,8,9,11,11,12,8,9,11,11,12,7,8,10,10,11,6,7,9,9,10,6,7,9,9,10,5,6,8,8,9,4,5,7,7,8,4,5,7,7,8,3,4,6,6,7,2,3,5,5,6,2,3,5,5,6,1,2,4,4,5,0,1,3,3,4,0,1,3,3,4,-1,0,2,2,3,-2,-1,1,1,2,-2,-1,1,1,2,-3,-2,0,0,1,-4,-3,-1,-1,0];
-        const elvenspellsword = [14,15,16,17,18,12,14,15,16,16,11,13,14,15,15,11,13,14,15,15,10,12,13,14,14,9,11,12,13,13,9,11,12,13,13,8,10,11,12,12,7,9,10,11,11,7,9,10,11,11,6,8,9,10,10,5,7,8,9,9,5,7,8,9,9,4,6,7,8,8,3,5,6,7,7,3,5,6,7,7,2,4,5,6,6,1,3,4,5,5,1,3,4,5,5,0,2,3,4,4,-1,1,2,3,3];
-        const fighterSaves = [14,15,16,17,18,13,14,15,16,17,12,13,14,15,16,12,13,14,15,16,11,12,13,14,15,10,11,12,13,14,10,11,12,13,14,9,10,11,12,13,8,9,10,11,12,8,9,10,11,12,7,8,9,10,11,6,7,8,9,10,6,7,8,9,10,5,6,7,8,9,4,5,6,7,8,4,5,6,7,8,3,4,5,6,7,2,3,4,5,6,2,3,4,5,6,1,2,3,4,5,0,1,2,3,4];
-        const mageSaves = [14,15,16,17,18,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8,9,9,11,7,8,8,8,10,6,7,8,8,10,6,7,8,8,10,6,7,7,7,9,5,6,7,7,9,5,6];
-        const thiefSaves = [14,15,16,17,18,13,13,13,14,15,13,13,13,14,15,12,12,12,13,14,12,12,12,13,14,11,11,11,12,13,11,11,11,12,13,10,10,10,11,12,10,10,10,11,12,9,9,9,10,11,9,9,9,10,11,8,8,8,9,10,8,8,8,9,10,7,7,7,8,9,7,7,7,8,9,6,6,6,7,8,6,6,6,7,8,5,5,5,6,7,5,5,5,6,7,4,4,4,5,6,4,4,4,5,6];
+        const totalMonthlyFees = 0 - (theLivingStandard + theHirelingFees) + theProIncome;
 
-        const saveClass = saveString.substr(0,1);
-        const saveLevel = Math.max(Math.min(Number(saveString.substr(1,2)) || 0,20),0);
-
-        let appliedSaves = [];
-        switch (saveClass) { 
-            case 'C': appliedSaves = clericSaves; break;
-            case 'D': appliedSaves = dwarvenvaultguardSaves; break;
-            case 'E': appliedSaves = elvenspellsword; break;
-            case 'F': appliedSaves = fighterSaves; break;
-            case 'M': appliedSaves = mageSaves; break;
-            case 'T': appliedSaves = thiefSaves; break;
-            default: return;
-        }
-        
         const output = {};
-        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1)] = appliedSaves[(saveLevel) * 5 + i]};
+        output['monthly_balance'] = totalMonthlyFees;
         setAttrs(output);
     });
-};
-
-/********** Spells Reset **********/
-on('clicked:reset_spells', function(eventInfo) {
-    updateSpellcasting();
 });
 
-function updateSpellcasting() {
-    /*console.log('updateSpellcasting()');*/
-    getAttrs(['spells_1_max', 'spells_2_max', 'spells_3_max', 'spells_4_max', 'spells_5_max', 'spells_6_max', 'spells_7_max', 'spells_8_max', 'spells_9_max'], function(values) {
-        const spells1 = Number(values['spells_1_max']) || 0;
-        const spells2 = Number(values['spells_2_max']) || 0;
-        const spells3 = Number(values['spells_3_max']) || 0;
-        const spells4 = Number(values['spells_4_max']) || 0;
-        const spells5 = Number(values['spells_5_max']) || 0;
-        const spells6 = Number(values['spells_6_max']) || 0;
-        const spells7 = Number(values['spells_7_max']) || 0;
-        const spells8 = Number(values['spells_8_max']) || 0;
-        const spells9 = Number(values['spells_9_max']) || 0;
+// Currency, Encumbrance
+// Update the character's encumbrance from non-Banked currency.
+on('change:gold change:silver change:copper change:electrum change:platinum change:gold_found change:silver_found change:copper_found change:electrum_found change:platinum_found', function(eventInfo) {
+    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
+        const coinsGold = parseInt(values.gold) || 0;
+        const coinsSilver = parseInt(values.silver) || 0;
+        const coinsCopper = parseInt(values.copper) || 0;
+        const coinsElectrum = parseInt(values.electrum) || 0;
+        const coinsPlatinum = parseInt(values.platinum) || 0;
+        const coinsGoldFound = parseInt(values.gold_found) || 0;
+        const coinsSilverFound = parseInt(values.silver_found) || 0;
+        const coinsCopperFound = parseInt(values.copper_found) || 0;
+        const coinsElectrumFound = parseInt(values.electrum_found) || 0;
+        const coinsPlatinumFound = parseInt(values.platinum_found) || 0;
+        
+        const totalCoins = 
+            coinsGold + 
+            coinsSilver + 
+            coinsCopper + 
+            coinsElectrum + 
+            coinsPlatinum +
+            coinsGoldFound + 
+            coinsSilverFound + 
+            coinsCopperFound + 
+            coinsElectrumFound + 
+            coinsPlatinumFound;
+        const totalWeight = totalCoins * COIN_WEIGHT;
 
         const output = {};
-        output['spells_1'] = spells1;
-        output['spells_2'] = spells2;
-        output['spells_3'] = spells3;
-        output['spells_4'] = spells4;
-        output['spells_5'] = spells5;
-        output['spells_6'] = spells6;
-        output['spells_7'] = spells7;
-        output['spells_8'] = spells8;
-        output['spells_9'] = spells9;
+        output['currency_weight'] = totalWeight;
         setAttrs(output);
     });
-};
-
-/********** XP Bonus **********/
-on('change:str change:int change:wil change:dex change:con change:cha change:str_pre change:int_pre change:wil_pre change:dex_pre change:con_pre change:cha_pre change:xp_modifier', function(eventInfo) {
-    calculateXPBonus();
 });
 
-function calculateXPBonus() {
-    /*console.log('calculateXPBonus()');*/
-    getAttrs(['str', 'int', 'wil', 'dex', 'con', 'cha', 'str_pre', 'int_pre', 'wil_pre', 'dex_pre', 'con_pre', 'cha_pre', 'xp_modifier'], function(values) {
-        const attributes = [values['str'],values['int'],values['wil'],values['dex'],values['con'],values['cha']];
-        const prerequisites = [values['str_pre'],values['int_pre'],values['wil_pre'],values['dex_pre'],values['con_pre'],values['cha_pre']];
-        const theModifier = Number(values['xp_modifier']) || 0;
+// Currency, New > On Hand
+// Move currency values from the character's New column to their On Hand column.
+// Then, recalculate the character's total On Hand values.
+on('clicked:claim_currency', function(eventInfo) {
+    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_found', 'silver_found', 'copper_found', 'electrum_found', 'platinum_found'], function(values) {
+        const coinsGold = parseInt(values.gold) || 0;
+        const coinsSilver = parseInt(values.silver) || 0;
+        const coinsCopper = parseInt(values.copper) || 0;
+        const coinsElectrum = parseInt(values.electrum) || 0;
+        const coinsPlatinum = parseInt(values.platinum) || 0;
+        const coinsGoldFound = parseInt(values.gold_found) || 0;
+        const coinsSilverFound = parseInt(values.silver_found) || 0;
+        const coinsCopperFound = parseInt(values.copper_found) || 0;
+        const coinsElectrumFound = parseInt(values.electrum_found) || 0;
+        const coinsPlatinumFound = parseInt(values.platinum_found) || 0;
+
+        const output = {};
+        output['gold'] = coinsGold + coinsGoldFound;
+        output['silver'] = coinsSilver + coinsSilverFound;
+        output['copper'] = coinsCopper + coinsCopperFound;
+        output['electrum'] = coinsElectrum + coinsElectrumFound;
+        output['platinum'] = coinsPlatinum + coinsPlatinumFound;
+        output['gold_found'] = output['silver_found'] = output['copper_found'] = output['electrum_found'] = output['platinum_found'] = 0;
+        setAttrs(output);
+    });
+});
+
+// Wealth, Currency
+// Update the charater's total Wealth from currency.
+on('change:gold change:silver change:copper change:electrum change:platinum change:gold_bank change:silver_bank change:copper_bank change:electrum_bank change:platinum_bank', function(eventInfo) {
+    getAttrs(['gold', 'silver', 'copper', 'electrum', 'platinum', 'gold_bank', 'silver_bank', 'copper_bank', 'electrum_bank', 'platinum_bank'], function(values) {
+        const coinsGold = parseInt(values.gold) || 0;
+        const coinsSilver = parseInt(values.silver) || 0;
+        const coinsCopper = parseInt(values.copper) || 0;
+        const coinsElectrum = parseInt(values.electrum) || 0;
+        const coinsPlatinum = parseInt(values.platinum) || 0;
+        const coinsGoldBank = parseInt(values.gold_bank) || 0;
+        const coinsSilverBank = parseInt(values.silver_bank) || 0;
+        const coinsCopperBank = parseInt(values.copper_bank) || 0;
+        const coinsElectrumBank = parseInt(values.electrum_bank) || 0;
+        const coinsPlatinumBank = parseInt(values.platinum_bank) || 0;
+        
+        const totalWealth = 
+            Math.floor((
+            coinsGold*100 +  
+            coinsSilver*10 + 
+            coinsCopper +
+            coinsElectrum*50 +
+            coinsPlatinum*500 +
+            coinsGoldBank*100 + 
+            coinsSilverBank*10 + 
+            coinsCopperBank +
+            coinsElectrumBank*50 +
+            coinsPlatinumBank*500
+            )/100); // Convert all to copper, then back to gold
+
+        const output = {};
+        output['currency_wealth'] = totalWealth;
+        setAttrs(output);
+    });
+});
+
+/**************************************************
+** Hirelings Tab
+***************************************************/
+// Henchmen Fees
+// Calculate the character's monthly henchmen fees.
+on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(eventInfo) {
+    getSectionIDs('repeating_henchmen', function (ids) {
+        const feeHenchFieldnames = [];
+        ids.forEach(id => {
+            feeHenchFieldnames.push('repeating_henchmen_' + id + '_henchman_fee');
+        });
+        
+        getAttrs([...feeHenchFieldnames], function (values) {
+            let totalFees = 0;
+            const output = {};
+            ids.forEach(id => {
+                const itemFee = parseFloat(values['repeating_henchmen_' + id + '_henchman_fee'])||0;
+                totalFees += itemFee;
+            });
+            output['henchmen_fees'] = totalFees;
+            setAttrs(output);
+        });
+    });
+});
+
+// Recalculate a character's henchman monthly fee, based on the henchman's level
+on('change:repeating_henchmen:henchman_level', function(eventInfo) {
+    const theLevel = eventInfo.newValue;
+    const theRowId = getID(eventInfo.sourceAttribute);
+    const henchmenFees = [12,25,50,100,200,400,800,1600,3000,7250,12000,32000,50000,135000,350000]; // Fee schedule, by level
+    
+    const output = {};
+    output['repeating_henchmen_' + theRowId + '_henchman_fee'] = henchmenFees[theLevel];
+    setAttrs(output);
+});
+
+// Henchmen Limit
+// Calculate the character's henchmen limit.
+on('change:cha_mod', function(eventInfo) {
+    getAttrs(['cha_mod'], function(values) {
+        const chaMod = parseInt(values.cha_mod) || 0;
         
         const output = {};
-        let theBonus = XP_BONUS_MAX;
-        let noPrereq = 1;
-        for (var i = 0; i < 6; i++) {
-            if (prerequisites[i] == 'on') {
-                theBonus = Math.min(theBonus,(attributes[i] > 15 ? 10 : (attributes[i] > 12 ? 5 : 0)));
-                noPrereq = 0;
-            }
-        }
-        output['xp_bonus'] = (noPrereq == 1 ? 0 : (theBonus + theModifier));
-        setAttrs(output); 
+        output['henchmen_limit'] = HENCHMEN_LIMIT + chaMod;
+        setAttrs(output);
     });
-};
+});
 
+// If the character's number of henchmen exceed their limit, highlight the field.
+on('change:repeating_henchmen:henchman_name remove:repeating_henchmen change:henchmen_limit', function(eventInfo) {
+    getAttrs(['henchmen_limit'], function(values) {
+        const henchmenLimit = parseInt(values.henchmen_limit) || HENCHMEN_LIMIT;
+
+        getSectionIDs('repeating_henchmen', function (ids) {
+            const numHenchmen = ids.length;
+            
+            const output = {};
+            output['henchmen_count'] = (numHenchmen > henchmenLimit ? 1: 0);
+            setAttrs(output);
+        });
+    });
+});
+
+// Hireling Fees
+// Calculate the character's total monthly hireling fees.
+// (Henchmen, mercenaries, and specialists.)
+on('change:henchmen_fees change:mercenary_fees change:specialist_fees', function(eventInfo) {
+    getAttrs(['henchmen_fees', 'mercenary_fees', 'specialist_fees'], function (values) {
+        const theHenchmenFees = Number(values['henchmen_fees']) || 0;
+        const theMercenaryFees = Number(values['mercenary_fees']) || 0;
+        const theSpecialistFees = Number(values['specialist_fees']) || 0;
+
+        const output = {};
+        output['hireling_fees'] = theHenchmenFees + theMercenaryFees + theSpecialistFees;
+        setAttrs(output);
+    });
+});
+
+// Mercenary Fees
+// Calculate the character's monthly mercenary fees.
+on('change:repeating_mercenaries:merc_fee change:repeating_mercenaries:merc_number remove:repeating_mercenaries', function(eventInfo) {
+    getSectionIDs('repeating_mercenaries', function (ids) {
+        const feeMercFieldnames = [];
+        const numMercFieldnames = [];
+        ids.forEach(id => {
+            feeMercFieldnames.push('repeating_mercenaries' + id + '_merc_fee');
+            numMercFieldnames.push('repeating_mercenaries' + id + '_merc_number');
+        });
+        
+        getAttrs([...feeMercFieldnames, ...numMercFieldnames], function (values) {
+            let totalFees = 0;
+            const output = {};
+            ids.forEach(id => {
+                const itemFee = parseFloat(values['repeating_mercenaries' + id + '_merc_fee'])||0;
+                const itemNum = parseFloat(values['repeating_mercenaries' + id + '_merc_number'])||0;                
+                totalFees += itemFee * itemNum;
+            });
+            output['mercenary_fees'] = totalFees;
+            setAttrs(output);
+        });
+    });
+});
+
+// Specialist Fees
+// Calculate the character's monthly specialist fees.
+on('change:repeating_specialists:spec_fee remove:repeating_specialists', function(eventInfo) {
+    getSectionIDs('repeating_specialists', function (ids) {
+        const feeSpecFieldnames = [];
+        ids.forEach(id => {
+            feeSpecFieldnames.push('repeating_specialists' + id + '_spec_fee');
+        });
+        
+        getAttrs([...feeSpecFieldnames], function (values) {
+            let totalFees = 0;
+            const output = {};
+            ids.forEach(id => {
+                const itemFee = parseFloat(values['repeating_specialists' + id + '_spec_fee'])||0;
+                totalFees += itemFee;
+            });
+            output['specialist_fees'] = totalFees;
+            setAttrs(output);
+        });
+    });
+});
+
+/**************************************************
+** Journal Tab
+***************************************************/
+
+/**************************************************
+** Settings Tab
+***************************************************/
 </script>
 
 <rolltemplate class="sheet-rolltemplate-custom">

@@ -19,21 +19,12 @@
 }
 
 /**************** Grid Layouts ****************/
-.ui-dialog .charsheet .grid-2 {
+.ui-dialog .charsheet .grid-2column {
     align-items: center;
     display: grid;
     column-gap: 10px;
     grid-template-columns:  [first] repeat(2, 1fr) [last];
     justify-content: start;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-4 {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
-    justify-items: center;
     row-gap: 5px;
     width: 100%;
 }
@@ -74,7 +65,9 @@
     justify-self: end;
 }
 .ui-dialog .charsheet .grid-currency,
-.ui-dialog .charsheet .grid-encounter-buttons {
+.ui-dialog .charsheet .grid-encounter-buttons,
+.ui-dialog .charsheet .grid-hirelings,
+.ui-dialog .charsheet .grid-journal {
     align-items: center;
     display: grid;
     column-gap: 10px;
@@ -326,7 +319,7 @@
   -moz-appearance: textfield;
 }
 .ui-dialog .charsheet input.xpdescription {
-    width: 40%;
+    width: 30%;
 }
 
 .ui-dialog .charsheet  label {
@@ -562,13 +555,18 @@
 .ui-dialog .charsheet span.orangeEnc,
 .ui-dialog .charsheet span.redbedrest,
 .ui-dialog .charsheet span.redfatigue,
+.ui-dialog .charsheet input.redhd,
 .ui-dialog .charsheet span.redhp,
 .ui-dialog .charsheet span.redmove,
 .ui-dialog .charsheet .limitExceeded {
-    color: black;
+    color: saddlebrown;
+}
+.ui-dialog .charsheet input.redhd {
+    width: 60px;
 }
 .ui-dialog .charsheet input.bedrestcheck[value='1'] ~ .redbedrest,
 .ui-dialog .charsheet input.fatiguecheck[value='1'] ~ .redfatigue,
+.ui-dialog .charsheet input.hdcheck[value='1'] ~ .redhd,
 .ui-dialog .charsheet input.hpcheck[value='1'] ~ .redhp,
 .ui-dialog .charsheet input.movecheck[value='1'] ~ .redmove,
 .ui-dialog .charsheet input.henchmenCheck[value='1'] ~ .limitExceeded {
