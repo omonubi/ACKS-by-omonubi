@@ -431,30 +431,30 @@
 
 <section class='equipment'>
     <div class='grid-encumbrance'>
-        <label>Capacity, Max</label> <input type='number' value='20' name='attr_enc_capacity' readonly/>
+        <label>Capacity, Max</label> <input type='number' value='20' title='@{enc_capacity}' name='attr_enc_capacity' readonly/>
         <label>Encumbrance</label> 
         <input type='hidden' class='encOverFive' name='attr_enc_over_five'/>
-        <input class='orangeEnc' type='number' value='0' name='attr_encumbrance' readonly />
+        <input class='orangeEnc' type='number' value='0' title='@{encumbrance}' name='attr_encumbrance' readonly />
         <label>Feet / Turn</label> 
             <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-            <input class='redmove' type='number' value='120' name='attr_move_turn' readonly/> 
+            <input class='redmove' type='number' value='120' title='@{move_turn}' name='attr_move_turn' readonly/> 
         <label>Feet / Round</label> 
             <input type='hidden' class='movecheck' name='attr_move_is_zero'/>
-            <input class='redmove' type='number' value='40' name='attr_move_round' readonly/>
+            <input class='redmove' type='number' value='40' title='@{move_round}' name='attr_move_round' readonly/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Equipment</label>
+        <label class='span-header'>Equipment <span title='@{repeating_items}'>(?)</span></label>
         <input class='toggle-show' type='checkbox' name='attr_show_equipment' checked/> show/hide
         <div class='details'>
             <fieldset class='repeating_items'>
-                <input type='text' placeholder='Item name...' name='attr_item_name'/>
-                <label>#</label><input class='itemCount' type='number' min='0' value='1' name='attr_item_count'/>
-                <label>stone</label><input class='itemWeight' type='number' min='0' value='0.16' step='.01' name='attr_item_weight'/>
-                <label>value</label><input class='itemValue' type='number' min='0' name='attr_item_value'/>
-                <label>equipped</label><input type='checkbox' value='1' name='attr_item_equipped' checked />
+                <input type='text' placeholder='Item name...' title='@{item_name}' name='attr_item_name'/>
+                <label>#</label><input class='itemCount' type='number' min='0' value='1' title='@{item_count}' name='attr_item_count'/>
+                <label>stone</label><input class='itemWeight' type='number' min='0' value='0.16' step='.01' title='@{item_weight}' name='attr_item_weight'/>
+                <label>value</label><input class='itemValue' type='number' min='0' title='@{item_value}' name='attr_item_value'/>
+                <label>equipped</label><input type='checkbox' value='1' title='@{item_equipped}' name='attr_item_equipped' checked />
                 <label>more...</label><input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'><textarea placeholder='Optional description...' name='attr_item_details'></textarea></div>
+                <div class='details'><textarea placeholder='Optional description...' title='@{item_details}' name='attr_item_details'></textarea></div>
             </fieldset>
             <input type='hidden' value='0' name='attr_items_weight'/>
         </div>
@@ -467,38 +467,38 @@
         <div class='grid-currency'>
             <input type='hidden' value='0' name='attr_currency_weight'/>
             <label class='span-header'>Currency</label>
-            <label></label><label>On Hand</label><label>Banked</label><label>New</label>  
-            <label>PP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_platinum'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_platinum_bank'/>
-                <input class='currency' type='number' value='0' name='attr_platinum_found'/>
-            <label>GP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_gold'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_gold_bank'/>
-                <input class='currency' type='number' value='0' name='attr_gold_found'/>
-            <label>EP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_electrum'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_electrum_bank'/>
-                <input class='currency' type='number' value='0' name='attr_electrum_found'/>
-            <label>SP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_silver'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_silver_bank'/>
-                <input class='currency' type='number' value='0' name='attr_silver_found'/>
-            <label>CP</label>
-                <input class='currency' type='number' value='0' min='0' name='attr_copper'/>
-                <input class='currency' type='number' value='0' min='0' name='attr_copper_bank'/>
-                <input class='currency' type='number' value='0' name='attr_copper_found'/>
+            <label></label><label>On Hand</label><label>Banked</label><label>New <span title='Use this to add/remove coins from On Hand column.'>(?)</span></label>  
+            <label>PP <span title='=5gp'>(?)</span></label>
+                <input class='currency' type='number' value='0' min='0' title='@{platinum}' name='attr_platinum'/>
+                <input class='currency' type='number' value='0' min='0' title='@{platinum_bank}' name='attr_platinum_bank'/>
+                <input class='currency' type='number' value='0' title='@{platinum_found}' name='attr_platinum_found'/>
+            <label>GP <span title='=1gp'>(?)</span></label>
+                <input class='currency' type='number' value='0' min='0' title='@{gold}' name='attr_gold'/>
+                <input class='currency' type='number' value='0' min='0' title='@{gold_bank}' name='attr_gold_bank'/>
+                <input class='currency' type='number' value='0' title='@{gold_found}' name='attr_gold_found'/>
+            <label>EP <span title='=1/2gp'>(?)</span></label>
+                <input class='currency' type='number' value='0' min='0' title='@{electrum}' name='attr_electrum'/>
+                <input class='currency' type='number' value='0' min='0' title='@{electrum_bank}' name='attr_electrum_bank'/>
+                <input class='currency' type='number' value='0' title='@{electrum_found}' name='attr_electrum_found'/>
+            <label>SP <span title='=1/10gp'>(?)</span></label>
+                <input class='currency' type='number' value='0' min='0' title='@{silver}' name='attr_silver'/>
+                <input class='currency' type='number' value='0' min='0' title='@{silver_bank}' name='attr_silver_bank'/>
+                <input class='currency' type='number' value='0' title='@{silver_found}' name='attr_silver_found'/>
+            <label>CP <span title='=1/100gp'>(?)</span></label>
+                <input class='currency' type='number' value='0' min='0' title='@{copper}' name='attr_copper'/>
+                <input class='currency' type='number' value='0' min='0' title='@{copper_bank}' name='attr_copper_bank'/>
+                <input class='currency' type='number' value='0' title='@{copper_found}' name='attr_copper_found'/>
             <label></label><label>capacity</label><label>wealth</label>
-            <button class='actionButton' type='action' name='act_claim_currency'>Claim</button>
+            <button class='actionButton' type='action' title='Click to move coins from New to On Hand.' name='act_claim_currency'>Claim</button>
             <span></span>
-            <input class='currency' type='number' value='0' name='attr_currency_capacity' readonly/>
-            <input class='currency' type='number' value='0' name='attr_currency_wealth' readonly/>
+            <input class='currency' type='number' value='0' title='@{currency_capacity}' name='attr_currency_capacity' readonly/>
+            <input class='currency' type='number' value='0' title='@{currency_wealth}' name='attr_currency_wealth' readonly/>
             <span></span>
         </div>
         <div class='grid-2column'>
             <label class='span-header'>Monthly Budget</label>
             <label>Living Standard (Level)</label>
-                <select name='attr_living_standard'>
+                <select title='@{living_standard}' name='attr_living_standard'>
                     <option value='1'>Wretched</option>
                     <option value='3'>Meager</option>
                     <option value='12' selected>Adequate (1)</option>
@@ -510,29 +510,29 @@
                     <option value='80000'>Lavishly Opulent (13-14)</option>
                 </select>
             <label>Hireling Fees</label>
-                <div><input type='number' value='0' name='attr_hireling_fees' readonly/> gp</div>
+                <div><input type='number' value='0' title='@{hireling_fees}' name='attr_hireling_fees' readonly/> gp</div>
             <label>Professional Income</label>
-                <div><input type='number' value='0' name='attr_professional_income'/> gp</div>
+                <div><input type='number' value='0' title='@{professional_income}' name='attr_professional_income'/> gp</div>
             <hr class='spangrid'/>
             <label class='emphasis'>Monthly Balance</label>
-                <div><input type='number' value='-12' name='attr_monthly_balance' readonly/> gp</div>
+                <div><input type='number' value='-12' title='@{monthly_balance}' name='attr_monthly_balance' readonly/> gp</div>
         </div>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Passive Investments</label>
+        <label class='span-header'>Passive Investments <span title='@{repeating_investments}'>(?)</span></label>
         <input class='toggle-show' type='checkbox' name='attr_show_investments' checked/> show/hide
         <div class='details'>
             <fieldset class='repeating_investments'>
-                <label>Amount</label><input class='currency' type='number' min='0' name='attr_investment_amount'/>
+                <label>Amount</label><input class='currency' type='number' min='0' title='@{investment_amount}' name='attr_investment_amount'/>
                 <label>Type</label>
-                    <select class='shorter' name='attr_investment_type'>
+                    <select class='shorter' title='@{investment_type}' name='attr_investment_type'>
                         <option value='1'>Buisiness Establishment</option>
                         <option value='2'>Commercial Investment</option>
                         <option value='3'>Money Lending</option>
                     </select>
                 <label>Level of Risk</label>
-                    <select class='shorter' name='attr_investment_risk'>
+                    <select class='shorter' title='@{investment_risk}' name='attr_investment_risk'>
                         <option value='1'>Safe (0.25% / mo.)</option>
                         <option value='2'>Cautious (0.5% / mo.)</option>
                         <option value='3'>Balanced (1% / mo.)</option>
@@ -540,7 +540,7 @@
                         <option value='5'>Perilous (9% / mo.)</option>
                     </select>
                 <label>more...</label><input type='checkbox' class='toggle-show'/><br/>
-                <div class='details'><textarea placeholder='Investment details...' name='attr_investment_details'></textarea></div>
+                <div class='details'><textarea placeholder='Investment details...' title='@{investment_details}' name='attr_investment_details'></textarea></div>
             </fieldset>
         </div>
     </div>
