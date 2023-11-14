@@ -816,6 +816,26 @@ function getID(repeatingItemName) {
     return theID;
 };
 
+// Validates a dice formula.
+// If validation fails, return an empty string.
+// A valid dice formula is [num]d[num][+/1][num].
+// E.G. 2d6, 1d4-1, 9d8+2, 40d3, etc.
+function validateDieFormula(theDieFormula) {
+    const theDelimiter = theDieFormula.toLowerCase().indexOf(DIE_DELIMITER);
+    if (theDelimiter == -1) return EMPTY_STRING; // bad string    
+    const numberOfHitDice = theDieFormula.substr(0,theDelimiter);
+    if (isNaN(numberOfHitDice)) return EMPTY_STRING; // bad string
+    const restOfString = theDieFormula.substr(theDelimiter + 1);
+    const theOperator = restOfString.indexOf('+') > -1 ? restOfString.indexOf('+') : restOfString.indexOf('-') > -1 ? restOfString.indexOf('-') : -1;
+    const numSides = theOperator != -1 ? restOfString.substr(0,theOperator) : restOfString;
+    if (isNaN(numSides)) return EMPTY_STRING; // bad string
+    const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
+    if (isNaN(modValue)) return EMPTY_STRING; // bad string  
+    
+    // All tests passed
+    return theDieFormula;
+};
+
 /**************************************************
 ** Tab Controls / Header
 ***************************************************/
@@ -955,40 +975,34 @@ on('change:fatigue', function(eventInfo) {
 // Hit Dice
 // Validate a character's hit dice formula.
 // If invalid, highlight the field.
+// If valid, save the number of HD for future use.
 on('change:hit_dice', function(eventInfo) {
     if (eventInfo.sourceType == "player") {
         getAttrs(['hit_dice'], function(values) {
-            const validatedFormula = validateHitDice(values.hit_dice);
+            const validatedFormula = validateDieFormula(values.hit_dice);
 
             const output = {};
-            output['hit_dice'] = validatedFormula;        
-            output['isBadHDFormula'] = (validatedFormula == EMPTY_STRING ? 1 : 0);
+            output['hit_dice'] = validatedFormula; 
+            if (validatedFormula == EMPTY_STRING) {
+                output['isBadHDFormula'] = 1;
+                output['numHD'] = 0;
+            } else {
+                output['isBadHDFormula'] = 0;
+                output['numHD'] = getNumHitDice(validatedFormula);
+            }
             setAttrs(output);
         });
     }
 });
 
-// Helper function to validate hit dice formula.
-// If invalid, return an empty string.
-function validateHitDice(theHDFormula) {
+// Helper to return just the number of hit dice.
+// Assumes that the die formula has already been validated!
+// (See validateDieFormula() for more details.)
+function getNumHitDice(theHDFormula) {
     const theDelimiter = theHDFormula.toLowerCase().indexOf(DIE_DELIMITER);
-    if (theDelimiter == -1) return EMPTY_STRING; // bad string    
-    const numberOfHitDice = theHDFormula.substr(0,theDelimiter);
-    if (isNaN(numberOfHitDice)) return EMPTY_STRING; // bad string
-    const restOfString = theHDFormula.substr(theDelimiter + 1);
-    const theOperator = restOfString.indexOf('+') > -1 ? restOfString.indexOf('+') : restOfString.indexOf('-') > -1 ? restOfString.indexOf('-') : -1;
-    const numSides = theOperator != -1 ? restOfString.substr(0,theOperator) : restOfString;
-    if (isNaN(numSides)) return EMPTY_STRING; // bad string
-    const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
-    if (isNaN(modValue)) return EMPTY_STRING; // bad string  
-    
-    // All tests passed = set number of hit dice and return the validated formula.
-    const output = {};
-    output['numHD'] = numberOfHitDice; 
-    setAttrs(output);
 
-    return theHDFormula;
-};
+    return theHDFormula.substr(0,theDelimiter);
+}
 
 // Hit Points
 // SIf the character's hit points are below 1, highlight the field.
