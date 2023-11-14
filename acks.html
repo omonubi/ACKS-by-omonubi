@@ -552,88 +552,88 @@
         <div class='grid-hirelings'>
             <label>Henchmen Limit:</label> 
                 <input type='hidden' class='henchmenCheck' name='attr_henchmen_count'/>
-                <input class='limitExceeded' type='number' value='4' name='attr_henchmen_limit' readonly/> 
+                <input class='limitExceeded' type='number' value='4' title='@{henchmen_limit}' name='attr_henchmen_limit' readonly/> 
             <label></label><label></label>
         </div>
         <div class='grid-hirelings'>
-            <label>Hireling Fees:</label><input type='number' value='0' name='attr_hireling_fees' readonly/>
+            <label>Hireling Fees:</label><input type='number' value='0' title='@{hireling_fees}' name='attr_hireling_fees' readonly/>
             <label></label><label></label>
         </div>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Henchmen</label>
+        <label class='span-header'>Henchmen <span title='@{repeating_henchmen}'>(?)</span></label>
         <fieldset class='repeating_henchmen'>
             <label>Name:</label>
-                <input type='text' class='hirelingtext' name='attr_henchman_name'/>
+                <input type='text' class='hirelingtext' title='@{henchman_name}' name='attr_henchman_name'/>
             <label class='detailslabel'>Loyalty</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Loyalty Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_henchman_loyalty'/>
+                <input type='number' min='-4' max='4' value='0' title='@{henchman_loyalty}' name='attr_henchman_loyalty'/>
             <label class='detailslabel'>Morale</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Morale Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_henchman_obedience_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_henchman_morale'/>
+                <input type='number' min='-4' max='4' value='0' title='@{henchman_morale}' name='attr_henchman_morale'/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
                 <label>Class:</label>
-                    <input type='text' class='hirelingtext' name='attr_henchman_class'/>
+                    <input type='text' class='hirelingtext' title='@{henchman_class}' name='attr_henchman_class'/>
                 <label>Level:</label>
-                    <input type='number' min='0' max='14' value='0' name='attr_henchman_level'/>
+                    <input type='number' min='0' max='14' value='0' title='@{henchman_level}' name='attr_henchman_level'/>
                 <label class='detailslabel'>Wage (gp):</label>
-                    <input class='currency' type='number' value='0' name='attr_henchman_fee' readonly/>
-                <textarea placeholder='Enter notes here...' name='attr_henchman_details'></textarea>
+                    <input class='currency' type='number' value='0' title='@{henchman_fee}' name='attr_henchman_fee' readonly/>
+                <textarea placeholder='Enter notes here...' title='@{henchman_details}' name='attr_henchman_details'></textarea>
             </div>
         </fieldset>
         <input type='hidden' name='attr_henchmen_fees'/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Mercenaries</label>
+        <label class='span-header'>Mercenaries <span title='@{repeating_mercenaries}'>(?)</span></label>
         <fieldset class='repeating_mercenaries'>
             <label>Name:</label>
-                <input type='text' class='hirelingtext' name='attr_merc_name'/>
+                <input type='text' class='hirelingtext' title='@{merc_name}' name='attr_merc_name'/>
             <label class='detailslabel'>Loyalty</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **Loyalty Roll**}} {{subtitle=@{merc_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_merc_loyalty'/>
+                <input type='number' min='-4' max='4' value='0' title='@{merc_loyalty}' name='attr_merc_loyalty'/>
             <label class='detailslabel'>Morale</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **Morale Roll**}} {{subtitle=@{merc_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_merc_obedience_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_merc_morale'/>
+                <input type='number' min='-4' max='4' value='0' title='@{merc_morale}' name='attr_merc_morale'/>
                 <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
                 <label>Type:</label>
-                    <input type='text' class='hirelingtext' name='attr_merc_type'/>
+                    <input type='text' class='hirelingtext' title='@{merc_type}' name='attr_merc_type'/>
                 <label>Race:</label>
-                    <input type='text' class='hirelingtext' name='attr_merc_race'/>
+                    <input type='text' class='hirelingtext' title='@{merc_race}' name='attr_merc_race'/>
                 <label>Quantity:</label>
-                     <input type='number' min='0' value='0' name='attr_merc_number'/>
+                     <input type='number' min='0' value='0' title='@{merc_number}' name='attr_merc_number'/>
                 <label>Wage (gp per troop):</label>
-                    <input type='number' value='0' name='attr_merc_fee'/>
-                <textarea placeholder='Enter notes here...' name='attr_merc_details'></textarea>
+                    <input type='number' value='0' title='@{merc_fee}' name='attr_merc_fee'/>
+                <textarea placeholder='Enter notes here...' title='@{merc_details}' name='attr_merc_details'></textarea>
             </div>
         </fieldset>
         <input type='hidden' name='attr_mercenary_fees'/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Specialists</label>
+        <label class='span-header'>Specialists <span title='@{repeating_specialists}'>(?)</span></label>
         <fieldset class='repeating_specialists'>
             <label>Name:</label>
-                <input type='text' class='hirelingtext' name='attr_spec_name'/>
+                <input type='text' class='hirelingtext' title='@{spec_name}' name='attr_spec_name'/>
             <label class='detailslabel'>Loyalty</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_specialist} **Loyalty Roll**}} {{subtitle=@{spec_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_spec_loyalty_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_spec_loyalty'/>
+                <input type='number' min='-4' max='4' value='0' title='@{spec_loyalty}' name='attr_spec_loyalty'/>
             <label class='detailslabel'>Morale</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_specialist} **Morale Roll**}} {{subtitle=@{spec_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{spec_morale}[morale])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_spec_obedience_check' ></button>
-                <input type='number' min='-4' max='4' value='0' name='attr_spec_morale'/>
+                <input type='number' min='-4' max='4' value='0' title='@{spec_morale}' name='attr_spec_morale'/>
                 <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
                 <label>Type: </label>
-                    <input type='text' class='hirelingtext' name='attr_spec_occupation'/>
+                    <input type='text' class='hirelingtext' title='@{spec_occupation}' name='attr_spec_occupation'/>
                 <label>Wage (gp):</label>
-                    <input type='number' value='0' name='attr_spec_fee'/>
-                <textarea placeholder='Enter notes here...' name='attr_spec_details'></textarea>
+                    <input type='number' value='0' title='@{spec_fee}' name='attr_spec_fee'/>
+                <textarea placeholder='Enter notes here...' title='@{spec_details}' name='attr_spec_details'></textarea>
             </div>
         </fieldset>
         <input type='hidden' name='attr_specialist_fees'/>
