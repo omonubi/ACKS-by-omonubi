@@ -166,6 +166,7 @@
 }
 /* Roll20 type='action' button styles */
 .ui-dialog .charsheet button.actionButton,
+.ui-dialog .charsheet button.HDButton,
 .ui-dialog .charsheet button.missileButton {
     background-image: linear-gradient(white, navajowhite);
     border: 1px solid saddlebrown;
@@ -176,18 +177,24 @@
     margin: 0px 3px 9px 3px;
     padding: 2px 3px;
 }
+.ui-dialog .charsheet button.HDButton {
+    align-self: center;
+}
 .ui-dialog .charsheet button.missileButton {
 }
 .ui-dialog .charsheet button.actionButton:hover,
+.ui-dialog .charsheet button.HDButton:hover,
 .ui-dialog .charsheet button.missileButton:hover {
     background-image: none;
     background-color: navajowhite;
 }
 .ui-dialog .charsheet button.actionButton:active,
+.ui-dialog .charsheet button.HDButton:active,
 .ui-dialog .charsheet button.missileButton:active {
     background-image: linear-gradient(burlywood 10%, 30%, navajowhite 90%);
     background-color: transparent;
 }
+.ui-dialog .charsheet button.HDButton::before,
 .ui-dialog .charsheet button.missileButton::before {
     font-family: 'dicefontd20';
     content: 't';
@@ -199,6 +206,9 @@
 }
 .ui-dialog .charsheet div.encumbrance {
     justify-self: center;
+}
+.ui-dialog .charsheet div.hitdice {
+    display: flex;
 }
 .ui-dialog .charsheet div.journalbox {
     width: 95%;

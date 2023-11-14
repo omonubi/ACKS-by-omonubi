@@ -83,7 +83,8 @@
             <div>
                 <input type='hidden' class='hdcheck' name='attr_isBadHDFormula'/>
                 <input class='redhd' type='text' title='@{hit_dice}' name='attr_hit_dice' />
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{level}[lvl])]]}}' name='roll_hit_dice'> Hit Dice</button>
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_hd} **Hit Dice Roll**}} {{color=green}} {{subtitle=@{character_title} @{selected|token_name}}} {{Hit Dice=@{hit_dice}}} {{Roll=[[@{hit_dice}+(@{con_mod}[con]*@{numHD}[#HD])]]}}' name='roll_hit_dice'> Hit Dice</button>
+                <input type='hidden' name='attr_numHD'/>
             </div>
         </div>
         <hr class='spangrid'/>
@@ -981,10 +982,9 @@ function validateHitDice(theHDFormula) {
     const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
     if (isNaN(modValue)) return EMPTY_STRING; // bad string  
     
-    // All tests passed = set hit die and temp HD
+    // All tests passed = set number of hit dice and return the validated formula.
     const output = {};
-    output['hit_die'] = DIE_DELIMITER + numSides; 
-    output['temp_hd'] = numberOfHitDice; 
+    output['numHD'] = numberOfHitDice; 
     setAttrs(output);
 
     return theHDFormula;
