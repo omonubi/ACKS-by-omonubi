@@ -560,6 +560,7 @@
 /**************** Alert Styles ****************/
 .ui-dialog .charsheet span.orangeEnc,
 .ui-dialog .charsheet span.redbedrest,
+.ui-dialog .charsheet input.reddmg,
 .ui-dialog .charsheet span.redfatigue,
 .ui-dialog .charsheet input.redhd,
 .ui-dialog .charsheet span.redhp,
@@ -567,10 +568,12 @@
 .ui-dialog .charsheet .limitExceeded {
     color: saddlebrown;
 }
+.ui-dialog .charsheet input.reddmg,
 .ui-dialog .charsheet input.redhd {
     width: 60px;
 }
 .ui-dialog .charsheet input.bedrestcheck[value='1'] ~ .redbedrest,
+.ui-dialog .charsheet input.dmgcheck[value='1'] ~ .reddmg,
 .ui-dialog .charsheet input.fatiguecheck[value='1'] ~ .redfatigue,
 .ui-dialog .charsheet input.hdcheck[value='1'] ~ .redhd,
 .ui-dialog .charsheet input.hpcheck[value='1'] ~ .redhp,

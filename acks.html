@@ -291,7 +291,8 @@
             <input type='checkbox' title='@{melee_equip}' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' title='@{melee_name}' name='attr_melee_name'/>
             <label>Dmg:</label>
-            <input class='smallWidth' type='text' title='@{melee_damage}' name='attr_melee_damage'/>
+            <input type='hidden' class='dmgcheck' name='attr_isBadDmgFormula'/>
+            <input class='reddmg' type='text' title='@{melee_damage}' name='attr_melee_damage'/>
             <label>long</label>
             <input type='checkbox' title='@{melee_is_long}' name='attr_melee_is_long'/>
             <label>more...</label>
@@ -315,7 +316,8 @@
             <input type='checkbox' title='@{missile_equip}' name='attr_missile_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' title='@{missile_name}' name='attr_missile_name'/>
             <label>Dmg:</label>
-            <input class='smallWidth' type='text' title='@{missile_damage}' name='attr_missile_damage'/>
+            <input type='hidden' class='dmgcheck' name='attr_isBadDmgFormula'/>
+            <input class='reddmg' type='text' title='@{missile_damage}' name='attr_missile_damage'/>
             <label>Rng:</label>
             <input class='missilerange' type='text' title='@{missile_range}' name='attr_missile_range'/>
             <label>Ammo:</label>
@@ -1093,6 +1095,35 @@ on('change:select_damage_attr', function(eventInfo) {
         output['damage_attr'] = '@{' + theNewAttribute + '_mod}[' + theNewAttribute + ']';
         setAttrs(output);
     });
+});
+
+// Damage Formula Validation
+// Ensures that a valid damage dice formula exists
+// Melee attacks...
+on('change:repeating_melee:melee_name change:repeating_melee:melee_damage', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_melee_melee_damage'], function(values) {
+            const validatedFormula = validateDieFormula(values.repeating_melee_melee_damage);
+
+            const output = {};
+            output['repeating_melee_melee_damage'] = validatedFormula;
+            output['repeating_melee_isBadDmgFormula'] = (validatedFormula == EMPTY_STRING ? 1 : 0);
+            setAttrs(output);
+        });
+    }
+});
+// Missile attacks...
+on('change:repeating_missile:missile_name change:repeating_missile:missile_damage', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['repeating_missile_missile_damage'], function(values) {
+            const validatedFormula = validateDieFormula(values.repeating_missile_missile_damage);
+
+            const output = {};
+            output['repeating_missile_missile_damage'] = validatedFormula;
+            output['repeating_missile_isBadDmgFormula'] = (validatedFormula == EMPTY_STRING ? 1 : 0);
+            setAttrs(output);
+        });
+    }
 });
 
 // Dual Wield
