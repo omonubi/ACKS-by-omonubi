@@ -644,42 +644,42 @@
 <section class='journal'>
     <div>
         <label class='span-header'>Character Background</label>
-        <textarea class='background' placeholder='Enter details...' name='attr_background'></textarea>
+        <textarea class='background' placeholder='Enter details...' title='@{background}' name='attr_background'></textarea>
     </div>
     <div class='grid-journal'>
         <div class='journalbox'>
             <label class='span-header'>Appearance</label>
-            <textarea class='journalnotes' placeholder='Enter details...' name='attr_appearance'></textarea>
+            <textarea class='journalnotes' placeholder='Enter details...' title='@{appearance}' name='attr_appearance'></textarea>
         </div>
         <div class='journalbox'>
             <label class='span-header'>Languages</label>
-            <textarea class='journalnotes' placeholder='Enter details...' name='attr_languages'>Common</textarea>
+            <textarea class='journalnotes' placeholder='Enter details...' title='@{languages}' name='attr_languages'>Common</textarea>
         </div>
         <div class='journalbox'>
             <label class='span-header'>Injuries</label>
-            <textarea class='journalnotes' placeholder='Enter details...' name='attr_injuries'></textarea>
+            <textarea class='journalnotes' placeholder='Enter details...' title='@{injuries}' name='attr_injuries'></textarea>
         </div>
         <div class='journalbox'>
             <label class='span-header'>Property & Debts</label>
-            <textarea class='journalnotes' placeholder='Enter details...' name='attr_property'></textarea>
+            <textarea class='journalnotes' placeholder='Enter details...' title='@{property}' name='attr_property'></textarea>
         </div>
     </div>
     <div>
-        <label class='span-header'>Adventuring Notes</label>
+        <label class='span-header'>Adventuring Notes <span title='@{repeating_journal}'>(?)</span></label>
         <fieldset class='repeating_journal'>
-            <label>Title: </label><input type='text' name='attr_journal_title'/>
+            <label>Title: </label><input type='text' title='@{journal_title}' name='attr_journal_title'/>
             <label>Show Entry: </label><input type='checkbox' class='toggle-show' />
-            <div class='details'><textarea placeholder='Enter details...' name='attr_journal_details'></textarea></div>
+            <div class='details'><textarea placeholder='Enter details...' title='@{journal_details}' name='attr_journal_details'></textarea></div>
         </fieldset>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Experience Log</label>
+        <label class='span-header'>Experience Log <span title='@{repeating_experience}'>(?)</span></label>
         <fieldset class='repeating_experience'>            
-            <label>Date: </label><input class='xpdate' type='text' name='attr_xp_date'/>
-            <label>XP: </label><input class='xpamount' type='number' name='attr_xp_amount'/>
-            <label>Bonus %: </label><input class='xpamount' type='number' name='attr_xp_bonus'/>
-            <label>Note: </label><input class='xpdescription' type='text' name='attr_xp_description'/>
+            <label>Date: </label><input class='xpdate' type='text' title='@{xp_date}' name='attr_xp_date'/>
+            <label>XP: </label><input class='xpamount' type='number' title='@{xp_amount}' name='attr_xp_amount'/>
+            <label>Bonus %: </label><input class='xpamount' type='number' title='@{xp_bonus}' name='attr_xp_bonus'/>
+            <label>Note: </label><input class='xpdescription' type='text' title='@{xp_description}' name='attr_xp_description'/>
         </fieldset>
     </div>
     <hr/>
@@ -689,29 +689,29 @@
     <div class='grid-settings'>
         <label class='span-header'>Sheet Settings (GM Only)</label>
         <label>Enc Threshold 1</label>
-            <input type='number' min='0' value='5' name='attr_move_thresh1'/>
+            <input type='number' min='0' value='5' title='@{move_thresh1}' name='attr_move_thresh1'/>
             <span>Sets the character's first encumbrance threshold.</span>
         <label>Enc Threshold 2</label>
-            <input type='number' min='0' value='7' name='attr_move_thresh2'/>
+            <input type='number' min='0' value='7' title='@{move_thresh2}' name='attr_move_thresh2'/>
             <span>Sets the character's second encumbrance threshold.</span>
         <label>Enc Threshold 3</label>
-            <input type='number' min='0' value='10' name='attr_move_thresh3'/>
+            <input type='number' min='0' value='10' title='@{move_thresh3}' name='attr_move_thresh3'/>
             <span>Sets the character's third encumbrance threshold.</span>
         <label>Max Encumbrance</label>
-            <input type='number' min='0' value='20' name='attr_base_enc'/>
+            <input type='number' min='0' value='20' title='@{base_enc}' name='attr_base_enc'/>
             <span>Sets the character's maximum encumbrance threshold.</span>
         <label>Max Movement</label>
-            <input type='number' min='0' value='120' name='attr_base_movement'/>
+            <input type='number' min='0' value='120' title='@{base_movement}' name='attr_base_movement'/>
             <span>Sets the character's maximum base land movement speed.</span>
         <label>Encumbrance Alert</label>
-            <input type='checkbox' value='1' name='attr_enc_alert_toggle'/>
+            <input type='checkbox' value='1' title='@{enc_alert_toggle}' name='attr_enc_alert_toggle'/>
             <span>Highlights the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
         <label>Experience % Modifier</label>
-            <input type='number' value='0' name='attr_xp_modifier'/>            
+            <input type='number' value='0' title='@{xp_modifier}' name='attr_xp_modifier'/>            
             <span>Modifies the character's XP modifier from key attributes.</span>
         <label>Damage Attribute</label>
             <input type='hidden' value='@{str_mod}[str]' name='attr_damage_attr'/>
-            <select class='settingsSelect' name='attr_select_damage_attr'>
+            <select class='settingsSelect' title='@{select_damage_attr}' name='attr_select_damage_attr'>
                 <option selected>str</option>
                 <option>int</option>
                 <option>wil</option>
@@ -721,7 +721,7 @@
             </select>
             <span>Sets the attribute modifier to apply to melee/thrown damage rolls.</span>
         <label>Hide Spells Tab</label>
-            <input type='checkbox' value='1' name='attr_toggle_spells'/>
+            <input type='checkbox' value='1' title='@{toggle_spells}' name='attr_toggle_spells'/>
             <span>Hides the Spells tab on the character sheet.</span>
         <label>Max Attributes</label>
             <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
