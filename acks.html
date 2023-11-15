@@ -9,8 +9,10 @@
     <button type='action' class='btnOverview' name='act_overview' >Overview</button> 
     <button type='action' class='btnClass' name='act_class' >Class</button>
     <button type='action' class='btnCombat' name='act_combat' >Combat</button>
-    <input type='hidden' class='hideSpells' value='0' name='attr_show_spells'/>
-    <button type='action' class='btnSpells' name='act_spells' >Spells</button>
+    <input type='hidden' class='hideStudious' value='0' name='attr_show_studious'/>
+    <button type='action' class='btnStudious' name='act_studious' >Studious</button>
+    <input type='hidden' class='hidePrayerful' value='0' name='attr_show_prayerful'/>
+    <button type='action' class='btnPrayerful' name='act_prayerful' >Prayerful</button>
     <button type='action' class='btnSkills' name='act_skills' >Skills</button>  
     <button type='action' class='btnEquipment' name='act_equipment' >Equip</button>
     <button type='action' class='btnWealth' name='act_wealth' >Wealth</button>   
@@ -335,46 +337,102 @@
     <hr/>
 </section>
 
-<section class='spells'>
+<section class='studious'>
     <div class='grid-spellslots'>
-        <label class='span-header'>Spellcasting Slots by Spell Level</label>
+        <label class='span-header'>Studious Slots by Spell Level</label>
         <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
         <label>Slots</label>
-        <input type='number' min='0' max='6' value='0' title='@{spells_1_max}' name='attr_spells_1_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_2_max}' name='attr_spells_2_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_3_max}' name='attr_spells_3_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_4_max}' name='attr_spells_4_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_5_max}' name='attr_spells_5_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_6_max}' name='attr_spells_6_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_7_max}' name='attr_spells_7_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_8_max}' name='attr_spells_8_max' />
-        <input type='number' min='0' max='6' value='0' title='@{spells_9_max}' name='attr_spells_9_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_1_max}' name='attr_studious_1_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_2_max}' name='attr_studious_2_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_3_max}' name='attr_studious_3_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_4_max}' name='attr_studious_4_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_5_max}' name='attr_studious_5_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_6_max}' name='attr_studious_6_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_7_max}' name='attr_studious_7_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_8_max}' name='attr_studious_8_max' />
+        <input type='number' min='0' max='6' value='0' title='@{studious_9_max}' name='attr_studious_9_max' />
         <span></span>
         <label>Current</label>
-        <input type='number' min='0' max='6' value='0' title='@{spells_1}' name='attr_spells_1'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_2}' name='attr_spells_2'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_3}' name='attr_spells_3'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_4}' name='attr_spells_4'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_5}' name='attr_spells_5'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_6}' name='attr_spells_6'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_7}' name='attr_spells_7'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_8}' name='attr_spells_8'/>
-        <input type='number' min='0' max='6' value='0' title='@{spells_9}' name='attr_spells_9'/>
-        <button type='action' class='actionButton' name='act_reset_spells'>Reset</button>
+        <input type='number' min='0' max='6' value='0' title='@{studious_1}' name='attr_studious_1'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_2}' name='attr_studious_2'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_3}' name='attr_studious_3'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_4}' name='attr_studious_4'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_5}' name='attr_studious_5'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_6}' name='attr_studious_6'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_7}' name='attr_studious_7'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_8}' name='attr_studious_8'/>
+        <input type='number' min='0' max='6' value='0' title='@{studious_9}' name='attr_studious_9'/>
+        <button type='action' class='actionButton' name='act_reset_studious_spells'>Reset</button>
         <label>Caster Level</label>
         <input type='number' min='0' max='14' value='0' title='@{caster_level}' name='attr_caster_level'/>
     </div>
     <hr/>
     <div>
-        <label class='span-header'>Available Spells / Invocations <span title='@{repeating_spellsarcane}'>(?)</span></label>
-        <input class='toggle-show' type='checkbox' name='attr_show_spelllist' checked/> show/hide
+        <label class='span-header'>Studious Spells / Invocations <span title='@{repeating_spellsstudious}'>(?)</span></label>
+        <input class='toggle-show' type='checkbox' name='attr_showstudiousspelllist' checked/> show/hide
         <div class='details'>
-            <fieldset class='repeating_spellsarcane'>
-                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**Review @{spell_name} (@{spell_level})**}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_spellcast} **Cast @{spell_name} (@{spell_level})**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Cast}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
+            <fieldset class='repeating_spellsstudious'>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=blue}} {{title=**@{spell_name}**}} {{subtitle=Studious Spell}} {{Spell Level=@{spell_level}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Prepared=@{spell_prepared}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=blue}} {{title=@{banner_studious} **Casting @{spell_name}**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell Level=@{spell_level}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Yes}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
                 <input type='text' placeholder='Spell name...' title='@{spell_name}' name='attr_spell_name'/>
-                <label>Level:</label><input class='spellLevel' type='text' title='@{spell_level}' name='attr_spell_level'/>
-                <label>prepared</label><input type='checkbox' title='@{spell_prepared}' name='attr_spell_prepared'/>
+                <label>Spell Level:</label><input class='spellLevel' type='number' min='1' max='9' value='1' title='@{spell_level}' name='attr_spell_level'/>
+                <label>prepared</label><input type='checkbox' value='Yes' title='@{spell_prepared}' name='attr_spell_prepared'/>
+                <label>more...</label>
+                <input type='checkbox' class='toggle-show'/><br/>
+                <div class='details'>
+                    <label>Type:</label><input type='text' title='@{spell_type}' name='attr_spell_type'/>
+                    <label>Range:</label><input class='spellRange' type='text' title='@{spell_range}' name='attr_spell_range'/>
+                    <label>Duration:</label><input class='spellDuration' type='text' title='@{spell_duration}' name='attr_spell_duration'/>
+                    <textarea placeholder='Spell description...' title='@{spell_details}' name='attr_spell_details'></textarea>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <hr/>
+</section>
+
+<section class='prayerful'>
+    <label class='span-header'>Code of Behavior</label>
+    <textarea class='background' placeholder='Enter details...' title='@{codeOfBehavior}' name='attr_codeOfBehavior'></textarea>
+    <hr/>
+    <div class='grid-spellslots'>
+        <label class='span-header'>Prayerful Slots by Spell Level</label>
+        <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
+        <label>Slots</label>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_1_max}' name='attr_prayerful_1_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_2_max}' name='attr_prayerful_2_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_3_max}' name='attr_prayerful_3_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_4_max}' name='attr_prayerful_4_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_5_max}' name='attr_prayerful_5_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_6_max}' name='attr_prayerful_6_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_7_max}' name='attr_prayerful_7_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_8_max}' name='attr_prayerful_8_max' />
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_9_max}' name='attr_prayerful_9_max' />
+        <span></span>
+        <label>Current</label>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_1}' name='attr_prayerful_1'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_2}' name='attr_prayerful_2'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_3}' name='attr_prayerful_3'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_4}' name='attr_prayerful_4'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_5}' name='attr_prayerful_5'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_6}' name='attr_prayerful_6'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_7}' name='attr_prayerful_7'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_8}' name='attr_prayerful_8'/>
+        <input type='number' min='0' max='6' value='0' title='@{prayerful_9}' name='attr_prayerful_9'/>
+        <button type='action' class='actionButton' name='act_reset_prayerful'>Reset</button>
+        <label>Caster Level</label>
+        <input type='number' min='0' max='14' value='0' title='@{caster_level}' name='attr_caster_level'/>
+    </div>
+    <hr/>
+    <div>
+        <label class='span-header'>Prayerful Spells / Invocations <span title='@{repeating_spellsprayerful}'>(?)</span></label>
+        <input class='toggle-show' type='checkbox' name='attr_showprayerfulspelllist' checked/> show/hide
+        <div class='details'>
+            <fieldset class='repeating_spellsprayerful'>
+                <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=gold}} {{title=**@{spell_name}**}} {{subtitle=Prayerful Spell}} {{Spell Level=@{spell_level}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{desc=@{spell_details}}}' name='roll_review_spell'> Review</button>
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{color=gold}} {{title=@{banner_prayerful} **Casting @{spell_name}**}} {{subtitle=@{character_title} @{selected|token_name}}} {{Spell Level=@{spell_level}}} {{Type=@{spell_type}}} {{Range=@{spell_range}}} {{Duration=@{spell_duration}}} {{Caster Level=@{caster_level}}} {{Cast Confirmed=?{Confirm Action|Yes}}} {{desc=@{spell_details}}}' name='roll_cast_spell'> Cast</button>
+                <input type='text' placeholder='Spell name...' title='@{spell_name}' name='attr_spell_name'/>
+                <label>Level:</label><input class='spellLevel' type='number' min='1' max='9' value='1' title='@{spell_level}' name='attr_spell_level'/>
                 <label>more...</label>
                 <input type='checkbox' class='toggle-show'/><br/>
                 <div class='details'>
@@ -690,28 +748,13 @@
 
 <section class='settings'>
     <div class='grid-settings'>
-        <label class='span-header'>Sheet Settings (GM Only)</label>
-        <label>Enc Threshold 1</label>
-            <input type='number' min='0' value='5' title='@{move_thresh1}' name='attr_move_thresh1'/>
-            <span>Sets the character's first encumbrance threshold.</span>
-        <label>Enc Threshold 2</label>
-            <input type='number' min='0' value='7' title='@{move_thresh2}' name='attr_move_thresh2'/>
-            <span>Sets the character's second encumbrance threshold.</span>
-        <label>Enc Threshold 3</label>
-            <input type='number' min='0' value='10' title='@{move_thresh3}' name='attr_move_thresh3'/>
-            <span>Sets the character's third encumbrance threshold.</span>
-        <label>Max Encumbrance</label>
-            <input type='number' min='0' value='20' title='@{base_enc}' name='attr_base_enc'/>
-            <span>Sets the character's maximum encumbrance threshold.</span>
-        <label>Max Movement</label>
-            <input type='number' min='0' value='120' title='@{base_movement}' name='attr_base_movement'/>
-            <span>Sets the character's maximum base land movement speed.</span>
-        <label>Encumbrance Alert</label>
-            <input type='checkbox' value='1' title='@{enc_alert_toggle}' name='attr_enc_alert_toggle'/>
-            <span>Highlights the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
+        <label class='span-header'>Sheet Settings</label>
+        <label>Save Attributes</label>
+            <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
+            <span>Copy the character's attribute values into the Overview tab's Nominal column.</span>
         <label>Experience % Modifier</label>
             <input type='number' value='0' title='@{xp_modifier}' name='attr_xp_modifier'/>            
-            <span>Modifies the character's XP modifier from key attributes.</span>
+            <span>Modify the character's XP modifier from key attributes.</span>
         <label>Damage Attribute</label>
             <input type='hidden' value='@{str_mod}[str]' name='attr_damage_attr'/>
             <select class='settingsSelect' title='@{select_damage_attr}' name='attr_select_damage_attr'>
@@ -722,13 +765,33 @@
                 <option>con</option>
                 <option>cha</option>
             </select>
-            <span>Sets the attribute modifier to apply to melee/thrown damage rolls.</span>
-        <label>Hide Spells Tab</label>
-            <input type='checkbox' value='1' title='@{toggle_spells}' name='attr_toggle_spells'/>
-            <span>Hides the Spells tab on the character sheet.</span>
-        <label>Max Attributes</label>
-            <button type='action' class='actionButton' name='act_save_attrs'>Update</button>
-            <span>Copies the character's attribute values into the Overview tab's Nominal column.</span>
+            <span>Set the attribute modifier used to modify melee/thrown damage rolls.</span>
+        <hr class='spangrid'/>
+        <label>Hide Studious Tab</label>
+            <input type='checkbox' value='1' title='@{toggle_studious}' name='attr_toggle_studious'/>
+            <span>Hide the Studious tab on the character sheet.</span>
+        <label>Hide Prayerful Tab</label>
+            <input type='checkbox' value='1' title='@{toggle_prayerful}' name='attr_toggle_prayerful'/>
+            <span>Hide the Prayerful tab on the character sheet.</span>
+        <hr class='spangrid'/>
+        <label>Encumbrance Alert</label>
+            <input type='checkbox' value='1' title='@{enc_alert_toggle}' name='attr_enc_alert_toggle'/>
+            <span>Highlight the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
+        <label>Enc Threshold 1</label>
+            <input type='number' min='0' value='5' title='@{move_thresh1}' name='attr_move_thresh1'/>
+            <span>Set the character's first encumbrance threshold.</span>
+        <label>Enc Threshold 2</label>
+            <input type='number' min='0' value='7' title='@{move_thresh2}' name='attr_move_thresh2'/>
+            <span>Set the character's second encumbrance threshold.</span>
+        <label>Enc Threshold 3</label>
+            <input type='number' min='0' value='10' title='@{move_thresh3}' name='attr_move_thresh3'/>
+            <span>Set the character's third encumbrance threshold.</span>
+        <label>Max Encumbrance</label>
+            <input type='number' min='0' value='20' title='@{base_enc}' name='attr_base_enc'/>
+            <span>Set the character's maximum encumbrance threshold.</span>
+        <label>Max Movement</label>
+            <input type='number' min='0' value='120' title='@{base_movement}' name='attr_base_movement'/>
+            <span>Set the character's maximum base land movement speed.</span>
     </div>
     <hr/>
 </section>
@@ -749,6 +812,7 @@
 <input type='hidden' name='attr_banner_missile' value=''/>
 <input type='hidden' name='attr_banner_missiledamage' value=''/>
 <input type='hidden' name='attr_banner_morale' value=''/>
+<input type='hidden' name='attr_banner_prayerful' value=''/>
 <input type='hidden' name='attr_banner_profthrow' value=''/>
 <input type='hidden' name='attr_banner_reaction' value=''/>
 <input type='hidden' name='attr_banner_saveblast' value=''/>
@@ -757,7 +821,7 @@
 <input type='hidden' name='attr_banner_saveparalysis' value=''/>
 <input type='hidden' name='attr_banner_savespells' value=''/>
 <input type='hidden' name='attr_banner_specialist' value=''/>
-<input type='hidden' name='attr_banner_spellcast' value=''/>
+<input type='hidden' name='attr_banner_studious' value=''/>
 <input type='hidden' name='attr_banner_surprise' value=''/>
 
 <script type='text/worker'>
@@ -842,7 +906,7 @@ function validateDieFormula(theDieFormula) {
 ** Tab Controls / Header
 ***************************************************/
 // Select/deselect buttons
-const buttonlist = ['overview','class','spells','skills','combat','equipment','wealth','hirelings','journal','settings'];
+const buttonlist = ['overview','class','studious','prayerful', 'skills','combat','equipment','wealth','hirelings','journal','settings'];
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function() {
         setAttrs({
@@ -852,11 +916,19 @@ buttonlist.forEach(button => {
     });
 });
 
-// Show/hide the Spells tab
-on('change:toggle_spells', function(eventInfo) {
+// Show/hide the Studious tab
+on('change:toggle_studious', function(eventInfo) {
 
     const output = {};
-    output['show_spells'] = eventInfo.newValue;
+    output['show_studious'] = eventInfo.newValue;
+    setAttrs(output);
+});
+
+// Show/hide the Prayerful tab
+on('change:toggle_prayerful', function(eventInfo) {
+
+    const output = {};
+    output['show_prayerful'] = eventInfo.newValue;
     setAttrs(output);
 });
 
@@ -1208,32 +1280,63 @@ on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
 });
 
 /**************************************************
-** Spells Tab
+** Studious Tab
 ***************************************************/
 // Spell Slots, Reset
 // Reset the character's daily casting slots remaining.
-on('clicked:reset_spells', function(eventInfo) {
-    getAttrs(['spells_1_max', 'spells_2_max', 'spells_3_max', 'spells_4_max', 'spells_5_max', 'spells_6_max', 'spells_7_max', 'spells_8_max', 'spells_9_max'], function(values) {
-        const spells1 = parseInt(values.spells_1_max) || 0;
-        const spells2 = parseInt(values.spells_2_max) || 0;
-        const spells3 = parseInt(values.spells_3_max) || 0;
-        const spells4 = parseInt(values.spells_4_max) || 0;
-        const spells5 = parseInt(values.spells_5_max) || 0;
-        const spells6 = parseInt(values.spells_6_max) || 0;
-        const spells7 = parseInt(values.spells_7_max) || 0;
-        const spells8 = parseInt(values.spells_8_max) || 0;
-        const spells9 = parseInt(values.spells_9_max) || 0;
+on('clicked:reset_studious_spells', function(eventInfo) {
+    getAttrs(['studious_1_max', 'studious_2_max', 'studious_3_max', 'studious_4_max', 'studious_5_max', 'studious_6_max', 'studious_7_max', 'studious_8_max', 'studious_9_max'], function(values) {
+        const spells1 = parseInt(values.studious_1_max) || 0;
+        const spells2 = parseInt(values.studious_2_max) || 0;
+        const spells3 = parseInt(values.studious_3_max) || 0;
+        const spells4 = parseInt(values.studious_4_max) || 0;
+        const spells5 = parseInt(values.studious_5_max) || 0;
+        const spells6 = parseInt(values.studious_6_max) || 0;
+        const spells7 = parseInt(values.studious_7_max) || 0;
+        const spells8 = parseInt(values.studious_8_max) || 0;
+        const spells9 = parseInt(values.studious_9_max) || 0;
 
         const output = {};
-        output['spells_1'] = spells1;
-        output['spells_2'] = spells2;
-        output['spells_3'] = spells3;
-        output['spells_4'] = spells4;
-        output['spells_5'] = spells5;
-        output['spells_6'] = spells6;
-        output['spells_7'] = spells7;
-        output['spells_8'] = spells8;
-        output['spells_9'] = spells9;
+        output['studious_1'] = spells1;
+        output['studious_2'] = spells2;
+        output['studious_3'] = spells3;
+        output['studious_4'] = spells4;
+        output['studious_5'] = spells5;
+        output['studious_6'] = spells6;
+        output['studious_7'] = spells7;
+        output['studious_8'] = spells8;
+        output['studious_9'] = spells9;
+        setAttrs(output);
+    });
+});
+
+/**************************************************
+** Prayerful Tab
+***************************************************/
+// Spell Slots, Reset
+// Reset the character's daily casting slots remaining.
+on('clicked:reset_prayerful', function(eventInfo) {
+    getAttrs(['prayerful_1_max', 'prayerful_2_max', 'prayerful_3_max', 'prayerful_4_max', 'prayerful_5_max', 'prayerful_6_max', 'prayerful_7_max', 'prayerful_8_max', 'prayerful_9_max'], function(values) {
+        const spells1 = parseInt(values.prayerful_1_max) || 0;
+        const spells2 = parseInt(values.prayerful_2_max) || 0;
+        const spells3 = parseInt(values.prayerful_3_max) || 0;
+        const spells4 = parseInt(values.prayerful_4_max) || 0;
+        const spells5 = parseInt(values.prayerful_5_max) || 0;
+        const spells6 = parseInt(values.prayerful_6_max) || 0;
+        const spells7 = parseInt(values.prayerful_7_max) || 0;
+        const spells8 = parseInt(values.prayerful_8_max) || 0;
+        const spells9 = parseInt(values.prayerful_9_max) || 0;
+
+        const output = {};
+        output['prayerful_1'] = spells1;
+        output['prayerful_2'] = spells2;
+        output['prayerful_3'] = spells3;
+        output['prayerful_4'] = spells4;
+        output['prayerful_5'] = spells5;
+        output['prayerful_6'] = spells6;
+        output['prayerful_7'] = spells7;
+        output['prayerful_8'] = spells8;
+        output['prayerful_9'] = spells9;
         setAttrs(output);
     });
 });

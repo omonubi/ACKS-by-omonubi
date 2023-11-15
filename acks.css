@@ -204,6 +204,9 @@
     align-self: start;
     justify-self: start;
 }
+.ui-dialog .charsheet div.body {
+    display: block;
+}
 .ui-dialog .charsheet div.encumbrance {
     justify-self: center;
 }
@@ -456,7 +459,8 @@
 }
 .ui-dialog .charsheet .overview,
 .ui-dialog .charsheet .class,
-.ui-dialog .charsheet .spells,
+.ui-dialog .charsheet .studious,
+.ui-dialog .charsheet .prayerful,
 .ui-dialog .charsheet .skills,
 .ui-dialog .charsheet .combat,
 .ui-dialog .charsheet .equipment,
@@ -468,7 +472,8 @@
 }
 .ui-dialog .charsheet .tabstoggle[value='overview'] ~ section.overview,
 .ui-dialog .charsheet .tabstoggle[value='class'] ~ section.class,
-.ui-dialog .charsheet .tabstoggle[value='spells'] ~ section.spells,
+.ui-dialog .charsheet .tabstoggle[value='studious'] ~ section.studious,
+.ui-dialog .charsheet .tabstoggle[value='prayerful'] ~ section.prayerful,
 .ui-dialog .charsheet .tabstoggle[value='skills'] ~ section.skills,
 .ui-dialog .charsheet .tabstoggle[value='combat'] ~ section.combat,
 .ui-dialog .charsheet .tabstoggle[value='equipment'] ~ section.equipment,
@@ -480,7 +485,8 @@
 }
 .ui-dialog .charsheet .btnOverview,
 .ui-dialog .charsheet .btnClass,
-.ui-dialog .charsheet .btnSpells,
+.ui-dialog .charsheet .btnStudious,
+.ui-dialog .charsheet .btnPrayerful,
 .ui-dialog .charsheet .btnSkills,
 .ui-dialog .charsheet .btnCombat,
 .ui-dialog .charsheet .btnEquipment,
@@ -514,7 +520,8 @@
   }  
   .ui-dialog .charsheet .btnOverview:hover,
   .ui-dialog .charsheet .btnClass:hover,
-  .ui-dialog .charsheet .btnSpells:hover,
+  .ui-dialog .charsheet .btnStudious:hover,
+  .ui-dialog .charsheet .btnPrayerful:hover,
   .ui-dialog .charsheet .btnSkills:hover,
   .ui-dialog .charsheet .btnCombat:hover,
   .ui-dialog .charsheet .btnEquipment:hover,
@@ -527,7 +534,8 @@
   }
   .ui-dialog .charsheet .btnOverview:focus,
   .ui-dialog .charsheet .btnClass:focus,
-  .ui-dialog .charsheet .btnSpells:focus,
+  .ui-dialog .charsheet .btnStudious:focus,
+  .ui-dialog .charsheet .btnPrayerful:focus,
   .ui-dialog .charsheet .btnSkills:focus,
   .ui-dialog .charsheet .btnCombat:focus,
   .ui-dialog .charsheet .btnEquipment:focus,
@@ -539,7 +547,8 @@
   }
 .ui-dialog .charsheet .buttonstoggle[value='overview'] ~ button.btnOverview,
 .ui-dialog .charsheet .buttonstoggle[value='class'] ~ button.btnClass,
-.ui-dialog .charsheet .buttonstoggle[value='spells'] ~ button.btnSpells,
+.ui-dialog .charsheet .buttonstoggle[value='studious'] ~ button.btnStudious,
+.ui-dialog .charsheet .buttonstoggle[value='prayerful'] ~ button.btnPrayerful,
 .ui-dialog .charsheet .buttonstoggle[value='skills'] ~ button.btnSkills,
 .ui-dialog .charsheet .buttonstoggle[value='combat'] ~ button.btnCombat,
 .ui-dialog .charsheet .buttonstoggle[value='equipment'] ~ button.btnEquipment,
@@ -552,8 +561,11 @@
     font-weight: bold;
     transform: translate3d(0, 2px, 0);
 }
-/* Hide Spells tab button on Settings toggle */
-.ui-dialog .charsheet input.hideSpells[value='1'] ~ button.btnSpells {
+/* Hide Spells tab buttons on Settings toggles */
+.ui-dialog .charsheet input.hideStudious[value='1'] ~ button.btnStudious {
+    display: none;
+}
+.ui-dialog .charsheet input.hidePrayerful[value='1'] ~ button.btnPrayerful {
     display: none;
 }
 
@@ -589,11 +601,8 @@
     font-weight: bold;
 }
 
-/**************** Details section toggle ****************/
-.ui-dialog .charsheet div.body {
-    display: block;
-}
-
+/**************** Details section toggle ****************
+Note that each toggle must have a different name value */
 .ui-dialog .charsheet 
 input.toggle-show:not(:checked) ~ div.details {
     display: none;
