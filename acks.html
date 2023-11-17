@@ -166,15 +166,15 @@
         <hr class='spangrid'/>
         <div class='grid-2column'>
             <label class='span-header'>Saving Throws</label>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
                 <input type='number' value='13' title='@{save_1}' name='attr_save_1'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
                 <input type='number' value='14' title='@{save_2}' name='attr_save_2'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **Saving Throw (Blast)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blast</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **Saving Throw (Blast)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blast</button>
                 <input type='number' value='15' title='@{save_3}' name='attr_save_3'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **Saving Throw (Implements)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **Saving Throw (Implements)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
                 <input type='number' value='16' title='@{save_4}' name='attr_save_4'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
                 <input type='number' value='17' title='@{save_5}' name='attr_save_5'/>
         </div>
         <div class='grid-monster'>
@@ -210,12 +210,12 @@
     <div>
         <label class='span-header'>Global Class Bonuses <span title='Use only for class-specific bonuses that are applied all the time.'>(?)</span></label>
         <div class='grid-classbonuses'>
-            <label>Accuracy:</label><input type='number' value='0' title='@{class_accuracy_bonus}' name='attr_class_accuracy_bonus'/>
+            <label>Armor Class:</label><input type='number' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
             <label>Dmg, Melee:</label><input type='number' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
             <label>Dmg, Missile:</label><input type='number' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
             <label>Hire Loyalty:</label><input type='number' value='0' title='@{class_hireling_loyalty_bonus}' name='attr_class_hireling_loyalty_bonus'/>
-            <label>Armor Class:</label><input type='number' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
             <label>Initiative:</label><input type='number' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
+            <label>Saving Throws:</label><input type='number' value='0' title='@{class_save_bonus}' name='attr_class_save_bonus'/>
             <label>Surprise:</label><input type='number' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
             <label>Hench Morale:</label><input type='number' value='0' title='@{class_henchmen_morale_bonus}' name='attr_class_henchmen_morale_bonus'/>
         </div>

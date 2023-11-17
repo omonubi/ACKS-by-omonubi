@@ -162,15 +162,14 @@ This tab keeps track of class-specific information, such as global modifiers and
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
-| Accuracy | *accuracy_bonus* | number | Applied to all missile weapon attack throws. |
-| Dmg, Melee | *damage_bonus* | number | Applied to all melee weapon damage rolls. |
-| Dmg, Missile | *damage_bonus_missile* | number | Applied to all missile weapon damage rolls. |
+| Armor Class | *class_ac_bonus* | Number | Applied to all armor class calculations. Intended for tracking a natural armor class modifier. |
+| Dmg, Melee | *class_damage_bonus* | number | Applied to all melee weapon damage rolls. |
+| Dmg, Missile | *class_damage_bonus_missile* | number | Applied to all missile weapon damage rolls. |
 | Hire Loyalty | *class_hireling_loyalty_bonus* | number | Applied to all henchmen and mercenary loyalty checks, as well as the henchmen hiring limit. |
-| Armor Class | *class_ac_bonus* | Number | Applied to all armor class calculations. |
 | Initiative | *class_initiative_bonus* | Number | Applied to all initiaitve rolls. |
+| Saving Throws | *class_save_bonus* | number | Applied to all saving throws. |
 | Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
-|||||
 |||||
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the character's class. I.e., copying in an ACKS class description. |
 
