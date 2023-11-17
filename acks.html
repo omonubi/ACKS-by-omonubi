@@ -213,7 +213,7 @@
             <label>Accuracy:</label><input type='number' value='0' title='@{class_accuracy_bonus}' name='attr_class_accuracy_bonus'/>
             <label>Dmg, Melee:</label><input type='number' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
             <label>Dmg, Missile:</label><input type='number' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
-            <label>Dmg Reduction:</label><input type='number' value='0' title='@{class_damage_reduction}' name='attr_class_damage_reduction'/>
+            <label>Hench Loyalty:</label><input type='number' value='0' title='@{class_hireling_loyalty_bonus}' name='attr_class_hireling_loyalty_bonus'/>
             <label>Armor Class:</label><input type='number' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
             <label>Initiative:</label><input type='number' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
             <label>Surprise:</label><input type='number' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
@@ -628,7 +628,7 @@
             <label>Name:</label>
                 <input type='text' class='hirelingtext' title='@{henchman_name}' name='attr_henchman_name'/>
             <label class='detailslabel'>Loyalty</label>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Loyalty Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' ></button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Loyalty Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_loyalty}[loyalty])+(@{cha_mod}[CHA])+(@{class_hireling_loyalty_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_henchman_loyalty_check' ></button>
                 <input type='number' min='-4' max='4' value='0' title='@{henchman_loyalty}' name='attr_henchman_loyalty'/>
             <label class='detailslabel'>Morale</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Morale Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_henchman_obedience_check' ></button>
@@ -654,7 +654,7 @@
             <label>Name:</label>
                 <input type='text' class='hirelingtext' title='@{merc_name}' name='attr_merc_name'/>
             <label class='detailslabel'>Loyalty</label>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **Loyalty Roll**}} {{subtitle=@{merc_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_loyalty}[loyalty])+(@{cha_mod}[CHA])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' ></button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **Loyalty Roll**}} {{subtitle=@{merc_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_loyalty}[loyalty])+(@{cha_mod}[CHA])+(@{class_hireling_loyalty_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Hostility&#13;3-5: Resignation&#13;6-8: Gruding Loyalty&#13;9-11: Loyalty&#13;12+: Fanatic Loyalty}}' name='roll_merc_loyalty_check' ></button>
                 <input type='number' min='-4' max='4' value='0' title='@{merc_loyalty}' name='attr_merc_loyalty'/>
             <label class='detailslabel'>Morale</label>
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_mercenary} **Morale Roll**}} {{subtitle=@{merc_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{merc_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_merc_obedience_check' ></button>
@@ -1614,12 +1614,13 @@ on('change:repeating_henchmen:henchman_level', function(eventInfo) {
 
 // Henchmen Limit
 // Calculate the character's henchmen limit.
-on('change:cha_mod', function(eventInfo) {
-    getAttrs(['cha_mod'], function(values) {
+on('change:cha_mod change:class_hireling_loyalty_bonus', function(eventInfo) {
+    getAttrs(['cha_mod', 'class_hireling_loyalty_bonus'], function(values) {
         const chaMod = parseInt(values.cha_mod) || 0;
+        const loyaltyBonus = parseInt(values.class_hireling_loyalty_bonus) || 0;
         
         const output = {};
-        output['henchmen_limit'] = HENCHMEN_LIMIT + chaMod;
+        output['henchmen_limit'] = HENCHMEN_LIMIT + chaMod + loyaltyBonus;
         setAttrs(output);
     });
 });

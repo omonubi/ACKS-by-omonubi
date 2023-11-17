@@ -39,11 +39,12 @@ Note that configuration of API scripts and macros is additional work not covered
 1. Generate an ACKS character.
 2. On the **Overview** tab, enter the character's basic info and its generated attributes. Save each attribute's Nominal value in the Max column of the Roll20 sheet's Attributes & Abilities tab. Generate the character's hit points and save the value in both Hit Point fields.
 3. On the **Class** tab, input any class-specific modifiers and a desired class description.
+5. On the **Studious** tab, enter class-specific spell slot and spell description information. (If the character is not a studious spellcaster, this tab can be hidden on the Settings tab.)
+5. On the **Prayerful** tab, enter class-specific code of behavior, spell slot, and spell description information. (If the character is not a prayerful spellcaster, this tab can be hidden on the Settings tab.)
 4. Enter the appropriate information on the **Combat** tab, based on the character's equipment and other characteristics. Enter the character's melee and missile attack options. Use one line-item for each attack type, combination, and/or damage formula. Check the (equipped) checkboxes to indicate which attacks are available at any given time.
-5. On the **Spells** tab, enter the maximum and current spell slots by spell level. (If the character is not a spellcaster, this tab can be hidden on the Settings tab.)
 6. On the **Skills** tab, enter the character's selected proficiency information and any additional ability information desired. (Note: Use the **!AddSkills** custom API script to pre-populate common abiltiies and proficiencies - see later in this document.)
 7. On the **Equipment** tab, save the character's current equipment. This information is optional for NPCs and monsters.
-8. On the **Wealth** tab, save the character's coinage info and monthly budget, if any. This information is optional for NPCs and monsters.
+8. On the **Wealth** tab, save the character's coinage info, monthly budget, and passive investments, if any. This information is optional for NPCs and monsters.
 9. Use the **Hirelings** tab to keep track of Henchmen, Mercenaries, and Specialists in the character's employ.
 10. Use the **Journal** tab to capture additional information such as background, appearance, languages spoken, injuries, and property. The Adventure Notes can be used by the player to keep track of miscellaneous details. The GM uses the Experience Log to input earned experience after the character completes an expedition.
 11. The GM can use the **Settings** tab to customize or modify certain core base traits used in sheet calculations, such as bas movement rate, encumbrance thresholds, and earned XP modifiers.
@@ -96,7 +97,7 @@ Note that configuration of API scripts and macros is additional work not covered
 ## Sheet Variable Manifest
 This section details all fields and controls on the sheet and how they are calculated, used, etc.
 
-1. **IMPORTANT:** Most buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
+1. **IMPORTANT:** All buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
 2. The term 'character' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
 3. All field values are optional, unless otherwise specified.
 4. Attribute variable names shown below do not include the *attr_* portion of the name. The names for roll buttons and repeating sections include the full variable name.
@@ -164,7 +165,7 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Accuracy | *accuracy_bonus* | number | Applied to all missile weapon attack throws. |
 | Dmg, Melee | *damage_bonus* | number | Applied to all melee weapon damage rolls. |
 | Dmg, Missile | *damage_bonus_missile* | number | Applied to all missile weapon damage rolls. |
-| Dmg Reduction | *damage_reduction* | number | Tracks the character's global incoming damage reduction modifier, if any. Is **not** applied automatically. |
+| Hire Loyalty | *class_hireling_loyalty_bonus* | number | Applied to all henchmen and mercenary loyalty checks, as well as the henchmen hiring limit. |
 | Armor Class | *class_ac_bonus* | Number | Applied to all armor class calculations. |
 | Initiative | *class_initiative_bonus* | Number | Applied to all initiaitve rolls. |
 | Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
@@ -174,16 +175,17 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the character's class. I.e., copying in an ACKS class description. |
 
 ---
-### The Spells Tab
-This tab is used to track spell slots, spell usage, repertoire selection (if applicable), and spell descriptions. The tab and its content can be hidden by the *hide_spells* setting on the Settings tab.
+
+### The Studious Tab
+This tab is used to track studious spell slots, spell usage, repertoire selection, and spell descriptions. The tab and its content can be hidden by the *hide_studious* setting on the Settings tab.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
-| Spellcasting (Slots) | *spells_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
-| Spellcasting (Current) | *spells_LVL* | number | The current number of spells the character has remaining, by spell level. Min is 0; max is 6. |
+| Spellcasting (Slots) | *studious_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
+| Spellcasting (Current) | *studious_LVL* | number | The current number of spells the character has remaining, by spell level. Min is 0; max is 6. |
 | Caster Level | *caster_level* | number | The character's caster level. Min is 0; max is 14. |
 |||||
-| **Spells** | *repeating_spells_arcane* | repeating | A list of the character's spells, if any. |
+| **Spells** | *repeating_studious_arcane* | repeating | A list of the character's spells, if any. |
 | Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
 | Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
 | (name) | *spell_name* | text | The name of the spell. |
@@ -196,27 +198,25 @@ This tab is used to track spell slots, spell usage, repertoire selection (if app
 
 ---
 
-### The Skills Tab
-This tab is used to keep track of proficiencies and derivative / supporting ability information. Many common, starting abilities and proficiencies can be automagically added using the !AddSkills script, detailed later in this document.
+### The Prayerful Tab
+This tab is used to track prayerful spell slots, spell usage, and spell descriptions. It also provides a prominent display location for the caster's prayerful code of behavior. The tab and its content can be hidden by the *hide_prayerful* setting on the Settings tab.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
-| **Proficiencies** | *repeating_skills* | repeating | A list of the character's proficiencies. |
-| Review | *roll_review_skill* | button | When clicked, whispers the proficiency's information (below) to the Roll20 Chat window (to the character).
-| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
-| (name) | *skill_name* | text | The name of the proficiency. |
-| Rank | *skill_rank* | number | The character's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
-| Type | *skill_type* | list | The type of proficiency: *Bonus*, *Class*, *Class Power*, or *General*. The default is *General*. *Bonus* is intended for tracking additional proficiencies added via the *ACKS II RR "Gaining Proficiencies by Time and Training"* optional rule. |
-| Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
-| Description | *skill_details* | text | The proficiency's text description. |
+| Spellcasting (Slots) | *prayerful_LVL_max* | number | The maximum number of spells available, by spell level. Min is 0; max is 6. |
+| Spellcasting (Current) | *prayerful_LVL* | number | The current number of spells the character has remaining, by spell level. Min is 0; max is 6. |
+| Caster Level | *caster_level* | number | The character's caster level. Min is 0; max is 14. |
 |||||
-| **Abilities** | *repeating_abilities* | repeating | A list of the character's non-proficiency abilities. Can be used to add specific proficiency-driven abilities such as *Listen* (Adventuring) or *Diagnose Illness* (Healing), class-specific ability descriptions, or anything else desired. |
-| Review | *roll_review_ability* | button | When clicked, whispers the ability's information (below) to the Roll20 Chat window (to the character).
-| Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
-| (name) | *ability_name* | text | The name of the ability. |
-| Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
-| Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
-| Description | *ability_details* | text | The ability's text description. |
+| **Spells** | *repeating_prayerful_arcane* | repeating | A list of the character's spells, if any. |
+| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
+| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
+| (name) | *spell_name* | text | The name of the spell. |
+| Level | *spell_level* | text | The spell's level, intended to be entered as 'A1' or ;D3' to reflect school and level. |
+| Type | *spell_type* | text | The spell's type. |
+| Range | *spell_range* | text | The spell's range description. |
+| Duration | *spell_duration* | text | The spell's duration description. |
+| Description | *spell_description* | text | The spell's text description. |
+
 ---
 
 ### The Combat Tab
@@ -249,7 +249,7 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Attack | *roll_melee_attack* | button | When clicked, makes a 1d20 attack throw for the melee attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's STR modifier, the attack's melee attack modifier, fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *melee_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 sword attack and a d8 sword attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *melee_name* | text | The name of the melee attack. |
-| Dmg | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
+| Dmg | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. | 
 | long | *melee_is_long* | checkbox | Indicates if the attack has the *Long* characteristic (has reach). This value is purely for reference. |
 | Damage | *roll_melee_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the character's STR modifier, its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
 | Attk Bonus | *melee_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
@@ -263,13 +263,37 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Attack | *roll_missile_attack* | button | When clicked, makes a 1d20 attack throw for the missile attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's DEX modifier, the attack's missile attack modifier, a range modifier (queried), a class accuracy bonus (if any), fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *missile_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 arrow attack and a d6+1 magic arrow attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *missile_name* | text | The name of the missile attack. |
-| Dmg | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". | 
+| Dmg | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. | 
 | Rng | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
 | Ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. The sheet uses a R20 CRP to both roll the attack and reduce the weapon's remaining ammo count automatically. |
 | Damage | *roll_missile_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the character's STR modifier (if Thrown - see below), its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
 | Attk Bonus | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
 | Thrown | *missile_has_str_bonus* | checkbox | If checked, applies the character's STR modifier to the attack's damage roll. |
 | Effects | *missile_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
+
+---
+
+### The Skills Tab
+This tab is used to keep track of proficiencies and derivative / supporting ability information. Many common, starting abilities and proficiencies can be automagically added using the !AddSkills script, detailed later in this document.
+
+| Field | Variable(s) | Type | Description |
+| --- | --- | --- | --- |
+| **Proficiencies** | *repeating_skills* | repeating | A list of the character's proficiencies. |
+| Review | *roll_review_skill* | button | When clicked, whispers the proficiency's information (below) to the Roll20 Chat window (to the character).
+| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
+| (name) | *skill_name* | text | The name of the proficiency. |
+| Rank | *skill_rank* | number | The character's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
+| Type | *skill_type* | list | The type of proficiency: *Bonus*, *Class*, *Class Power*, or *General*. The default is *General*. *Bonus* is intended for tracking additional proficiencies added via the *ACKS II RR "Gaining Proficiencies by Time and Training"* optional rule. |
+| Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
+| Description | *skill_details* | text | The proficiency's text description. |
+|||||
+| **Abilities** | *repeating_abilities* | repeating | A list of the character's non-proficiency abilities. Can be used to add specific proficiency-driven abilities such as *Listen* (Adventuring) or *Diagnose Illness* (Healing), class-specific ability descriptions, or anything else desired. |
+| Review | *roll_review_ability* | button | When clicked, whispers the ability's information (below) to the Roll20 Chat window (to the character).
+| Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
+| (name) | *ability_name* | text | The name of the ability. |
+| Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
+| Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
+| Description | *ability_details* | text | The ability's text description. |
 
 ---
 
@@ -386,14 +410,15 @@ This tab contains base values used in some sheet worker calculations; mainly whe
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
+| Save Attributes | *act_save_attrs* | button | When clicked, copies the character's Current attribute values to their Nominal fields. |
+| Experience % Modifier | *xp_modifier* | number | Used to change the character's displayed XP bonus from its prime requisite attribute score(s). Typically used if the character has suffered an organic impediment or injury that nagtively impacts its intellectual / reasoning capability. |
+| Damage Attribute | *damage_attr* | list | Used to change the attribute modifier applied to all strength-based (the default) damage rolls. For example, a bladedancer's Strength of Faith class power. |
+| Hide Studious Tab | *toggle_studious* | checkbox | If checked, hides the Studious spellcasting tab. |
+| Hide Prayerful Tab | *toggle_studious* | checkbox | If checked, hides the Prayerful spellcasting tab. |
+| Encumbrance Alert | *enc_alert_toggle* | checkbox | If enabled, highlights the character's encumbrance value any time it exceeds its *move_thresh1* (5 by default). This is to assist players with characters that have encumbrance-based abilities which require travelling light to take advantage of (e.g. tumbling, or a bladedancer's Graceful Fighting class power). |
 | Enc Thresholds | *move_thresh1*, *move_thresh2*, *move_thresh3* | number | These fields set the encumbrance thresholds that define decreases in the character's maximum movement speed. The default values are those for humanoid characters described in the ACKS rulebook; 5, 7, and 10 stone. These align with movement rate reductions of 1/4, 1/2, and 3/4, respectively. The highest *move_threshX* value to exceed the current capacity is the threshold that will be used. For example, a mule would use 20, 20, and 40; a 20 encumbrance would only trigger 1/2 movement reduction, never 1/4. |
 | Max Encumbrance | *base_enc* | number | The character's base maximum encumbrance threshold, which is the point at which the character can no longer move. The default is the humanoid maximum base limit of 20 stone. |
 | Max Movement | *base_movement* | number | Change to set the maximum movement value per turn for the character. The default is the humanoid base movement of 120' per turn. |
-| Encumbrance Alert | *enc_alert_toggle* | checkbox | If enabled, highlights the character's encumbrance value any time it exceeds its *move_thresh1* (5 by default). This is to assist players with characters that have encumbrance-based abilities which require travelling light to take advantage of (e.g. tumbling, or a bladedancer's Graceful Fighting class power). |
-| Experience % Modifier | *xp_modifier* | number | Used to change the character's displayed XP bonus from its prime requisite attribute score(s). Typically used if the character has suffered an organic impediment or injury that nagtively impacts its intellectual / reasoning capability. |
-| Damage Attribute | *damage_attr* | list | Used to change the attribute modifier applied to all strength-based (the default) damage rolls. For example, a bladedancer's Strength of Faith class power. |
-| Hide Spells Tab | *toggle_spells* | checkbox | If checked, hides the Spells tab. |
-| Nominal Attributes | *save_attrs* | button | Saves the character's current attributes to the Nominal (*max*) column. |
 
 ---
 
