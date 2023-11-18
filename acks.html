@@ -905,13 +905,13 @@ function getID(repeatingItemName) {
 function validateDieFormula(theDieFormula) {
     const theDelimiter = theDieFormula.toLowerCase().indexOf(DIE_DELIMITER);
     if (theDelimiter == -1) return EMPTY_STRING; // bad string    
-    const numberOfHitDice = theDieFormula.substr(0,theDelimiter);
+    const numberOfHitDice = theDieFormula.slice(0,theDelimiter);
     if (isNaN(numberOfHitDice)) return EMPTY_STRING; // bad string
-    const restOfString = theDieFormula.substr(theDelimiter + 1);
+    const restOfString = theDieFormula.slice(theDelimiter + 1);
     const theOperator = restOfString.indexOf('+') > -1 ? restOfString.indexOf('+') : restOfString.indexOf('-') > -1 ? restOfString.indexOf('-') : -1;
-    const numSides = theOperator != -1 ? restOfString.substr(0,theOperator) : restOfString;
+    const numSides = theOperator != -1 ? restOfString.slice(0,theOperator) : restOfString;
     if (isNaN(numSides)) return EMPTY_STRING; // bad string
-    const modValue = theOperator != -1 ? restOfString.substr(theOperator + 1) : 0;
+    const modValue = theOperator != -1 ? restOfString.slice(theOperator + 1) : 0;
     if (isNaN(modValue)) return EMPTY_STRING; // bad string  
     
     // All tests passed
@@ -1091,7 +1091,7 @@ on('change:hit_dice', function(eventInfo) {
 function getNumHitDice(theHDFormula) {
     const theDelimiter = theHDFormula.toLowerCase().indexOf(DIE_DELIMITER);
 
-    return theHDFormula.substr(0,theDelimiter);
+    return theHDFormula.slice(0,theDelimiter);
 }
 
 // Hit Points
@@ -1151,8 +1151,8 @@ function updateSaveProfile() {
         const mageSaves = [14,15,16,17,18,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8,9,9,11,7,8,8,8,10,6,7,8,8,10,6,7,8,8,10,6,7,7,7,9,5,6,7,7,9,5,6];
         const thiefSaves = [14,15,16,17,18,13,13,13,14,15,13,13,13,14,15,12,12,12,13,14,12,12,12,13,14,11,11,11,12,13,11,11,11,12,13,10,10,10,11,12,10,10,10,11,12,9,9,9,10,11,9,9,9,10,11,8,8,8,9,10,8,8,8,9,10,7,7,7,8,9,7,7,7,8,9,6,6,6,7,8,6,6,6,7,8,5,5,5,6,7,5,5,5,6,7,4,4,4,5,6,4,4,4,5,6];
 
-        const saveClass = saveString.substr(0,1);
-        const saveLevel = Math.max(Math.min(Number(saveString.substr(1,2)) || 0,20),0);
+        const saveClass = saveString.slice(0,1);
+        const saveLevel = Math.max(Math.min(Number(saveString.slice(1,2)) || 0,20),0);
 
         let appliedSaves = [];
         switch (saveClass) { 
