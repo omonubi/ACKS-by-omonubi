@@ -164,18 +164,36 @@
                 <input class='redmove' type='number' value='0.75' title='@{miles_hour}' name='attr_miles_hour' readonly/>
         </div>
         <hr class='spangrid'/>
-        <div class='grid-2column'>
+        <div class='grid-savingthrows'>
             <label class='span-header'>Saving Throws</label>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
-                <input type='number' value='13' title='@{save_1}' name='attr_save_1'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
-                <input type='number' value='14' title='@{save_2}' name='attr_save_2'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **Saving Throw (Blast)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blast</button>
-                <input type='number' value='15' title='@{save_3}' name='attr_save_3'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **Saving Throw (Implements)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
-                <input type='number' value='16' title='@{save_4}' name='attr_save_4'/>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]+@{class_save_bonus}[class]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
-                <input type='number' value='17' title='@{save_5}' name='attr_save_5'/>
+            <span>
+                <input class='smallWidth' type='text' maxlength='3' placeholder='Profile' title='@{save_profile}' name='attr_save_profile'/>
+                <label><span title='Optional. OVERWRITES saving throw Base values, when XY format is entered. X values = [C, F, M, or T]. Y values = [0-14].'>(?)</span></label>
+            </span>
+            <label>Base</label>
+            <label>Modifier <span title='Optional. A *negative* number that lowers the Base value to compute the Target.'>(?)</span></label>
+            <label>Target</label>
+
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveparalysis} **Saving Throw (Paralysis)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_1}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_1'> Paralysis</button>
+                <input type='number' min='1' max='20' value='13' title='@{save_1_base}' name='attr_save_1_base'/>
+                <input type='number' min='-20' max='0' value='0' title='@{save_1_mod}' name='attr_save_1_mod'/>
+                <input type='number' readonly title='@{save_1}' name='attr_save_1'/>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savedeath} **Saving Throw (Death)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_2}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_2'> Death</button>
+                <input type='number' min='1' max='20' value='14' title='@{save_2_base}' name='attr_save_2_base'/>
+                <input type='number' min='-20' max='0' value='0' title='@{save_2_mod}' name='attr_save_2_mod'/>
+                <input type='number' readonly title='@{save_2}' name='attr_save_2'/>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveblast} **Saving Throw (Blast)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_3}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_3'> Blast</button>
+                <input type='number' min='1' max='20' value='15' title='@{save_3_base}' name='attr_save_3_base'/>
+                <input type='number' min='-20' max='0' value='0' title='@{save_3_mod}' name='attr_save_3_mod'/>
+                <input type='number' readonly title='@{save_3}' name='attr_save_3'/>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_saveimplements} **Saving Throw (Implements)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_4}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_4'> Implements</button>
+                <input type='number' min='1' max='20' value='16' title='@{save_4_base}' name='attr_save_4_base'/>
+                <input type='number' min='-20' max='0' value='0' title='@{save_4_mod}' name='attr_save_4_mod'/>
+                <input type='number' readonly title='@{save_4}' name='attr_save_4'/>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_savespells} **Saving Throw (Spells)**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=orange}} {{Target=[[@{save_5}]]}} {{Roll=[[1d20[die]+@{wil_mod}[wil]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}}' name='roll_save_5'> Spells</button>
+                <input type='number' min='1' max='20' value='17' title='@{save_5_base}' name='attr_save_5_base'/>
+                <input type='number' min='-20' max='0' value='0' title='@{save_5_mod}' name='attr_save_5_mod'/>
+                <input type='number' readonly title='@{save_5}' name='attr_save_5'/>
         </div>
         <div class='grid-monster'>
             <label class='span-header' title='Mainly used for monster-only stats.'>Monster Stats</label>
@@ -187,10 +205,6 @@
                 <input type='number' value='0' title='@{morale}' name='attr_morale'/>
             <label>XP Value</label>
                 <input type='number' title='@{xp_value}' name='attr_xp_value' />
-            <label>Save <span title='Sets the monster save targets. Enter as [letter][number] E.G. F1, C3, D7. Can be used to quickly set non-monster save targets as well.'>(?)</span></label>
-                <input class='smallWidth' type='text' maxlength='3' title='@{monster_save}' name='attr_monster_save'/>
-            <label>Treasure Type</label>
-                <input class='smallWidth' type='text' maxlength='3' title='@{monster_treasuretype}' name='attr_monster_treasuretype'/>
             <label>Size</label>
                 <select class='sizeSelect' title='@{monster_size}' name='attr_monster_size'>
                     <option>Small</option>
@@ -200,6 +214,8 @@
                     <option>Gigantic</option>
                     <option>Colossal</option>
                 </select>
+            <label>Treasure Type</label>
+                <input class='smallWidth' type='text' maxlength='3' title='@{monster_treasuretype}' name='attr_monster_treasuretype'/>
         </div>
     </div>
     <hr/>
@@ -210,14 +226,14 @@
     <div>
         <label class='span-header'>Global Class Bonuses <span title='Use only for class-specific bonuses that are applied all the time.'>(?)</span></label>
         <div class='grid-classbonuses'>
-            <label>Armor Class:</label><input type='number' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
-            <label>Dmg, Melee:</label><input type='number' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
-            <label>Dmg, Missile:</label><input type='number' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
-            <label>Hire Loyalty:</label><input type='number' value='0' title='@{class_hireling_loyalty_bonus}' name='attr_class_hireling_loyalty_bonus'/>
-            <label>Initiative:</label><input type='number' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
-            <label>Saving Throws:</label><input type='number' value='0' title='@{class_save_bonus}' name='attr_class_save_bonus'/>
-            <label>Surprise:</label><input type='number' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
-            <label>Hench Morale:</label><input type='number' value='0' title='@{class_henchmen_morale_bonus}' name='attr_class_henchmen_morale_bonus'/>
+            <label>Armor Class</label><input type='number' min='0' max='20' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
+            <label>Dmg, Melee</label><input type='number' min='0' max='20' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
+            <label>Dmg, Missile</label><input type='number' min='0' max='20' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
+            <label>Hire Loyalty</label><input type='number' min='0' max='20' value='0' title='@{class_hireling_loyalty_bonus}' name='attr_class_hireling_loyalty_bonus'/>
+            <label>Initiative</label><input type='number' min='0' max='20' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
+            <label>Saving Throws <span title='OVERWRITES values entered into Saving Throws > Modifier column.'>(?)</span></label><input type='number' min='0' max='20' value='0' title='@{class_save_bonus}' name='attr_class_save_bonus'/>
+            <label>Surprise</label><input type='number' min='0' max='20' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
+            <label>Hench Morale</label><input type='number' min='0' max='20' value='0' title='@{class_henchmen_morale_bonus}' name='attr_class_henchmen_morale_bonus'/>
         </div>
         <hr/>
     </div>   
@@ -1096,17 +1112,41 @@ on('change:hp', function(eventInfo) {
 });
 
 // Saving Throws
-// Update the character's saving throws based on ACKS II
-//  save progressions and a shorthand value
-//  provided by the player
-on('change:monster_save', function(eventInfo) {
-    getAttrs(['monster_save'], function(values) {
-        const saveString = values['monster_save'];
+on('change:save_profile change:class_save_bonus change:save_1_base change:save_1_mod change:save_2_base change:save_2_mod change:save_3_base change:save_3_mod change:save_4_base change:save_4_mod change:save_5_base change:save_5_mod', function(eventInfo) {
+    if (eventInfo.sourceAttribute == 'save_profile') {
+        updateSaveProfile();
+    }
+    else if (eventInfo.sourceAttribute == 'class_save_bonus') {
+        updateSaveModifiers();
+    } else {
+        const theSourceAttr = eventInfo.sourceAttribute;
+        const theSaveIndex = parseInt(theSourceAttr.slice(5,6)) || 0;
+        UpdateSaveTarget(theSaveIndex);
+    }
+});
+
+// Loop through saves and set all modifiers to the class save bonus.
+function updateSaveModifiers() {
+    getAttrs(['class_save_bonus', 'save_1_mod', 'save_2_mod', 'save_3_mod', 'save_4_mod', 'save_5_mod'], function(values) {
+        const saveBonus = parseInt(values.class_save_bonus) || 0;
+
+        const output = {};
+        for (var i = 1; i < 6; i++) { output[`save_${i}_mod`] = -saveBonus; };
+        setAttrs(output);
+    });
+    updateSaveTargets(); // Now go update the targets
+};
+
+// Apply class-based save values
+// Using an 'XY' code string, where
+//  'X' = class letter [C,F,M, or T] (see ACKS)
+//  'Y' = class level [0-15]
+function updateSaveProfile() {
+    getAttrs(['save_profile'], function(values) {
+        const saveString = values.save_profile;
         
         // ACKS II saving throw schedules, by level (incl. level 0)
         const clericSaves = [14,15,16,17,18,13,10,16,13,15,13,10,16,13,15,12,9,15,12,14,12,9,15,12,14,11,8,14,11,13,11,8,14,11,13,10,7,13,10,12,10,7,13,10,12,9,6,12,9,11,9,6,12,9,11,8,5,11,8,10,8,5,11,8,10,7,4,10,7,9,7,4,10,7,9,6,3,9,6,8,6,3,9,6,8,5,2,8,5,7,5,2,8,5,7,4,1,7,4,6,4,1,7,4,6];
-        const dwarvenvaultguardSaves = [14,15,16,17,18,9,10,12,12,13,8,9,11,11,12,8,9,11,11,12,7,8,10,10,11,6,7,9,9,10,6,7,9,9,10,5,6,8,8,9,4,5,7,7,8,4,5,7,7,8,3,4,6,6,7,2,3,5,5,6,2,3,5,5,6,1,2,4,4,5,0,1,3,3,4,0,1,3,3,4,-1,0,2,2,3,-2,-1,1,1,2,-2,-1,1,1,2,-3,-2,0,0,1,-4,-3,-1,-1,0];
-        const elvenspellsword = [14,15,16,17,18,12,14,15,16,16,11,13,14,15,15,11,13,14,15,15,10,12,13,14,14,9,11,12,13,13,9,11,12,13,13,8,10,11,12,12,7,9,10,11,11,7,9,10,11,11,6,8,9,10,10,5,7,8,9,9,5,7,8,9,9,4,6,7,8,8,3,5,6,7,7,3,5,6,7,7,2,4,5,6,6,1,3,4,5,5,1,3,4,5,5,0,2,3,4,4,-1,1,2,3,3];
         const fighterSaves = [14,15,16,17,18,13,14,15,16,17,12,13,14,15,16,12,13,14,15,16,11,12,13,14,15,10,11,12,13,14,10,11,12,13,14,9,10,11,12,13,8,9,10,11,12,8,9,10,11,12,7,8,9,10,11,6,7,8,9,10,6,7,8,9,10,5,6,7,8,9,4,5,6,7,8,4,5,6,7,8,3,4,5,6,7,2,3,4,5,6,2,3,4,5,6,1,2,3,4,5,0,1,2,3,4];
         const mageSaves = [14,15,16,17,18,13,13,15,11,12,13,13,15,11,12,13,13,15,11,12,12,12,14,10,11,12,12,14,10,11,12,12,14,10,11,11,11,13,9,10,11,11,13,9,10,11,11,13,9,10,10,10,12,8,9,10,10,12,8,9,10,10,12,8,9,9,9,11,7,8,9,9,11,7,8,9,9,11,7,8,8,8,10,6,7,8,8,10,6,7,8,8,10,6,7,7,7,9,5,6,7,7,9,5,6];
         const thiefSaves = [14,15,16,17,18,13,13,13,14,15,13,13,13,14,15,12,12,12,13,14,12,12,12,13,14,11,11,11,12,13,11,11,11,12,13,10,10,10,11,12,10,10,10,11,12,9,9,9,10,11,9,9,9,10,11,8,8,8,9,10,8,8,8,9,10,7,7,7,8,9,7,7,7,8,9,6,6,6,7,8,6,6,6,7,8,5,5,5,6,7,5,5,5,6,7,4,4,4,5,6,4,4,4,5,6];
@@ -1117,8 +1157,6 @@ on('change:monster_save', function(eventInfo) {
         let appliedSaves = [];
         switch (saveClass) { 
             case 'C': appliedSaves = clericSaves; break;
-            case 'D': appliedSaves = dwarvenvaultguardSaves; break;
-            case 'E': appliedSaves = elvenspellsword; break;
             case 'F': appliedSaves = fighterSaves; break;
             case 'M': appliedSaves = mageSaves; break;
             case 'T': appliedSaves = thiefSaves; break;
@@ -1126,10 +1164,32 @@ on('change:monster_save', function(eventInfo) {
         }
         
         const output = {};
-        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1)] = appliedSaves[(saveLevel) * 5 + i]};
+        for (var i = 0; i < 5; i++ ) { output['save_' + (i + 1) + '_base'] = appliedSaves[(saveLevel) * 5 + i]};
         setAttrs(output);
     });
-});
+    updateSaveTargets(); // Now go update the targets
+};
+
+// Update a save target
+function UpdateSaveTarget(index) {
+    getAttrs([`save_${index}_base`, `save_${index}_mod`], function(values) {
+        theBaseValue = parseInt(values[`save_${index}_base`]) || 0;
+        theModValue = parseInt(values[`save_${index}_mod`]) || 0;
+
+        const output = {};
+        output[`save_${index}`] = Math.max(1, theBaseValue + theModValue);
+        setAttrs(output);
+    }); 
+};
+
+//Update all the save targets
+function updateSaveTargets() {
+
+    for (var index = 1; index < 6; i++) {
+        UpdateSaveTarget(index);
+    };    
+};
+
 
 /**************************************************
 ** Class Tab

@@ -1,13 +1,7 @@
 # Roll20 Character Sheet for Adventurer Conqueror King System, by Autarch
-This is a Roll20 specific character sheet designed for use with the Adventurer Conqueror King System (ACKS) OSR RGP, by Autarch.
+This is a Roll20 specific character sheet designed for use with the *Adventurer Conqueror King System, Imperial Imprint (ACKS II)* OSR RGP, by Autarch.
 
-Hopefully, this documentation below comes in useful. I know I've struggled over the years when attempting to implement custom character sheets. Even the official sheets are sometimes difficult to divine.
-
-A note about automation: There's a wide range of freedom in how a sheet developer can automate and/or embed a game's mechanics into their Roll20 custom sheet. While more automation can make it easier for the players, it often make the sheet more complex to maintain, increases sheet loading times, slows performance, and (usually) restricts flexibility. For this sheet, automation and embedded game mechanics, tables, etc., has been limited as much as possible. A good example is the Hiring tab > Mercenaries. A lot of this could have been automated with drop-downs containing embedded mercenary information from the ACKS rulebook, but the sheet worker complexity, combined with reduction in flexibility of using these tools, led me not to do so.
-
----
-
-## Version 3.2
+## Version 3.3
 - This is v3 of the character sheet, for supporting ACKS II.
 - With ACKS II in beta, the current rules version refereced is v109.
 - Many small changes to this sheet were needed.
@@ -16,12 +10,10 @@ A note about automation: There's a wide range of freedom in how a sheet develope
 - The Hirelings tab was overhauled to include loyalty and obedience checks.
 - The sheet was styled.
 - Sheet layout/tabs were changed for usability
+- Class global modifiers was updated to reflect ACKS II class abilities.
+- The Overview tab's Saving Throws section was completely overhauled.
 
----
-
-## How To...
-
-### How to Install the Character Sheet
+## How to Install the Character Sheet
 1. In Github, go to Code. Click the Code button and select "Download ZIP". Unzip to your local computer.
 2. In Roll 20, click *Create New Game* and select *Custom* from the *Optional: Choose Character Sheet* drop-down menu.
 3. Once the game is created, go to *Settings* > *Game Settings*.
@@ -35,80 +27,54 @@ Note that configuration of API scripts and macros is additional work not covered
 
 **This sheet does not yet support translation.**
 
-### How to Use the Character Sheet
+## How to Use the Character Sheet
 1. Generate an ACKS character.
 2. On the **Overview** tab, enter the character's basic info and its generated attributes. Save each attribute's Nominal value in the Max column of the Roll20 sheet's Attributes & Abilities tab. Generate the character's hit points and save the value in both Hit Point fields.
 3. On the **Class** tab, input any class-specific modifiers and a desired class description.
-5. On the **Studious** tab, enter class-specific spell slot and spell description information. (If the character is not a studious spellcaster, this tab can be hidden on the Settings tab.)
+4. On the **Studious** tab, enter class-specific spell slot and spell description information. (If the character is not a studious spellcaster, this tab can be hidden on the Settings tab.)
 5. On the **Prayerful** tab, enter class-specific code of behavior, spell slot, and spell description information. (If the character is not a prayerful spellcaster, this tab can be hidden on the Settings tab.)
-4. Enter the appropriate information on the **Combat** tab, based on the character's equipment and other characteristics. Enter the character's melee and missile attack options. Use one line-item for each attack type, combination, and/or damage formula. Check the (equipped) checkboxes to indicate which attacks are available at any given time.
-6. On the **Skills** tab, enter the character's selected proficiency information and any additional ability information desired. (Note: Use the **!AddSkills** custom API script to pre-populate common abiltiies and proficiencies - see later in this document.)
-7. On the **Equipment** tab, save the character's current equipment. This information is optional for NPCs and monsters.
-8. On the **Wealth** tab, save the character's coinage info, monthly budget, and passive investments, if any. This information is optional for NPCs and monsters.
-9. Use the **Hirelings** tab to keep track of Henchmen, Mercenaries, and Specialists in the character's employ.
-10. Use the **Journal** tab to capture additional information such as background, appearance, languages spoken, injuries, and property. The Adventure Notes can be used by the player to keep track of miscellaneous details. The GM uses the Experience Log to input earned experience after the character completes an expedition.
+6. Enter the appropriate information on the **Combat** tab, based on the character's equipment and other characteristics. Enter the character's melee and missile attack options. Use one line-item for each attack type, combination, and/or damage formula. Check the (equipped) checkboxes to indicate which attacks are available at any given time.
+7. On the **Skills** tab, enter the character's selected proficiency information and any additional ability information desired. (Note: Use the **!AddSkills** custom API script to pre-populate common abiltiies and proficiencies - see later in this document.)
+8. On the **Equipment** tab, save the character's current equipment. This information is optional for NPCs and monsters.
+9. On the **Wealth** tab, save the character's coinage info, monthly budget, and passive investments, if any. This information is optional for NPCs and monsters.
+10. Use the **Hirelings** tab to keep track of Henchmen, Mercenaries, and Specialists in the character's employ.
+11. Use the **Journal** tab to capture additional information such as background, appearance, languages spoken, injuries, and property. The Adventure Notes can be used by the player to keep track of miscellaneous details. The GM uses the Experience Log to input earned experience after the character completes an expedition.
 11. The GM can use the **Settings** tab to customize or modify certain core base traits used in sheet calculations, such as bas movement rate, encumbrance thresholds, and earned XP modifiers.
 12. Use the **whisper toggle** to send any Roll20 Chat window output as a whisper to oneself. Otherwise, any such Chat output is viewable by all.
-
-**Refer to the Sheet Variable Manifest, below, for details on how each field and control function.**
-
-### How to Use the Ability and Proficiency Target Fields
-- By default the each new Ability and Proficiency item's Target field value is empty.
-- If the Target field value is empty and the Throw button is clicked, nothing will happen. This is by design.
-- Any Roll20 inline roll formula (including roll queries) can be used to set the Target value of an Ability or Proficiency list item. Use the Variable Manifest, below, to find the names of specific sheet variables. Examples include:
-    - 18
-    - 18-4[elf]
-    - 18-@{str_mod}*4
-    - ?{Target|Normal,14|Forest,3}
-    - 18+(@{has_helm}[helm]*4)
-    - Etc.
-
-### How to Use Melee and Missile Attack Lists
-1. Use the Melee Attacks list for melee attacks, and the Missile Attacks list for missile  and/or thrown attacks. Do not mix these.
-2. For each possible attack, attack combination, and/or damage formula, create a separate attack entry. For example, a spear could have up to 5 entries; 4 melee and 1 missile:
-    1. Melee: "Spear (One-Handed)", 1d6 damage
-    2. Melee: "Spear (Two-Handed)", 1d8 damage
-    3. Melee: "Spear (Broken, Tip), -1 bonus, 1d4 damage
-    4. Melee: "Spear (Broken, Haft), -1 bonus, 1d4 damage
-    5. Missile: "Spear (Thrown), isThrown, 1d6 damage
-3. If the character is proficient in the dual wield fighting style, creating entries for each weapon combination likely to be used:
-    1. "Mace +1 and Sword", +2 bonus, 1d6+1 damage
-    2. "Sword and Dagger", +1 bonus, 1d6 damage
-    3. Etc.
-3. The Melee Attacks > Long checkbox and the Missile Attacks > Range field are optional but provide helpful context for the player.
-4. Missile Attacks use an advanced Roll20 CRP sheet worker to both make the attack roll and automatically decrement the amount of ammo remaining by 1.
-5. Note: Use the **!AddActions** custom API script to automagically include common attacks to both Melee and Missile Attack lists. These entires can then be customized as needed for both monsters and characters.
-
-### How to Work with Equipment and Money
-- Uncheck the Equipped checkbox to "warehouse" (not carry) inventory.
-- As per ACKS, collections of small items should be tracked as a single item in the increments specified in the *ACKS Rules Reference*.
-- There are multiple ways to handle rations (assumed to be iron):
-    - Individually, each day's ration weighs 1/6 (0.16) stone.
-    - Each day's waterskin (full) weighs 5/6 (0.8) stone.
-    - Combined, a "day's rations" (food and water) weigh 1 stone.
-- Each coin weighs 0.001 stone. Use the Banked column to offload coinage On Hand. Use the New column to add or remove coins from the inventory. The GM should use this feature, then ask the player to click the Claim button and move it to On Hand. 
-
-### How to Award and Track Experience Points
-- The Overview > XP and Journal > Experience Log fields are designed to track and award XP in discrete chunks, based on the ACKS "return to civilization" approach.
-- The Journal > Experience Log repeating list *must* be used to add XP to the character's XP total.
-- The character's total XP is updated to reflect changes in the Experience Log whenever an entry is added, changed, or removed.
-- When adding a log entry, reference the character's prime requisite XP bonus and enter than into the log entry. (XP% bonus can change for the character over the course of play, such as brain injury.)
 
 ## Sheet Variable Manifest
 This section details all fields and controls on the sheet and how they are calculated, used, etc.
 
-1. **IMPORTANT:** All buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
-2. The term 'character' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
-3. All field values are optional, unless otherwise specified.
-4. Attribute variable names shown below do not include the *attr_* portion of the name. The names for roll buttons and repeating sections include the full variable name.
-5. All *CAPS* text within a *variable_name* indicates a placeholder for that indicated value. E.G., '*some_LVL_variable*' indicates a level number for the *LVL* portion of the variable name.
-6. Some fields are included to hold "reference values". These are purely informational fields that aren't used any place else on the sheet, and are identified as such, below.
-7. Some sections of the character sheet employ checkbox toggles ("more...") used to show/hide sections of content or details specific to the item type in question.
+- **IMPORTANT:** All buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
+- *Why doesn't this sheet support more automation?* - ACKS II is a *sandbox* RPG system. This means that a GM may use an assortment of system-building tools in the ACKS system to create custom classes, monsters, etc. To maintain maximum flexibility in the spirit of this approach, the character sheet *intentionally* doesn't automate many functions, such as level dependent stat progressions (saving throws, attack throws, etc.)
+- The term 'character' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
+- All field values are optional, unless otherwise specified.
+- Attribute variable names shown below do not include the *attr_* portion of the name. The names for roll buttons and repeating sections include the full variable name.
+- All *CAPS* text within a *variable_name* indicates a placeholder for that indicated value. E.G., '*some_LVL_variable*' indicates a level number for the *LVL* portion of the variable name.
+- Some fields are included to hold "reference values". These are purely informational fields that aren't used any place else on the sheet, and are identified as such, below.
+- Some sections of the character sheet employ checkbox toggles ("more...") used to show/hide sections of content or details specific to the item type in question.
 
 ---
 
 ### The Overview Tab
 This tab contains all the general information for the character, including a summary of important key values used during play.
+
+### How to Work with Saving Throws
+- The sheet allows the character's saving throw base target and class modifiers to be entered individually, if desired.
+- These two values are combined to set each save's throw target.
+- The *saver_profile* field can be used to set all the characters base target saving throw values by entering a simple two-digit code, 'XY', where...
+    - 'X' is a letter that represets one of the four basic ACKS saving throw progressions:
+        - C: Crusader
+        - F: Fighter
+        - M: Mage
+        - T: Thief
+    - 'Y' is a number that represents a class level
+        - Acceptable values are 0 - 15.
+        - Non-monster character's should use their current level.
+        - Monsters should use which ever level progression is specified in the ACKS Monstrous Manual
+    - Using this feature WILL OVERWRITE ANY PREVIOUS VALUES.
+- Modifier field values must be 0 or less.
+- Class tab's *class_save_bonus* field can be used to automatically set all the saving throw target modifiers to a single number. THIS WILL OVERWRITE ANY PREVIOUS VALUES.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -145,13 +111,16 @@ This tab contains all the general information for the character, including a sum
 | Miles / Hour | *miles_hour* | calculated | *move_turn* / 40. |
 | Fatigue Level | *fatigue* | number | The character's current fatigue level. Modifiers 
 |||||
-| Saving Throws | *save_1*, *save_2*, *save_3*, *save_4*, *save_5* | number | The character's base saving throw targets. |
+| (Save Profile) | *save_profile* | string | Optional. A two-digit code (see above). |
+| (Saving Throw) | *roll_save_X* | button | Rolls the actual saving throw. 1 = Paralysis, 2 = Death, 3 = Blast, 4 = Implements, and 5 = Spells. |
+| Base | *save_X_base* | number | Stores each save's base saving throw target value. Must be between 1 and 20. |
+| Modifier | *save_X_mod* | number | Stores a modifer that is applied to the save's saving throw target value. Must be a value of 0 or less. |
+| Target | *save_X* | number | The character's final, computed, saving throw target for each save. |
 |||||
 | Alt Move | *alt_move_mode* | text | The character's alternative form of movement, if any. |
 | Feet / Round | *alt_move* | text | The speed of the character's alternative form of movement, if any. |
 | Morale | *morale* | number | The character's morale score (default is 0). |
 | XP Value | *xp_value* | number | The character's value in experience points. |
-| Save | *monster_save* | text | A letter and a number (E.G. 'F1') that indicates a character's saving throw progression found in their character description. Valid letters are 'F', 'C', 'M', 'T', 'D', and 'E'. Numbers can range from 0 to 14. Setting to a valid string value auto-computes and overwrites the character's base saving throws, above. | 
 | Treasure Type | *monster_treasuretype* | text | The character's treasure type, if any. |
 | Size | *monster_size* | list | The monster's size. The default is 'medium' (man-sized). |
 
@@ -166,9 +135,9 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Dmg, Melee | *class_damage_bonus* | number | Applied to all melee weapon damage rolls. |
 | Dmg, Missile | *class_damage_bonus_missile* | number | Applied to all missile weapon damage rolls. |
 | Hire Loyalty | *class_hireling_loyalty_bonus* | number | Applied to all henchmen and mercenary loyalty checks, as well as the henchmen hiring limit. |
-| Initiative | *class_initiative_bonus* | Number | Applied to all initiaitve rolls. |
-| Saving Throws | *class_save_bonus* | number | Applied to all saving throws. |
-| Surprise | *class_surprise_bonus* | Number | Applied to all surprise rolls. |
+| Initiative | *class_initiative_bonus* | number | Applied to all initiaitve rolls. |
+| Saving Throws | *class_save_bonus* | number | Applied to all saving throws (see Overview tab). |
+| Surprise | *class_surprise_bonus* | number | Applied to all surprise rolls. |
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
 | Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the character's class. I.e., copying in an ACKS class description. |
@@ -220,6 +189,22 @@ This tab is used to track prayerful spell slots, spell usage, and spell descript
 
 ### The Combat Tab
 This tab contains all combat-specific data, including encounter-related rolls, armor class and attack information, melee attacks, and missile attacks.
+
+### How to Use Melee and Missile Attack Lists
+- Use the Melee Attacks list for melee attacks, and the Missile Attacks list for missile  and/or thrown attacks. Do not mix these.
+- For each possible attack, attack combination, and/or damage formula, create a separate attack entry. For example, a spear could have up to 5 entries; 4 melee and 1 missile:
+    - Melee: "Spear (One-Handed)", 1d6 damage
+    - Melee: "Spear (Two-Handed)", 1d8 damage
+    - Melee: "Spear (Broken, Tip), -1 bonus, 1d4 damage
+    - Melee: "Spear (Broken, Haft), -1 bonus, 1d4 damage
+    - Missile: "Spear (Thrown), isThrown, 1d6 damage
+- If the character is proficient in the dual wield fighting style, creating entries for each weapon combination likely to be used:
+    - "Mace +1 and Sword", +2 bonus, 1d6+1 damage
+    - "Sword and Dagger", +1 bonus, 1d6 damage
+    - Etc.
+- The Melee Attacks > Long checkbox and the Missile Attacks > Range field are optional but provide helpful context for the player.
+- Missile Attacks use an advanced Roll20 CRP sheet worker to both make the attack roll and automatically decrement the amount of ammo remaining by 1.
+- Note: Use the **!AddActions** custom API script to automagically include common attacks to both Melee and Missile Attack lists. These entires can then be customized as needed for both monsters and characters.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -275,6 +260,17 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 ### The Skills Tab
 This tab is used to keep track of proficiencies and derivative / supporting ability information. Many common, starting abilities and proficiencies can be automagically added using the !AddSkills script, detailed later in this document.
 
+### How to Use the Proficiency and Ability Target Fields
+- By default the each new Ability and Proficiency item's Target field value is empty.
+- If the Target field value is empty and the Throw button is clicked, nothing will happen. This is by design.
+- Any Roll20 inline roll formula (including roll queries) can be used to set the Target value of an Ability or Proficiency list item. Use the Variable Manifest, below, to find the names of specific sheet variables. Examples include:
+    - 18
+    - 18-4[elf]
+    - 18-@{str_mod}*4
+    - ?{Target|Normal,14|Forest,3}
+    - 18+(@{has_helm}[helm]*4)
+    - Etc.
+
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | **Proficiencies** | *repeating_skills* | repeating | A list of the character's proficiencies. |
@@ -318,6 +314,11 @@ This tab keeps track of all equipment.
 
 ### The Wealth Tab
 This tab keeps track of all coinage. It also has optional controls for tracking standard of living and monthly expenses.
+
+### How to Work with Coins
+- Each coin weighs 0.001 stone. Use the Banked column to externally store (i.e. not carry) coins. 
+- Use the New column to add or remove coins from the On Hand column. The GM should use this feature to add or remove coins to a character, then ask the player to click the Claim button and move it to On Hand.
+
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | Currency, On Hand | *platinum*, *gold*, *electrum*, *silver*, *copper* | number | The amount of coins (of each type) being carried. The weight of coins is factored into *encumbrance*. The minimum value is 0. |
@@ -383,6 +384,11 @@ This tab keeps track of the character's hirelings and associated fees.
 
 ## Journal Tab
 This tab contains text area fields for tracking additional character information, such as background, appearance, languages, etc. It is also used to log XP and apply prerequisite bonuses to that XP.
+
+### How to Work with Experience Points
+- ACKS II uses an "adventure"-based experience points system. While the precious definition of an "adventure" is left to the GM, the XP awards system only gives earned XP to characters once the "adventure" ends and they have returned to "civilization" (i.e., a settlement).
+- Use the Experience Log repeating list to award XP at the conclusion of each "adventure".
+- The Bonus % is *not* automatically pulled from their current bonus on the Overview tab, since its possible that character injury, aging, attribute score alteration, etc., could change this during the character's lifetime.
 
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |

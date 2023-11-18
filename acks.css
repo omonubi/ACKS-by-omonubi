@@ -99,6 +99,18 @@
 .ui-dialog .charsheet .grid-overview div.xplabel {
     justify-self: end;
 }
+.ui-dialog .charsheet .grid-savingthrows {    
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(4, 1fr) [last];
+    justify-content: center;
+    row-gap: 5px;
+    width: 100%;
+}
+.ui-dialog .charsheet .grid-savingthrows input,
+.ui-dialog .charsheet .grid-savingthrows label {
+    justify-self: center;    
+}
 .ui-dialog .charsheet .grid-settings {
     align-items: center;
     display: grid;
