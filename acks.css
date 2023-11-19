@@ -289,8 +289,12 @@
 .ui-dialog .charsheet input.attackname {
     width: 150px;
 }
-.ui-dialog .charsheet input.hirelingtext {
-    width: 100px;
+.ui-dialog .charsheet input.henchClass {
+    width: 180px;
+}
+.ui-dialog .charsheet input.hirelingName,
+.ui-dialog .charsheet input.specType {
+    width: 240px;
 }
 .ui-dialog .charsheet input[type=number].itemValue::-webkit-outer-spin-button,
 .ui-dialog .charsheet input[type=number].itemValue::-webkit-inner-spin-button {
@@ -311,8 +315,11 @@
 .ui-dialog .charsheet input.missilerange {
     width: 100px;
 }
-.ui-dialog .charsheet input.henchmenText {
-    width: 140px;
+.ui-dialog .charsheet input.mercRace {
+    width: 80px;
+}
+.ui-dialog .charsheet input.mercType {
+    width: 180px;
 }
 .ui-dialog .charsheet input.skillScript,
 .ui-dialog .charsheet input.spellDuration {
