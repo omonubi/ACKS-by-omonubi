@@ -972,7 +972,7 @@ on('change:str change:int change:wil change:dex change:con change:cha', function
         const attrBonus = attrModifiers[attrValue - 1];
 
         const output = {};
-        output[theAttr + '_mod'] = attrBonus;
+        output[`${theAttr}_mod`] = attrBonus;
         setAttrs(output);
     });
 });
@@ -985,8 +985,7 @@ on('clicked:save_attrs', function(eventInfo) {
 
         const output = {};
         theAttrs.forEach((element) => {
-            console.log('value: ' + values[element]);
-            output[element + '_max'] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
+            output[`${element}_max`] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
         });
         setAttrs(output);
     });
@@ -1010,16 +1009,16 @@ on('change:repeating_experience:xp_amount change:repeating_experience:xp_bonus r
     getSectionIDs('repeating_experience', function (ids) {
         const XPFieldnames = [];
         ids.forEach(id => {
-            XPFieldnames.push('repeating_experience_' + id + '_xp_amount');
-            XPFieldnames.push('repeating_experience_' + id + '_xp_bonus');
+            XPFieldnames.push(`repeating_experience_${id}_xp_amount`);
+            XPFieldnames.push(`repeating_experience_${id}_xp_bonus`);
         });
         
         getAttrs([...XPFieldnames], function (values) {
             let totalXP = 0;
             const output = {};
             ids.forEach(id => {
-                const itemXP = parseFloat(values['repeating_experience_' + id + '_xp_amount']) || 0;
-                const xpBonus = parseFloat(values['repeating_experience_' + id + '_xp_bonus']) || 0;
+                const itemXP = parseFloat(values[`repeating_experience_${id}_xp_amount`]) || 0;
+                const xpBonus = parseFloat(values[`repeating_experience_${id}_xp_bonus`]) || 0;
                 totalXP += Math.floor(itemXP + (itemXP * (xpBonus / 100)));
             });
             output['xp'] = totalXP;
@@ -1224,7 +1223,7 @@ on('change:select_damage_attr', function(eventInfo) {
         const theNewAttribute = values['select_damage_attr'];
 
         const output = {};
-        output['damage_attr'] = '@{' + theNewAttribute + '_mod}[' + theNewAttribute + ']';
+        output['damage_attr'] = `@{${theNewAttribute}_mod}[${theNewAttribute}]`;
         setAttrs(output);
     });
 });
@@ -1346,26 +1345,12 @@ on('change:repeating_melee:melee_is_finesse', function(eventInfo) {
 // Reset the character's daily casting slots remaining.
 on('clicked:reset_studious_spells', function(eventInfo) {
     getAttrs(['studious_1_max', 'studious_2_max', 'studious_3_max', 'studious_4_max', 'studious_5_max', 'studious_6_max', 'studious_7_max', 'studious_8_max', 'studious_9_max'], function(values) {
-        const spells1 = parseInt(values.studious_1_max) || 0;
-        const spells2 = parseInt(values.studious_2_max) || 0;
-        const spells3 = parseInt(values.studious_3_max) || 0;
-        const spells4 = parseInt(values.studious_4_max) || 0;
-        const spells5 = parseInt(values.studious_5_max) || 0;
-        const spells6 = parseInt(values.studious_6_max) || 0;
-        const spells7 = parseInt(values.studious_7_max) || 0;
-        const spells8 = parseInt(values.studious_8_max) || 0;
-        const spells9 = parseInt(values.studious_9_max) || 0;
-
+        
         const output = {};
-        output['studious_1'] = spells1;
-        output['studious_2'] = spells2;
-        output['studious_3'] = spells3;
-        output['studious_4'] = spells4;
-        output['studious_5'] = spells5;
-        output['studious_6'] = spells6;
-        output['studious_7'] = spells7;
-        output['studious_8'] = spells8;
-        output['studious_9'] = spells9;
+        for (i = 1; i < 10; i++) {
+            const slotValue = parseInt(values[`studious_${i}_max`]) || 0;
+            output[`studious_${i}`] = slotValue;
+        }
         setAttrs(output);
     });
 });
@@ -1377,26 +1362,12 @@ on('clicked:reset_studious_spells', function(eventInfo) {
 // Reset the character's daily casting slots remaining.
 on('clicked:reset_prayerful', function(eventInfo) {
     getAttrs(['prayerful_1_max', 'prayerful_2_max', 'prayerful_3_max', 'prayerful_4_max', 'prayerful_5_max', 'prayerful_6_max', 'prayerful_7_max', 'prayerful_8_max', 'prayerful_9_max'], function(values) {
-        const spells1 = parseInt(values.prayerful_1_max) || 0;
-        const spells2 = parseInt(values.prayerful_2_max) || 0;
-        const spells3 = parseInt(values.prayerful_3_max) || 0;
-        const spells4 = parseInt(values.prayerful_4_max) || 0;
-        const spells5 = parseInt(values.prayerful_5_max) || 0;
-        const spells6 = parseInt(values.prayerful_6_max) || 0;
-        const spells7 = parseInt(values.prayerful_7_max) || 0;
-        const spells8 = parseInt(values.prayerful_8_max) || 0;
-        const spells9 = parseInt(values.prayerful_9_max) || 0;
-
+        
         const output = {};
-        output['prayerful_1'] = spells1;
-        output['prayerful_2'] = spells2;
-        output['prayerful_3'] = spells3;
-        output['prayerful_4'] = spells4;
-        output['prayerful_5'] = spells5;
-        output['prayerful_6'] = spells6;
-        output['prayerful_7'] = spells7;
-        output['prayerful_8'] = spells8;
-        output['prayerful_9'] = spells9;
+        for (i = 1; i < 10; i++) {
+            const slotValue = parseInt(values[`prayerful_${i}_max`]) || 0;
+            output[`prayerful_${i}`] = slotValue;
+        }
         setAttrs(output);
     });
 });
@@ -1472,18 +1443,18 @@ function updateItemEncumbrance(
         const countFieldnames = [];
         const equippedFieldnames = [];
         ids.forEach(id => {
-            encFieldnames.push(repeatingName + '_' + id + encPropName);
-            countFieldnames.push(repeatingName + '_' + id + countPropName);
-            equippedFieldnames.push(repeatingName + '_' + id + equippedPropName);
+            encFieldnames.push(`${repeatingName}_${id}${encPropName}`);
+            countFieldnames.push(`${repeatingName}_${id}${countPropName}`);
+            equippedFieldnames.push(`${repeatingName}_${id}${equippedPropName}`);
         });
         
         getAttrs([...encFieldnames, ...countFieldnames, ...equippedFieldnames], function (values) {
             const output = {};
             let totalEnc = 0;
             ids.forEach(id => {
-                const itemEnc = parseFloat(values[repeatingName + '_' + id + encPropName]);
-                const itemCount = parseFloat(values[repeatingName + '_' + id + countPropName])||0;
-                const equipped = parseInt(values[repeatingName + '_' + id + equippedPropName]);
+                const itemEnc = parseFloat(values[`${repeatingName}_${id}${encPropName}`]);
+                const itemCount = parseFloat(values[`${repeatingName}_${id}${countPropName}`])||0;
+                const equipped = parseInt(values[`${repeatingName}_${id}${equippedPropName}`]);
 
                 totalEnc += equipped == 1 ? itemEnc * itemCount : 0;
             });
@@ -1645,16 +1616,17 @@ on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(
     getSectionIDs('repeating_henchmen', function (ids) {
         const feeHenchFieldnames = [];
         ids.forEach(id => {
-            feeHenchFieldnames.push('repeating_henchmen_' + id + '_henchman_fee');
+            feeHenchFieldnames.push(`repeating_henchmen_${id}_henchman_fee`);
         });
         
         getAttrs([...feeHenchFieldnames], function (values) {
             let totalFees = 0;
             const output = {};
             ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_henchmen_' + id + '_henchman_fee'])||0;
+                const itemFee = parseFloat(values[`repeating_henchmen_${id}_henchman_fee`])||0;
                 totalFees += itemFee;
             });
+            console.log (`totalFees: ${totalFees}`);
             output['henchmen_fees'] = totalFees;
             setAttrs(output);
         });
@@ -1668,7 +1640,7 @@ on('change:repeating_henchmen:henchman_level', function(eventInfo) {
     const henchmenFees = [12,25,50,100,200,400,800,1600,3000,7250,12000,32000,50000,135000,350000]; // Fee schedule, by level
     
     const output = {};
-    output['repeating_henchmen_' + theRowId + '_henchman_fee'] = henchmenFees[theLevel];
+    output[`repeating_henchmen${theRowId}_henchman_fee`] = henchmenFees[theLevel];
     setAttrs(output);
 });
 
@@ -1722,16 +1694,16 @@ on('change:repeating_mercenaries:merc_fee change:repeating_mercenaries:merc_numb
         const feeMercFieldnames = [];
         const numMercFieldnames = [];
         ids.forEach(id => {
-            feeMercFieldnames.push('repeating_mercenaries' + id + '_merc_fee');
-            numMercFieldnames.push('repeating_mercenaries' + id + '_merc_number');
+            feeMercFieldnames.push(`repeating_mercenaries${id}_merc_fee`);
+            numMercFieldnames.push(`repeating_mercenaries${id}_merc_number`);
         });
         
         getAttrs([...feeMercFieldnames, ...numMercFieldnames], function (values) {
             let totalFees = 0;
             const output = {};
             ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_mercenaries' + id + '_merc_fee'])||0;
-                const itemNum = parseFloat(values['repeating_mercenaries' + id + '_merc_number'])||0;                
+                const itemFee = parseFloat(values[`repeating_mercenaries${id}_merc_fee`])||0;
+                const itemNum = parseFloat(values[`repeating_mercenaries${id}_merc_number`])||0;                
                 totalFees += itemFee * itemNum;
             });
             output['mercenary_fees'] = totalFees;
@@ -1746,14 +1718,14 @@ on('change:repeating_specialists:spec_fee remove:repeating_specialists', functio
     getSectionIDs('repeating_specialists', function (ids) {
         const feeSpecFieldnames = [];
         ids.forEach(id => {
-            feeSpecFieldnames.push('repeating_specialists' + id + '_spec_fee');
+            feeSpecFieldnames.push(`repeating_specialists${id}_spec_fee`);
         });
         
         getAttrs([...feeSpecFieldnames], function (values) {
             let totalFees = 0;
             const output = {};
             ids.forEach(id => {
-                const itemFee = parseFloat(values['repeating_specialists' + id + '_spec_fee'])||0;
+                const itemFee = parseFloat(values[`repeating_specialists${id}_spec_fee`])||0;
                 totalFees += itemFee;
             });
             output['specialist_fees'] = totalFees;
