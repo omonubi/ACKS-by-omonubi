@@ -1612,7 +1612,7 @@ on('change:gold change:silver change:copper change:electrum change:platinum chan
 ***************************************************/
 // Henchmen Fees
 // Calculate the character's monthly henchmen fees.
-on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(eventInfo) {
+on('change:repeating_henchmen:henchman_name change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(eventInfo) {
     getSectionIDs('repeating_henchmen', function (ids) {
         const feeHenchFieldnames = [];
         ids.forEach(id => {
@@ -1623,10 +1623,10 @@ on('change:repeating_henchmen:henchman_fee remove:repeating_henchmen', function(
             let totalFees = 0;
             const output = {};
             ids.forEach(id => {
+                console.log('fee: ' + values[`repeating_henchmen_${id}_henchman_fee`]);
                 const itemFee = parseFloat(values[`repeating_henchmen_${id}_henchman_fee`])||0;
                 totalFees += itemFee;
             });
-            console.log (`totalFees: ${totalFees}`);
             output['henchmen_fees'] = totalFees;
             setAttrs(output);
         });
