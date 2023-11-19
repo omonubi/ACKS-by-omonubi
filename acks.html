@@ -649,7 +649,7 @@
             <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_henchmen} **Morale Roll**}} {{subtitle=@{henchman_name}}} {{color=black}} {{Roll=[[2d6cs0cf0+(@{henchman_morale}[morale])+(@{class_henchmen_morale_bonus}[class])+((?{Modifier|0}[mod]))]]}} {{desc=2 or less: Refuses&#13;3-5: Begrudging&#13;6+: Compliant}}' name='roll_henchman_obedience_check' ></button>
                 <input type='number' min='-4' max='4' value='0' title='@{henchman_morale}' name='attr_henchman_morale'/>
             <label>Wage (gp):</label>
-            <input class='currency' type='number' title='@{henchman_fee}' name='attr_henchman_fee' readonly/>
+            <input class='currency' type='number' value='12' title='@{henchman_fee}' name='attr_henchman_fee' readonly/>
             <label>more...</label>
             <input type='checkbox' class='toggle-show' /><br/>
             <div class='details'>
