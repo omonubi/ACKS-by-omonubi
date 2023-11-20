@@ -138,8 +138,8 @@ This tab contains all the general information for the character, including a sum
 | Feet / Round | *alt_move_1*, *alt_move_2*, *alt_move_3* | text | Paried w. Alt Move X. The speed of the character's alternative form of movement, if any. |
 | Morale | *morale* | number | The character's morale score (default is 0). |
 | XP Value | *xp_value* | number | The character's value in experience points. |
-| Treasure Type | *treasure_type* | text | The character's treasure type, if any. |
-| Size | *size* | list | The monster's size. The default is 'medium' (man-sized). |
+| Treasure Type | *monster_treasuretype* | text | The character's treasure type, if any. |
+| Size | *monster_size* | list | The monster's size. The default is 'medium' (man-sized). |
 |||||
 
 ---
@@ -151,19 +151,19 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | Armor Class | *class_ac_bonus* | Number | Applied to all armor class calculations. Intended for tracking a natural armor class modifier. |
-| Dmg, Melee | *class_melee_bonus* | number | Applied to all melee weapon damage rolls. |
-| Dmg, Missile | *class_missile_bonus* | number | Applied to all missile weapon damage rolls. |
-| Hire Loyalty | *class_loyalty_bonus* | number | Applied to all henchmen and mercenary loyalty checks, as well as the henchmen hiring limit. |
+| Dmg, Melee | *class_damage_bonus* | number | Applied to all melee weapon damage rolls. |
+| Dmg, Missile | *class_damage_bonus_missile* | number | Applied to all missile weapon damage rolls. |
+| Hire Loyalty | *class_hireling_loyalty_bonus* | number | Applied to all henchmen and mercenary loyalty checks, as well as the henchmen hiring limit. |
 | Initiative | *class_initiative_bonus* | number | Applied to all initiaitve rolls. |
 | Saving Throws | *class_save_bonus* | number | Applied to all saving throws (see Overview tab). |
 | Surprise | *class_surprise_bonus* | number | Applied to all surprise rolls. |
-| Hench Morale | *class_morale_bonus* | Applied to all henchmen morale checks. |
+| Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
 
 #### Class Description
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
-| Class Description | *class_description* | text | A text area intended for displaying all class-specific details (except tabular data) for the character's class. I.e., copying in an ACKS class description. |
+| Class Description | *class_abilities* | text | A text area intended for displaying all class-specific details (except tabular data) for the character's class. I.e., copying in an ACKS class description. |
 
 ---
 
