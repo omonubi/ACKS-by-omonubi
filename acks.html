@@ -197,10 +197,18 @@
         </div>
         <div class='grid-monster'>
             <label class='span-header' title='Mainly used for monster-only stats.'>Monster Stats</label>
-            <label>Alt Mode <span title='Use to track an alternate form of monster movement.'>(?)</span></label> 
-                <input class='smallWidth' type='text' title='@{alt_move_mode}' name='attr_alt_move_mode'/> 
+            <label>Alt Mode 1 <span title='Use to track an alternate form of monster movement.'>(?)</span></label> 
+                <input class='smallWidth' type='text' title='@{alt_mode_1}' name='attr_alt_mode_1'/> 
             <label>Feet / Round</label> 
-                <input class='smallWidth' type='text' title='@{alt_move}' name='attr_alt_move'/>
+                <input class='smallWidth' type='text' title='@{alt_move_1}' name='attr_alt_move_1'/>
+            <label>Alt Mode 2 <span title='Use to track an alternate form of monster movement.'>(?)</span></label> 
+                <input class='smallWidth' type='text' title='@{alt_mode_2}' name='attr_alt_mode_2'/> 
+            <label>Feet / Round</label> 
+                <input class='smallWidth' type='text' title='@{alt_move_2}' name='attr_alt_move_2'/>
+            <label>Alt Mode 3 <span title='Use to track an alternate form of monster movement.'>(?)</span></label> 
+                <input class='smallWidth' type='text' title='@{alt_mode_3}' name='attr_alt_mode_3'/> 
+            <label>Feet / Round</label> 
+                <input class='smallWidth' type='text' title='@{alt_move_3}' name='attr_alt_move_3'/>
             <label>Morale</label>
                 <input type='number' value='0' title='@{morale}' name='attr_morale'/>
             <label>XP Value</label>
@@ -855,7 +863,7 @@ const HENCHMEN_LIMIT = 4;
 const INIT_HP = 1;
 const INIT_MOVE_ROUND = 30;
 const INIT_AC = 0;
-const UPGRADE_VERSION = 1;
+const UPGRADE_VERSION = 2;
 const XP_BONUS_MAX = 10;
 
 /**************************************************
@@ -872,10 +880,9 @@ on('sheet:opened',function(){
         // Forces the creation of sheet attributes that can be bound to 
         // immediately by token bars (w/o having to change attributes manually).
         // Ignores sheets w. a pre-existing 'alignment' value (i.e., 
-        // pre-existing sheets).
+        // pre-existing sheet = MUST SET ALIGNMENT!).
         if (alignment == '' && upgradeVersion == -1)
         {
-            output['upgradeVersion'] = UPGRADE_VERSION;
             output['hp'] = output['hp_max'] = INIT_HP;
             output['move_round'] = INIT_MOVE_ROUND;
             output['armor_class'] = INIT_AC;
@@ -883,6 +890,14 @@ on('sheet:opened',function(){
 
         // Initialize the hit dice field (to ensure flagging on a new sheet)
         output['isBadHDFormula'] = (hitDice == EMPTY_STRING) ? 1 : 0;
+
+        // Variable name conversions - v2
+        if (upgradeVersion < 2) {
+            
+        }
+
+        // Set upgrade version to latest
+        output['upgradeVersion'] = UPGRADE_VERSION;
 
         setAttrs(output);
     });
