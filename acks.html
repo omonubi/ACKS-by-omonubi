@@ -27,7 +27,7 @@
 </div>
 
 <!-- Tracks sheet upgrade version to fire events on first sheet:opened() -->
-<input type='hidden' name='attr_upgradeVersion' value='-1'/>
+<input type='hidden' name='attr_sheet_version' value='0'/>
 
 <input type='hidden' class='tabstoggle' name='attr_sheetTab' value='overview'/>
 <!-- Character Sheet -->
@@ -223,7 +223,7 @@
                     <option>Colossal</option>
                 </select>
             <label>Treasure Type</label>
-                <input class='smallWidth' type='text' maxlength='3' title='@{monster_treasuretype}' name='attr_monster_treasuretype'/>
+                <input class='smallWidth' type='text' maxlength='3' title='@{treasure_type}' name='attr_treasure_type'/>
         </div>
     </div>
     <hr/>
@@ -857,31 +857,29 @@ const ATTR_SCORE_DEFAULT = 10;
 const ATTR_MELEE_MOD_DEFAULT = '@{str_mod}[str]';
 const ATTR_MELEE_MOD_FINESSE = '@{dex_mod}[dex]';
 const COIN_WEIGHT = 0.001;
+const CURRENT_VERSION = 2;
 const DIE_DELIMITER = 'd';
 const EMPTY_STRING = '';
 const HENCHMEN_LIMIT = 4;
 const INIT_HP = 1;
 const INIT_MOVE_ROUND = 30;
 const INIT_AC = 0;
-const UPGRADE_VERSION = 2;
 const XP_BONUS_MAX = 10;
 
 /**************************************************
 ** On Sheet Initialization / Opening
 ***************************************************/
 on('sheet:opened',function(){
-    getAttrs(['alignment', 'hit_dice', 'upgradeVersion'], function(values) {
-        const alignment = values.alignment;
+    getAttrs(['sheet_version', 'hit_dice'], function(values) {
+        const sheetVersion = parseInt(values.sheet_version) || 0;
         const hitDice = values.hit_dice;
-        const upgradeVersion = Number(values['upgradeVersion']) || -1;
         
         const output = {};
 
-        // Forces the creation of sheet attributes that can be bound to 
+        // Force creation of sheet attributes that can be bound to 
         // immediately by token bars (w/o having to change attributes manually).
-        // Ignores sheets w. a pre-existing 'alignment' value (i.e., 
-        // pre-existing sheet = MUST SET ALIGNMENT!).
-        if (alignment == '' && upgradeVersion == -1)
+        // On first load only.
+        if (sheetVersion < 1)
         {
             output['hp'] = output['hp_max'] = INIT_HP;
             output['move_round'] = INIT_MOVE_ROUND;
@@ -891,13 +889,8 @@ on('sheet:opened',function(){
         // Initialize the hit dice field (to ensure flagging on a new sheet)
         output['isBadHDFormula'] = (hitDice == EMPTY_STRING) ? 1 : 0;
 
-        // Variable name conversions - v2
-        if (upgradeVersion < 2) {
-            
-        }
-
         // Set upgrade version to latest
-        output['upgradeVersion'] = UPGRADE_VERSION;
+        output['sheet_version'] = CURRENT_VERSION;
 
         setAttrs(output);
     });
