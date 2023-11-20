@@ -235,12 +235,12 @@
         <label class='span-header'>Global Class Bonuses <span title='Use only for class-specific bonuses that are applied all the time.'>(?)</span></label>
         <div class='grid-classbonuses'>
             <label>Armor Class</label><input type='number' min='0' max='20' value='0' title='@{class_ac_bonus}' name='attr_class_ac_bonus'/>
-            <label>Dmg, Melee</label><input type='number' min='0' max='20' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
-            <label>Dmg, Missile</label><input type='number' min='0' max='20' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
+            <label>Dmg, Melee</label><input type='number' min='-5' max='20' value='0' title='@{class_damage_bonus}' name='attr_class_damage_bonus'/>
+            <label>Dmg, Missile</label><input type='number' min='-5' max='20' value='0' title='@{class_damage_bonus_missile}' name='attr_class_damage_bonus_missile'/>
             <label>Hire Loyalty</label><input type='number' min='0' max='20' value='0' title='@{class_hireling_loyalty_bonus}' name='attr_class_hireling_loyalty_bonus'/>
-            <label>Initiative</label><input type='number' min='0' max='20' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
+            <label>Initiative</label><input type='number' min='-5' max='20' value='0' title='@{class_initiative_bonus}' name='attr_class_initiative_bonus'/>
             <label>Saving Throws <span title='OVERWRITES values entered into Saving Throws > Modifier column.'>(?)</span></label><input type='number' min='0' max='20' value='0' title='@{class_save_bonus}' name='attr_class_save_bonus'/>
-            <label>Surprise</label><input type='number' min='0' max='20' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
+            <label>Surprise</label><input type='number' min='-5' max='20' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
             <label>Hench Morale</label><input type='number' min='0' max='20' value='0' title='@{class_henchmen_morale_bonus}' name='attr_class_henchmen_morale_bonus'/>
         </div>
         <hr/>
@@ -313,7 +313,7 @@
         <label class='span-header'>Melee Attacks <span title='@{repeating_melee}'>(?)</span></label>
         <fieldset class='repeating_melee'>
             <button type='roll' class='reviewButton' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
-            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(@{attk_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+            <button type='roll' class='rollButton' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(@{melee_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
             <input type='checkbox' title='@{melee_equip}' name='attr_melee_equip'/>
             <input type='text' class='attackname' placeholder='Attack name...' title='@{melee_name}' name='attr_melee_name'/>
             <label>Dmg:</label>
@@ -324,11 +324,11 @@
             <label>more...</label>
             <input type='checkbox' class='toggle-show'/><br/>
             <div class='details'>
-                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{attk_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
+                <button type='roll' class='rollButton' value='@{whispertoggle} &{template:menu} {{title=@{banner_meleedamage} **Melee Damage Roll**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{damage=[[{@{melee_damage}[wpn]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}}' name='roll_melee_damage'> Damage</button>
                 <label>Attk Bonus:</label><input type='number' min='-10' max='10' value='0' title='@{melee_bonus}' name='attr_melee_bonus'/>
-                <label>dual</label><input type='hidden' value='0' name='attr_attk_is_dual'/><input type='checkbox' value='1' title='@{melee_is_dual}' name='attr_melee_is_dual'/>
+                <label>dual</label><input type='checkbox' value='1' title='@{melee_is_dual}' name='attr_melee_is_dual'/>
                 <label>finesse</label><input type='hidden' value='@{str_mod}[str]' name='attr_melee_attk_attr'/><input type='checkbox' value='1' title='@{melee_is_finesse}' name='attr_melee_is_finesse'/>
-                <label>2h</label><input type='hidden' value='0' name='attr_attk_is_2h'/><input type='checkbox' value='1' title='@{melee_is_2h}' name='attr_melee_is_2h'/>
+                <label>2h</label><input type='checkbox' value='1' title='@{melee_is_2h}' name='attr_melee_is_2h'/>
                 <textarea placeholder='Optional Effects description...' title='@{melee_effects}' name='attr_melee_effects'></textarea>
             </div>
         </fieldset>
@@ -1267,17 +1267,12 @@ on('change:repeating_missile:missile_name change:repeating_missile:missile_damag
 });
 
 // Dual Wield
-// Toggle the character's attack's dual wield attack modifier.
+// If dual-wield, turn off 2-handed
 on('change:repeating_melee:melee_is_dual', function(eventInfo) {
     if (eventInfo.sourceType == "player") {
-        getAttrs(['repeating_melee_melee_is_dual'], function(values) {
-            const meleeIsDual = parseInt(values.repeating_melee_melee_is_dual) || 0;
-
-            const output = {};
-            output['repeating_melee_attk_is_dual'] = meleeIsDual;
-            output['repeating_melee_melee_is_2h'] = 0;
-            setAttrs(output);
-        });
+        const output = {};
+        output['repeating_melee_melee_is_2h'] = 0;
+        setAttrs(output);
     }
 });
 
@@ -1321,17 +1316,12 @@ on('clicked:repeating_missile:missile-attack', () => {
 });
 
 // Two-handed Wield
-// Toggle the character's attack's two-handed wield damage modifier, if any.
+// If 2-handed weapon, turn off dual-wield
 on('change:repeating_melee:melee_is_2h', function(eventInfo) {
     if (eventInfo.sourceType == "player") {
-        getAttrs(['repeating_melee_melee_is_2h'], function(values) {
-            const meleeIs2h = parseInt(values.repeating_melee_melee_is_2h) || 0;
-
-            const output = {};
-            output['repeating_melee_melee_is_dual'] = 0;
-            output['repeating_melee_attk_is_2h'] = meleeIs2h;
-            setAttrs(output);
-        });
+        const output = {};
+        output['repeating_melee_melee_is_dual'] = 0;
+        setAttrs(output);
     }
 });
 
