@@ -230,7 +230,6 @@
 </section>
 
 <section class='class'>
-
     <div>
         <label class='span-header'>Global Class Bonuses <span title='Use only for class-specific bonuses that are applied all the time.'>(?)</span></label>
         <div class='grid-classbonuses'>
@@ -243,6 +242,20 @@
             <label>Surprise</label><input type='number' min='-5' max='20' value='0' title='@{class_surprise_bonus}' name='attr_class_surprise_bonus'/>
             <label>Hench Morale</label><input type='number' min='0' max='20' value='0' title='@{class_henchmen_morale_bonus}' name='attr_class_henchmen_morale_bonus'/>
         </div>
+        <hr/>
+        <label class='span-header'>Class Proficiencies</label>
+        <div class='grid-classprof'>
+            <label>Very Light Armor</label><input type='checkbox' value='1' title='@{class_ap_vlight}' name='attr_class_ap_vlight'/>
+            <label>Light Armor</label><input type='checkbox' value='1' title='@{class_ap_light}' name='attr_class_ap_light'/>
+            <label>Medium Armor</label><input type='checkbox' value='1' title='@{class_ap_medium}' name='attr_class_ap_medium'/>
+            <label>Heavy Armor</label><input type='checkbox' value='1' title='@{class_ap_heavy}' name='attr_class_ap_heavy'/>
+
+            <label>Single/Missile</label><input type='checkbox' checked disabled/>
+            <label>Dual Weapon</label><input type='checkbox' value='1' checked title='@{class_fs_dual}' name='attr_class_fs_dual'/>
+            <label>Two-Handed Weapon</label><input type='checkbox' value='1' checked title='@{class_fs_2h}' name='attr_class_fs_2h'/>
+            <label>Weapon & Shield</label><input type='checkbox' value='1' checked title='@{class_fs_weapshield}' name='attr_fs_weapshield'/>
+        </div>
+        <label>Weapon Proficiencies </label><input class='weaponProfs' type='text' title='@{class_wp}' name='attr_wp'/>
         <hr/>
     </div>   
     <div>

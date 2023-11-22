@@ -52,7 +52,8 @@
 .ui-dialog .charsheet .grid-attributes label.attrname {
     justify-self: end;
 }
-.ui-dialog .charsheet .grid-classbonuses {
+.ui-dialog .charsheet .grid-classbonuses,
+.ui-dialog .charsheet .grid-classprof {
     align-items: center;
     display: grid;
     column-gap: 10px;
@@ -333,6 +334,9 @@
 .ui-dialog .charsheet input.smallWidth {
     text-align: center;
     width: 60px;
+}
+.ui-dialog .charsheet input.weaponProfs {
+    width: 80%;
 }
 .ui-dialog .charsheet input.xp {
     text-align: right;
