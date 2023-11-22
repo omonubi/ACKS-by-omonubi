@@ -791,6 +791,9 @@
                 <option>cha</option>
             </select>
             <span>Set the attribute modifier used to modify melee/thrown damage rolls.</span>
+        <label>Roll Attributes</label>
+            <button type='action' class='actionButton' name='act_roll_attrs'>Roll</button>
+            <span>Replaces the character's current attributes with a new, randomly rolled set.</span>
         <hr class='spangrid'/>
         <label>Hide Studious Tab</label>
             <input type='checkbox' value='1' title='@{toggle_studious}' name='attr_toggle_studious'/>
@@ -907,6 +910,36 @@ function getID(repeatingItemName) {
     return theID;
 };
 
+// Randomly shuffles the contents of an array
+// Note that the original array is shuffled as well.
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Roll dice
+function rollDice(numDice, numSides, numDrop) {
+    const theDice = parseInt(numDice) || 1; // assume 1 die
+    const theSides = parseInt(numSides) || 6; // assume a d6
+    const theDrop = parseInt(numDrop) || 0; // assume drop none
+
+    const results = [];
+    for (i = 0; i < theDice; i++) { results.push(Math.floor(Math.random() * theSides + 1)); }
+    results.sort(compareNumbers);
+    for (i = 0; i < theDrop; i++) { results.pop(); }
+    let result = 0;
+    for (i = 0; i < results.length; i++) { result += results[i]; }
+
+    return result;
+
+    function compareNumbers(a, b) {
+        return b - a;
+    }
+}
+
 // Validates a dice formula.
 // If validation fails, return an empty string.
 // A valid dice formula is [num]d[num][+/1][num].
@@ -991,11 +1024,34 @@ on('change:str change:int change:wil change:dex change:con change:cha', function
 on('clicked:save_attrs', function(eventInfo) {
     const theAttrs = ['str', 'int', 'wil', 'dex', 'con', 'cha'];
     getAttrs(theAttrs, function(values) {
-
         const output = {};
         theAttrs.forEach((element) => {
             output[`${element}_max`] = parseInt(values[element]) || ATTR_SCORE_DEFAULT;
         });
+        setAttrs(output);
+    });
+});
+
+// Attribute Roller
+// Randomly generate a set of attributes
+on('clicked:roll_attrs', function(eventInfo) {
+    const rolls = [];
+    rolls.push(rollDice(5, 6, 2));
+    rolls.push(rollDice(4, 6, 1));
+    rolls.push(rollDice(3));
+    rolls.push(rollDice(3));
+    rolls.push(rollDice(3));
+    rolls.push(rollDice(3));
+    const attributes = shuffleArray(rolls);
+
+    const theAttrs = ['str', 'int', 'wil', 'dex', 'con', 'cha'];
+    getAttrs(theAttrs, function(values) {
+        const output = {};
+        while (rolls.length > 0) {
+            theAttrs.forEach((element) => { 
+                output[element] = rolls.pop();
+            });
+        }
         setAttrs(output);
     });
 });
