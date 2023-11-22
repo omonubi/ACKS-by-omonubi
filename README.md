@@ -160,6 +160,22 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Hench Morale | *class_henchmen_morale_bonus* | Applied to all henchmen morale checks. |
 |||||
 
+#### Class Proficiencies
+| Field | Variable(s) | Type | Description |
+| --- | --- | --- | --- |
+| Very Light Armor | *class_ap_vlight* | checkbox | Is the class proficient in very light armor? |
+| Light Armor | *class_ap_light* | checkbox | Is the class proficient in light armor? |
+| Medium Armor | *class_ap_medium* | checkbox | Is the class proficient in medium armor? |
+| Heavy Armor | *class_ap_heavy* | checkbox | Is the class proficient in heavy armor? |
+|||||
+| Single/Missile | (no var) | checkbox | Disabled. Is the class proficient with single and/or missile weapon fighting style? (Hint: All ACKS classes are.) |
+| Dual Weapon | *class_fs_dual* | checkbox | Is the class proficient with the dual weapon fighting style? |
+| Two-Handed Weapon | *class_fs_2h* | checkbox | Is the class proficient with the two-handed weapon fighting style? |
+| Weapon & Shield | *class_fs_weapshield* | checkbox | Is the class proficient with the weapon and shield fighting style? |
+|||||
+| Weapon Proficiencie | *class_wp* | text | The weapon types that the class is proficient in using. |
+|||||
+
 #### Class Description
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -497,7 +513,7 @@ This tab contains text area fields for tracking additional character information
 - Use the Experience Log repeating list to award XP at the conclusion of each "adventure".
 - The Bonus % is *not* automatically pulled from their current bonus on the Overview tab, since its possible that character injury, aging, attribute score alteration, etc., could change this during the character's lifetime.
 
-#### Character Details
+### Character Details
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | Character Background | *background* | text | A desciption of the character's background. Typically used by the player to detail "private" information not published on the character's Roll20 public bio. |
@@ -507,7 +523,7 @@ This tab contains text area fields for tracking additional character information
 | Property & Debts | *property* | text | A list of property (not shown on the Equipment tab) that the character owns, as well as any outstanding debts to others. |
 |||||
 
-#### Adventuring Notes
+### Adventuring Notes
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_journal* | repeating | A list of notes, managed by the player. |
@@ -516,7 +532,7 @@ This tab contains text area fields for tracking additional character information
 | Details | *journal_details* | text | The details of the note. |
 |||||
 
-#### Experience Log
+### Experience Log
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_experience* | repeating | A list of all the character's Experience Points, by expedition. |
@@ -531,12 +547,14 @@ This tab contains text area fields for tracking additional character information
 ## Settings
 This tab contains base values used in some sheet worker calculations; mainly when using the hseet for characters with non-standard movement and encumbrance capabilites (E.G., mounts, dragons, etc.) **These values should only be changed by the GM.**
 
-#### Sheet Settings
+### Sheet Settings
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | Save Attributes | *act_save_attrs* | button | When clicked, copies the character's Current attribute values to their Nominal fields. |
 | Experience % Modifier | *xp_modifier* | number | Used to change the character's displayed XP bonus from its prime requisite attribute score(s). Typically used if the character has suffered an organic impediment or injury that nagtively impacts its intellectual / reasoning capability. |
 | Damage Attribute | *damage_attr* | list | Used to change the attribute modifier applied to all strength-based (the default) damage rolls. For example, a bladedancer's Strength of Faith class power. |
+| Roll Attributes | *act_role_PC* | button | When clicked, rolls a set of stats for a PC. 5d6d2, 4d6d1, and 3d6 4 times. These stats are then randomly applied to Overview > Attributes. THIS WILL OVERWRITE ALL ATTRIBUTES. |
+| Roll Attributes | *act_role_0th* | button | When clicked, rolls a set of stats for a 0th level character = 3d6 6 times. These stats are then randomly applied to Overview > Attributes. THIS WILL OVERWRITE ALL ATTRIBUTES. |
 |||||
 | Hide Studious Tab | *toggle_studious* | checkbox | If checked, hides the Studious spellcasting tab. |
 | Hide Prayerful Tab | *toggle_studious* | checkbox | If checked, hides the Prayerful spellcasting tab. |
