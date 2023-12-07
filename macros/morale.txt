@@ -1,0 +1,4 @@
+/w gm &{template:menu} {{title=Morale Conditions}} {{=**Reactions**
+[Hostile](!token-mod --set statusmarkers|!hostile) ~ [Unfriendly](!token-mod --set statusmarkers|!unfriendly) ~ [Indifferent](!token-mod --set statusmarkers|!indifferent) ~ [Friendly](!token-mod --set statusmarkers|!friendly) ~ [Helpful](!token-mod --set statusmarkers|!helpful)
+**Morale**
+[Frightened](!token-mod --set statusmarkers|!frightened) ~ [Faltering](!token-mod --set statusmarkers|!faltering) ~ [Neutral](!token-mod --set statusmarkers|!neutral) ~ [Enthusiastic](!token-mod --set statusmarkers|!enthusiastic) ~ [Resigned](!token-mod --set statusmarkers|!resigned)}}

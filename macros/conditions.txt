@@ -1,6 +1,6 @@
-/w gm &{template:menu} {{title=Token Conditions}} {{=[Clear All](!token-mod --set statusmarkers|=blue|-blue) ~ [Leader](!token-mod --set statusmarkers|!pink) ~ [Light](!token-mod --set statusmarkers|!yellow)
+/w gm &{template:menu} {{title=Token Conditions}} {{=[Clear All](!token-mod --set statusmarkers|=blue|-blue) ~ [Light](!token-mod --set statusmarkers|!yellow)
 **Combat Status**
-[Dead](!token-mod --set statusmarkers|!dead) ~ [Dying](!token-mod --set statusmarkers|!death-zone) ~ [Incapacitated](!token-mod --set statusmarkers|!wounded) ~ [Surprised](!token-mod --set statusmarkers|!interdiction) ~ [Unloaded](!token-mod --set statusmarkers|!archery-target)
+[Dead](!token-mod --set statusmarkers|!dead) ~ [Dying](!token-mod --set statusmarkers|!death-zone) ~ [Engaged](!token-mod --set statusmarkers|!all-for-one) ~ [Incapacitated](!token-mod --set statusmarkers|!wounded) ~ [Surprised](!token-mod --set statusmarkers|!interdiction) ~ [Unloaded](!token-mod --set statusmarkers|!archery-target)
 **Combat Actions**
 [Cast](!token-mod --set statusmarkers|!magic) ~ [Charge](!token-mod --set statusmarkers|!lightning-helix) ~ [Defend](!token-mod --set statusmarkers|!bolt-shield) ~ [Delay](!token-mod --set statusmarkers|!stopwatch) ~ [Hide](!token-mod --set statusmarkers|!ninja-mask) ~ [Ready](!token-mod --set statusmarkers|!sentry-gun) ~ [Retreat](!token-mod --set statusmarkers|!fleeing) ~ [Sneak](!token-mod --set  statusmarkers|!tread) ~ [Withdraw](!token-mod --set statusmarkers|!white-tower)
 **Conditions/Effects**

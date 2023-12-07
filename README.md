@@ -168,7 +168,7 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Medium Armor | *class_ap_medium* | checkbox | Is the class proficient in medium armor? |
 | Heavy Armor | *class_ap_heavy* | checkbox | Is the class proficient in heavy armor? |
 |||||
-| Single/Missile | (no var) | checkbox | Disabled. Is the class proficient with single and/or missile weapon fighting style? (Hint: All ACKS classes are.) |
+| Single/Missile | (no var) | checkbox | Is the class proficient with single and/or missile weapon fighting style? (Hint: All ACKS classes are.) |
 | Dual Weapon | *class_fs_dual* | checkbox | Is the class proficient with the dual weapon fighting style? |
 | Two-Handed Weapon | *class_fs_2h* | checkbox | Is the class proficient with the two-handed weapon fighting style? |
 | Weapon & Shield | *class_fs_weapshield* | checkbox | Is the class proficient with the weapon and shield fighting style? |
@@ -604,6 +604,8 @@ The following macros can be found in the /macros sub-directory of the git. They 
 * **conditions**: This macro uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these), but the script can be modified to use only the stock icons, as desired.
 
 * **roll macros**: These are simple macros that allow the players and the GM to send custom, formatted dice rolls to the Roll20 Chat. They prompt for a Reason for the roll or throw, the Roll 20 dice formula to be rolled, an optional Modifier, and an optional Target value. The rollWhisper macro allows the GM to whisper themself (by default), or a specific party member. Intended to be used to track why misc. non-sheet dice rolls are being made in the Roll20 chat window.
+
+* **morale**: This macro uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API add-on to apply/remove ACKS reaction and morale token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these).
 
 * **newToken**: The macro uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) to pre-configure a new token that's already bound to a character sheet. This is intended for use when creating a new, standardized "master token" that will be bound to a character sheet. (Make sure game-wide token settings are already configured before use.) The current macro sets the token size to 85% of 1 unit (usually 70 px, a man-sized ACKS character), and binds the three bar fields to *hp* (and *hp_max*), *move_round*, and *armor_class*. This can be further customized as needed.
 
