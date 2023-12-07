@@ -274,7 +274,7 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Surprise | *mod_surprise* | number | Used to apply a temporary but persistent modifier to surprise rolls. |
 | Reaction | *roll_reaction* | button | When clicked, rolls a 2d6 reaction check to the character. Includes modifiers from CHA modifier, and temporary (see below) and roll-specific (queried) conditions. |
 | Reaction | *mod_reaction* | number | Used to apply a temporary but persistent modifier to reaction rolls. |
-| Morale | *roll_morale* | button | When clicked, rolls a 2d6 morale check for the character. Includes the character's morale modifier (if any), and temporary (see below) and roll-specific (queried) conditions. Generally used only for NPCs and monsters. |
+| Morale | *roll_morale* | button | When clicked, rolls a *whispered* 2d6 morale check for the character to the GM only. Includes the character's morale modifier (if any), and temporary (see below) and roll-specific (queried) conditions. Generally used only for NPCs and monsters. |
 | Morale | *mod_morale* | number | Used to apply a temporary but persistent modifier to morale rolls. |
 |||||
 
