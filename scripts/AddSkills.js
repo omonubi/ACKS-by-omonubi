@@ -155,6 +155,12 @@ const abilities =
             ability_source: "Adventuring",
             ability_target: "18",
             ability_details: "Methodically search for concealed traps, secret doors, buried treasure, and other hidden features by spending one turn (10 minutes) and succeeding on a Searching proficiency throw."
+        },
+        {
+            ability_name: "Swim",
+            ability_source: "Adventuring",
+            ability_target: "@{encumbrance}",
+            ability_details: ""
         }
 ]
 
