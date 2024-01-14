@@ -591,6 +591,10 @@
 .ui-dialog .charsheet input.hidePrayerful[value='1'] ~ button.btnPrayerful {
     display: none;
 }
+/* Hide Code of Behavior section on Settings toggle */
+.ui-dialog .charsheet input.hideBehavior[value='1'] ~ div {
+    display: none;
+}
 
 /**************** Alert Styles ****************/
 .ui-dialog .charsheet span.orangeEnc,

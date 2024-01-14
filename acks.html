@@ -257,8 +257,12 @@
         </div>
         <label>Weapon Proficiencies </label><input class='weaponProfs' type='text' title='@{class_wp}' name='attr_wp'/>
         <hr/>
-    </div>   
-    <div>
+        <input type='hidden' class='hideBehavior' value='0' name='attr_show_behavior'/>
+        <div>
+            <label class='span-header'>Code of Behavior</label>
+            <textarea class='background' placeholder='Enter details...' title='@{codeOfBehavior}' name='attr_codeOfBehavior'></textarea>
+            <hr/>
+        </div>
         <label class='span-header'>Class Description <span title='Intended to provide a player with a complete class description (copy/pasted from ACKS).'>(?)</span></label>
         <textarea placeholder='Enter details from ACKS rules reference...' title='@{class_abilities}' name='attr_class_abilities'></textarea>
         <hr/>
@@ -429,9 +433,6 @@
 </section>
 
 <section class='prayerful'>
-    <label class='span-header'>Code of Behavior</label>
-    <textarea class='background' placeholder='Enter details...' title='@{codeOfBehavior}' name='attr_codeOfBehavior'></textarea>
-    <hr/>
     <div class='grid-spellslots'>
         <label class='span-header'>Prayerful Slots by Spell Level</label>
         <label></label><label>level 1</label><label>level 2</label><label>level 3</label><label>level 4</label><label>level 5</label><label>level 6</label><label>level 7</label><label>level 8</label><label>level 9</label><label></label>
@@ -817,6 +818,9 @@
         <label>Hide Prayerful Tab</label>
             <input type='checkbox' value='1' title='@{toggle_prayerful}' name='attr_toggle_prayerful'/>
             <span>Hide the Prayerful tab on the character sheet.</span>
+        <label>Hide Code of Behavior</label>
+            <input type='checkbox' value='1' title='@{toggle_behavior}' name='attr_toggle_behavior'/>
+            <span>Hide the Code of Behavior section on the Class tab.</span>
         <hr class='spangrid'/>
         <label>Encumbrance Alert</label>
             <input type='checkbox' value='1' title='@{enc_alert_toggle}' name='attr_enc_alert_toggle'/>
@@ -1300,6 +1304,13 @@ function updateSaveTargets() {
 /**************************************************
 ** Class Tab
 ***************************************************/
+// Show/hide the Code of Behavior section
+on('change:toggle_behavior', function(eventInfo) {
+
+    const output = {};
+    output['show_behavior'] = eventInfo.newValue;
+    setAttrs(output);
+});
 
 /**************************************************
 ** Combat Tab
