@@ -592,7 +592,7 @@
     display: none;
 }
 /* Hide Code of Behavior section on Settings toggle */
-.ui-dialog .charsheet input.hideBehavior[value='1'] ~ div {
+.ui-dialog .charsheet input.hideCode[value='1'] ~ div.code {
     display: none;
 }
 
