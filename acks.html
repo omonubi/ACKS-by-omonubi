@@ -819,10 +819,13 @@
         <label>Hide Code of Behavior</label>
             <input type='checkbox' value='1' title='@{toggle_behavior}' name='attr_toggle_behavior'/>
             <span>Hide the Code of Behavior section on the Class tab.</span>
-        <hr class='spangrid'/>
-        <label>Encumbrance Alert</label>
+        <label>Enc Alert</label>
             <input type='checkbox' value='1' title='@{enc_alert_toggle}' name='attr_enc_alert_toggle'/>
-            <span>Highlight the encumbrance field if/when the value exceeds Enc Threshold 1.</span>
+            <span>Highlight the encumbrance field if/when the value exceeds the Encumbrance Alert Threshold.</span>
+        <label>End Alert Threshold</label>
+            <input type='number' min='0' value='5' title='@{move_alertThresh}' name='attr_move_alertThresh'/>
+            <span>The Encumbrance Alert threshold.</span>
+        <hr class='spangrid'/>
         <label>Enc Threshold 1</label>
             <input type='number' min='0' value='5' title='@{move_thresh1}' name='attr_move_thresh1'/>
             <span>Set the character's first encumbrance threshold.</span>
@@ -1489,12 +1492,12 @@ on('clicked:reset_prayerful', function(eventInfo) {
 // Update the character's total encumbrance.
 // Highlight field if total exceeds min. threshold and setting is on.
 // Update the character's currency capacity remaining.
-on('change:currency_weight change:items_weight change:enc_capacity change:move_thresh1 change:enc_alert_toggle', function(eventInfo) {
-    getAttrs(['currency_weight', 'items_weight', 'enc_capacity', 'move_thresh1', 'enc_alert_toggle'], function(values) {
+on('change:currency_weight change:items_weight change:enc_capacity change:enc_alert_toggle change:move_alertThresh', function(eventInfo) {
+    getAttrs(['currency_weight', 'items_weight', 'enc_capacity', 'enc_alert_toggle', 'move_alertThresh'], function(values) {
         const theCurrencyWeight = parseFloat(values.currency_weight) || 0;
         const theItemWeight = parseFloat(values.items_weight) || 0;
         const theMaxCapacity = parseInt(values.enc_capacity) || 0;
-        const theThresholdLimit = parseInt(values.move_thresh1) || 0;
+        const theThresholdLimit = parseInt(values.move_alertThresh) || 0;
         const encAlertToggle = parseInt(values.enc_alert_toggle) || 0;
         
         const theEncumbrance = theCurrencyWeight + theItemWeight;

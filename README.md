@@ -176,6 +176,12 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Weapon Proficiencie | *class_wp* | text | The weapon types that the class is proficient in using. |
 |||||
 
+#### Code of Behavior
+| Field | Variable(s) | Type | Description |
+| --- | --- | --- | --- |
+| Code of Behavior | *codeOfBehavior* | text | A text area to explicitly show a divine class's required behavioral restrictions and penalties. This may be hidden using a toggle on the Settings tab.
+|||||
+
 #### Class Description
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
@@ -214,12 +220,6 @@ This tab is used to track studious spell slots, spell usage, repertoire selectio
 
 ### The Prayerful Tab
 This tab is used to track prayerful spell slots, spell usage, and spell descriptions. It also provides a prominent display location for the caster's prayerful code of behavior. The tab and its content can be hidden by the *hide_prayerful* setting on the Settings tab.
-
-#### Code of Behavior
-| Field | Variable(s) | Type | Description |
-| --- | --- | --- | --- |
-| Code of Behavior | *codeOfBehavior* | text | A text area to explicitly show a Prayerful caster's required behavioral restrictions and penalties.
-|||||
 
 #### Prayerful Slots by Spell Level
 | Field | Variable(s) | Type | Description |
@@ -558,8 +558,10 @@ This tab contains base values used in some sheet worker calculations; mainly whe
 |||||
 | Hide Studious Tab | *toggle_studious* | checkbox | If checked, hides the Studious spellcasting tab. |
 | Hide Prayerful Tab | *toggle_studious* | checkbox | If checked, hides the Prayerful spellcasting tab. |
+| Hide Code of Behavior | *toggle_code* | checkbox | If checked, hides the Code of Behavior text callout on the Class tab. |
+| Enc Alert | *enc_alert_toggle* | checkbox | If enabled, highlights the character's encumbrance value any time it exceeds its *move_alertThresh*. This is to assist players with characters that have encumbrance-based abilities which require travelling light to take advantage of (e.g. tumbling, skirmishing, or a bladedancer's Graceful Fighting class power). |
+| Enc Alert Threshold | *move_alertThresh* | number | The encumbrance threshold over which the character's current encumbrance is highlighted on the sheet. The default value is 5. |
 |||||
-| Encumbrance Alert | *enc_alert_toggle* | checkbox | If enabled, highlights the character's encumbrance value any time it exceeds its *move_thresh1* (5 by default). This is to assist players with characters that have encumbrance-based abilities which require travelling light to take advantage of (e.g. tumbling, or a bladedancer's Graceful Fighting class power). |
 | Enc Thresholds | *move_thresh1*, *move_thresh2*, *move_thresh3* | number | These fields set the encumbrance thresholds that define decreases in the character's maximum movement speed. The default values are those for humanoid characters described in the ACKS rulebook; 5, 7, and 10 stone. These align with movement rate reductions of 1/4, 1/2, and 3/4, respectively. The highest *move_threshX* value to exceed the current capacity is the threshold that will be used. For example, a mule would use 20, 20, and 40; a 20 encumbrance would only trigger 1/2 movement reduction, never 1/4. |
 | Max Encumbrance | *base_enc* | number | The character's base maximum encumbrance threshold, which is the point at which the character can no longer move. The default is the humanoid maximum base limit of 20 stone. |
 | Max Movement | *base_movement* | number | Change to set the maximum movement value per turn for the character. The default is the humanoid base movement of 120' per turn. |
