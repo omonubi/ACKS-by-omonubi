@@ -171,9 +171,10 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Single/Missile | (no var) | checkbox | Is the class proficient with single and/or missile weapon fighting style? (Hint: All ACKS classes are.) |
 | Dual Weapon | *class_fs_dual* | checkbox | Is the class proficient with the dual weapon fighting style? |
 | Two-Handed Weapon | *class_fs_2h* | checkbox | Is the class proficient with the two-handed weapon fighting style? |
-| Weapon & Shield | *class_fs_weapshield* | checkbox | Is the class proficient with the weapon and shield fighting style? |
+| Weapon & Shield | *fs_weapshield* | checkbox | Is the class proficient with the weapon and shield fighting style? |
 |||||
-| Weapon Proficiencie | *class_wp* | text | The weapon types that the class is proficient in using. |
+| Weapon Proficiencies | *wp* | text | The weapon types that the class is proficient in using. |
+| Class Template | *class_template* | text | The ACKS class template (if any) used to initially generate the character. |
 |||||
 
 #### Code of Behavior
