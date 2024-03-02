@@ -618,8 +618,6 @@ The following macros can be found in the /macros sub-directory of the git. They 
 
 * **rollInit**: This macro uses [GroupInitiative](https://wiki.roll20.net/Script:Group_Initiative) API script to roll ACKS initiative for all selected tokens on the current Roll20 page. Takes into consideration modifiers from the character's dexterity attribute, any class modifier, and any additional modifer entered on the Combat tab. Requires additional configuration detailed in the .txt file.
 
-* **skills**: This macro is similar to *repertoire*, above, but outputs a list of all proficiencies and abilities on the character's Skills tab. Clicking the names triggers the Review button for each. (For actually using a skills, see the *actions* macro, above. Should be added to all characters as a token action.
-
 * **spellbook**: This macro is similar to *repertoire*, above, but outputs a list of all spells in the character's spell list, regardless of *spell_prepared* status. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
 
 ---
