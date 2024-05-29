@@ -1,0 +1,1 @@
+!chatmenu @{selected|character_id} {template:menu} {{title=**@{selected|character_name}'s Studious Spells**}} {{desc=CHATMENU}} --separator: ~ : --title:Review --repeating_spellsstudious|spell_name|review_spell --title:Cast --repeating_spellsstudious|spell_name|cast_spell|spell_prepared
