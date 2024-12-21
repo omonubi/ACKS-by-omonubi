@@ -1,0 +1,1 @@
+!chatmenu @{selected|character_id} {template:menu} {{title=**@{selected|character_name}'s Prayerful Spells**}} {{desc=CHATMENU}} --separator: ~ : --title:Review --repeating_spellsprayerful|spell_name|review_spell --title:Cast --repeating_spellsprayerful|spell_name|cast_spell

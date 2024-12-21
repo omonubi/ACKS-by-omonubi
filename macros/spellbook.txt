@@ -1,1 +1,0 @@
-!chatmenu @{selected|character_id} {template:menu} {{title=**@{selected|character_name}'s Spellbook**}} {{desc=CHATMENU}} --separator: ~ : --title:Review --repeating_spellsarcane|spell_name|review_spell|spell_prepared
