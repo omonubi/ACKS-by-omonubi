@@ -1,21 +1,21 @@
 .ui-dialog .charsheet * {
     color: saddlebrown;
     font-family: 'Papyrus', sans-serif;
-    font-size: 100%; 
+    font-size: 95%; 
     font-size-adjust: 0.46;
 }
 .ui-dialog .charsheet {
     background-color: tan;
 }
 .ui-dialog .charsheet {
-    /*
+    
     background-image: url(https://files.d20.io/images/365081732/2hRPt1mnt7SE9nm72rf1fg/original.png?16984356135);
-    */
+    
 }
 .ui-dialog .charsheet label.span-header {
-    /*
+    
     background-image: url(https://files.d20.io/images/365081732/2hRPt1mnt7SE9nm72rf1fg/original.png?16984356135);
-    */
+    
 }
 
 /**************** Grid Layouts ****************/
