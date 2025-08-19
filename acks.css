@@ -209,6 +209,7 @@
 .ui-dialog .charsheet div {
     align-self: start;
     justify-self: start;
+    width: 100%;
 }
 .ui-dialog .charsheet div.body {
     display: block;
@@ -226,6 +227,7 @@
     display: inline-block;
     font-size: 0.9em;
     margin-left: 10px;
+    width: auto;
 }
 
 .ui-dialog .charsheet h1 {

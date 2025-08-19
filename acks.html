@@ -842,6 +842,13 @@
         <label>Max Movement</label>
             <input type='number' min='0' value='120' title='@{base_movement}' name='attr_base_movement'/>
             <span>Set the character's maximum base land movement speed.</span>
+        <hr class='spangrid'/>
+        <label>Tension Pool</label>
+            <div>
+                <button type='action' class='actionButton' name='act_add_tension'>+hp</button>
+                <button type='action' class='actionButton' name='act_clear_tension'>clr</button>
+            </div>
+            <span>Used to increase and clear hp when char used as tension/time pool.</span>
     </div>
     <hr/>
 </section>
@@ -851,28 +858,28 @@
 </div>
 
 <!-- Banner placeholders (see readme) -->
-<input type='hidden' name='attr_banner_abilitythrow' value=''/>
-<input type='hidden' name='attr_banner_hd' value=''/>
-<input type='hidden' name='attr_banner_henchmen' value=''/>
-<input type='hidden' name='attr_banner_init' value=''/>
-<input type='hidden' name='attr_banner_knowledge' value=''/>
-<input type='hidden' name='attr_banner_melee' value=''/>
-<input type='hidden' name='attr_banner_meleedamage' value=''/>
-<input type='hidden' name='attr_banner_mercenary' value=''/>
-<input type='hidden' name='attr_banner_missile' value=''/>
-<input type='hidden' name='attr_banner_missiledamage' value=''/>
-<input type='hidden' name='attr_banner_morale' value=''/>
-<input type='hidden' name='attr_banner_prayerful' value=''/>
-<input type='hidden' name='attr_banner_profthrow' value=''/>
-<input type='hidden' name='attr_banner_reaction' value=''/>
-<input type='hidden' name='attr_banner_saveblast' value=''/>
-<input type='hidden' name='attr_banner_savedeath' value=''/>
-<input type='hidden' name='attr_banner_saveimplements' value=''/>
-<input type='hidden' name='attr_banner_saveparalysis' value=''/>
-<input type='hidden' name='attr_banner_savespells' value=''/>
-<input type='hidden' name='attr_banner_specialist' value=''/>
-<input type='hidden' name='attr_banner_studious' value=''/>
-<input type='hidden' name='attr_banner_surprise' value=''/>
+<input type='hidden' name='attr_banner_abilitythrow' value='[x](https://files.d20.io/images/163997102/AXOfRJppTnocIWR5Y_lPcA/original.png?15999344525#.png)'/>
+<input type='hidden' name='attr_banner_hd' value='[x](https://files.d20.io/images/164485275/i57K47MV1THHsgVdkZxVXg/original.png?16001099615#.png)'/>
+<input type='hidden' name='attr_banner_henchmen' value='[x](https://s3.amazonaws.com/files.d20.io/images/164482040/OH6hqtvCHGeesUaO0b37vQ/original.png?16001087875#.png)'/>
+<input type='hidden' name='attr_banner_init' value='[x](https://files.d20.io/images/240216164/eJ_5t2QOceZDGACZmtb9Mw/original.png?16291501135#.png)'/>
+<input type='hidden' name='attr_banner_knowledge' value='[x](https://files.d20.io/images/164632524/aBwd4RZHlhj38rJDw7gocg/original.png?160018233953.png)'/>
+<input type='hidden' name='attr_banner_melee' value='[x](https://files.d20.io/images/208788284/v3Vh7I66OLF3eKErbCtE8g/original.png?16159365185#.png)'/>
+<input type='hidden' name='attr_banner_meleedamage' value='[x](https://files.d20.io/images/164319112/w9iRcBuEc3vZcFvB41B2cA/original.png?16000311685#.png)'/>
+<input type='hidden' name='attr_banner_mercenary' value='[x](https://files.d20.io/images/164502952/QDUm2hoU_8YnEidHpdt3gA/original.png?16001161945#.png)'/>
+<input type='hidden' name='attr_banner_missile' value='[x](https://files.d20.io/images/208379586/aJ7XMROQPw9EdHe_cTeuwA/original.png?16157644605#.png)'/>
+<input type='hidden' name='attr_banner_missiledamage' value='[x](https://files.d20.io/images/286766649/SQOMglW-zJ64W6pF2WwoHA/original.png?16535055965#.png)'/>
+<input type='hidden' name='attr_banner_morale' value='[x](https://files.d20.io/images/208789845/qBZORlDrO_zhnHZSf1TJew/original.png?16159368735#.png)'/>
+<input type='hidden' name='attr_banner_prayerful' value='[x](https://files.d20.io/images/164804063/D-59VtVXmMI0BoQcEImVLQ/original.png?16002611425#.png)'/>
+<input type='hidden' name='attr_banner_profthrow' value='[x](https://files.d20.io/images/207932677/LevG9TaeM8A0iSvU1oJ2AA/original.png?16156570495#.png)'/>
+<input type='hidden' name='attr_banner_reaction' value='[x](https://files.d20.io/images/164051897/DDBz__NPDHQATVmlK4-fkw/original.png?15999466705#.png)'/>
+<input type='hidden' name='attr_banner_saveblast' value='[x](https://files.d20.io/images/164351057/V_5Pg1KGLIFLY3hfmQnIAQ/original.png?16000385285#.png)'/>
+<input type='hidden' name='attr_banner_savedeath' value='[x](https://files.d20.io/images/164431733/S44njdUWMNsVpYVQ8O3TiA/original.png?16000843735#.png)'/>
+<input type='hidden' name='attr_banner_saveimplements' value='[x](https://files.d20.io/images/164443445/Bc7tBY3rr7Gfs80GrtIRxg/original.png?16000924335#.png)'/>
+<input type='hidden' name='attr_banner_saveparalysis' value='[x](https://files.d20.io/images/164446142/pUtaLtutH011f9ZjtaQgrg/original.png?16000939805#.png)'/>
+<input type='hidden' name='attr_banner_savespells' value='[x](https://files.d20.io/images/164818577/jtP4uMJplv3U1PGD7TstAQ/original.png?16002676365#.png)'/>
+<input type='hidden' name='attr_banner_specialist' value='[x](https://files.d20.io/images/207056809/Ign3w6DKvLOyRsZ8mP7eWw/original.png?16153387165#.png)'/>
+<input type='hidden' name='attr_banner_studious' value='[x](https://files.d20.io/images/366620236/19tKcTGuUOIhPSfsT7bAPw/original.png?16993181055#.png)'/>
+<input type='hidden' name='attr_banner_surprise' value='[x](https://files.d20.io/images/207158604/34Vzrkx7J2nxNs9STGOuzg/original.png?16153942615#.png)'/>
 
 <script type='text/worker'>
 /**************************************************
@@ -1852,6 +1859,24 @@ on('change:repeating_specialists:spec_fee remove:repeating_specialists', functio
 /**************************************************
 ** Settings Tab
 ***************************************************/
+// Increment hp by one to support TENSION pool
+on('clicked:add_tension', function(eventInfo) {
+    getAttrs(['hp'], function(values) {
+        const hp = parseInt(values.hp) || 0;
+
+        const output = {};
+        output['hp'] = hp + 1;
+        setAttrs(output);
+    });
+});
+
+// Rest hp to 0 to support TENSION pool
+on('clicked:clear_tension', function(eventInfo) {
+    const output = {};
+    output['hp'] = 0;
+    setAttrs(output);
+});
+
 </script>
 
 <rolltemplate class="sheet-rolltemplate-custom">
