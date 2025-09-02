@@ -1,480 +1,134 @@
+/* 
+File: acks.css
+Description: CSS for Roll20 ACKS character sheet
+Author: Don Davis
+*/
+
+/**************** Custom Global Styles ****************/
 .ui-dialog .charsheet * {
-    color: saddlebrown;
-    font-family: 'Papyrus', sans-serif;
-    font-size: 95%; 
-    font-size-adjust: 0.46;
+  color: sienna;
+  font-family: 'Papyrus', sans-serif;
+  font-weight: bold;
 }
 .ui-dialog .charsheet {
-    background-color: tan;
-}
-.ui-dialog .charsheet {    
-    background-image: url(https://files.d20.io/images/450487066/uiAszlE0bRlWroPkO-cpQA/original.webp?1753713715);
+  background-color: floralwhite;
+  background-image: url(https://files.d20.io/images/450487066/uiAszlE0bRlWroPkO-cpQA/original.webp?1753713715);
 }
 
-/**************** Grid Layouts ****************/
-.ui-dialog .charsheet .grid-2column {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns:  [first] repeat(2, 1fr) [last];
-    justify-content: start;
-    row-gap: 5px;
-    width: 100%;
+.ui-dialog .charsheet button.btn {
+  background-image: linear-gradient(white, navajowhite);
+  border-color: sienna;
+  color: sienna;
+  font-size: 0.9em;
+  padding: 0px 5px;
 }
-.ui-dialog .charsheet .grid-armor,
-.ui-dialog .charsheet .grid-attacks {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(6, 1fr) [last];
-    justify-items: center;
-    width: 100%;
+.ui-dialog .charsheet button.btn::before {
+  content: '';
 }
-.ui-dialog .charsheet .grid-attacks input {
-    justify-self: start;
-}
-.ui-dialog .charsheet .grid-attributes {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(5, 1fr) [last];
-    justify-items: center;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-attributes label.attrname {
-    justify-self: end;
-}
-.ui-dialog .charsheet .grid-classbonuses,
-.ui-dialog .charsheet .grid-classprof {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(8, 1fr) [last];
-    justify-items: start;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-classbonuses label {
-    justify-self: end;
-}
-.ui-dialog .charsheet .grid-currency,
-.ui-dialog .charsheet .grid-encounter-buttons,
-.ui-dialog .charsheet .grid-hirelings,
-.ui-dialog .charsheet .grid-journal {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
-    justify-items: center;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-encumbrance {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(8, 1fr) [last];
-    justify-items: center;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-overview {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns:  [first] repeat(2, 1fr) [last];
-    justify-items: start;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-overview label {
-    justify-self: end;
-}
-.ui-dialog .charsheet .grid-overview div.xplabel {
-    justify-self: end;
-}
-.ui-dialog .charsheet .grid-savingthrows {    
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
-    justify-content: center;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-savingthrows input,
-.ui-dialog .charsheet .grid-savingthrows label {
-    justify-self: center;    
-}
-.ui-dialog .charsheet .grid-settings {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    justify-items: center;
-    grid-template-columns: [first] 25% [second] 10% [third] auto [last];
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-settings label {
-    justify-self: end;
-}
-.ui-dialog .charsheet .grid-settings span {
-    justify-self: start;
-}
-
-.ui-dialog .charsheet .grid-spellslots {
-    align-items: center;
-    column-gap: 5px;
-    display: grid;
-    grid-template-columns: [first] repeat(11, 1fr) [last];
-    justify-items: center;
-    row-gap: 5px;
-    width: 100%;
-}
-
-.ui-dialog .charsheet .grid-monster,
-.ui-dialog .charsheet .grid-summary {
-    align-items: center;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: [first] repeat(4, 1fr) [last];
-    justify-items: start;
-    row-gap: 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet .grid-monster label,
-.ui-dialog .charsheet .grid-summary label {
-    justify-self: end;
-}
-
-/**************** Element Styles ****************/
-/* Roll20 type='roll' button styles */
-.ui-dialog .charsheet button {
-    background-image: linear-gradient(white, navajowhite);
-    border-color: saddlebrown;
-    color: saddlebrown;
-    font-weight: bold;
-}
-.ui-dialog .charsheet button:hover {
-    background-image: none;
-    background-color: navajowhite;
-}
-.ui-dialog .charsheet button.reviewButton,
-.ui-dialog .charsheet button.rollButton {
-    font-size: 1.0em;
-    margin-bottom: 9px;
-}
-.ui-dialog .charsheet button.reviewButton::before {
-    content: "";
-}
-.ui-dialog .charsheet button.wideButton {
-    font-size: 1.0em; 
-    width: 90%;
-}
-/* Roll20 type='action' button styles */
-.ui-dialog .charsheet button.actionButton,
-.ui-dialog .charsheet button.HDButton,
-.ui-dialog .charsheet button.missileButton {
-    background-image: linear-gradient(white, navajowhite);
-    border: 1px solid saddlebrown;
-    border-radius: 4px;
-    font-size: 1.0em;
-    font-weight: bold;
-    height: 21px;
-    margin: 0px 3px 9px 3px;
-    padding: 2px 3px;
-}
-.ui-dialog .charsheet button.HDButton {
-    align-self: center;
-}
-.ui-dialog .charsheet button.missileButton {
-}
-.ui-dialog .charsheet button.actionButton:hover,
-.ui-dialog .charsheet button.HDButton:hover,
-.ui-dialog .charsheet button.missileButton:hover {
-    background-image: none;
-    background-color: navajowhite;
-}
-.ui-dialog .charsheet button.actionButton:active,
-.ui-dialog .charsheet button.HDButton:active,
-.ui-dialog .charsheet button.missileButton:active {
-    background-image: linear-gradient(burlywood 10%, 30%, navajowhite 90%);
-    background-color: transparent;
-}
-.ui-dialog .charsheet button.HDButton::before,
-.ui-dialog .charsheet button.missileButton::before {
-    font-family: 'dicefontd20';
-    content: 't';
-}
-
-.ui-dialog .charsheet div {
-    align-self: start;
-    justify-self: start;
-    width: 100%;
-}
-.ui-dialog .charsheet div.body {
-    display: block;
-}
-.ui-dialog .charsheet div.encumbrance {
-    justify-self: center;
-}
-.ui-dialog .charsheet div.hitdice {
-    display: flex;
-}
-.ui-dialog .charsheet div.journalbox {
-    width: 95%;
-}
-.ui-dialog .charsheet div.whispertoggle {
-    display: inline-block;
-    font-size: 0.9em;
-    margin-left: 10px;
-    width: auto;
-}
-
-.ui-dialog .charsheet h1 {
-    font-size: 2.0em;
-}
-
-.ui-dialog .charsheet div.page-title {
-    margin-bottom: 10px;
+.ui-dialog .charsheet button.btn:hover {
+  background-color: navajowhite;
 }
 
 .ui-dialog .charsheet hr {
-    border-top: 1px solid saddlebrown;
-    margin: 10px 0px 20px 0px;
+  border-top: 1px solid burlywood;
+  margin: 20px 0px 15px 0px;
 }
-.ui-dialog .charsheet hr.spangrid {
-    grid-column: first / last;
-    justify-self: start;
-    margin: 5px 0px 15px 0px;
-    width: 99%;
+.ui-dialog .charsheet hr.span-grid {
+  grid-column: first / last;
+  justify-self: start;
+  width: 99%;
 }
 
 .ui-dialog .charsheet input {
-    background-color: transparent;
-    border-color: saddlebrown;
-    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-    border-style: solid;
-    border-width: 2px;
-    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-    box-sizing: border-box;
-    color: saddlebrown;
-    display: inline-block;
-    font-size: 1.1em;
-    font-weight: bold;
-    line-height: 23px;
-    margin-bottom: 9px;
-    outline: none;
-    padding: 2px 5px 0px 5px;
-    text-decoration: none;
-    border-bottom-left-radius: 15px 255px;
-    border-bottom-right-radius: 225px 15px;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
+  background-color: ghostwhite;
+  border: thin solid burlywood;
+  padding: 2px 0px 0px 5px;
 }
-.ui-dialog .charsheet  input:read-only {
-    background-color: transparent;
-    border: none;
+.ui-dialog .charsheet input:read-only {
+  background: transparent;
+}
+.ui-dialog .charsheet input[type=checkbox] {
+  accent-color: sienna;
 }
 .ui-dialog .charsheet input[type=number] {
-    text-align: center;
-    width: 60px;
+  text-align: center;
+  width: 50px;
 }
-.ui-dialog .charsheet input[type=number].currency {
-    width: 80px;
+.ui-dialog .charsheet input[type=text] {
+  width: 150px;
 }
-.ui-dialog .charsheet input.attackname {
-    width: 250px;
+.ui-dialog .charsheet input.toggle-show:not(:checked) ~ div.details {
+  display: none;
 }
-.ui-dialog .charsheet input.henchClass {
-    width: 180px;
+.ui-dialog .charsheet input.currency {
+  width: 75px;
 }
-.ui-dialog .charsheet input.hirelingName,
-.ui-dialog .charsheet input.specType {
-    width: 240px;
-}
-.ui-dialog .charsheet input[type=number].itemValue::-webkit-outer-spin-button,
-.ui-dialog .charsheet input[type=number].itemValue::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.ui-dialog .charsheet input[type=number].itemValue {
-  -moz-appearance: textfield;
-}
-.ui-dialog .charsheet input[type=number].itemWeight::-webkit-outer-spin-button,
-.ui-dialog .charsheet input[type=number].itemWeight::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.ui-dialog .charsheet input[type=number].itemWeight {
-  -moz-appearance: textfield;
-}
-.ui-dialog .charsheet input.missilerange {
-    width: 100px;
-}
-.ui-dialog .charsheet input.mercRace {
-    width: 80px;
-}
-.ui-dialog .charsheet input.mercType {
-    width: 180px;
-}
-.ui-dialog .charsheet input.skillScript,
-.ui-dialog .charsheet input.spellDuration {
-    width: 200px;
-}
-.ui-dialog .charsheet input.damageAttr,
-.ui-dialog .charsheet input.spellRange,
-.ui-dialog .charsheet input.spellLevel {
-    width: 60px; 
-}
-.ui-dialog .charsheet input.smallWidth {
-    text-align: center;
-    width: 60px;
-}
-.ui-dialog .charsheet input.weaponProfs {
-    width: 80%;
-}
-.ui-dialog .charsheet input.xp {
-    text-align: right;
-    width: 90px;
-}
-.ui-dialog .charsheet input.xpamount,
-.ui-dialog .charsheet input.xpdate {
-    width: 100px;
-}
-.ui-dialog .charsheet input[type=number].xpamount::-webkit-outer-spin-button,
-.ui-dialog .charsheet input[type=number].xpamount::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.ui-dialog .charsheet input[type=number].xpamount {
-  -moz-appearance: textfield;
-}
-.ui-dialog .charsheet input.xpdescription {
-    width: 30%;
+.ui-dialog .charsheet input.max-width {
+  width: 100%;
 }
 
 .ui-dialog .charsheet  label {
-    align-self: start;
-    display: inline-block;
-    font-size: 1.1em;
-    padding-top: 7px;
-    white-space: nowrap;
-    width: auto;
-}
-.ui-dialog .charsheet label.emphasis {
-    font-size: 1.1em;
-}
-.ui-dialog .charsheet label.item_count {
-    width: 152px;
-}
-.ui-dialog .charsheet label.item_lbs {
-    width: 40px;
-}
-.ui-dialog .charsheet label.item_name {
-    font-size: 0.9em;
-    width: 214px;
-}
-.ui-dialog .charsheet label.light {
-    font-weight: normal;
-}
-.ui-dialog .charsheet label.meleeattack {
-    width: 206px;
-}
-.ui-dialog .charsheet label.meleemod {
-    width: 30px;
-}
-.ui-dialog .charsheet label.missileattack {
-    width: 206px;
-}
-.ui-dialog .charsheet label.missilemod {
-    width: 30px;
-}
-.ui-dialog .charsheet label.missileeffects {
-    width: 266px;
+  display: inline-block;
+  font-size: 1.0em;
+  margin: 0px;
+  padding: 5px 0px 0px 0px;
+  white-space: nowrap;
+  width: auto;
 }
 .ui-dialog .charsheet label.span-header {
-    background-color: navajowhite;
-    border-radius: 4px;
-    font-size: 1.2em;
-    grid-column: first / last;
-    justify-self: start;
-    padding: 5px 0px 2px 5px;
-    width: 100%;
-}
-.ui-dialog .charsheet label.spelllevel {
-    width: 40px; 
-}
-.ui-dialog .charsheet label.spellname {
-    width: 200px; 
-}
-.ui-dialog .charsheet label.xp {
-    padding-right: 0px;
+  grid-column: first / last;
+  font-size: 1.5em;
+  justify-self: start;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .ui-dialog .charsheet select {
-    background-color: navajowhite;
-    border-color: saddlebrown;
-    font-weight: bold;
-    margin: 0px 9px 9px 0px;
-}
-.ui-dialog .charsheet select.settingsSelect {
-    width: 60px;
-}
-.ui-dialog .charsheet select.sizeSelect {
-    width: 100px;
-}
-.ui-dialog .charsheet select.shorter {
-    width: 160px;
-}
-
-.ui-dialog .charsheet span.info {
-    line-height: 1;
-}
-.ui-dialog .charsheet span.xpbonus {
-    font-weight: bold;
+  background-color: ghostwhite;
+  border: thin solid burlywood;
+  height: 22px;
+  padding: 0px;
+  margin: 0px;
+  width: 150px;
 }
 
 .ui-dialog .charsheet textarea {
-    background-color: transparent;
-    border-color: saddlebrown;
-    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-    border-style: solid;
-    border-width: 2px;
-    box-sizing: border-box;
-    color: saddlebrown;
-    display: inline-block;
-    font-size: 1.03em;
-    font-weight: bold;
-    line-height: 23px;
-    margin-bottom: 9px;
-    outline: none;
-    padding: 2px 5px 0px 5px;
-    text-decoration: none;
-    border-bottom-left-radius: 15px 255px;
-    border-bottom-right-radius: 225px 15px;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    width: 98%;
-}
-.ui-dialog .charsheet textarea::placeholder {
-    color: #8a795d;
-}
-.ui-dialog .charsheet textarea.background {
-    width: 99%;
-}
-.ui-dialog .charsheet textarea.journalnotes {
-    height: 120px;
-    width: 100%;
-}
-.ui-dialog .charsheet textarea.property {
-    height: 220px;
-    width: 400px;
+  border: thin solid burlywood;
+  padding: 3px;
+  margin: 0px;
+  width: 99%;
 }
 
-/**************** Panel Buttons ****************/
-.ui-dialog .charsheet .button-panel {
-    padding-bottom: 15px;
+.ui-dialog .charsheet .repcontainer {
+  margin-bottom: 5px;
 }
+.ui-dialog .charsheet .repcontainer > .repitem button,
+.ui-dialog .charsheet .repcontainer > .repitem input,
+.ui-dialog .charsheet .repcontainer > .repitem textarea {
+  margin: 2.5px;
+}
+
+.ui-dialog .charsheet input::placeholder,
+.ui-dialog .charsheet textarea::placeholder {
+    color: silver;
+}
+
+/**************** PAGE HEADER ****************/
+.ui-dialog .charsheet div.button-panel {
+  padding-bottom: 20px;
+}
+
+.ui-dialog .charsheet div.page-title {
+  margin-bottom: 10px;
+}
+
+.ui-dialog .charsheet div.whisper-toggle {
+  display: inline-block;
+  margin-left: 10px;
+  width: auto;
+}
+
+/**************** TAB CONTROLS ****************/
 .ui-dialog .charsheet .overview,
 .ui-dialog .charsheet .class,
 .ui-dialog .charsheet .studious,
@@ -486,7 +140,7 @@
 .ui-dialog .charsheet .hirelings,
 .ui-dialog .charsheet .journal,
 .ui-dialog .charsheet .settings {
-	display: none;
+  display: none;
 }
 .ui-dialog .charsheet .tabstoggle[value='overview'] ~ section.overview,
 .ui-dialog .charsheet .tabstoggle[value='class'] ~ section.class,
@@ -499,7 +153,7 @@
 .ui-dialog .charsheet .tabstoggle[value='hirelings'] ~ section.hirelings,
 .ui-dialog .charsheet .tabstoggle[value='settings'] ~ section.settings,
 .ui-dialog .charsheet .tabstoggle[value='journal'] ~ section.journal {
-	display: block;
+  display: block;
 }
 .ui-dialog .charsheet .btnOverview,
 .ui-dialog .charsheet .btnClass,
@@ -512,57 +166,57 @@
 .ui-dialog .charsheet .btnHirelings,
 .ui-dialog .charsheet .btnJournal,
 .ui-dialog .charsheet .btnSettings {
-    align-self: center;
-    background-color: navajowhite;
-    background-image: none;
-    border-color: saddlebrown;
-    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-    border-style: solid;
-    border-width: 2px;
-    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-    box-sizing: border-box;
-    color: saddlebrown;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 23px;
-    outline: none;
-    text-decoration: none;
-    transition: all 235ms ease-in-out;
-    border-bottom-left-radius: 15px 255px;
-    border-bottom-right-radius: 225px 15px;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-  }  
-  .ui-dialog .charsheet .btnOverview:hover,
-  .ui-dialog .charsheet .btnClass:hover,
-  .ui-dialog .charsheet .btnStudious:hover,
-  .ui-dialog .charsheet .btnPrayerful:hover,
-  .ui-dialog .charsheet .btnSkills:hover,
-  .ui-dialog .charsheet .btnCombat:hover,
-  .ui-dialog .charsheet .btnEquipment:hover,
-  .ui-dialog .charsheet .btnWealth:hover,
-  .ui-dialog .charsheet .btnHirelings:hover,
-  .ui-dialog .charsheet .btnJournal:hover,
-  .ui-dialog .charsheet .btnSettings:hover {
-    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-    transform: translate3d(0, 2px, 0);
-  }
-  .ui-dialog .charsheet .btnOverview:focus,
-  .ui-dialog .charsheet .btnClass:focus,
-  .ui-dialog .charsheet .btnStudious:focus,
-  .ui-dialog .charsheet .btnPrayerful:focus,
-  .ui-dialog .charsheet .btnSkills:focus,
-  .ui-dialog .charsheet .btnCombat:focus,
-  .ui-dialog .charsheet .btnEquipment:focus,
-  .ui-dialog .charsheet .btnWealth:focus,
-  .ui-dialog .charsheet .btnHirelings:focus,
-  .ui-dialog .charsheet .btnJournal:focus,
-  .ui-dialog .charsheet .btnSettings:focus {
-    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-  }
+  align-self: center;
+  background-color: navajowhite;
+  background-image: none;
+  border-color: black;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: sienna;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 23px;
+  outline: none;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}  
+.ui-dialog .charsheet .btnOverview:hover,
+.ui-dialog .charsheet .btnClass:hover,
+.ui-dialog .charsheet .btnStudious:hover,
+.ui-dialog .charsheet .btnPrayerful:hover,
+.ui-dialog .charsheet .btnSkills:hover,
+.ui-dialog .charsheet .btnCombat:hover,
+.ui-dialog .charsheet .btnEquipment:hover,
+.ui-dialog .charsheet .btnWealth:hover,
+.ui-dialog .charsheet .btnHirelings:hover,
+.ui-dialog .charsheet .btnJournal:hover,
+.ui-dialog .charsheet .btnSettings:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+.ui-dialog .charsheet .btnOverview:focus,
+.ui-dialog .charsheet .btnClass:focus,
+.ui-dialog .charsheet .btnStudious:focus,
+.ui-dialog .charsheet .btnPrayerful:focus,
+.ui-dialog .charsheet .btnSkills:focus,
+.ui-dialog .charsheet .btnCombat:focus,
+.ui-dialog .charsheet .btnEquipment:focus,
+.ui-dialog .charsheet .btnWealth:focus,
+.ui-dialog .charsheet .btnHirelings:focus,
+.ui-dialog .charsheet .btnJournal:focus,
+.ui-dialog .charsheet .btnSettings:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
 .ui-dialog .charsheet .buttonstoggle[value='overview'] ~ button.btnOverview,
 .ui-dialog .charsheet .buttonstoggle[value='class'] ~ button.btnClass,
 .ui-dialog .charsheet .buttonstoggle[value='studious'] ~ button.btnStudious,
@@ -574,276 +228,394 @@
 .ui-dialog .charsheet .buttonstoggle[value='hirelings'] ~ button.btnHirelings,
 .ui-dialog .charsheet .buttonstoggle[value='journal'] ~ button.btnJournal,
 .ui-dialog .charsheet .buttonstoggle[value='settings'] ~ button.btnSettings {
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-    font-weight: bold;
-    transform: translate3d(0, 2px, 0);
+  background-color: ghostwhite;
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  font-weight: bold;
+  transform: translate3d(0, 2px, 0);
 }
-/* Hide Spells tab buttons on Settings toggles */
+
 .ui-dialog .charsheet input.hideStudious[value='1'] ~ button.btnStudious {
-    display: none;
+  display: none;
 }
 .ui-dialog .charsheet input.hidePrayerful[value='1'] ~ button.btnPrayerful {
-    display: none;
+  display: none;
 }
-/* Hide Code of Behavior section on Settings toggle */
 .ui-dialog .charsheet input.hideCode[value='1'] ~ div.code {
-    display: none;
+  display: none;
 }
 
-/**************** Alert Styles ****************/
-.ui-dialog .charsheet span.orangeEnc,
-.ui-dialog .charsheet span.redbedrest,
-.ui-dialog .charsheet input.reddmg,
-.ui-dialog .charsheet span.redfatigue,
-.ui-dialog .charsheet input.redhd,
-.ui-dialog .charsheet span.redhp,
-.ui-dialog .charsheet span.redmove,
-.ui-dialog .charsheet .limitExceeded {
-    color: saddlebrown;
-}
-.ui-dialog .charsheet input.reddmg,
-.ui-dialog .charsheet input.redhd {
-    width: 60px;
-}
-.ui-dialog .charsheet input.bedrestcheck[value='1'] ~ .redbedrest,
-.ui-dialog .charsheet input.dmgcheck[value='1'] ~ .reddmg,
-.ui-dialog .charsheet input.fatiguecheck[value='1'] ~ .redfatigue,
-.ui-dialog .charsheet input.hdcheck[value='1'] ~ .redhd,
-.ui-dialog .charsheet input.hpcheck[value='1'] ~ .redhp,
-.ui-dialog .charsheet input.movecheck[value='1'] ~ .redmove,
-.ui-dialog .charsheet input.henchmenCheck[value='1'] ~ .limitExceeded {
-    background-color: lightpink; 
-    border-color: red;
-    color: red;
-    font-weight: bold;
-}
-.ui-dialog .charsheet input.encOverFive[value='1'] ~ .orangeEnc {
-    background-color: orange; 
-    font-weight: bold;
+/**************** OVERVIEW TAB ****************/
+.ui-dialog .charsheet div.grid-overview {
+  display: grid;
+  grid-template-columns: [first] repeat(2, 1fr) [last];
 }
 
-/**************** Details section toggle ****************
-Note that each toggle must have a different name value */
-.ui-dialog .charsheet 
-input.toggle-show:not(:checked) ~ div.details {
-    display: none;
+.ui-dialog .charsheet div.grid-attributes {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: [first] repeat(5, 1fr) [last];
+  justify-items: center;
+  row-gap: 5px;
+}
+.ui-dialog .charsheet div.grid-attributes label.attr-name {
+  justify-self: left;
 }
 
-/**************** Repeating Styles  ****************/
-.repitem > button {
-    vertical-align: top;
+.ui-dialog .charsheet div.grid-monster {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  row-gap: 5px;
 }
-.repitem > input,
-.repitem > div > input
-{
-    margin-right: 10px;
+.ui-dialog .charsheet div.grid-monster input[type=text],
+.ui-dialog .charsheet div.grid-monster select {
+  width: 75px;
 }
-.repitem > input[type=number].itemCount {
-    text-align: right;
-    width: 45px;
-}
-.repitem > input[type=number].itemValue {
-    text-align: right;
-    width: 80px;
-}
-.repitem > input[type=number].itemWeight {
-    text-align: right;
-    width: 60px;
-}
-.repitem > input[type=text].itemSize {
-    text-align: center;
-    width: 45px;
-}
-.repitem > .charsheet label {
-    font-size: 0.9em;
+.ui-dialog .charsheet div.grid-monster input.tt {
+  width: 50px;
 }
 
-/**************** Roll Template Styles ****************/
-/* Better default template */
-/* Smaller margins - remove these if you want the huge default left margin */
-.sheet-rolltemplate-custom {
+.ui-dialog .charsheet div.grid-info {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: [first] repeat(2, 1fr) [last];
+  justify-items: left;
+  row-gap: 5px;
 }
+.ui-dialog .charsheet div.grid-info input.xp {
+  text-align: center;
+  width: 68px;
+}
+
+.ui-dialog .charsheet div.grid-saves {  
+  column-gap: 10px;  
+  display: grid;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  justify-items: center;
+  row-gap: 5px;
+}
+.ui-dialog .charsheet div.grid-saves button {
+  padding: 0px 10px;
+  width: 50px;
+}
+.ui-dialog .charsheet div.grid-saves input.profile {
+  width: 55px;
+}
+
+.ui-dialog .charsheet div.grid-summary {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  row-gap: 5px;
+}
+.ui-dialog .charsheet div.grid-summary input.hd {
+  width: 68px;
+}
+
+/**************** CLASS TAB ****************/
+.ui-dialog .charsheet div.grid-class-bonuses {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: [first] repeat(8, 1fr) [last];
+  justify-items: start;
+  padding-bottom: 3px;
+  row-gap: 5px;
+}
+.ui-dialog .charsheet div.full-line {
+  padding-bottom: 3px;
+  width: 100%;
+}
+
+/**************** STUDIOUS/PRAYERFUL TABS ****************/
+.ui-dialog .charsheet div.grid-spellslots {
+  column-gap: 5px;
+  display: grid;
+  grid-template-columns: [first] repeat(11, 1fr) [last];
+  justify-items: center;
+  row-gap: 5px;
+  width: 100%;
+}
+
+/**************** COMBAT TAB ****************/
+.ui-dialog .charsheet div.grid-combat {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(6, 1fr) [last];
+  justify-items: center;
+}
+
+.ui-dialog .charsheet div.grid-encounter-buttons {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  justify-items: center;
+  row-gap: 5px;
+}
+
+.ui-dialog .charsheet .repcontainer > .repitem input.damage {
+  padding: 1px 0px;
+  text-align: center;
+  width: 50px;
+}
+
+.ui-dialog .charsheet .repcontainer > .repitem input.range {
+  width: 100px;
+}
+
+.ui-dialog .charsheet .repcontainer > .repitem span {
+  margin-right: 5px;
+}
+
+/**************** SKILLS TAB ****************/
+
+/**************** EQUIPMENT TAB ****************/
+.ui-dialog .charsheet div.grid-encumbrance {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(8, 1fr) [last];
+  justify-items: center;
+}
+
+/**************** WEALTH TAB ****************/
+.ui-dialog .charsheet div.grid-budget {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(2, 1fr) [last];
+  row-gap: 5px;
+}
+
+.ui-dialog .charsheet div.grid-currency {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  justify-items: center;
+  row-gap: 5px;
+}
+
+.ui-dialog .charsheet div.grid-wealth {
+  display: grid;
+  grid-template-columns: [first] repeat(2, 1fr) [last];
+}
+
+.ui-dialog .charsheet select.investment {
+  width: 200px;
+}
+
+/**************** HIRELINGS TAB ****************/
+.ui-dialog .charsheet .grid-hirelings {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: [first] repeat(4, 1fr) [last];
+  justify-items: center;
+}
+
+.ui-dialog .charsheet button.btn-hirelings::before {
+  font-family: 'dicefontd20';
+  font-size: 1.2em;
+  content: '0';
+  vertical-align: middle;
+}
+
+.ui-dialog .charsheet input.text-hirelings {
+  width: 200px;
+}
+
+/**************** JOURNAL TAB ****************/
+.ui-dialog .charsheet .grid-journal {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: [first] repeat(4, 1fr) [last];
+    justify-items: center;
+}
+
+.ui-dialog .charsheet input.xp-notes {
+  width: 350px;
+}
+
+/**************** SETTINGS TAB ****************/
+.ui-dialog .charsheet .grid-settings {
+  display: grid;
+  column-gap: 10px;
+  justify-items: center;
+  grid-template-columns: [first] 20% [second] 10% [third] auto [last];
+  row-gap: 5px;
+}
+.ui-dialog .charsheet .grid-settings label {
+    justify-self: end;
+}
+.ui-dialog .charsheet .grid-settings select {
+    width: 50px;
+}
+.ui-dialog .charsheet .grid-settings span {
+    justify-self: start;
+}
+
+/**************** ALERTS ****************/
+.ui-dialog .charsheet input.alert-damage[value='1'] ~ .damage,
+.ui-dialog .charsheet input.alert-hd[value='1'] ~ .hd,
+.ui-dialog .charsheet input.alert-henchmen[value='1'] ~ .henchmen,
+.ui-dialog .charsheet input.alert-hp[value='1'] ~ .hp,
+.ui-dialog .charsheet input.alert-move[value='1'] ~ .move {
+  background-color: lightpink; 
+  border-color: red;
+  color: red;
+  font-weight: bold;
+}
+
+.ui-dialog .charsheet input.alert-bedrest[value='1'] ~ .bedrest,
+.ui-dialog .charsheet input.alert-encumbrance[value='1'] ~ .encumbrance,
+.ui-dialog .charsheet input.alert-fatigued[value='1'] ~ .fatigue {
+  background-color: gold; 
+  border-color: coral;
+  color: coral;
+  font-weight: bold;
+}
+
+/**************** ROLL TEMPLATES****************/
 .sheet-rolltemplate-custom,
-.sheet-rolltemplate-menu,
-.sheet-rolltemplate-mortalwounds,
-.sheet-rolltemplate-critchar,
-.sheet-rolltemplate-critmon {
-    margin-left: -37px;
-  }
-  .withoutavatars .sheet-rolltemplate-custom,
-  .withoutavatars .sheet-rolltemplate-menu,
-  .withoutavatars .sheet-rolltemplate-mortalwounds,
-  .withoutavatars .sheet-rolltemplate-critchar,
-  .withoutavatars .sheet-rolltemplate-critmon {
-    margin-left: -7px;
-  }
-  
-  .sheet-rolltemplate-custom .sheet-container,
-  .sheet-rolltemplate-menu .sheet-container,
-  .sheet-rolltemplate-mortalwounds .sheet-container,
-  .sheet-rolltemplate-critchar .sheet-container,
-  .sheet-rolltemplate-critmon .sheet-container {
-    border: 1px solid;
-    /* by default, the border is the same color as the header. You can change this here, e.g. to black */
-    border-color: var(--header-bg-color);
-  }
-  
-  /* Header formatting - title and subtitle */
-  .sheet-rolltemplate-custom .sheet-header,
-  .sheet-rolltemplate-menu .sheet-header,
-  .sheet-rolltemplate-mortalwounds .sheet-header,
-  .sheet-rolltemplate-critchar .sheet-header,
-  .sheet-rolltemplate-critmon .sheet-header {
-    background-image: var(--header-bg-image);
-    background-color: var(--header-bg-color);
-    /* change text-align to center to center the header text */
-    text-align: left;
-    color: var(--header-text-color);
-    padding: 5px;
-  }
-  .sheet-rolltemplate-custom .sheet-title,
-  .sheet-rolltemplate-menu .sheet-title,
-  .sheet-rolltemplate-mortalwounds .sheet-title,
-  .sheet-rolltemplate-critchar .sheet-title,
-  .sheet-rolltemplate-critmon .sheet-title {
-    font-size:1.1em;
-    text-align: center;
-  }
-  .sheet-rolltemplate-custom .sheet-subtitle,
-  .sheet-rolltemplate-menu .sheet-subtitle,
-  .sheet-rolltemplate-mortalwounds .sheet-subtitle,
-  .sheet-rolltemplate-critchar .sheet-subtitle,
-  .sheet-rolltemplate-critmon .sheet-subtitle {
-    font-size:.9em;
-    text-align: center;
-  }
-  
-  /* example colors */
-  .sheet-rolltemplate-custom .sheet-container,
-  .sheet-rolltemplate-menu .sheet-container {
-    /* this is the default color */
-    --header-bg-color:dimgray;
-    --header-text-color: #FFF;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-black,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-black,
-  .sheet-rolltemplate-mortalwounds .sheet-container.sheet-color-black {
-    --header-bg-color: black;
-    --header-text-color: #FFF;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-brown,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-brown {
-    --header-bg-color: saddlebrown;
-    --header-text-color: #FFF;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-blue,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-blue {
-    --header-bg-color: darkslateblue;
-    --header-text-color: #FFF;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-gold,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-gold {
-    --header-bg-color: gold;
-    --header-text-color: #000;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-green,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-green {
-    --header-bg-color: darkolivegreen;
-    --header-text-color: #FFF;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-orange,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-orange {
-    --header-bg-color: darkorange;
-    --header-text-color: #000;
-  }
-  .sheet-rolltemplate-custom .sheet-container.sheet-color-red,
-  .sheet-rolltemplate-menu .sheet-container.sheet-color-red,
-  .sheet-rolltemplate-critchar .sheet-container.sheet-color-red,
-  .sheet-rolltemplate-critmon .sheet-container.sheet-color-red {
-    --header-bg-color: maroon;
-    --header-text-color: #FFF;
-  }
+.sheet-rolltemplate-menu {
+  margin-left: -37px;
+}
+.withoutavatars .sheet-rolltemplate-custom,
+.withoutavatars .sheet-rolltemplate-menu {
+  margin-left: -7px;
+}
+
+.sheet-rolltemplate-custom .sheet-container,
+.sheet-rolltemplate-menu .sheet-container {
+  border: 1px solid;
+  /* by default, the border is the same color as the header. You can change this here, e.g. to black */
+  border-color: var(--header-bg-color);
+}
+
+/* Header formatting - title and subtitle */
+.sheet-rolltemplate-custom .sheet-header,
+.sheet-rolltemplate-menu .sheet-header {
+  background-image: var(--header-bg-image);
+  background-color: var(--header-bg-color);
+  /* change text-align to center to center the header text */
+  text-align: left;
+  color: var(--header-text-color);
+  padding: 5px;
+}
+.sheet-rolltemplate-custom .sheet-title,
+.sheet-rolltemplate-menu .sheet-title {
+  font-size:1.1em;
+  text-align: center;
+}
+.sheet-rolltemplate-custom .sheet-subtitle,
+.sheet-rolltemplate-menu .sheet-subtitle {
+  font-size:.9em;
+  text-align: center;
+}
+
+/* example colors */
+.sheet-rolltemplate-custom .sheet-container,
+.sheet-rolltemplate-menu .sheet-container {
+  /* this is the default color */
+  --header-bg-color:dimgray;
+  --header-text-color: #FFF;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-black,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-black {
+  --header-bg-color: black;
+  --header-text-color: #FFF;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-brown,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-brown {
+  --header-bg-color: sienna;
+  --header-text-color: #FFF;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-blue,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-blue {
+  --header-bg-color: darkslateblue;
+  --header-text-color: #FFF;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-gold,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-gold {
+  --header-bg-color: gold;
+  --header-text-color: #000;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-green,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-green {
+  --header-bg-color: darkolivegreen;
+  --header-text-color: #FFF;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-orange,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-orange {
+  --header-bg-color: darkorange;
+  --header-text-color: #000;
+}
+.sheet-rolltemplate-custom .sheet-container.sheet-color-red,
+.sheet-rolltemplate-menu .sheet-container.sheet-color-red {
+  --header-bg-color: maroon;
+  --header-text-color: #FFF;
+}
 
 /* Success/Failure colors*/
 .sheet-rolltemplate-custom .sheet-success {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 .sheet-rolltemplate-custom .sheet-failure {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
   
-  /* Allprops part */
-  .sheet-rolltemplate-custom .sheet-content,
-  .sheet-rolltemplate-menu .sheet-content,
-  .sheet-rolltemplate-mortalwounds .sheet-content,
-  .sheet-rolltemplate-critchar .sheet-content,
-  .sheet-rolltemplate-critmon .sheet-content {
-    display: grid;
-    background: #FFF;
-    /* Header formatting - modify the column layout below */
-    grid-template-columns: auto auto;
-    /* Line height to match default roll template */
-    line-height:1.4em;
-  }
-  .sheet-rolltemplate-custom .sheet-content > div,
-  .sheet-rolltemplate-menu .sheet-content > div,
-  .sheet-rolltemplate-mortalwounds .sheet-content > div,
-  .sheet-rolltemplate-critchar .sheet-content > div,
-  .sheet-rolltemplate-critmon .sheet-content > div {
-    padding: 5px;
-  }
+/* Allprops part */
+.sheet-rolltemplate-custom .sheet-content,
+.sheet-rolltemplate-menu .sheet-content {
+  display: grid;
+  background: #FFF;
+  /* Header formatting - modify the column layout below */
+  grid-template-columns: auto auto;
+  /* Line height to match default roll template */
+  line-height:1.4em;
+}
+.sheet-rolltemplate-custom .sheet-content > div,
+.sheet-rolltemplate-menu .sheet-content > div {
+  padding: 5px;
+}
   
-  /* Left column */
-  .sheet-rolltemplate-custom .sheet-content .sheet-key,
-  .sheet-rolltemplate-menu .sheet-content .sheet-key,
-  .sheet-rolltemplate-mortalwounds .sheet-content .sheet-key,
-  .sheet-rolltemplate-critchar .sheet-content .sheet-key,
-  .sheet-rolltemplate-critmon .sheet-content .sheet-key {
-    font-weight: bold;
-    padding-right: 10px;
-    text-align: right;
-  }
+/* Left column */
+.sheet-rolltemplate-custom .sheet-content .sheet-key,
+.sheet-rolltemplate-menu .sheet-content .sheet-key {
+  font-weight: bold;
+  padding-right: 10px;
+  text-align: right;
+}
   
-  /* Empty rule, use this if you want to change the right column 
-  .sheet-rolltemplate-custom .sheet-value {
-  }
-  */
+/* Empty rule, use this if you want to change the right column 
+.sheet-rolltemplate-custom .sheet-value {
+}
+*/
   
-  /* Make even-numbered rows grey */
-  .sheet-rolltemplate-custom .sheet-content div:nth-child(4n+3),
-  .sheet-rolltemplate-custom .sheet-content div:nth-child(4n),
-  .sheet-rolltemplate-mortalwounds .sheet-content div:nth-child(4n+3),
-  .sheet-rolltemplate-mortalwounds .sheet-content div:nth-child(4n),
-  .sheet-rolltemplate-critchar .sheet-content div:nth-child(4n+3),
-  .sheet-rolltemplate-critchar .sheet-content div:nth-child(4n),
-  .sheet-rolltemplate-critmon .sheet-content div:nth-child(4n+3),
-  .sheet-rolltemplate-critmon .sheet-content div:nth-child(4n) {
-    background:#EEE;
-  }
+/* Make even-numbered rows grey */
+.sheet-rolltemplate-custom .sheet-content div:nth-child(4n+3),
+.sheet-rolltemplate-custom .sheet-content div:nth-child(4n) {
+  background:#EEE;
+}
   
-  /* Description field */
-  .sheet-rolltemplate-custom .sheet-desc,
-  .sheet-rolltemplate-menu .sheet-desc {
-    grid-column: span 2;
-    padding: 5px;
-    text-align: center;
-  }
+/* Description field */
+.sheet-rolltemplate-custom .sheet-desc,
+.sheet-rolltemplate-menu .sheet-desc {
+  grid-column: span 2;
+  padding: 5px;
+  text-align: center;
+}
 
-  /* Chat menu styles */
-  .sheet-rolltemplate-custom a[href^='!'],.sheet-rolltemplate-custom a[href^='~'],
-  .sheet-rolltemplate-menu a[href^='!'],.sheet-rolltemplate-menu a[href^='~'] {
-    background-color:transparent;
-    border:0;
-    color:#3f8aa6;
-    display:inline;
-    font-style: italic;
-    font-weight: bold;
-    padding: 0
+/* Chat menu styles */
+.sheet-rolltemplate-custom a[href^='!'],.sheet-rolltemplate-custom a[href^='~'],
+.sheet-rolltemplate-menu a[href^='!'],.sheet-rolltemplate-menu a[href^='~'] {
+  background-color:transparent;
+  border:0;
+  color:#3f8aa6;
+  display:inline;
+  font-style: italic;
+  font-weight: bold;
+  padding: 0
 }
 
 .sheet-rolltemplate-custom .sheet-desc {
-    text-align: left;
+  text-align: left;
 }
