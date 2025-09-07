@@ -491,7 +491,7 @@
             <label>+ atk:</label><input type='number' value='0' title='@{missile_bonus}' name='attr_missile_bonus'/>
             <label>+ dmg:</label><input type='number' min='-10' max='10' value='0' title='@{damage_bonus}' name='attr_damage_bonus'/>
             <label>range:</label><input type='text' class='range' title='@{missile_range}' name='attr_missile_range'/>
-            <label>ammo:</label><input type='number' title='@{missile_ammo}' name='attr_missile_ammo'/>
+            <label>ammo:</label><input value='0' type='number' title='@{missile_ammo}' name='attr_missile_ammo'/>
             <label>more... </label><input type='checkbox' class='toggle-show' title='more...'/><br/>
             <div class='details'>
                 <label><input type='checkbox' value='1' title='@{has_weapon_focus}' name='attr_has_weapon_focus'/> focus</label>
@@ -1461,7 +1461,7 @@ on('clicked:repeating_missile:missile-attack', () => {
         });
 
         const output = {};
-        output['repeating_missile_missile_ammo'] = missileAmmo - 1;
+        output['repeating_missile_missile_ammo'] = missileAmmo > 0 ? missileAmmo - 1 : missileAmmo;
         setAttrs(output); 
     });
 });
