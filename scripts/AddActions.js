@@ -110,44 +110,44 @@ const meleeDefaults =
 [
         {
             melee_name: "d10 Melee",
-            melee_damage: "1d10",
+            melee_damage: "d10",
             melee_bonus: "0",
             melee_is_2h: "1"
         },
         {
             melee_name: "d8 Melee",
-            melee_damage: "1d8",
+            melee_damage: "d8",
             melee_bonus: "0",
             melee_is_2h: "1"
         },
         {
             melee_name: "d6 Melee",
-            melee_damage: "1d6",
+            melee_damage: "d6",
             melee_bonus: "0"
         },
         {
             melee_name: "d4 Melee",
-            melee_damage: "1d4",
+            melee_damage: "d4",
             melee_bonus: "0"
         },
         {
             melee_name: "Punch",
-            melee_damage: "1d3",
+            melee_damage: "d3",
             melee_bonus: "0"
         },
         {
             melee_name: "Kick",
-            melee_damage: "1d4",
+            melee_damage: "d4",
             melee_bonus: "-2"
         },
         {
             melee_name: "Torch",
-            melee_damage: "1d4",
+            melee_damage: "d4",
             melee_bonus: "0"
         },
         {
             melee_name: "Improvised Melee",
-            melee_damage: "1d3",
+            melee_damage: "d3",
             melee_bonus: "0"
         }
 ]
@@ -156,31 +156,31 @@ const missileDefaults =
 [
         {
             missile_name: "d6 Missile",
-            missile_damage: "1d6",
+            missile_damage: "d6",
             missile_bonus: "0"
         },
         {
             missile_name: "d6 Thrown",
-            missile_damage: "1d6",
+            missile_damage: "d6",
             missile_bonus: "0",
             missile_is_thrown: "1"
         },
         {
             missile_name: "d4 Thrown",
-            missile_damage: "1d4",
+            missile_damage: "d4",
             missile_bonus: "0",
             missile_is_thrown: "1"
         },
         {
             missile_name: "d3 Thrown",
-            missile_damage: "1d3",
+            missile_damage: "d3",
             missile_bonus: "0",
             missile_is_thrown: "1"
         },
         {
             missile_name: "Improvised Throw",
             missile_range: "10/20/30",
-            missile_damage: "1d3",
+            missile_damage: "d3",
             missile_bonus: "0",
             missile_is_thrown: "1"
         }

@@ -451,7 +451,6 @@ Author: Don Davis
 }
 
 /**************** ALERTS ****************/
-.ui-dialog .charsheet input.alert-damage[value='1'] ~ .damage,
 .ui-dialog .charsheet input.alert-hd[value='1'] ~ .hd,
 .ui-dialog .charsheet input.alert-henchmen[value='1'] ~ .henchmen,
 .ui-dialog .charsheet input.alert-hp[value='1'] ~ .hp,

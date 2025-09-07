@@ -1,17 +1,11 @@
 # Roll20 Character Sheet for Adventurer Conqueror King System, by Autarch
 This is a Roll20 specific character sheet designed for use with the *Adventurer Conqueror King System, Imperial Imprint (ACKS II)* OSR RGP, by Autarch.
 
-## Version 3.3
+## Version 3.4
 - This is v3 of the character sheet, for supporting ACKS II.
-- With ACKS II in beta, the current rules version refereced is v109.
-- Many small changes to this sheet were needed.
-- Several optional rules references not specifically included in ACKS II were removed from the sheet. E.G., base healing rate.
-- Some changes made to how attacks are executed on the Combat tab.
-- The Hirelings tab was overhauled to include loyalty and obedience checks.
-- The sheet was styled.
-- Sheet layout/tabs were changed for usability
-- Class global modifiers was updated to reflect ACKS II class abilities.
-- The Overview tab's Saving Throws section was completely overhauled.
+- This sheet was re-styled.
+- Mechanical improvements to attack roll automation were made, including weapon focus, impact weapons, and backstabs.
+- The class Template (text) field was moved to the Overview tab.
 
 ## How to Install the Character Sheet
 1. In Github, go to Code. Click the Code button and select "Download ZIP". Unzip to your local computer.
@@ -45,7 +39,7 @@ Note that configuration of API scripts and macros is additional work not covered
 ## Sheet Variable Manifest
 This section details all fields and controls on the sheet and how they are calculated, used, etc.
 
-- **IMPORTANT:** All buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons).
+- **IMPORTANT:** All buttons on the sheet *require* that a token is selected in order to function. This is to support the use of the Actions macro (which is a highly recommended alternative for players to access their sheet buttons). This also why most repeating section buttons are hidden, by default.
 - *Why doesn't this sheet support more automation?* - ACKS II is a *sandbox* RPG system. This means that a GM may use an assortment of system-building tools in the ACKS system to create custom classes, monsters, etc. To maintain maximum flexibility in the spirit of this approach, the character sheet *intentionally* doesn't automate many functions, such as level dependent stat progressions (saving throws, attack throws, etc.)
 - The term 'character' refers to any player character, NPC, or monster who this sheet is used to represent. When representing monsters, many of the fields described can be safely ignored.
 - All field values are optional, unless otherwise specified.
@@ -62,7 +56,7 @@ This tab contains all the general information for the character, including a sum
 ### How to Work with Saving Throws
 - The sheet allows the character's saving throw base target and class modifiers to be entered individually, if desired.
 - These two values are combined to set each save's throw target.
-- The *saver_profile* field can be used to set all the characters base target saving throw values by entering a simple two-digit code, 'XY', where...
+- The *save_profile* field can be used to set all the characters base target saving throw values by entering a simple two-digit code, 'XY', where...
     - 'X' is a letter that represets one of the four basic ACKS saving throw progressions:
         - C: Crusader
         - F: Fighter
@@ -82,6 +76,7 @@ This tab contains all the general information for the character, including a sum
 | Character Name | *character_fullname* | text | Provided to allow for more 'expressive' and complete names than either the standard *character_name* or *token_name* properties. |
 | Token Name | *character_name* | text | The name used for both the sheet and the token. |
 | Class | *class* | text | The character's class. |
+| Class Template | *class_template* | text | The ACKS class template (if any) used to initially generate the character. |
 | Gender | *gender* | text | The character's gender. |
 | Title | *character_title* | text | The character's title. |
 | Height | *height* | text | Ther character's height. |
@@ -92,6 +87,7 @@ This tab contains all the general information for the character, including a sum
 | Experience | *xp_next_level* | text | The amount of experience points needed by the character for next level. |
 | Age | *age* | number | The character's current age. |
 | Level | *level* | number | The character's current level. The minimum allowed is 0; the maximum is 14. Note: The sheet doesn't limit level based on class. |
+| Level Max | *level_max* | number | The character class's maximum level. The minimum allowed is 0; the maximum is 14. Note: There is no validation between this field and the *level* field. |
 | Hit Dice | *hit_dice* | text | The character's hit dice formula.  Validated for proper formatting; if not, the field is cleared and highlighted.  |
 | Hit Dice | *roll_hit_dice* | button | Rolls the *hit_dice* formula above in the Roll20 Chat window. Automatically adds *con_mod* per die (level) specified in the formula. |
 |||||
@@ -134,12 +130,12 @@ This tab contains all the general information for the character, including a sum
 #### Monster Stats
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
+| Size | *monster_size* | list | The monster's size. The default is 'medium' (man-sized). |
+| Morale | *morale* | number | The character's morale score (default is 0). |
 | Alt Move X | *alt_mode_1*, *alt_mode_2*, *alt_mode_3* | text | The character's first, second, and third alternative forms of movement, if any. |
 | Feet / Round | *alt_move_1*, *alt_move_2*, *alt_move_3* | text | Paried w. Alt Move X. The speed of the character's alternative form of movement, if any. |
-| Morale | *morale* | number | The character's morale score (default is 0). |
 | XP Value | *xp_value* | number | The character's value in experience points. |
 | Treasure Type | *monster_treasuretype* | text | The character's treasure type, if any. |
-| Size | *monster_size* | list | The monster's size. The default is 'medium' (man-sized). |
 |||||
 
 ---
@@ -174,7 +170,6 @@ This tab keeps track of class-specific information, such as global modifiers and
 | Weapon & Shield | *fs_weapshield* | checkbox | Is the class proficient with the weapon and shield fighting style? |
 |||||
 | Weapon Proficiencies | *wp* | text | The weapon types that the class is proficient in using. |
-| Class Template | *class_template* | text | The ACKS class template (if any) used to initially generate the character. |
 |||||
 
 #### Code of Behavior
@@ -205,15 +200,15 @@ This tab is used to track studious spell slots, spell usage, repertoire selectio
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_studious_arcane* | repeating | A list of the character's spells, if any. |
-| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
-| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
+| (prepared) | *spell_prepared* | checkbox | Whether the spell is currently prepared or not. Only prepared spells are listed if/when the Action macro is used (see below). |
 | (name) | *spell_name* | text | The name of the spell. |
 | Level | *spell_level* | text | The spell's level, intended to be entered as 'A1' or ;D3' to reflect school and level. |
-| Prepared | *spell_prepared* | checkbox | Whether the spell is currently prepared or not. Only prepared spells are listed if/when the Action macro is used (see below). |
-| more... ||||
-| Type | *spell_type* | text | The spell's type. |
 | Range | *spell_range* | text | The spell's range description. |
 | Duration | *spell_duration* | text | The spell's duration description. |
+| more... ||||
+| Type | *spell_type* | text | The spell's type. |
+| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
+| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
 | Description | *spell_description* | text | The spell's text description. |
 |||||
 
@@ -234,14 +229,15 @@ This tab is used to track prayerful spell slots, spell usage, and spell descript
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_prayerful_arcane* | repeating | A list of the character's spells, if any. |
-| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
-| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
+| (prepared) | *spell_prepared* | checkbox | For prayerful spells, this checkbox is disabled and always checked. Its value cannot be changed. |
 | (name) | *spell_name* | text | The name of the spell. |
 | Level | *spell_level* | text | The spell's level, intended to be entered as 'A1' or ;D3' to reflect school and level. |
-| more... ||||
-| Type | *spell_type* | text | The spell's type. |
 | Range | *spell_range* | text | The spell's range description. |
 | Duration | *spell_duration* | text | The spell's duration description. |
+| more... ||||
+| Type | *spell_type* | text | The spell's type. |
+| Review | *roll_review_spell* | button | When clicked, whispers the spell's information (below) to the Roll20 Chat window (to the character).
+| Cast | *roll_cast_spell* | button | When clicked, exports the spell's information (below) to the Roll20 Chat window. Asks the player to confirm the action. |
 | Description | *spell_description* | text | The spell's text description. |
 |||||
 
@@ -252,15 +248,13 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 
 ### How to Use Melee and Missile Attack Lists
 - Use the Melee Attacks list for melee attacks, and the Missile Attacks list for missile  and/or thrown attacks. Do not mix these.
-- For each possible attack, attack combination, and/or damage formula, create a separate attack entry. For example, a spear could have up to 5 entries; 4 melee and 1 missile:
-    - Melee: "Spear (One-Handed)", 1d6 damage
-    - Melee: "Spear (Two-Handed)", 1d8 damage
-    - Melee: "Spear (Broken, Tip), -1 bonus, 1d4 damage
-    - Melee: "Spear (Broken, Haft), -1 bonus, 1d4 damage
-    - Missile: "Spear (Thrown), isThrown, 1d6 damage
-- If the character is proficient in the dual wield fighting style, creating entries for each weapon combination likely to be used:
-    - "Mace +1 and Sword", +2 bonus, 1d6+1 damage
-    - "Sword and Dagger", +1 bonus, 1d6 damage
+- For each possible attack, attack combination, and/or damage formula, create a separate attack entry. For example, a spear could have up to 3 entries; 2 melee and 1 missile:
+    - Melee: "Spear, one-handed", 1d6 die
+    - Melee: "Spear, two-handed", 1d8 die
+    - Missile: "Spear, thrown, isThrown, 1d6 die
+- If the character is proficient in the dual-wield fighting style, creating entries for each weapon combination likely to be used:
+    - "Mace +1 and Sword", 1d6 die, +1 dmg
+    - "Sword and Mace +1", 1d6 die
     - Etc.
 - The Melee Attacks > Long checkbox and the Missile Attacks > Range field are optional but provide helpful context for the player.
 - Missile Attacks use an advanced Roll20 CRP sheet worker to both make the attack roll and automatically decrement the amount of ammo remaining by 1.
@@ -273,9 +267,9 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Initiative | *mod_initiative* | number | Used to apply a temporary but persistent modifier to initiative rolls. |
 | Surprise | *roll_surprise* | button | When clicked, rolls the character's 2d6 surprise check. Includes modifiers from class bonus, heavy helms, and temporary (see below) and roll-specific (queried) conditions. |
 | Surprise | *mod_surprise* | number | Used to apply a temporary but persistent modifier to surprise rolls. |
-| Reaction | *roll_reaction* | button | When clicked, rolls a 2d6 reaction check to the character. Includes modifiers from CHA modifier, and temporary (see below) and roll-specific (queried) conditions. |
+| Reaction | *roll_reaction* | button | When clicked, rolls a 2d6 reaction check. Includes modifiers from CHA modifier, and temporary (see below) and roll-specific (queried) conditions. |
 | Reaction | *mod_reaction* | number | Used to apply a temporary but persistent modifier to reaction rolls. |
-| Morale | *roll_morale* | button | When clicked, rolls a *whispered* 2d6 morale check for the character to the GM only. Includes the character's morale modifier (if any), and temporary (see below) and roll-specific (queried) conditions. Generally used only for NPCs and monsters. |
+| Morale | *roll_morale* | button | When clicked, rolls a 2d6 morale check. Includes the character's morale modifier (if any), and temporary (see below) and roll-specific (queried) conditions. Generally used only for NPCs and monsters. |
 | Morale | *mod_morale* | number | Used to apply a temporary but persistent modifier to morale rolls. |
 |||||
 
@@ -302,37 +296,40 @@ This tab contains all combat-specific data, including encounter-related rolls, a
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_melee_attacks* | repeating | A list of the character's melee attacks. |
-| Review | *roll_review_melee* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
-| Attack | *roll_melee_attack* | button | When clicked, makes a 1d20 attack throw for the melee attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's STR modifier, the attack's melee attack modifier, fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
-| (equipped) | *melee_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 sword attack and a d8 sword attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
+| (equipped) | *melee_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 sword attack and a d8 sword attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is mainly used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *melee_name* | text | The name of the melee attack. |
-| Dmg | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. | 
-| long | *melee_is_long* | checkbox | Indicates if the attack has the *Long* characteristic (has reach). This value is purely for reference. |
+| die | *melee_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. Note that Attack Type = *Backstab* requires the die formula to start with the 'd' in order to work properly. | 
+| +atk | *melee_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. |
+| +dmg | *damage_bonus* | number | An attack-specific modifier applied to the weapon's base damage roll. E.G., a magical or cursed weapon's modifier. |
 | more... ||||
-| Damage | *roll_melee_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the character's STR modifier, its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
-| Attk Bonus | *melee_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
 | dual | *melee_is_dual* | checkbox | If checked, adds +1 to the melee attack roll, as per ACKS dual wield rules. |
 | finesse | *melee_is_finesse* | checkbox | If checked, the melee attack will use the character's DEX modifier instead of STR. |
+| focus | *has_weapon_focus* | checkbox | If checked, will roll an extra damage die when a natural 20 is rolled for the attack. |
+| impact | *melee_is_impact* | checkbox | If checked, will roll an extra damage die when a Charge/Set melee attack Type is selected. |
+| long | *melee_is_long* | checkbox | Indicates if the attack has the *Long* characteristic (has reach). This value is purely for reference. |
 | 2h | *melee_is_2h* | checkbox | Indicates that the melee attack is two-handed. |
-| Effects | *melee_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
+| Review | *roll_review_melee* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
+| Attack | *roll_melee_attack* | button | When clicked, first queries for the Attack Type: Normal (+0), Charge/Set (+2), or Backstab (+4). Then queries for the target's AC and any additional modifiers. On confirmation, makes a 1d20 attack throw for the melee attack. The Target value is set to the character's *attack_throw* value minus the target's AC. Modifiers to the roll include the character's STR/DEX modifier, Attack Type modifier, weapon focus, and other modifications. Modifications are all labelled. Both natural 1s and 20s are emphasized in the roll results output. Additionally, if the throw is successful, the attack's damage is rolled and displayed. |
+| Optional effects | *melee_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
 |||||
 
 #### Missile Attacks
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_missile_attacks* | repeating | A list of the character's missile attacks. |
-| Review | *roll_review_missile* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
-| Attack | *roll_missile_attack* | button | When clicked, makes a 1d20 attack throw for the missile attack. The target value is set to the character's *attack_throw* value - the target's AC (queried). Modifiers to the roll include the character's DEX modifier, the attack's missile attack modifier, a range modifier (queried), a class accuracy bonus (if any), fatigue, and a roll-specific (queried) modifer. Both natural 1s and 20s are emphasized in the roll results output. Additionally, the attack's damage is rolled as well (see below) and included in the results, whether or not the throw is successful. |
 | (equipped) | *missile_equip* | checkbox | When checked, indicates that the attack is currently equipped (if a weapon) and the attack is available. Note that multiple attacks (E.G. a d6 arrow attack and a d6+1 magic arrow attack) may be listed as seperate attacks and equppied simultaneously. This checkbox is used to determine which attacks are displayed on the character's Actions macro (see below). |
 | (name) | *missile_name* | text | The name of the missile attack. |
-| Dmg | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. | 
-| Rng | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
-| Ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. The sheet uses a R20 CRP to both roll the attack and reduce the weapon's remaining ammo count automatically. |
+| die | *missile_damage* | text | This is an inline roll formula expressing the attack's damage dice and modifier. E.G., "1d6+1". The field is validated for formatting and highlighted if invalid. Note that Range = *Backstab* requires the die formula to start with the 'd' in order to work properly. | 
+| +atk | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. |
+| +dmg | *damage_bonus* | number | An attack-specific modifier applied to the weapon's base damage roll. E.G., a magical or cursed weapon's modifier. |
+| range | *missile_range* | text | Used to describe the missile attack's range bands. E.G, "15/30/45". This is used purely for reference. |
+| ammo | *missile_ammo* | number | Used to track the amount of ammo remaining. The sheet uses a R20 CRP to both roll the attack and reduce the weapon's remaining ammo count automatically. |
 | more... ||||
-| Damage | *roll_missile_damage* | button | When clicked, rolls the attack's Damage formula (see below). The roll is modified by the character's STR modifier (if Thrown - see below), its class damage bonus (if any), and fatigue effects. The total rolled can never be less than 1. |
-| Attk Bonus | *missile_bonus* | number | An attack-specific modifier applied to the weapon's attack throw. E.G., a magical or cursed weapon's modifier. This modifier is **not** applied to the attack's damage roll. |
-| Thrown | *missile_has_str_bonus* | checkbox | If checked, applies the character's STR modifier to the attack's damage roll. |
-| Effects | *missile_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
+| focus | *has_weapon_focus* | checkbox | If checked, will roll an extra damage die when a natural 20 is rolled for the attack. |
+| thrown | *missile_has_str_bonus* | checkbox | If checked, applies the character's STR modifier to the attack's damage roll. |
+| Review | *roll_review_missile* | button | When clicked, outputs details of the attack to the Roll20 Chat window. |
+| Attack | *roll_missile_attack* | button | When clicked, the attack's ammo field is automatically decremented by 1. Then, the action queries for the Range: Short (+0), Medium (-1), Long (-5), or Backstab (+4). Then queries for the target's AC and any additional modifiers. On confirmation, makes a 1d20 attack throw for the missile attack. The Target value is set to the character's *attack_throw* value minus the target's AC. Modifiers to the roll include the character's STR/DEX modifier, Range modifier, weapon focus, and other modifications. Modifications are all labelled. Both natural 1s and 20s are emphasized in the roll results output. Additionally, if the throw is successful, the attack's damage is rolled and displayed.|
+| Optional effects | *missile_effects* | text | An optional field for describing any additional effects related to the attack, such as poison, paralysis, visual description, etc. This is output to the Roll20 Chat when the Attack button is clicked. |
 |||||
 
 ---
@@ -356,13 +353,13 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_skills* | repeating | A list of the character's proficiencies. |
-| Review | *roll_review_skill* | button | When clicked, whispers the proficiency's information (below) to the Roll20 Chat window (to the character).
-| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
 | (name) | *skill_name* | text | The name of the proficiency. |
 | Rank | *skill_rank* | number | The character's rank in the proficiency. Minimum value is '0'; maximum is '4'; default is '1'. Rank is automatically factored into the throw Target, if any. |
 | Type | *skill_type* | list | The type of proficiency: *Bonus*, *Class*, *Class Power*, or *General*. The default is *General*. *Bonus* is intended for tracking additional proficiencies added via the *ACKS II RR "Gaining Proficiencies by Time and Training"* optional rule. |
 | more... ||||
 | Target | *skill_target* | text | Empty by default. If present, should be a formula used to set the proficiency's throw target (see below). |
+| Review | *roll_review_skill* | button | When clicked, whispers the proficiency's information (below) to the Roll20 Chat window (to the character).
+| Throw | *roll_skill_check* | button | When clicked, makes a 1d20 proficiency throw against the Target valie. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions. |
 | Description | *skill_details* | text | The proficiency's text description. |
 |||||
 
@@ -370,12 +367,12 @@ This tab is used to keep track of proficiencies and derivative / supporting abil
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_abilities* | repeating | A list of the character's non-proficiency abilities. Can be used to add specific proficiency-driven abilities such as *Listen* (Adventuring) or *Diagnose Illness* (Healing), class-specific ability descriptions, or anything else desired. |
-| Review | *roll_review_ability* | button | When clicked, whispers the ability's information (below) to the Roll20 Chat window (to the character).
-| Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
 | (name) | *ability_name* | text | The name of the ability. |
 | Source | *ability_source* | text | The source of the ability, for reference purposes. This is usually the name of a proficiency, but doesn't have to be. |
 | more... ||||
 | Target | *ability_target* | text | Empty by default. If present, should be a formula used to set the ability's throw target (see below). |
+| Review | *roll_review_ability* | button | When clicked, whispers the ability's information (below) to the Roll20 Chat window (to the character).
+| Throw | *roll_ability_check* | button | When clicked, makes a 1d20 ability throw against the Target value. If no Target is specified, the throw does not occur. Includes modifiers from fatigue and roll-specific (queried) conditions.  |
 | Description | *ability_details* | text | The ability's text description. |
 |||||
 
@@ -397,13 +394,13 @@ This tab keeps track of all equipment.
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 || *repeating_items* | repeating | A list of the character's equipment / inventory, both carried or otherwise. |
+| (equipped) | *item_equipped* | checkbox | If checked, the item's total *item_weight* x *item_count* is included in the character's encumbrance. Otherwise, it is not. The default value is *checked*. |
 | (name) | *item_name* | text | The name of the equipment item. |
 | # | *item_count* | number | A count of the number of items included. The minimum value is 0. There is no maximum. The default value is 1. |
-| Wt | *item_weight* | number | The item's weight, in stone. The minimum value is 0. There is no maximum. The default weight for all new items in 0.17 (one-sixth of a stone, as per ACKS encumbrance for small items). |
+| Stone | *item_weight* | number | The item's weight, in stone. The minimum value is 0. There is no maximum. The default weight for all new items in 0.16 (one-sixth of a stone, as per ACKS encumbrance for small items). |
 | Value | *item_value* | number | An optional field for tracking the value of the item, for reference only. By default, this field is empty. Typically, used only for tracking the value of valuable and/or exceptional items. |
-| Equipped | *item_equipped* | checkbox | If checked, the item's total *item_weight* x *item_count* is included in the character's encumbrance. Otherwise, it is not. The default value is *checked*. |
 | more... ||||
-| Details | *item_details* | text | An optional text area to add item details, for reference only. |
+| Optional description | *item_details* | text | An optional text area to add item details, for reference only. |
 |||||
 
 ---
@@ -437,9 +434,9 @@ This tab keeps track of all coinage, monthly income/expenses, and passive invest
 | Field | Variable(s) | Type | Description |
 | --- | --- | --- | --- |
 | **Investments** | *repeating_investments* | repeating | A list of the character's passive investments (via mercantile adventures). |
+| (type) | *investment_type* | list | The type of passive investment. |
 | Amount | *investment_amount* | number | The amount of gold invested. The minimum value is 0. |
-| Type | *investment_type* | list | The type of passive investment. |
-| Level of Risk | *investment_risk* | list | The level of risk and matching rate of return. |
+| Rick lvl | *investment_risk* | list | The level of risk and matching rate of return. |
 | more... ||||
 | Details | *investment_details* | text | An optional text area to add investment details, for reference only. |
 |||||
@@ -460,9 +457,9 @@ This tab keeps track of the character's hirelings and associated fees.
 | --- | --- | --- | --- |
 || *repeating_henchmen* | repeating | Contains a list of the character's henchmen. |
 | (name) | *henchman_name* | text | The name of the henchman. |
-| (Loyalty Check) | *roll_henchman_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the henchman, modified by the character's CHA modifier and a roll-specific modifier, if any. |
+| (loyalty check) | *roll_henchman_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the henchman, modified by the character's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *henchman_loyalty* | number | The henchman's base loyalty rating to the character, used to make loyalty checks. Minimum value is -4; maximum is +4, default is 0. |
-| (Morale Check) | *roll_henchman_obedience_check* | button | When clicked, makes a 2d6 obedience check for the henchman, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (morale check) | *roll_henchman_obedience_check* | button | When clicked, makes a 2d6 obedience check for the henchman, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *henchman_morale* | number | The henchman's base morale rating, used to make obedience chacks. Minimum value is -4; maximum is +4, default is 0. |
 | Wage (gp) | *henchman_fee* | calculated | The monthly wage that the character must pay the henchman. Determined based on the henchman level, as per the ACKS henchman wage structure. |
 | more... ||||
@@ -475,10 +472,9 @@ This tab keeps track of the character's hirelings and associated fees.
 | --- | --- | --- | --- |
 || *repeating_mercenaries* | repeating | Contains a list of the character's hired mercenaries (by group). |
 | (name) | *merc_name* | text | The name of the mercenary group. |
-| Quantity | *merc_number* | number | The number of troops currently within the mercenary group. |
-| (Loyalty Check) | *roll_merc_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the mercenary group, modified by the character's CHA modifier and a roll-specific modifier, if any. |
+| (loyalty check) | *roll_merc_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the mercenary group, modified by the character's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *merc_loyalty* | number | The mercenary group's base loyalty rating to the character, used to make loyatly checks.  Minimum value is -4; maximum is +4, default is 0. |
-| (Morale Check) | *roll_merc_obedience_check* | button | When clicked, makes a 2d6 morale  check for the mercenary group, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (morale check) | *roll_merc_obedience_check* | button | When clicked, makes a 2d6 morale  check for the mercenary group, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *merc_morale* | number | The mercenary group's base morale rating, used to make obedience checks. Minimum value is -4; maximum is +4, default is 0. |
 | Wage (gp) | *merc_fees* | calculated | The total monthly wages that the character must pay the mercenary group. Calculated as *merc_fee* x *merc_number*. |
 | more... ||||
@@ -493,10 +489,9 @@ This tab keeps track of the character's hirelings and associated fees.
 | --- | --- | --- | --- |
 || *repeating_specialists* | repeating | Contains a list of the character's hired specialists. |
 | (name) | *spec_name* | text | The name of the specialist. |
-| Type | *spec_type* | text | The specialist's type/occupation. |
-| (Loyalty Check) | *roll_spec_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the specialist, modified by the character's CHA modifier and a roll-specific modifier, if any. |
+| (loyality check) | *roll_spec_loyalty_check* | button | When clicked, makes a 2d6 loyalty check for the specialist, modified by the character's CHA modifier and a roll-specific modifier, if any. |
 | Loyalty | *spec_loyalty* | number | The specialist's base loyalty rating to the character, used to make loyatly checks.  Minimum value is -4; maximum is +4, default is 0. |
-| (Morale Check) | *roll_spec_obedience_check* | button | When clicked, makes a 2d6 morale check for the specialist, modified by any applicable class bonus and a roll-specific modifier, if any. |
+| (morale check) | *roll_spec_obedience_check* | button | When clicked, makes a 2d6 morale check for the specialist, modified by any applicable class bonus and a roll-specific modifier, if any. |
 | Morale | *spec_morale* | number | The specialist's base morale rating, used to make obedience checks. Minimum value is -4; maximum is +4, default is 0. |
 | Wage (gp) | *spec_fee* | duplicate | Same value as Set Wage (gp), below. |
 | more... ||||
@@ -570,21 +565,7 @@ This tab contains base values used in some sheet worker calculations; mainly whe
 
 ---
 
-## Roll Templates
-
-### 'Custom' Template
-The ACKS sheet leverages a custom roll template that supports the following properties:
-
-- *title*: the title to be displayed
-- *subtitle*: an optional subtitle to be displayed
-- *color*: the default header color is gray, but additional colors may be specified: blakc, brown, blue, gold, green, orange, and red
-- *effects*: an optional effects field, used to provide flavor
-- *desc*: an optional description field, used to provide details
-- *roll* plus *target*: if roll is **less** than target, will indicate *success*; otheriwse, *failure*
-- Support for Combat > *roll_surprise* outcomes
-- Any additional parameters via the *allprops* roll template feature
-
-### 'Custom' Template Banners
+## 'Custom' Template Banners
 The roll template supports the use of an image banner in its header. However, to respect artist intellectual property, those present in the sheet HTML should be replaced with ones of your own. The list of template headers that can be customized can be found at the end of the sheet HTML just before the sheet worker section. Hopefully, the *name* properties (SOMECONTEXT, below) are intuitive.
 
 ![Sample Roll Template Banner](images/roll_template.png)
@@ -602,7 +583,7 @@ I recommend that banners be 300px-by-80px and PNG format.
 ## Supporting Macros
 The following macros can be found in the /macros sub-directory of the git. They are *highly* recommended:
 
-* **actions**: The macro uses the Roll20 [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to whisper a list of nmany sheet buttons into the Roll20 chat. Buttons are organzied by type. Note that melee and missile attacks will only appear in the output if they've been marked as "equipped" This script saves the players a **lot** of time and is highly recommended. Specify 'Show as Token Action' to apply the macro to every sheet token. Select the token, and then click the macro to use it. (The corallary here is that a token **must** be selected for many of the sheet buttons to work, with our without the macro...)
+* **actions**: The macro uses the Roll20 [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to whisper a list of nmany sheet buttons (links) into the Roll20 chat. Links are organzied by type. Clicking a link will call the appropriate sheet button and performing any action required, such as making an attack throw. Note that melee and missile attacks will only appear in the output if they've been marked as "equipped". This script saves the players a **lot** of time and is highly recommended. Specify 'Show as Token Action' to apply the macro to every sheet token. Select the token, and then click the macro to use it. (The corallary here is that a token **must** be selected for many of the sheet buttons to work, with or without the macro...)
 
 * **conditions**: This macro uses the Roll20 [TokenMod](https://wiki.roll20.net/Script:Token_Mod) API add-on to apply/remove ACKS condition token icons with a click of a button. Note that my version relies on additional custom icons that I created and imported into the game (see the \images folder for a PNG of these), but the script can be modified to use only the stock icons, as desired.
 
@@ -615,6 +596,8 @@ The following macros can be found in the /macros sub-directory of the git. They 
 * **newMonster**: This macro is intended to be applied **at game time** to a monster token. This will use [TokenMod](https://wiki.roll20.net/Script:Token_Mod) to randomize the token's *hp*=*hp_max* to the bound character sheet's *hit_dice* value, add 60' nightvision to the token, and append a random 3-digit number to the token's name. As with *newToken*, this can be further customized, as desired. **Important:** For proper results, this macro must be applied to **each** instantiated monster token individually. Generic monster sheets should **not** have their *hp* bound to *bar1* when applying this macro.
 
 * **prayerful**: This macro uses [ChatMenu](https://app.roll20.net/forum/post/7474530/script-call-for-testers-universal-chat-menus/?pagenum=1) API script to output the character's prayerful spell list to the Roll20 chat as clickable links. Links are provided to review each spell in the prayerful caster's spell list, as well as to cast. This macro should be added to specific character sheets via the Roll20 Attributes & Abilities tab.
+
+* **review**: An alternate version of the *actions* macro, above, that calls attack Review buttons. This allows players to review their attack details in private.
 
 * **rollInit**: This macro uses [GroupInitiative](https://wiki.roll20.net/Script:Group_Initiative) API script to roll ACKS initiative for all selected tokens on the current Roll20 page. Takes into consideration modifiers from the character's dexterity attribute, any class modifier, and any additional modifer entered on the Combat tab. Requires additional configuration detailed in the .txt file.
 
@@ -658,6 +641,6 @@ The ACKS intellectual property contained within the character sheet is covered u
 
 ## Acknowledgments
 
-* Alexander Macris, author of ACKS and owner of Autarch
+* Alexander Macris, author of ACKS, ACKS II, and the owner of Autarch
 * GiGs, TheAaron, Kraynic, and everyone else in the [Roll20 Forums](https://app.roll20.net/forum/) that have helped me progress to where I am in sheet development over the years.
-* My Wednesday night ACKS gaming group, who have put up with me for far too long. ;)
+* My weekly ACKS gaming group, who have put up with me for far too long. ;)

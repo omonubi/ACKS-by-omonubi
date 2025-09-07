@@ -81,6 +81,7 @@
             <div>
                 <input type='number' min='0' max='14' value='1' title='@{level}' name='attr_level' />/
                 <input type='number' min='10' max='14' value='14' title='@{level_max}' name='attr_level_max'/>
+                <input type='hidden' value='1' name='attr_backstab_dmg_dice'/>
             </div>
         </div>
         <hr class='span-grid'/>
@@ -474,7 +475,7 @@
                 <input type='checkbox' value='1' title='@{melee_is_long}' name='attr_melee_is_long'/><span>long</span>
                 <input type='checkbox' value='1' title='@{melee_is_2h}' name='attr_melee_is_2h'/><span>2h</span>
                 <button type='roll' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Has Focus=@{has_weapon_focus}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Type=[[?{Attack Type|Normal,0|Charge,1|Set,2}]]}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(2*?{Attack Type|Normal,0|Charge,1|Set,2}[charge])+(@{melee_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{@{melee_damage}cs>7cf<0[wpn]+@{damage_bonus}[bonus]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[@{has_weapon_focus}[focus]*@{melee_damage}cs>7cf<0[wpn]]]}} {{Impact=[[@{melee_is_impact}[impact]*@{melee_damage}cs>7cf<0[wpn]]]}} {{Effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button><br/>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Type=[[?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}]]}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(2*?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}[type])+(@{melee_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{@{melee_damage}cs>20cf<0[wpn]+@{damage_bonus}[bonus]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[@{has_weapon_focus}[focus]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Impact=[[@{melee_is_impact}[impact]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Backstab=[[@{backstab_dmg_dice}@{melee_damage}cs>20cf<0[backstab]]]}} {{Effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button><br/>
                 <input type='text' class='max-width' placeholder='Optional effects description...' title='@{melee_effects}' name='attr_melee_effects'/>
                 <hr/>
             </div>
@@ -497,7 +498,7 @@
                 <label><input type='checkbox' value='1' title='@{missile_is_thrown}' name='attr_missile_is_thrown'/> thrown</label>
                 <button type='roll' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Missile Attack**}} {{Attack/Weapon=@{missile_name}}} {{Attack Bonus=@{missile_bonus}}} {{Damage=@{missile_damage}}} {{Ranges=@{missile_range}}} {{Ammo=@{missile_ammo}}} {{Is Thrown=@{missile_is_thrown}}} {{is Equipped=@{missile_equip}}} {{effects=@{missile_effects}}}' name='roll_review_missile'> Review</button>
                 <button type='action' class='btn' name='act_missile-attack'> Attack</button><br/>
-                <input type='text' class='max-width' placeholder='Optional Effects description...' title='@{missile_effects}' name='attr_missile_effects'/>
+                <input type='text' class='max-width' placeholder='Optional effects description...' title='@{missile_effects}' name='attr_missile_effects'/>
                 <hr/>
             </div>
         </fieldset>
@@ -1125,6 +1126,22 @@ on('clicked:roll_0th', function(eventInfo) {
     });
 });
 
+// Backstab damage dice
+// Used to determine the number of damage dice to roll when backstabbing
+on('change:level', function(eventInfo) {
+    if (eventInfo.sourceType == "player") {
+        getAttrs(['level'], function(values) {
+            const theLevel = parseInt(values['level']) || 0;
+
+            const numDmgDice = 1 + Math.floor((theLevel - 1) / 4);
+
+            const output = {};
+            output['backstab_dmg_dice'] = numDmgDice;
+            setAttrs(output);
+        });
+    }
+});
+
 // Bedrest
 // If the character requires bedrest, highlight the field.
 on('change:bedrest', function(eventInfo) {
@@ -1428,7 +1445,7 @@ on('change:fss', function(eventInfo) {
 // Subtract 1 from the attack's ammunition field.
 // Note: Required to both roll the attack and auto-deduct the ammo.
 on('clicked:repeating_missile:missile-attack', () => {
-    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_damage_bonus', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo', 'repeating_missile_has_weapon_focus'], function(values) {
+    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_damage_bonus', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo', 'repeating_missile_has_weapon_focus', 'backstab_dmg_dice'], function(values) {
         const missileName = String(values.repeating_missile_missile_name);
         const missileBonus = parseInt(values.repeating_missile_missile_bonus) || 0;
         const missileDamage = String(values.repeating_missile_missile_damage);
@@ -1436,9 +1453,10 @@ on('clicked:repeating_missile:missile-attack', () => {
         const missileIsThrown = parseInt(values.repeating_missile_missile_is_thrown) || 0;
         const missileEffects = String(values.repeating_missile_missile_effects);
         const missileAmmo = parseInt(values.repeating_missile_missile_ammo) || 0;
+        const backstabDmgDice = parseInt(values.backstab_dmg_dice) || 0;
         const weaponFocus = parseInt(values.repeating_missile_has_weapon_focus) || 0;
 
-        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Ammo=${missileAmmo - 1}}} {{Target=[[@{attack_throw}+(?{Target AC|0}[target AC])]]}} {{Roll=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{${missileDamage}cs>7cf<0[wpn]+${damageBonus}[bonus]+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[${weaponFocus}[focus]*${missileDamage}cs>7cf<0[wpn]]]}} {{Effects=${missileEffects}}}`, roll => {  
+        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Range=[[?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}]]}} {{Ammo=${missileAmmo - 1}}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{${missileDamage}cs>7cf<0[wpn]+${damageBonus}[bonus]+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[${weaponFocus}[focus]*${missileDamage}cs>7cf<0[wpn]]]}} {{Backstab=[[${backstabDmgDice}${missileDamage}cs>20cf<0[backstab]]]}} {{Effects=${missileEffects}}}`, roll => {  
           finishRoll(roll.rollId);
         });
 
@@ -1907,50 +1925,76 @@ on('clicked:clear_tension', function(eventInfo) {
         {{/rollTotal() Type 0}}
         {{#rollTotal() Type 1}}
             <div class="sheet-key">Attack Type</div>
-            <div class="sheet-value"><span>Charge</span></div>
+            <div class="sheet-value"><span>Charge/Set</span></div>
         {{/rollTotal() Type 1}}
         {{#rollTotal() Type 2}}
             <div class="sheet-key">Attack Type</div>
-            <div class="sheet-value"><span>Set Against Charge</span></div>
+            <div class="sheet-value"><span>Backstab</span></div>
         {{/rollTotal() Type 2}}
+        {{#rollTotal() Range 0}}
+            <div class="sheet-key">Range</div>
+            <div class="sheet-value"><span>Short</span></div>
+        {{/rollTotal() Range 0}}
+        {{#rollTotal() Range -2}}
+            <div class="sheet-key">Range</div>
+            <div class="sheet-value"><span>Medium</span></div>
+        {{/rollTotal() Range -2}}
+        {{#rollTotal() Range -5}}
+            <div class="sheet-key">Range</div>
+            <div class="sheet-value"><span>Long</span></div>
+        {{/rollTotal() Range -5}}
+        {{#rollTotal() Range 4}}
+            <div class="sheet-key">Range</div>
+            <div class="sheet-value"><span>Short (Backstab)</span></div>
+        {{/rollTotal() Range 4}}
 
-        {{#allprops() title subtitle color Type Damage Focus Impact desc Ammo Effects loyalty surprise}}
+        {{#allprops() title subtitle color Type Damage Focus Impact Backstab Range desc Ammo Effects surprise}}
         <div class="sheet-key">{{key}}</div>
         <div class="sheet-value">{{value}}</div>
-        {{/allprops() title subtitle color Type Damage Focus Impact desc Ammo Effects loyalty surprise}}
+        {{/allprops() title subtitle color Type Damage Focus Impact Backstab Range desc Ammo Effects surprise}}
 
-        {{#^rollLess() Roll Target}}
+        {{#^rollLess() Throw Target}}
         <div class="sheet-key">Result</div>
         <div class="sheet-value"><span class="success">Success!</span></div>
             {{#Damage}}
             <div class="sheet-key">Damage</div>
             <div class="sheet-value">{{Damage}}
-                {{#rollWasCrit() Roll}}
+                {{#rollWasCrit() Throw}}
                     {{#^rollLess() Focus 1}}
                         {{#Focus}}
                             <span>+ {{Focus}}</span>
                         {{/Focus}}
                     {{/^rollLess() Focus 1}}
-                {{/rollWasCrit() Roll}}
-                {{#^rollLess() Type 1}}
+                {{/rollWasCrit() Throw}}
+                {{#rollTotal() Type 1}}
                     {{#^rollLess() Impact 1}}
                         {{#Impact}}
                             <span>+ {{Impact}}</span>
                         {{/Impact}}
                     {{/^rollLess() Impact 1}}
-                {{/^rollLess() Type 1}}
+                {{/rollTotal() Type 1}}
+                {{#rollTotal() Type 2}}
+                    {{#Backstab}}
+                        <span>+ {{Backstab}}</span>
+                    {{/Backstab}}
+                {{/rollTotal() Type 2}}
+                {{#rollTotal() Range 4}}
+                    {{#Backstab}}
+                        <span>+ {{Backstab}}</span>
+                    {{/Backstab}}
+                {{/rollTotal() Range 4}}
             </div>
             {{/Damage}}
             {{#Effects}}
                 <div class="sheet-key">Effects</div>
                 <div class="sheet-value">{{Effects}}</div>
             {{/Effects}}
-        {{/^rollLess() Roll Target}}
+        {{/^rollLess() Throw Target}}
 
-        {{#rollLess() Roll Target}}
+        {{#rollLess() Throw Target}}
         <div class="sheet-key">Result</div>
         <div class="sheet-value"><span class="failure">Failure!</span></div>
-        {{/rollLess() Roll Target}}
+        {{/rollLess() Throw Target}}
 
         {{#Ammo}}
             <div class="sheet-key">Ammo Remaining</div>
