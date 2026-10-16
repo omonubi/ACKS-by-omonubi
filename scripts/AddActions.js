@@ -133,17 +133,20 @@ const meleeDefaults =
         {
             melee_name: "Punch",
             melee_damage: "d3",
-            melee_bonus: "0"
+            melee_bonus: "0",
+            damage_type: "B"
         },
         {
             melee_name: "Kick",
             melee_damage: "d4",
-            melee_bonus: "-2"
+            melee_bonus: "-2",
+            damage_type: "B"
         },
         {
             melee_name: "Torch",
             melee_damage: "d4",
-            melee_bonus: "0"
+            melee_bonus: "0",
+            damage_type: "B"
         },
         {
             melee_name: "Improvised Melee",
