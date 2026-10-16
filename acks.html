@@ -466,21 +466,7 @@
             <label>die:</label><input type='hidden' class='alert-damage' name='attr_alert_damage'/><input type='text' class='damage' title='@{melee_damage}' name='attr_melee_damage'/>
             <label>+ atk:</label><input type='number' min='-10' max='10' value='0' title='@{melee_bonus}' name='attr_melee_bonus'/>
             <label>+ dmg:</label><input type='number' min='-10' max='10' value='0' title='@{damage_bonus}' name='attr_damage_bonus'/>
-            <select style='width:100px;' title='@{damage_type}' name='attr_damage_type'>
-                <option>type...</option>
-                <option>Acidic</option>
-                <option>Arcane</option>
-                <option>Bludgeoning</option>
-                <option>Cold</option>
-                <option>Electric</option>
-                <option>Fire</option>
-                <option>Luminous</option>
-                <option>Necrotic</option>
-                <option>Piercing</option>
-                <option>Poison</option>
-                <option>Seismic</option>
-                <option>Slashing</option>
-            </select>
+            <label>type:</label><input style='width:50px;' type='text' title='@{damage_type}' name='attr_damage_type'/>
             <label>more... </label><input type='checkbox' class='toggle-show' title='more...'/><br/>
             <div class='details'>
                 <input type='checkbox' value='1' title='@{melee_is_dual}' name='attr_melee_is_dual'/><span>dual</span>
@@ -490,7 +476,7 @@
                 <input type='checkbox' value='1' title='@{melee_is_long}' name='attr_melee_is_long'/><span>long</span>
                 <input type='checkbox' value='1' title='@{melee_is_2h}' name='attr_melee_is_2h'/><span>2h</span>
                 <button type='roll' value='/w @{character_name} &{template:custom} {{color=brown}} {{title=**Review Melee Attack**}} {{Attack/Weapon=@{melee_name}}} {{Attack Bonus=@{melee_bonus}}} {{Damage=@{melee_damage}}} {{Is Dual Wield=@{melee_is_dual}}} {{Is Finesse=@{melee_is_finesse}}} {{Has Focus=@{has_weapon_focus}}} {{Is Two-handed=@{melee_is_2h}}} {{is Equipped=@{melee_equip}}} {{effects=@{melee_effects}}}' name='roll_review_melee'> Review</button>
-                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Type=[[?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}]]}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(2*?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}[type])+(@{melee_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{@{melee_damage}cs>20cf<0[wpn]+@{damage_bonus}[bonus]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[@{has_weapon_focus}[focus]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Impact=[[@{melee_is_impact}[impact]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Backstab=[[@{backstab_dmg_dice}@{melee_damage}cs>20cf<0[backstab]]]}} {{Effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
+                <button type='roll' value='@{whispertoggle} &{template:custom} {{title=@{banner_melee} **Melee Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=@{melee_name}}} {{Type=[[?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}]]}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{melee_attk_attr}+@{melee_bonus}[wpn]+(2*?{Attack Type|Normal,0|Charge/Set,1|Backstab,2}[type])+(@{melee_is_dual}[dual]*@{fss_dual}[fss])-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{@{melee_damage}cs>20cf<0[wpn]+@{damage_bonus}[bonus]+@{damage_attr}+(@{class_damage_bonus}[class])+(@{melee_is_2h}[2h]*@{fss_two}[fss])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Dmgtype=@{damage_type}}} {{Focus=[[@{has_weapon_focus}[focus]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Impact=[[@{melee_is_impact}[impact]*@{melee_damage}cs>20cf<0[wpn]]]}} {{Backstab=[[@{backstab_dmg_dice}@{melee_damage}cs>20cf<0[backstab]]]}} {{Effects=@{melee_effects}}}' name='roll_melee_attack'> Attack</button>
                 <br/>
                 <input type='text' class='max-width' placeholder='Optional effects description...' title='@{melee_effects}' name='attr_melee_effects'/>
                 <hr/>
@@ -506,21 +492,7 @@
             <label>die:</label><input type='hidden' name='attr_alert_damage'/><input type='text' class='damage' title='@{missile_damage}' name='attr_missile_damage'/>
             <label>+ atk:</label><input type='number' value='0' title='@{missile_bonus}' name='attr_missile_bonus'/>
             <label>+ dmg:</label><input type='number' min='-10' max='10' value='0' title='@{damage_bonus}' name='attr_damage_bonus'/>
-            <select style='width:100px;' title='@{damage_type}' name='attr_damage_type'>
-                <option>type...</option>
-                <option>Acidic</option>
-                <option>Arcane</option>
-                <option>Bludgeoning</option>
-                <option>Cold</option>
-                <option>Electric</option>
-                <option>Fire</option>
-                <option>Luminous</option>
-                <option>Necrotic</option>
-                <option>Piercing</option>
-                <option>Poison</option>
-                <option>Seismic</option>
-                <option>Slashing</option>
-            </select>
+            <label>type:</label><input style='width:50px;' type='text' title='@{damage_type}' name='attr_damage_type'/>
             <label>range:</label><input type='text' class='range' title='@{missile_range}' name='attr_missile_range'/>
             <label>ammo:</label><input value='0' type='number' title='@{missile_ammo}' name='attr_missile_ammo'/>
             <label>more... </label><input type='checkbox' class='toggle-show' title='more...'/><br/>
@@ -1469,18 +1441,19 @@ on('change:fss', function(eventInfo) {
 // Subtract 1 from the attack's ammunition field.
 // Note: Required to both roll the attack and auto-deduct the ammo.
 on('clicked:repeating_missile:missile-attack', () => {
-    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_damage_bonus', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo', 'repeating_missile_has_weapon_focus', 'backstab_dmg_dice'], function(values) {
+    getAttrs(['repeating_missile_missile_name', 'repeating_missile_missile_bonus', 'repeating_missile_missile_damage', 'repeating_missile_damage_bonus', 'repeating_missile_damage_type', 'repeating_missile_missile_is_thrown', 'repeating_missile_missile_effects', 'repeating_missile_missile_ammo', 'repeating_missile_has_weapon_focus', 'backstab_dmg_dice'], function(values) {
         const missileName = String(values.repeating_missile_missile_name);
         const missileBonus = parseInt(values.repeating_missile_missile_bonus) || 0;
         const missileDamage = String(values.repeating_missile_missile_damage);
         const damageBonus = parseInt(values.repeating_missile_damage_bonus) || 0;
+        const damageType = String(values.repeating_missile_damage_type);
         const missileIsThrown = parseInt(values.repeating_missile_missile_is_thrown) || 0;
         const missileEffects = String(values.repeating_missile_missile_effects);
         const missileAmmo = parseInt(values.repeating_missile_missile_ammo) || 0;
         const backstabDmgDice = parseInt(values.backstab_dmg_dice) || 0;
         const weaponFocus = parseInt(values.repeating_missile_has_weapon_focus) || 0;
 
-        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Range=[[?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}]]}} {{Ammo=${missileAmmo - 1}}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{${missileDamage}cs>7cf<0[wpn]+${damageBonus}[bonus]+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Focus=[[${weaponFocus}[focus]*${missileDamage}cs>7cf<0[wpn]]]}} {{Backstab=[[${backstabDmgDice}${missileDamage}cs>20cf<0[backstab]]]}} {{Effects=${missileEffects}}}`, roll => {  
+        startRoll(`@{whispertoggle} &{template:custom} {{title=@{banner_missile} **Missile Attack Throw**}} {{subtitle=@{character_title} @{selected|token_name}}} {{color=red}} {{Attack/Weapon=${missileName}}} {{Range=[[?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}]]}} {{Ammo=${missileAmmo - 1}}} {{Target=[[@{attack_throw}[base]+(?{Target AC|0}[AC])]]}} {{Throw=[[1d20+@{dex_mod}[dex]+${missileBonus}[wpn]+?{Range|Short,0|Medium,-2|Long,-5|Backstab,4}[range]+@{class_damage_bonus_missile}[class]+@{fss_missile}[fss]-@{fatigue}[fatigue]+(?{Modifier|0}[mod])]]}} {{Damage=[[{${missileDamage}cs>7cf<0[wpn]+${damageBonus}[bonus]+(${missileIsThrown}*@{damage_attr})+(@{class_damage_bonus_missile}[class])-@{fatigue}[fatigue], 0d1+1}k1]]}} {{Dmgtype=${damageType}}} {{Focus=[[${weaponFocus}[focus]*${missileDamage}cs>7cf<0[wpn]]]}} {{Backstab=[[${backstabDmgDice}${missileDamage}cs>20cf<0[backstab]]]}} {{Effects=${missileEffects}}}`, roll => {  
           finishRoll(roll.rollId);
         });
 
@@ -1972,10 +1945,10 @@ on('clicked:clear_tension', function(eventInfo) {
             <div class="sheet-value"><span>Short (Backstab)</span></div>
         {{/rollTotal() Range 4}}
 
-        {{#allprops() title subtitle color Type Damage Focus Impact Backstab Range desc Ammo Effects surprise}}
+        {{#allprops() title subtitle color Type Damage Dmgtype Focus Impact Backstab Range desc Ammo Effects surprise}}
         <div class="sheet-key">{{key}}</div>
         <div class="sheet-value">{{value}}</div>
-        {{/allprops() title subtitle color Type Damage Focus Impact Backstab Range desc Ammo Effects surprise}}
+        {{/allprops() title subtitle color Type Damage Dmgtype Focus Impact Backstab Range desc Ammo Effects surprise}}
 
         {{#^rollLess() Throw Target}}
         <div class="sheet-key">Result</div>
@@ -2008,6 +1981,10 @@ on('clicked:clear_tension', function(eventInfo) {
                     {{/Backstab}}
                 {{/rollTotal() Range 4}}
             </div>
+                {{#Dmgtype}}
+                    <div class="sheet-key">Type</div>
+                    <div class="sheet-value">{{Dmgtype}}</div>
+                {{/Dmgtype}}
             {{/Damage}}
             {{#Effects}}
                 <div class="sheet-key">Effects</div>
